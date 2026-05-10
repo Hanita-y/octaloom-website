@@ -20,7 +20,7 @@ const C = {
 }
 
 const F = {
-  display: "'Discovery', 'Aeonik', sans-serif",
+  display: "'DiscoveryFs', 'Discovery', 'Aeonik', sans-serif",
   body:    "'Aeonik', sans-serif",
 }
 
@@ -101,6 +101,7 @@ function Btn({ href, onClick, variant = "purple", children, style = {} }: {
     purple:  { background: C.purple,     color: "white" },
     ghost:   { background: "transparent", color: C.purple, border: `1px solid rgba(113,46,172,0.2)` },
     white:   { background: "white",      color: C.purple },
+    cream:   { background: C.cream,     color: C.deepPurple },
     lime:    { background: C.lime,       color: C.navy },
     outline: { background: "transparent", color: C.purple, border: `1.5px solid ${C.purple}` },
     dark:    { background: C.deepPurple, color: "white" },
@@ -758,7 +759,9 @@ function HPHero() {
                   const isLast = i === hpT(HP.hero.h1).split("\n").length - 1
                   return (
                     <span key={i} style={{ display: "block",
-                      color: (line.includes("\u05de\u05d7\u05dc\u05e7\u05d4") || line.includes("department")) ? C.purple : C.deepPurple }}>
+                      color: lang === "en"
+                        ? (i >= 2 ? C.purple : C.deepPurple)
+                        : (line.includes("\u05de\u05d7\u05dc\u05e7\u05d4") ? C.purple : C.deepPurple) }}>
                       {line}
                     </span>
                   )
@@ -875,8 +878,12 @@ function HPFourthOption() {
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           <Reveal>
             <p style={{ fontFamily: F.display, fontWeight: 500,
-              fontSize: "clamp(28px,4vw,44px)", color: C.lime, marginBottom: 28,
+              fontSize: "clamp(28px,4vw,44px)", color: C.lime, marginBottom: 8,
               textAlign: "center" }}>{hpT(HP.fourthOption.but)}</p>
+            <p style={{ fontSize: 17, fontWeight: 600, color: "rgba(255,255,255,0.65)",
+              textAlign: "center", marginBottom: 28, fontFamily: F.body, letterSpacing: "0.02em" }}>
+              {hpT({ en: "AI-Powered B2B Marketing", he: "שיווק B2B מבוסס AI" })}
+            </p>
           </Reveal>
           <Reveal delay={150}>
             <p style={{ fontSize: 17, lineHeight: 1.75, color: "rgba(255,255,255,0.8)",
@@ -888,7 +895,7 @@ function HPFourthOption() {
           </Reveal>
           <Reveal delay={350}>
             <div style={{ textAlign: "center" }}>
-              <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="white">
+              <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="cream">
                 {hpT(HP.fourthOption.cta)}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1061,7 +1068,7 @@ function HPServices() {
                 </p>
 
                 {/* Tear row */}
-                <div style={{ display: "flex", alignItems: "center", marginBottom: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", marginBottom: 12 }}>
                   <div style={{ flex: 1, borderTop: `2px dashed rgba(113,46,172,.6)` }} />
                   <span style={{ fontSize: 11, letterSpacing: "0.18em", fontWeight: 500,
                     color: C.purple, fontFamily: F.display, padding: "0 12px",
@@ -1070,7 +1077,7 @@ function HPServices() {
                   </span>
                   <div style={{ flex: 1, borderTop: `2px dashed rgba(113,46,172,.6)` }} />
                   <span style={{ padding: "0 10px", color: C.purple, fontSize: 16, opacity: 0.5,
-                    transform: "scaleX(-1)", display: "inline-block" }}>\u2702</span>
+                    transform: "scaleX(-1)", display: "inline-block" }}>{"\u2702"}</span>
                 </div>
 
                 {/* Strips */}
@@ -1234,9 +1241,10 @@ function HPCaseStudy() {
     <Sec bg={C.cream} id="case">
       <Container>
         <Reveal>
-          <div style={{ background: "white", borderRadius: 16,
+          <div style={{ background: "rgba(255,255,255,0.55)", borderRadius: 16,
             padding: isMobile ? 24 : "clamp(32px,5vw,56px)",
-            boxShadow: "0 4px 32px rgba(0,0,0,0.06)" }}>
+            boxShadow: "0 4px 32px rgba(0,0,0,0.06)",
+            backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
 
             <h2 style={{ fontFamily: F.display, fontWeight: 500,
               fontSize: "clamp(22px,3vw,32px)", lineHeight: 1.2,
@@ -1343,6 +1351,12 @@ function HPAbout() {
                 lineHeight: 1.15, color: C.deepPurple, marginBottom: 24 }}>
                 {hpT(HP.about.title)}
               </h2>
+            </Reveal>
+            <Reveal delay={150}>
+              <p style={{ fontSize: 18, fontWeight: 600, color: C.purple,
+                marginBottom: 12, fontFamily: F.body }}>
+                {hpT({ en: "Hi, lovely to meet you — I'm Hanita.", he: "היי, נעים מאד, אני חניתה." })}
+              </p>
             </Reveal>
             <Reveal delay={200}>
               <p style={{ fontSize: 16, lineHeight: 1.75, color: C.deepPurple,
@@ -1678,7 +1692,7 @@ function HPFooter() {
           {/* Brand */}
           <div>
             <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
-              alt="OctaLoom" style={{ height: 72, width: "auto", display: "block" }} />
+              alt="OctaLoom" style={{ height: 84, width: "auto", display: "block" }} />
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14,
               maxWidth: 240, fontFamily: F.body, lineHeight: 1.65 }}>
               {lang === "he"
