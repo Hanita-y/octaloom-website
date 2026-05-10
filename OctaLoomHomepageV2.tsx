@@ -2,7 +2,7 @@
 // @framerSupportedLayoutHeight any
 
 import React, { useState, useEffect, useRef, createContext, useContext, useCallback } from "react"
-import { motion, useInView, AnimatePresence } from "framer-motion"
+import { motion, useInView, AnimatePresence, useMotionValue, useTransform, animate as fmAnimate } from "framer-motion"
 
 // ─── TOKENS ──────────────────────────────────────────────────────────────────
 const C = {
@@ -454,8 +454,8 @@ function HPNav() {
   ]
 
   const navBg: React.CSSProperties = scrolled
-    ? { background: "rgba(236,233,231,0.92)", backdropFilter: "blur(20px) saturate(1.4)", borderBottom: `1px solid rgba(113,46,172,0.12)` }
-    : { background: "transparent" }
+    ? { background: "rgba(236,233,231,0.82)", backdropFilter: "blur(24px) saturate(1.6)", WebkitBackdropFilter: "blur(24px) saturate(1.6)", borderBottom: "1px solid rgba(113,46,172,0.1)", boxShadow: "0 1px 24px rgba(32,30,75,0.07)" }
+    : { background: "rgba(255,255,255,0.02)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }
 
   const dropBase: React.CSSProperties = {
     position: "absolute",
@@ -479,14 +479,15 @@ function HPNav() {
     <nav dir={dir} style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
       padding: scrolled ? "10px 0" : "16px 0", transition: "all 0.4s", ...navBg }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)",
-        display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 16 }}>
 
         <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-          <LogoSVG />
+          <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
+            alt="OctaLoom" style={{ height: 36, width: "auto", display: "block" }} />
         </a>
 
         {!isMobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28 }}>
 
             {/* Services dropdown */}
             <div ref={servicesRef} style={{ position: "relative" }}
@@ -585,17 +586,20 @@ function HPNav() {
               ))}
             </div>
 
-            <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple"
-              style={{ padding: "8px 20px", fontSize: 13 }}>
-              {hpT(HP.hero.cta1)}
-            </Btn>
           </div>
+        )}
+
+        {!isMobile && (
+          <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple"
+            style={{ padding: "8px 20px", fontSize: 13 }}>
+            {hpT(HP.hero.cta1)}
+          </Btn>
         )}
 
         {/* Hamburger */}
         {isMobile && (
           <button onClick={() => setMobileOpen(!mobileOpen)} style={{ background: "none", border: "none",
-            cursor: "pointer", width: 28, height: 20, position: "relative" }}>
+            cursor: "pointer", width: 28, height: 20, position: "relative", gridColumn: "3" }}>
             {[0,9,18].map((top,i) => (
               <span key={i} style={{ position: "absolute", left: 0, width: "100%", height: 2,
                 background: C.deepPurple, borderRadius: 2, top,
@@ -705,8 +709,13 @@ function HPHero() {
   const w = useWindowSize()
   const isMobile = w < 768
 
-  const avatarColors = ["#9b59b6","#3498db","#27ae60","#e67e22","#e74c3c"]
-  const avatarLetters = ["Y","M","R","S","N"]
+  const avatarUrls = [
+    "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/avatar1..jpeg",
+    "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/avatar2.jpeg",
+    "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/avatar3.jpeg",
+    "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/avatar4.jpeg",
+    "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/avatar5.jpeg",
+  ]
 
   return (
     <section dir={dir} style={{ position: "relative", minHeight: "100vh", display: "flex",
@@ -780,13 +789,11 @@ function HPHero() {
             <Reveal delay={400}>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 8 }}>
                 <div style={{ display: "flex" }}>
-                  {avatarColors.map((bg, i) => (
-                    <div key={i} style={{ width: 34, height: 34, borderRadius: "50%",
-                      border: `2px solid ${C.cream}`, marginLeft: i === 0 ? 0 : -8,
-                      background: bg, display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 12, fontWeight: 700, color: "white", fontFamily: F.body }}>
-                      {avatarLetters[i]}
-                    </div>
+                  {avatarUrls.map((src, i) => (
+                    <img key={i} src={src} alt=""
+                      style={{ width: 34, height: 34, borderRadius: "50%",
+                        border: `2px solid ${C.cream}`, marginLeft: i === 0 ? 0 : -8,
+                        objectFit: "cover", display: "block" }} />
                   ))}
                 </div>
                 <span style={{ fontSize: 13, color: C.textDim, lineHeight: 1.4, fontFamily: F.body }}>
@@ -840,7 +847,7 @@ function HPProblem() {
                 <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center",
                   width: 36, height: 36, borderRadius: 8, background: C.redX,
                   color: C.redXText, fontSize: 16, fontWeight: 700, marginBottom: 16,
-                  fontFamily: F.body }}>\u2715</div>
+                  fontFamily: F.body }}>{"\u2715"}</div>
                 <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8,
                   color: C.deepPurple, margin: "0 0 8px", fontFamily: F.body }}>{hpT(c.label)}</h3>
                 <p style={{ fontSize: 14, color: C.textDim, lineHeight: 1.6, margin: 0,
@@ -900,6 +907,16 @@ function HPServices() {
   const { lang } = useLang()
   const [torn, setTorn] = useState<Record<number,boolean>>({})
   const [tearing, setTearing] = useState<number|null>(null)
+
+  // Neon spinning border
+  const angle = useMotionValue(0)
+  const holoBg = useTransform(angle, (v: number) =>
+    `conic-gradient(from ${v}deg, rgba(198,225,165,.85) 0%, rgba(113,46,172,.65) 15%, rgba(236,233,231,.4) 30%, rgba(198,225,165,.45) 45%, rgba(113,46,172,.85) 60%, rgba(198,225,165,.65) 75%, rgba(113,46,172,.45) 90%, rgba(198,225,165,.85) 100%)`
+  )
+  useEffect(() => {
+    const ctrl = fmAnimate(angle, 360, { duration: 4, repeat: Infinity, ease: "linear" })
+    return () => ctrl.stop()
+  }, [])
 
   const serviceUrls: Record<string, Record<number,string>> = {
     en: {
@@ -1002,64 +1019,101 @@ function HPServices() {
           </h2>
         </Reveal>
         <Reveal delay={200}>
-          <div style={{ position: "relative", maxWidth: 860, margin: "0 auto",
-            background: "#f4f1ec", borderRadius: 1, padding: "48px 32px 0",
-            transform: "rotate(-0.3deg)", border: "1px solid rgba(0,0,0,0.06)",
-            boxShadow: "3px 5px 18px rgba(32,30,75,0.1),0 1px 3px rgba(0,0,0,0.06)" }}>
-
-            {/* Tape strips */}
-            {[["40px","-8px","-4deg"],["right:40px","-8px","3deg"]].map(([pos,top,rot],i) => (
-              <div key={i} style={{ position: "absolute", top, zIndex: 3,
-                width: 64, height: 22, background: "rgba(220,210,180,0.5)", borderRadius: 1,
-                boxShadow: "0 1px 2px rgba(0,0,0,0.08)", transform: `rotate(${rot})`,
-                ...(i === 0 ? { left: 40 } : { right: 40 }) }} />
+          {/* Neon holo border wrapper */}
+          <motion.div style={{
+            background: holoBg, padding: 3, borderRadius: 4,
+            maxWidth: 860, margin: "0 auto", position: "relative",
+            boxShadow: "0 0 18px rgba(198,225,165,.2), 0 0 36px rgba(113,46,172,.15), 0 12px 48px rgba(32,30,75,.12)"
+          }}>
+            {/* Brass pins */}
+            {[{ left: 56 }, { left: "50%", transform: "translateX(-50%)" }, { right: 56 }].map((pos, i) => (
+              <div key={i} style={{
+                position: "absolute", top: -9, zIndex: 30, width: 22, height: 22,
+                borderRadius: "50%",
+                background: "radial-gradient(circle at 38% 32%, #fdf0b0 0%, #d49a0e 35%, #8b6200 70%, #4a3000 100%)",
+                boxShadow: "0 3px 8px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.3), inset 0 1px 3px rgba(255,240,160,.7)",
+                ...pos
+              }}>
+                <div style={{ position: "absolute", inset: "22%", borderRadius: "50%",
+                  background: "radial-gradient(circle at 35% 28%, rgba(255,255,255,.92) 0%, rgba(255,255,255,.3) 50%, transparent 70%)" }} />
+              </div>
             ))}
 
-            <p style={{ fontFamily: F.display, fontWeight: 500,
-              fontSize: "clamp(40px,7vw,72px)", lineHeight: 1.05, color: C.deepPurple,
-              textAlign: "center", letterSpacing: "-0.02em", marginBottom: 48, position: "relative", zIndex: 1,
-              whiteSpace: "pre-line" }}>
-              {lang === "he" ? "\u05e7\u05d7\u05d5 \u05de\u05d4\n\u05e9\u05d0\u05ea\u05dd \u05e6\u05e8\u05d9\u05db\u05d9\u05dd" : "TAKE WHAT\nYOU NEED"}
-            </p>
+            {/* Poster paper */}
+            <div style={{
+              background: "#f4f1ec", borderRadius: 1,
+              transform: "rotate(-0.4deg)",
+              boxShadow: "0 2px 4px rgba(0,0,0,.06), 0 6px 20px rgba(32,30,75,.1)",
+              position: "relative", overflow: "hidden"
+            }}>
+              {/* Paper grain texture */}
+              <div style={{
+                position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.055'/%3E%3C/svg%3E")`,
+              }} />
 
-            <div style={{ position: "relative", zIndex: 1, display: "flex",
-              borderTop: `2px dashed ${C.purple}` }}>
-              {HP.services.strips.map((strip: any, i: number) => (
-                <motion.div key={i}
-                  animate={tearing === i ? { y: 60, rotate: -8, opacity: 0 }
-                    : torn[i] ? { opacity: 0.25 }
-                    : { y: 0, rotate: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  onClick={() => handleTear(i)}
-                  style={{ flex: 1, display: "flex", flexDirection: "column",
-                    alignItems: "center", justifyContent: "flex-start",
-                    padding: "24px 8px 28px", cursor: torn[i] ? "default" : "pointer",
-                    textAlign: "center", minHeight: 180,
-                    borderRight: i < HP.services.strips.length - 1 ? `1px dashed rgba(113,46,172,0.3)` : "none" }}>
-                  <span style={{ fontSize: 13, fontWeight: 700, color: C.purple, lineHeight: 1.4,
-                    marginBottom: i < 3 ? 6 : 12, fontFamily: F.body,
-                    textDecoration: torn[i] ? "line-through" : "none" }}>
-                    {hpT(strip.label)}
+              {/* Content */}
+              <div style={{ padding: "52px 32px 0", position: "relative", zIndex: 1 }}>
+                <p style={{ fontFamily: F.display, fontWeight: 500,
+                  fontSize: "clamp(40px,7vw,72px)", lineHeight: 1.05, color: C.deepPurple,
+                  textAlign: "center", letterSpacing: "-0.02em", marginBottom: 44, whiteSpace: "pre-line" }}>
+                  {lang === "he" ? "\u05e7\u05d7\u05d5 \u05de\u05d4\n\u05e9\u05d0\u05ea\u05dd \u05e6\u05e8\u05d9\u05db\u05d9\u05dd" : "TAKE WHAT\nYOU NEED"}
+                </p>
+
+                {/* Tear row */}
+                <div style={{ display: "flex", alignItems: "center", marginBottom: 0 }}>
+                  <div style={{ flex: 1, borderTop: `2px dashed rgba(113,46,172,.6)` }} />
+                  <span style={{ fontSize: 11, letterSpacing: "0.18em", fontWeight: 500,
+                    color: C.purple, fontFamily: F.display, padding: "0 12px",
+                    whiteSpace: "nowrap", opacity: 0.7 }}>
+                    {lang === "he" ? "\u05e7\u05e8\u05e2\u05d5 \u05db\u05d0\u05df" : "TEAR HERE"}
                   </span>
-                  {i < 3 && (
-                    <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
-                      <svg viewBox="0 0 20 20" fill="none" style={{ width: 20, height: 20 }}>
-                        <rect width="20" height="20" rx="3.5" fill={C.purple} fillOpacity=".1" stroke={C.purple} strokeWidth=".9"/>
-                        <path d="M7 9.5v5.5" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round"/>
-                        <circle cx="7" cy="7.2" r="1" fill={C.purple}/>
-                        <path d="M10.5 15V12q0-2.5 2.5-2.5t2.5 2.5v3" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                  )}
-                  <div style={{ marginTop: "auto", opacity: 0.6 }}>{stripIcons[i]}</div>
-                </motion.div>
-              ))}
-            </div>
+                  <div style={{ flex: 1, borderTop: `2px dashed rgba(113,46,172,.6)` }} />
+                  <span style={{ padding: "0 10px", color: C.purple, fontSize: 16, opacity: 0.5,
+                    transform: "scaleX(-1)", display: "inline-block" }}>\u2702</span>
+                </div>
 
-            <div style={{ position: "absolute", bottom: -10, left: 15, right: 15, height: 20,
-              background: "radial-gradient(ellipse at center,rgba(0,0,0,0.08) 0%,transparent 70%)",
-              pointerEvents: "none" }} />
-          </div>
+                {/* Strips */}
+                <div style={{ display: "flex" }}>
+                  {HP.services.strips.map((strip: any, i: number) => (
+                    <motion.div key={i}
+                      animate={tearing === i ? { y: 60, rotate: -8, opacity: 0 }
+                        : torn[i] ? { opacity: 0.25 }
+                        : { y: 0, rotate: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                      onClick={() => handleTear(i)}
+                      style={{ flex: 1, display: "flex", flexDirection: "column",
+                        alignItems: "center", justifyContent: "flex-start",
+                        padding: "24px 8px 28px", cursor: torn[i] ? "default" : "pointer",
+                        textAlign: "center", minHeight: 188, position: "relative",
+                        borderLeft: i < HP.services.strips.length - 1 ? `1.5px dashed rgba(113,46,172,.22)` : "none" }}>
+                      {/* Perforation dot */}
+                      <div style={{ position: "absolute", top: -6, left: "50%",
+                        transform: "translateX(-50%)", width: 12, height: 12,
+                        borderRadius: "50%", background: "#ece9e7",
+                        boxShadow: "inset 0 0 0 1.5px rgba(113,46,172,.3), 0 1px 3px rgba(0,0,0,.1)" }} />
+                      <span style={{ fontSize: 13, fontWeight: 700, color: C.purple, lineHeight: 1.4,
+                        marginBottom: i < 3 ? 6 : 12, fontFamily: F.body,
+                        textDecoration: torn[i] ? "line-through" : "none" }}>
+                        {hpT(strip.label)}
+                      </span>
+                      {i < 3 && (
+                        <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
+                          <svg viewBox="0 0 20 20" fill="none" style={{ width: 20, height: 20 }}>
+                            <rect width="20" height="20" rx="3.5" fill={C.purple} fillOpacity=".1" stroke={C.purple} strokeWidth=".9"/>
+                            <path d="M7 9.5v5.5" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round"/>
+                            <circle cx="7" cy="7.2" r="1" fill={C.purple}/>
+                            <path d="M10.5 15V12q0-2.5 2.5-2.5t2.5 2.5v3" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
+                      )}
+                      <div style={{ marginTop: "auto", opacity: 0.6 }}>{stripIcons[i]}</div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </Reveal>
       </Container>
     </Sec>
@@ -1621,7 +1675,8 @@ function HPFooter() {
 
           {/* Brand */}
           <div>
-            <LogoSVG color="rgba(255,255,255,0.95)" />
+            <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
+              alt="OctaLoom" style={{ height: 40, width: "auto", display: "block" }} />
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14,
               maxWidth: 240, fontFamily: F.body, lineHeight: 1.65 }}>
               {lang === "he"
@@ -1643,28 +1698,42 @@ function HPFooter() {
 
           {/* Services */}
           <div>
-            <h4 style={headStyle}>{lang === "he" ? "שירותים" : "Services"}</h4>
-            {serviceLinks.map((s, i) => (
-              <a key={i} href={s.href}
-                style={{ ...linkStyle,
-                  paddingLeft:  s.indent && dir === "ltr" ? 12 : 0,
-                  paddingRight: s.indent && dir === "rtl" ? 12 : 0,
-                  fontSize: s.indent ? 13 : 14,
-                  opacity: s.indent ? 0.8 : 1,
-                }}
+            <h4 style={headStyle}>{lang === "he" ? "שירותי לינקדאין" : "LinkedIn Services"}</h4>
+            {([
+              { en: "LinkedIn for Organizations", he: "לינקדאין לארגונים", href: "/services/linkedin-for-organizations" },
+              { en: "LinkedIn for Founders",      he: "לינקדאין למייסדים", href: "/services/linkedin-for-executives" },
+              { en: "LinkedIn for Solopreneurs",  he: "לינקדאין לעצמאים", href: "/services/linkedin-for-solopreneurs" },
+            ] as {en:string;he:string;href:string}[]).map((s, i) => (
+              <a key={i} href={s.href} style={linkStyle}
                 onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>
-                {lang === "he" ? s.label.he : s.label.en}
+                {lang === "he" ? s.he : s.en}
+              </a>
+            ))}
+            <h4 style={{ ...headStyle, marginTop: 20 }}>{lang === "he" ? "שירותים נוספים" : "More Services"}</h4>
+            {([
+              { en: "Fractional CMO",    he: "Fractional CMO",                                                href: "/services/fractional-cmo" },
+              { en: "AI Tools & Agents", he: "כלי AI וסוכנים", href: "/services/ai-tools-agents" },
+            ] as {en:string;he:string;href:string}[]).map((s, i) => (
+              <a key={i} href={s.href} style={linkStyle}
+                onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>
+                {lang === "he" ? s.he : s.en}
               </a>
             ))}
           </div>
 
           {/* OctaGoodies */}
           <div>
-            <h4 style={headStyle}>OctaGoodies</h4>
             <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer"
-              style={linkStyle}
-              onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>
-              octagoodies.com
+              style={{ textDecoration: "none" }}>
+              <h4 style={{ ...headStyle, display: "flex", alignItems: "center", gap: 5,
+                transition: "color 0.2s" }}
+                onMouseEnter={(e: any) => e.currentTarget.style.color = C.lime}
+                onMouseLeave={(e: any) => e.currentTarget.style.color = "white"}>
+                OctaGoodies
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 2h8v8M2 10l8-8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+                </svg>
+              </h4>
             </a>
             <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", marginTop: 6,
               fontFamily: F.body, lineHeight: 1.6 }}>
