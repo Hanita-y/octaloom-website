@@ -416,7 +416,10 @@ const HP = {
 function HPNav() {
   const { lang, setLang } = useLang()
   const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const [linkedinOpen, setLinkedinOpen] = useState(false)
+  const servicesRef = useRef<HTMLDivElement>(null)
   const dir = lang === "he" ? "rtl" : "ltr"
   const w = useWindowSize()
   const isMobile = w < 768
@@ -427,16 +430,50 @@ function HPNav() {
     return () => window.removeEventListener("scroll", fn)
   }, [])
 
-  const links = [
-    { en: "Services",    he: "\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9\u05dd",   href: "#services" },
-    { en: "How It Works",he: "\u05d0\u05d9\u05da \u05d6\u05d4 \u05e2\u05d5\u05d1\u05d3", href: "#process" },
-    { en: "About",       he: "\u05e2\u05dc\u05d9\u05d9",  href: "#about" },
-    { en: "FAQ",         he: "\u05e9\u05d0\u05dc\u05d5\u05ea", href: "#faq" },
+  useEffect(() => {
+    const fn = (e: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
+        setServicesOpen(false)
+        setLinkedinOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", fn)
+    return () => document.removeEventListener("mousedown", fn)
+  }, [])
+
+  const linkedinSub = [
+    { en: "LinkedIn for Organizations",             he: "לינקדאין לארגונים",               href: "/services/linkedin-for-organizations" },
+    { en: "LinkedIn for Executives",                he: "לינקדאין למנהלים",                href: "/services/linkedin-for-executives" },
+    { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים", href: "/services/linkedin-for-solopreneurs" },
+  ]
+
+  const services = [
+    { en: "LinkedIn Growth Engine", he: "מנוע צמיחה בלינקדאין", href: "/services/linkedin-growth-engine", sub: linkedinSub },
+    { en: "Fractional CMO",         he: "Fractional CMO",                                                                                                    href: "/services/fractional-cmo",          sub: null },
+    { en: "AI Tools & Agents",      he: "כלי AI וסוכנים",                                                 href: "/services/ai-tools-agents",         sub: null },
   ]
 
   const navBg: React.CSSProperties = scrolled
     ? { background: "rgba(236,233,231,0.92)", backdropFilter: "blur(20px) saturate(1.4)", borderBottom: `1px solid rgba(113,46,172,0.12)` }
     : { background: "transparent" }
+
+  const dropBase: React.CSSProperties = {
+    position: "absolute",
+    minWidth: 240,
+    background: "white",
+    borderRadius: 12,
+    boxShadow: "0 8px 40px rgba(113,46,172,0.15), 0 2px 8px rgba(0,0,0,0.06)",
+    border: "1px solid rgba(113,46,172,0.08)",
+    zIndex: 200,
+    padding: "8px 0",
+  }
+
+  const dropItem: React.CSSProperties = {
+    display: "flex", alignItems: "center", justifyContent: "space-between",
+    padding: "10px 18px", fontSize: 14, color: C.deepPurple,
+    textDecoration: "none", cursor: "pointer", transition: "background 0.2s",
+    fontFamily: F.body, gap: 8, whiteSpace: "nowrap", background: "transparent",
+  }
 
   return (
     <nav dir={dir} style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
@@ -444,67 +481,167 @@ function HPNav() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)",
         display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
-        <a href="#" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
           <LogoSVG />
         </a>
 
         {!isMobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-            {links.map((l, i) => (
-              <a key={i} href={l.href} style={{ fontSize: 14, color: C.textDim, textDecoration: "none",
-                transition: "color 0.25s", fontFamily: F.body }}
-                onMouseEnter={e => (e.currentTarget.style.color = C.deepPurple)}
-                onMouseLeave={e => (e.currentTarget.style.color = C.textDim)}>
-                {hpT(l)}
-              </a>
-            ))}
+          <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
+
+            {/* Services dropdown */}
+            <div ref={servicesRef} style={{ position: "relative" }}
+              onMouseEnter={() => setServicesOpen(true)}
+              onMouseLeave={() => { setServicesOpen(false); setLinkedinOpen(false) }}>
+              <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14,
+                color: servicesOpen ? C.deepPurple : C.textDim, fontFamily: F.body,
+                display: "flex", alignItems: "center", gap: 5, padding: "6px 0", transition: "color 0.25s" }}>
+                {lang === "he" ? "שירותים" : "Services"}
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"
+                  style={{ transition: "transform 0.25s", transform: servicesOpen ? "rotate(180deg)" : "none" }}>
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {servicesOpen && (
+                  <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }}
+                    style={{ ...dropBase, top: "calc(100% + 10px)", [dir === "rtl" ? "right" : "left"]: 0 }}>
+                    {services.map((svc, i) => (
+                      <div key={i} style={{ position: "relative" }}
+                        onMouseEnter={() => { if (svc.sub) setLinkedinOpen(true) }}
+                        onMouseLeave={() => { if (svc.sub) setLinkedinOpen(false) }}>
+                        <a href={svc.href} style={dropItem}
+                          onMouseEnter={e => { e.currentTarget.style.background = "rgba(113,46,172,0.05)" }}
+                          onMouseLeave={e => { e.currentTarget.style.background = "transparent" }}>
+                          <span>{lang === "he" ? svc.he : svc.en}</span>
+                          {svc.sub && (
+                            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"
+                              style={{ opacity: 0.45, flexShrink: 0, transform: dir === "rtl" ? "rotate(180deg)" : "none" }}>
+                              <path d="M4 2l4 4-4 4" stroke={C.deepPurple} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          )}
+                        </a>
+
+                        <AnimatePresence>
+                          {svc.sub && linkedinOpen && (
+                            <motion.div initial={{ opacity: 0, x: dir === "rtl" ? 6 : -6 }}
+                              animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: dir === "rtl" ? 6 : -6 }}
+                              transition={{ duration: 0.15 }}
+                              style={{ ...dropBase, top: 0,
+                                ...(dir === "rtl"
+                                  ? { right: "calc(100% + 6px)" }
+                                  : { left: "calc(100% + 6px)" })
+                              }}>
+                              {linkedinSub.map((sub, j) => (
+                                <a key={j} href={sub.href}
+                                  style={{ ...dropItem, justifyContent: "flex-start" }}
+                                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(113,46,172,0.05)" }}
+                                  onMouseLeave={e => { e.currentTarget.style.background = "transparent" }}>
+                                  {lang === "he" ? sub.he : sub.en}
+                                </a>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Goodies */}
+            <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer"
+              style={{ fontSize: 14, color: C.textDim, textDecoration: "none", fontFamily: F.body, transition: "color 0.25s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = C.deepPurple)}
+              onMouseLeave={e => (e.currentTarget.style.color = C.textDim)}>
+              Goodies
+            </a>
+
+            {/* Lang toggle */}
             <div style={{ display: "flex", gap: 2, background: "rgba(113,46,172,0.06)", borderRadius: 6, padding: 2 }}>
               {["en","he"].map(l => (
                 <button key={l} onClick={() => setLang(l)} style={{ background: lang === l ? C.purple : "none",
                   color: lang === l ? "white" : C.textDim, border: "none", cursor: "pointer",
                   fontSize: 12, fontWeight: 700, padding: "5px 10px", borderRadius: 4, transition: "all 0.25s",
                   fontFamily: F.body }}>
-                  {l === "en" ? "EN" : "\u05e2\u05d1"}
+                  {l === "en" ? "EN" : "עב"}
                 </button>
               ))}
             </div>
-            <Btn href="#contact" variant="purple" style={{ padding: "8px 20px", fontSize: 13 }}>{hpT(HP.hero.cta1)}</Btn>
+
+            <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple"
+              style={{ padding: "8px 20px", fontSize: 13 }}>
+              {hpT(HP.hero.cta1)}
+            </Btn>
           </div>
         )}
 
+        {/* Hamburger */}
         {isMobile && (
-          <button onClick={() => setOpen(!open)} style={{ background: "none", border: "none", cursor: "pointer",
-            width: 28, height: 20, position: "relative" }}>
+          <button onClick={() => setMobileOpen(!mobileOpen)} style={{ background: "none", border: "none",
+            cursor: "pointer", width: 28, height: 20, position: "relative" }}>
             {[0,9,18].map((top,i) => (
               <span key={i} style={{ position: "absolute", left: 0, width: "100%", height: 2,
                 background: C.deepPurple, borderRadius: 2, top,
-                transform: open && i===0 ? "rotate(45deg) translateY(9px)" : open && i===1 ? "scaleX(0)" : open && i===2 ? "rotate(-45deg) translateY(-9px)" : "none",
-                opacity: open && i===1 ? 0 : 1, transition: "all 0.3s" }} />
+                transform: mobileOpen && i===0 ? "rotate(45deg) translateY(9px)" : mobileOpen && i===1 ? "scaleX(0)" : mobileOpen && i===2 ? "rotate(-45deg) translateY(-9px)" : "none",
+                opacity: mobileOpen && i===1 ? 0 : 1, transition: "all 0.3s" }} />
             ))}
           </button>
         )}
       </div>
 
-      {isMobile && open && (
+      {/* Mobile menu */}
+      {isMobile && mobileOpen && (
         <div style={{ position: "fixed", inset: 0, background: C.cream, zIndex: 99,
-          display: "flex", flexDirection: "column", padding: "100px 32px 32px", gap: 24 }}>
-          {links.map((l, i) => (
-            <a key={i} href={l.href} onClick={() => setOpen(false)}
-              style={{ fontSize: 18, color: C.deepPurple, textDecoration: "none", fontFamily: F.body }}>
-              {hpT(l)}
-            </a>
+          display: "flex", flexDirection: "column", padding: "100px 32px 40px",
+          overflowY: "auto", gap: 0 }}>
+
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+            color: C.purple, fontFamily: F.body, marginBottom: 10 }}>
+            {lang === "he" ? "שירותים" : "Services"}
+          </div>
+
+          {services.map((svc, i) => (
+            <div key={i} style={{ borderBottom: `1px solid rgba(113,46,172,0.07)` }}>
+              <a href={svc.href} onClick={() => setMobileOpen(false)}
+                style={{ display: "block", fontSize: 18, color: C.deepPurple, textDecoration: "none",
+                  fontFamily: F.body, padding: "12px 0", fontWeight: svc.sub ? 600 : 400 }}>
+                {lang === "he" ? svc.he : svc.en}
+              </a>
+              {svc.sub && svc.sub.map((sub, j) => (
+                <a key={j} href={sub.href} onClick={() => setMobileOpen(false)}
+                  style={{ display: "block", fontSize: 15, color: C.purple, textDecoration: "none",
+                    fontFamily: F.body, padding: "8px 0",
+                    paddingLeft: dir === "ltr" ? 16 : 0, paddingRight: dir === "rtl" ? 16 : 0 }}>
+                  {lang === "he" ? sub.he : sub.en}
+                </a>
+              ))}
+            </div>
           ))}
-          <div style={{ display: "flex", gap: 8 }}>
+
+          <a href="https://octagoodies.com" target="_blank" onClick={() => setMobileOpen(false)}
+            style={{ fontSize: 18, color: C.deepPurple, textDecoration: "none",
+              fontFamily: F.body, padding: "14px 0", borderBottom: `1px solid rgba(113,46,172,0.07)` }}>
+            Goodies
+          </a>
+
+          <div style={{ display: "flex", gap: 8, marginTop: 28 }}>
             {["en","he"].map(l => (
-              <button key={l} onClick={() => { setLang(l); setOpen(false) }}
+              <button key={l} onClick={() => { setLang(l); setMobileOpen(false) }}
                 style={{ background: lang === l ? C.purple : "transparent", color: lang === l ? "white" : C.textDim,
                   border: `1px solid ${lang === l ? C.purple : C.textDim}`, borderRadius: 6,
                   padding: "8px 16px", cursor: "pointer", fontFamily: F.body, fontWeight: 700 }}>
-                {l === "en" ? "EN" : "\u05e2\u05d1\u05e8\u05d9\u05ea"}
+                {l === "en" ? "EN" : "עברית"}
               </button>
             ))}
           </div>
-          <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">{hpT(HP.hero.cta1)}</Btn>
+          <div style={{ marginTop: 16 }}>
+            <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
+              {hpT(HP.hero.cta1)}
+            </Btn>
+          </div>
         </div>
       )}
     </nav>
