@@ -1510,93 +1510,155 @@ function HPNewsletter() {
 function HPFooter() {
   const { lang } = useLang()
   const dir = lang === "he" ? "rtl" : "ltr"
-  const w = useWindowSize(); const isMobile = w < 480
+  const w = useWindowSize(); const isMobile = w < 768
+
+  const linkStyle: React.CSSProperties = {
+    fontSize: 14, color: "rgba(255,255,255,0.5)", textDecoration: "none",
+    transition: "color 0.2s", fontFamily: F.body, display: "block", lineHeight: "1.9",
+  }
+  const headStyle: React.CSSProperties = {
+    fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
+    color: "white", margin: "0 0 14px", fontFamily: F.body,
+  }
+  const hover = (e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => {
+    e.currentTarget.style.color = enter ? C.lime : "rgba(255,255,255,0.5)"
+  }
+
+  const pages = [
+    { en: "Home",    he: "דף הבית",  href: "/" },
+    { en: "About",   he: "עליי",      href: "#about" },
+    { en: "Blog",    he: "בלוג",     href: "/blog" },
+    { en: "Contact", he: "צור קשר", href: "#contact" },
+  ]
+
+  // Services matching nav exactly — Growth Engine first, then sub-items indented, then the rest
+  const serviceLinks = [
+    { label: { en: "LinkedIn Growth Engine",             he: "מנוע צמיחה בלינקדאין" },          href: "/services/linkedin-growth-engine", indent: false },
+    { label: { en: "LinkedIn for Organizations",          he: "לינקדאין לארגונים" },              href: "/services/linkedin-for-organizations", indent: true  },
+    { label: { en: "LinkedIn for Executives",             he: "לינקדאין למנהלים" },              href: "/services/linkedin-for-executives",    indent: true  },
+    { label: { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים" }, href: "/services/linkedin-for-solopreneurs",  indent: true  },
+    { label: { en: "Fractional CMO",                     he: "Fractional CMO" },                   href: "/services/fractional-cmo",            indent: false },
+    { label: { en: "AI Tools & Agents",                  he: "כלי AI וסוכנים" },                  href: "/services/ai-tools-agents",           indent: false },
+  ]
+
+  const socialIcons = [
+    {
+      href: "https://www.linkedin.com/in/hanita-yudovski/",
+      label: "LinkedIn",
+      svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>,
+    },
+    {
+      href: "mailto:octaloom@gmail.com",
+      label: "Email",
+      svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>,
+    },
+  ]
 
   return (
-    <footer dir={dir} style={{ padding: "64px 0 32px", background: C.deepPurple,
-      color: "rgba(255,255,255,0.7)" }}>
+    <footer dir={dir} style={{ padding: "64px 0 0", background: C.deepPurple, color: "rgba(255,255,255,0.7)" }}>
       <Container>
+
+        {/* Main grid */}
         <div style={{ display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr 1fr 1fr",
-          gap: 40, marginBottom: 48 }}>
+          gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr 1.6fr 1fr 1fr",
+          gap: isMobile ? 36 : 40, paddingBottom: 48 }}>
+
+          {/* Brand */}
           <div>
-            <LogoSVG color="rgba(255,255,255,0.9)" />
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 12,
-              maxWidth: 280, fontFamily: F.body }}>{hpT(HP.footer.tagline)}</p>
+            <LogoSVG color="rgba(255,255,255,0.95)" />
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14,
+              maxWidth: 240, fontFamily: F.body, lineHeight: 1.65 }}>
+              {lang === "he"
+                ? "מחלקת השיווק שלך, רק בלי המחלקה"
+                : "Your marketing department, minus the department."}
+            </p>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <h4 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em",
-              textTransform: "uppercase", color: "white", marginBottom: 4, margin: "0 0 4px",
-              fontFamily: F.body }}>{hpT(HP.footer.linkedinServices)}</h4>
-            {[
-              { label: {en:"LinkedIn for Founders",he:"\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05de\u05d9\u05d9\u05e1\u05d3\u05d9\u05dd"}, href:"/services/linkedin-for-executives" },
-              { label: {en:"LinkedIn for Solopreneurs",he:"\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05e2\u05e6\u05de\u05d0\u05d9\u05dd"}, href:"/services/linkedin-for-solopreneurs" },
-              { label: {en:"LinkedIn for Organizations",he:"\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05d0\u05e8\u05d2\u05d5\u05e0\u05d9\u05dd"}, href:"/services/linkedin-for-organizations" },
-            ].map((l,i) => (
-              <a key={i} href={l.href} style={{ fontSize: 14, color: "rgba(255,255,255,0.5)",
-                textDecoration: "none", transition: "color 0.2s", fontFamily: F.body }}
-                onMouseEnter={e=>(e.currentTarget.style.color=C.lime)}
-                onMouseLeave={e=>(e.currentTarget.style.color="rgba(255,255,255,0.5)")}>
-                {hpT(l.label)}
+
+          {/* Pages */}
+          <div>
+            <h4 style={headStyle}>{lang === "he" ? "דפים" : "Pages"}</h4>
+            {pages.map((p, i) => (
+              <a key={i} href={p.href} style={linkStyle}
+                onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>
+                {lang === "he" ? p.he : p.en}
               </a>
             ))}
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <h4 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em",
-              textTransform: "uppercase", color: "white", margin: "0 0 4px",
-              fontFamily: F.body }}>{hpT(HP.footer.moreServices)}</h4>
-            {[
-              { label: {en:"Fractional CMO",he:"Fractional CMO"}, href:"/services/fractional-cmo" },
-              { label: {en:"AI Tools & Agents",he:"\u05e1\u05d5\u05db\u05e0\u05d9 \u05d5\u05db\u05dc\u05d9 AI"}, href:"/services/ai-tools-agents" },
-            ].map((l,i) => (
-              <a key={i} href={l.href} style={{ fontSize: 14, color: "rgba(255,255,255,0.5)",
-                textDecoration: "none", transition: "color 0.2s", fontFamily: F.body }}
-                onMouseEnter={e=>(e.currentTarget.style.color=C.lime)}
-                onMouseLeave={e=>(e.currentTarget.style.color="rgba(255,255,255,0.5)")}>
-                {hpT(l.label)}
+
+          {/* Services */}
+          <div>
+            <h4 style={headStyle}>{lang === "he" ? "שירותים" : "Services"}</h4>
+            {serviceLinks.map((s, i) => (
+              <a key={i} href={s.href}
+                style={{ ...linkStyle,
+                  paddingLeft:  s.indent && dir === "ltr" ? 12 : 0,
+                  paddingRight: s.indent && dir === "rtl" ? 12 : 0,
+                  fontSize: s.indent ? 13 : 14,
+                  opacity: s.indent ? 0.8 : 1,
+                }}
+                onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>
+                {lang === "he" ? s.label.he : s.label.en}
               </a>
             ))}
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <h4 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.08em",
-              textTransform: "uppercase", color: "white", margin: "0 0 4px",
-              fontFamily: F.body }}>{hpT(HP.footer.connect)}</h4>
-            <a href="https://www.linkedin.com/in/hanita-yudovski/" target="_blank" rel="noopener"
-              style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", textDecoration: "none",
-                fontFamily: F.body }}
-              onMouseEnter={e=>(e.currentTarget.style.color=C.lime)}
-              onMouseLeave={e=>(e.currentTarget.style.color="rgba(255,255,255,0.5)")}>
-              LinkedIn
+
+          {/* OctaGoodies */}
+          <div>
+            <h4 style={headStyle}>OctaGoodies</h4>
+            <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer"
+              style={linkStyle}
+              onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>
+              octagoodies.com
             </a>
-            <a href="mailto:octaloom@gmail.com"
-              style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", textDecoration: "none",
-                fontFamily: F.body }}
-              onMouseEnter={e=>(e.currentTarget.style.color=C.lime)}
-              onMouseLeave={e=>(e.currentTarget.style.color="rgba(255,255,255,0.5)")}>
-              octaloom@gmail.com
-            </a>
+            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", marginTop: 6,
+              fontFamily: F.body, lineHeight: 1.6 }}>
+              {lang === "he" ? "כלים וטמפלייטים לשיווק" : "Marketing tools & templates"}
+            </p>
+          </div>
+
+          {/* Follow Us */}
+          <div>
+            <h4 style={headStyle}>{lang === "he" ? "עקבו אחרינו" : "Follow Us"}</h4>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              {socialIcons.map((s, i) => (
+                <a key={i} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer" aria-label={s.label}
+                  style={{ display: "flex", alignItems: "center", justifyContent: "center",
+                    width: 40, height: 40, borderRadius: "50%",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "all 0.2s" }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = C.lime; e.currentTarget.style.color = C.lime }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.color = "rgba(255,255,255,0.5)" }}>
+                  {s.svg}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
+
+        {/* Bottom bar — no separator line */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center",
-          paddingTop: 24, borderTop: "1px solid rgba(255,255,255,0.08)",
-          fontSize: 13, color: "rgba(255,255,255,0.4)", fontFamily: F.body,
+          paddingTop: 24, paddingBottom: 32,
+          fontSize: 13, color: "rgba(255,255,255,0.35)", fontFamily: F.body,
           flexDirection: isMobile ? "column" : "row", gap: isMobile ? 12 : 0 } as any}>
-          <span>\u00a9 2026 OctaLoom</span>
+          <span>© 2026 OctaLoom. {lang === "he" ? "כל הזכויות שמורות" : "All Rights Reserved"}</span>
           <div style={{ display: "flex", gap: 20 }}>
             {[
               { label: HP.footer.privacy, href: "/privacy-policy" },
-              { label: HP.footer.terms, href: "/terms" },
-            ].map((l,i) => (
+              { label: HP.footer.terms,   href: "/terms" },
+              { label: { en: "Accessibility", he: "נגישות" }, href: "/accessibility" },
+            ].map((l, i) => (
               <a key={i} href={l.href}
-                style={{ color: "rgba(255,255,255,0.4)", textDecoration: "none",
+                style={{ color: "rgba(255,255,255,0.35)", textDecoration: "none",
                   transition: "color 0.2s", fontFamily: F.body }}
-                onMouseEnter={e=>(e.currentTarget.style.color=C.lime)}
-                onMouseLeave={e=>(e.currentTarget.style.color="rgba(255,255,255,0.4)")}>
+                onMouseEnter={e => (e.currentTarget.style.color = C.lime)}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}>
                 {hpT(l.label)}
               </a>
             ))}
           </div>
         </div>
+
       </Container>
     </footer>
   )
