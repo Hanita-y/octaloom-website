@@ -33009,13 +33009,13 @@
       ...style
     };
     const variants = {
-      purple: { background: C.purple, color: "white" },
+      purple: { background: C.purple, color: C.cream },
       ghost: { background: "transparent", color: C.purple, border: `1px solid rgba(113,46,172,0.2)` },
       white: { background: "white", color: C.purple },
       cream: { background: C.cream, color: C.deepPurple },
       lime: { background: C.lime, color: C.navy },
       outline: { background: "transparent", color: C.purple, border: `1.5px solid ${C.purple}` },
-      dark: { background: C.deepPurple, color: "white" }
+      dark: { background: C.deepPurple, color: C.cream }
     };
     const props = { style: { ...base, ...variants[variant] }, onClick };
     if (href) return /* @__PURE__ */ import_react26.default.createElement("a", { href, target: href.startsWith("http") ? "_blank" : void 0, rel: "noopener noreferrer", ...props }, children);
@@ -34095,7 +34095,7 @@
       fontWeight: 500,
       fontSize: "clamp(28px,4vw,48px)",
       lineHeight: 1.15,
-      color: "white",
+      color: C.cream,
       textAlign: "center",
       marginBottom: 48
     } }, hpT(HP.process.title))), /* @__PURE__ */ import_react26.default.createElement("div", { style: { display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)", gap: 20 } }, HP.process.steps.map((step, i) => /* @__PURE__ */ import_react26.default.createElement(Reveal, { key: i, delay: i * 150 }, /* @__PURE__ */ import_react26.default.createElement("div", { style: {
@@ -34105,23 +34105,17 @@
       height: "100%",
       display: "flex",
       flexDirection: "column"
-    } }, /* @__PURE__ */ import_react26.default.createElement("div", { style: {
-      width: 48,
-      height: 48,
-      borderRadius: 12,
-      background: "rgba(255,255,255,0.15)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: 24,
-      fontWeight: 700,
-      color: C.lime,
-      marginBottom: 20,
-      fontFamily: F.display
-    } }, i + 1), /* @__PURE__ */ import_react26.default.createElement("h3", { style: {
+    } }, /* @__PURE__ */ import_react26.default.createElement(
+      "img",
+      {
+        src: `https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/${i + 1}.svg`,
+        alt: `${i + 1}`,
+        style: { width: 56, height: 56, marginBottom: 20, objectFit: "contain" }
+      }
+    ), /* @__PURE__ */ import_react26.default.createElement("h3", { style: {
       fontSize: 18,
       fontWeight: 700,
-      color: "white",
+      color: C.cream,
       marginBottom: 12,
       fontFamily: F.body
     } }, hpT(step.title)), /* @__PURE__ */ import_react26.default.createElement("p", { style: {
@@ -34189,7 +34183,7 @@
         justifyContent: "center",
         fontSize: 16,
         fontWeight: 700,
-        color: "white",
+        color: C.cream,
         flexShrink: 0,
         fontFamily: F.body
       } }, hpT(item.author).charAt(0)), /* @__PURE__ */ import_react26.default.createElement("div", null, /* @__PURE__ */ import_react26.default.createElement("strong", { style: {
@@ -34399,7 +34393,7 @@
       color: C.purple,
       marginBottom: 12,
       fontFamily: F.body
-    } }, hpT({ en: "Hi, lovely to meet you \u2014 I'm Hanita.", he: "\u05D4\u05D9\u05D9, \u05E0\u05E2\u05D9\u05DD \u05DE\u05D0\u05D3, \u05D0\u05E0\u05D9 \u05D7\u05E0\u05D9\u05EA\u05D4." }))), /* @__PURE__ */ import_react26.default.createElement(Reveal, { delay: 200 }, /* @__PURE__ */ import_react26.default.createElement("p", { style: {
+    } }, hpT({ en: "Hi, lovely to meet you.", he: "\u05D4\u05D9\u05D9, \u05E0\u05E2\u05D9\u05DD \u05DE\u05D0\u05D3." }))), /* @__PURE__ */ import_react26.default.createElement(Reveal, { delay: 200 }, /* @__PURE__ */ import_react26.default.createElement("p", { style: {
       fontSize: 16,
       lineHeight: 1.75,
       color: C.deepPurple,
@@ -34415,7 +34409,7 @@
       fontWeight: 500,
       fontSize: "clamp(28px,4vw,48px)",
       lineHeight: 1.15,
-      color: "white",
+      color: C.cream,
       marginBottom: 48
     } }, hpT(HP.faq.title))), /* @__PURE__ */ import_react26.default.createElement(
       "div",
@@ -34446,7 +34440,7 @@
         } }, /* @__PURE__ */ import_react26.default.createElement("h3", { itemProp: "name", style: {
           fontSize: 17,
           fontWeight: 700,
-          color: "white",
+          color: C.cream,
           margin: 0,
           fontFamily: F.body
         } }, hpT(item.q)), /* @__PURE__ */ import_react26.default.createElement(
@@ -34527,15 +34521,15 @@
       zIndex: 1,
       fontSize: 11,
       fontWeight: 800,
-      color: "white",
+      color: C.cream,
       textAlign: "center",
       lineHeight: 1.2,
       fontFamily: F.body
     } }, "It's", /* @__PURE__ */ import_react26.default.createElement("br", null), "FREE!")), /* @__PURE__ */ import_react26.default.createElement("span", { style: {
-      fontWeight: 700,
+      fontWeight: 500,
       fontSize: "clamp(24px,3.5vw,40px)",
       color: C.deepPurple,
-      fontFamily: F.body
+      fontFamily: F.display
     } }, hpT({ en: "Book a Call With Me", he: "\u05EA\u05D0\u05DE\u05D5 \u05D0\u05D9\u05EA\u05D9 \u05E9\u05D9\u05D7\u05D4" })), /* @__PURE__ */ import_react26.default.createElement(Btn, { href: "https://calendar.notion.so/meet/octaloom/discovery", variant: "purple" }, hpT({ en: "Let's Talk \u2728", he: "\u05D3\u05D1\u05E8\u05D9 \u05D0\u05DC\u05D9\u05D9, \u05D0\u05E0\u05D9 \u05DE\u05D5\u05DC \u05D4\u05D9\u05D5\u05DE\u05DF \u2728" })))))));
   }
   function HPLinkedInFeed() {
@@ -34661,7 +34655,7 @@
       fontFamily: F.display,
       fontWeight: 500,
       fontSize: "clamp(24px,3vw,36px)",
-      color: "white",
+      color: C.cream,
       marginBottom: 16
     } }, hpT(HP.newsletter.title)), /* @__PURE__ */ import_react26.default.createElement("p", { style: {
       fontSize: 15,
@@ -34689,7 +34683,7 @@
           style: {
             flex: 1,
             background: "rgba(255,255,255,0.08)",
-            color: "white",
+            color: C.cream,
             padding: "14px 18px",
             borderRadius: 8,
             fontSize: 14,
@@ -34748,7 +34742,7 @@
       fontWeight: 700,
       letterSpacing: "0.08em",
       textTransform: "uppercase",
-      color: "white",
+      color: C.cream,
       margin: "0 0 14px",
       fontFamily: F.body
     };

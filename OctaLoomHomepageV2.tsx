@@ -98,13 +98,13 @@ function Btn({ href, onClick, variant = "purple", children, style = {} }: {
     border: "none", fontFamily: F.body, ...style
   }
   const variants: Record<string, React.CSSProperties> = {
-    purple:  { background: C.purple,     color: "white" },
+    purple:  { background: C.purple,     color: C.cream },
     ghost:   { background: "transparent", color: C.purple, border: `1px solid rgba(113,46,172,0.2)` },
     white:   { background: "white",      color: C.purple },
     cream:   { background: C.cream,     color: C.deepPurple },
     lime:    { background: C.lime,       color: C.navy },
     outline: { background: "transparent", color: C.purple, border: `1.5px solid ${C.purple}` },
-    dark:    { background: C.deepPurple, color: "white" },
+    dark:    { background: C.deepPurple, color: C.cream },
   }
   const props = { style: { ...base, ...variants[variant] }, onClick }
   if (href) return <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" {...props}>{children}</a>
@@ -1135,7 +1135,7 @@ function HPProcess() {
       <Container>
         <Reveal>
           <h2 style={{ fontFamily: F.display, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
-            lineHeight: 1.15, color: "white", textAlign: "center", marginBottom: 48 }}>
+            lineHeight: 1.15, color: C.cream, textAlign: "center", marginBottom: 48 }}>
             {hpT(HP.process.title)}
           </h2>
         </Reveal>
@@ -1144,14 +1144,12 @@ function HPProcess() {
             <Reveal key={i} delay={i * 150}>
               <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 16,
                 padding: "32px 28px", height: "100%", display: "flex", flexDirection: "column" }}>
-                <div style={{ width: 48, height: 48, borderRadius: 12,
-                  background: "rgba(255,255,255,0.15)", display: "flex",
-                  alignItems: "center", justifyContent: "center",
-                  fontSize: 24, fontWeight: 700, color: C.lime, marginBottom: 20,
-                  fontFamily: F.display }}>
-                  {i + 1}
-                </div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: "white",
+                <img
+                  src={`https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/${i + 1}.svg`}
+                  alt={`${i + 1}`}
+                  style={{ width: 56, height: 56, marginBottom: 20, objectFit: "contain" }}
+                />
+                <h3 style={{ fontSize: 18, fontWeight: 700, color: C.cream,
                   marginBottom: 12, fontFamily: F.body }}>{hpT(step.title)}</h3>
                 <p style={{ fontSize: 14, color: "rgba(255,255,255,0.75)",
                   lineHeight: 1.65, margin: 0, fontFamily: F.body }}>{hpT(step.desc)}</p>
@@ -1206,7 +1204,7 @@ function HPTestimonials() {
                     <div style={{ width: 40, height: 40, borderRadius: "50%",
                       background: `linear-gradient(135deg,${C.purple},#9b59b6)`,
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 16, fontWeight: 700, color: "white", flexShrink: 0,
+                      fontSize: 16, fontWeight: 700, color: C.cream, flexShrink: 0,
                       fontFamily: F.body }}>
                       {hpT(item.author).charAt(0)}
                     </div>
@@ -1355,7 +1353,7 @@ function HPAbout() {
             <Reveal delay={150}>
               <p style={{ fontSize: 18, fontWeight: 600, color: C.purple,
                 marginBottom: 12, fontFamily: F.body }}>
-                {hpT({ en: "Hi, lovely to meet you — I'm Hanita.", he: "היי, נעים מאד, אני חניתה." })}
+                {hpT({ en: "Hi, lovely to meet you.", he: "היי, נעים מאד." })}
               </p>
             </Reveal>
             <Reveal delay={200}>
@@ -1384,7 +1382,7 @@ function HPFAQ() {
       <Container>
         <Reveal>
           <h2 style={{ fontFamily: F.display, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
-            lineHeight: 1.15, color: "white", marginBottom: 48 }}>
+            lineHeight: 1.15, color: C.cream, marginBottom: 48 }}>
             {hpT(HP.faq.title)}
           </h2>
         </Reveal>
@@ -1398,7 +1396,7 @@ function HPFAQ() {
                 onClick={() => setOpenIdx(openIdx === i ? null : i)}>
                 <div style={{ display: "flex", justifyContent: "space-between",
                   alignItems: "center", padding: "20px 0", gap: 16 }}>
-                  <h3 itemProp="name" style={{ fontSize: 17, fontWeight: 700, color: "white",
+                  <h3 itemProp="name" style={{ fontSize: 17, fontWeight: 700, color: C.cream,
                     margin: 0, fontFamily: F.body }}>{hpT(item.q)}</h3>
                   <motion.span animate={{ rotate: openIdx === i ? 180 : 0 }}
                     style={{ fontSize: 22, color: C.lime, flexShrink: 0, width: 28, height: 28,
@@ -1451,12 +1449,12 @@ function HPBookCall() {
                   <polygon points="36,2 42,22 62,10 50,28 70,36 50,44 62,62 42,50 36,70 30,50 10,62 22,44 2,36 22,28 10,10 30,22" fill={C.purple} />
                 </svg>
                 <span style={{ position: "relative", zIndex: 1, fontSize: 11, fontWeight: 800,
-                  color: "white", textAlign: "center", lineHeight: 1.2, fontFamily: F.body }}>
+                  color: C.cream, textAlign: "center", lineHeight: 1.2, fontFamily: F.body }}>
                   It's<br/>FREE!
                 </span>
               </div>
-              <span style={{ fontWeight: 700, fontSize: "clamp(24px,3.5vw,40px)",
-                color: C.deepPurple, fontFamily: F.body }}>
+              <span style={{ fontWeight: 500, fontSize: "clamp(24px,3.5vw,40px)",
+                color: C.deepPurple, fontFamily: F.display }}>
                 {hpT({ en: "Book a Call With Me", he: "\u05ea\u05d0\u05de\u05d5 \u05d0\u05d9\u05ea\u05d9 \u05e9\u05d9\u05d7\u05d4" })}
               </span>
               <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
@@ -1588,7 +1586,7 @@ function HPNewsletter() {
         <Reveal>
           <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto" }}>
             <h2 style={{ fontFamily: F.display, fontWeight: 500,
-              fontSize: "clamp(24px,3vw,36px)", color: "white", marginBottom: 16 }}>
+              fontSize: "clamp(24px,3vw,36px)", color: C.cream, marginBottom: 16 }}>
               {hpT(HP.newsletter.title)}
             </h2>
             <p style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", marginBottom: 28,
@@ -1598,7 +1596,7 @@ function HPNewsletter() {
                 flexDirection: isMobile ? "column" : "row" } as any}>
               <input type="email"
                 placeholder={hpT(HP.newsletter.placeholder)}
-                style={{ flex: 1, background: "rgba(255,255,255,0.08)", color: "white",
+                style={{ flex: 1, background: "rgba(255,255,255,0.08)", color: C.cream,
                   padding: "14px 18px", borderRadius: 8, fontSize: 14,
                   border: "1px solid rgba(255,255,255,0.12)", fontFamily: F.body,
                   outline: "none" }} />
@@ -1634,7 +1632,7 @@ function HPFooter() {
   }
   const headStyle: React.CSSProperties = {
     fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase",
-    color: "white", margin: "0 0 14px", fontFamily: F.body,
+    color: C.cream, margin: "0 0 14px", fontFamily: F.body,
   }
   const hover = (e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => {
     e.currentTarget.style.color = enter ? C.lime : "rgba(255,255,255,0.5)"
