@@ -178,26 +178,26 @@ const HP = {
     none: { en: 'None of them work.', he: '\u05e9\u05dc\u05d5\u05e9\u05ea\u05df \u05dc\u05d0 \u05e2\u05d5\u05d1\u05d3\u05d5\u05ea.' },
   },
   fourthOption: {
-    but: { en: 'But… there\'s a fourth option.', he: '\u05d0\u05d1\u05dc… \u05d9\u05e9 \u05d0\u05d5\u05e4\u05e6\u05d9\u05d4 \u05e8\u05d1\u05d9\u05e2\u05d9\u05ea.' },
+    but: { en: 'The Fourth Option: AI-Powered B2B Marketing', he: '\u05d0\u05d1\u05dc... \u05d9\u05e9 \u05d0\u05d5\u05e4\u05e6\u05d9\u05d4 \u05e8\u05d1\u05d9\u05e2\u05d9\u05ea: \u05e9\u05d9\u05d5\u05d5\u05e7 B2B \u05de\u05d1\u05d5\u05e1\u05e1 AI.' },
     desc: {
-      en: 'OctaLoom is a boutique AI-powered B2B marketing agency that helps founders and companies in Israel turn LinkedIn into their primary growth engine. Led by Hanita Yudovski, LinkedIn-Led Fractional CMO.',
-      he: 'OctaLoom \u05d4\u05d9\u05d0 \u05e1\u05d5\u05db\u05e0\u05d5\u05ea \u05e9\u05d9\u05d5\u05d5\u05e7 B2B \u05de\u05d1\u05d5\u05e1\u05e1\u05ea AI \u05e9\u05de\u05d5\u05d1\u05d9\u05dc\u05d4 \u05de\u05d9\u05d9\u05e1\u05d3\u05d9\u05dd \u05d5\u05d7\u05d1\u05e8\u05d5\u05ea \u05dc\u05d4\u05e4\u05d5\u05da \u05d0\u05ea \u05d4\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05e9\u05dc\u05d4\u05dd \u05dc\u05de\u05e0\u05d5\u05e2 \u05e6\u05de\u05d9\u05d7\u05d4 \u05e8\u05d0\u05e9\u05d9. \u05d0\u05e0\u05d9 \u05d7\u05e0\u05d9\u05ea\u05d4 \u05d9\u05d5\u05d3\u05d5\u05d1\u05e1\u05e7\u05d9, LinkedIn-Led Fractional CMO, \u05d5\u05d1\u05e2\u05dc\u05ea \u05d4\u05e1\u05d5\u05db\u05e0\u05d5\u05ea.'
+      en: "OctaLoom transforms your marketing into a high-performance growth engine without the friction of a traditional agency. I'm Hanita Yudovski, a Fractional CMO who builds your end-to-end marketing strategy from establishing LinkedIn authority to building automation infrastructure, newsletters, and lead-gen funnels.",
+      he: 'OctaLoom \u05d4\u05d5\u05e4\u05db\u05ea \u05d0\u05ea \u05d4\u05e9\u05d9\u05d5\u05d5\u05e7 \u05e9\u05dc\u05db\u05dd \u05dc\u05de\u05e0\u05d5\u05e2 \u05e6\u05de\u05d9\u05d7\u05d4 \u05de\u05e9\u05d5\u05de\u05df, \u05d1\u05dc\u05d9 \u05d4\u05e1\u05e8\u05d1\u05d5\u05dc \u05e9\u05dc \u05e1\u05d5\u05db\u05e0\u05d5\u05ea \u05d2\u05d3\u05d5\u05dc\u05d4. \u05d0\u05e0\u05d9 \u05d7\u05e0\u05d9\u05ea\u05d4 \u05d9\u05d5\u05d3\u05d5\u05d1\u05e1\u05e7\u05d9, FCMO \u05e9\u05d1\u05d5\u05e0\u05d4 \u05e2\u05d1\u05d5\u05e8\u05db\u05dd \u05d0\u05ea \u05d4\u05d0\u05e1\u05d8\u05e8\u05d8\u05d2\u05d9\u05d4 \u05d4\u05de\u05dc\u05d0\u05d4, \u05de\u05d1\u05d9\u05e1\u05d5\u05e1 \u05e1\u05de\u05db\u05d5\u05ea \u05d1\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05d5\u05e2\u05d3 \u05ea\u05e9\u05ea\u05d9\u05d5\u05ea \u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d4, \u05e0\u05d9\u05d5\u05d6\u05dc\u05d8\u05e8\u05d9\u05dd \u05d5\u05de\u05e9\u05e4\u05db\u05d9 \u05e9\u05d9\u05d5\u05d5\u05e7.'
     },
     value: {
-      en: 'Work with a senior marketing lead backed by a team of AI agents — no employer costs, no inflated retainer, no handoffs. This isn\'t artificial intelligence. It\'s a business model.',
-      he: '\u05d0\u05d6 \u05e8\u05d2\u05e2, \u05de\u05d4 \u05d6\u05d4 \u05d0\u05d5\u05de\u05e8 \u05d1\u05e4\u05d5\u05e2\u05dc? \u05e9\u05d4\u05e2\u05d1\u05d5\u05d3\u05d4 \u05d1\u05e1\u05d5\u05db\u05e0\u05d5\u05ea \u05d4\u05d9\u05d0 \u05e2\u05dc \u05d9\u05d3\u05d9 \u05d0\u05e9\u05ea \u05e9\u05d9\u05d5\u05d5\u05e7 \u05d1\u05db\u05d9\u05e8\u05d4 \u05e9\u05de\u05d5\u05d1\u05d9\u05dc\u05d4 \u05e6\u05d5\u05d5\u05ea \u05e9\u05dc \u05e1\u05d5\u05db\u05e0\u05d9 AI. \u05d1\u05dc\u05d9 \u05e2\u05dc\u05d5\u05d9\u05d5\u05ea \u05de\u05e2\u05e1\u05d9\u05e7, \u05d1\u05dc\u05d9 \u05e8\u05d9\u05d8\u05d9\u05d9\u05e0\u05e8 \u05de\u05e0\u05d5\u05e4\u05d7, \u05d5\u05d1\u05dc\u05d9 \u05d4\u05e2\u05d1\u05e8\u05d5\u05ea \u05d9\u05d3\u05d9\u05d9\u05dd. \u05d0\u05e0\u05d9 \u05de\u05e2\u05e6\u05d1\u05ea \u05d0\u05ea \u05d4\u05d0\u05e1\u05d8\u05e8\u05d8\u05d2\u05d9\u05d4, \u05e1\u05d5\u05db\u05e0\u05d9 AI \u05de\u05d1\u05e6\u05e2\u05d9\u05dd \u05d0\u05ea \u05d4\u05e2\u05d1\u05d5\u05d3\u05d4 \u05d4\u05d9\u05d5\u05de\u05d9\u05d5\u05de\u05d9\u05ea, \u05d5\u05d0\u05ea \u05e0\u05d9\u05e6\u05e0\u05d9 \u05d4\u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05d0\u05e0\u05d7\u05e0\u05d5 \u05e8\u05d5\u05d0\u05d9\u05dd \u05d9\u05d7\u05d3 \u05db\u05d1\u05e8 \u05ea\u05d5\u05da 30 \u05d9\u05d5\u05dd.'
+      en: "While I navigate the strategy, my team of AI agents handles the heavy lifting with a volume and precision that no human team can match alone. You get senior-level marketing leadership at tech scale without the overhead of a full-time hire or the weight of an inflated agency retainer.",
+      he: '\u05d1\u05d6\u05de\u05df \u05e9\u05d0\u05e0\u05d9 \u05de\u05e0\u05d5\u05d5\u05d8\u05ea, \u05e6\u05d5\u05d5\u05ea \u05e1\u05d5\u05db\u05e0\u05d9 \u05d4-AI \u05e9\u05dc\u05d9 \u05de\u05d1\u05e6\u05e2 \u05d0\u05ea \u05d4\u05e2\u05d1\u05d5\u05d3\u05d4 \u05d4\u05e9\u05d7\u05d5\u05e8\u05d4 \u05d1\u05e0\u05e4\u05d7 \u05d5\u05d3\u05d9\u05d5\u05e7 \u05e9\u05e9\u05d5\u05dd \u05d0\u05d3\u05dd \u05dc\u05d0 \u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05d2\u05d9\u05e2 \u05d0\u05dc\u05d9\u05d5 \u05dc\u05d1\u05d3. \u05d0\u05ea\u05dd \u05de\u05e7\u05d1\u05dc\u05d9\u05dd \u05de\u05e2\u05d8\u05e4\u05ea \u05e9\u05d9\u05d5\u05d5\u05e7\u05d9\u05ea \u05d1\u05db\u05d9\u05e8\u05d4 \u05d1-Scale \u05e9\u05dc \u05d4\u05d9\u05d9\u05d8\u05e7, \u05d1\u05dc\u05d9 \u05e2\u05dc\u05d5\u05d9\u05d5\u05ea \u05de\u05e2\u05e1\u05d9\u05e7 \u05d5\u05d1\u05dc\u05d9 \u05e8\u05d9\u05d8\u05d9\u05d9\u05e0\u05e8\u05d9\u05dd \u05de\u05e0\u05d5\u05e4\u05d7\u05d9\u05dd.'
     },
     cta: { en: "Let's Talk", he: '\u05d1\u05d5\u05d0\u05d5 \u05e0\u05d3\u05d1\u05e8' },
   },
   services: {
-    title: { en: 'Take What You Need', he: '\u05e7\u05d7\u05d5 \u05de\u05d4 \u05e9\u05d0\u05ea\u05dd \u05e6\u05e8\u05d9\u05db\u05d9\u05dd' },
+    title: { en: 'What We Offer', he: '\u05de\u05d4 \u05e9\u05d0\u05e0\u05d7\u05e0\u05d5 \u05de\u05e6\u05d9\u05e2\u05d9\u05dd' },
     sub: { en: '', he: '' },
     strips: [
-      { label: { en: 'LinkedIn for Founders', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05de\u05d9\u05d9\u05e1\u05d3\u05d9\u05dd' }, href: '#' },
-      { label: { en: 'LinkedIn for Solopreneurs', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05e2\u05e6\u05de\u05d0\u05d9\u05dd' }, href: 'LinkedIn for Solopreneurs.html' },
-      { label: { en: 'LinkedIn for Organizations', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05d0\u05e8\u05d2\u05d5\u05e0\u05d9\u05dd' }, href: '#' },
-      { label: { en: 'Fractional CMO', he: '\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9 \u05e9\u05d9\u05d5\u05d5\u05e7 \u05d1\u05de\u05d9\u05e7\u05d5\u05e8 \u05d7\u05d5\u05e5' }, href: '#' },
-      { label: { en: 'AI Tools & Agents', he: '\u05e1\u05d5\u05db\u05e0\u05d9 \u05d5\u05db\u05dc\u05d9 AI' }, href: '#' },
+      { label: { en: 'LinkedIn for Organizations', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05d0\u05e8\u05d2\u05d5\u05e0\u05d9\u05dd' }, href: '/linkedin-for-organizations-he' },
+      { label: { en: 'LinkedIn for Executives', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05de\u05d9\u05d9\u05e1\u05d3\u05d9\u05dd' }, href: '/linkedin-for-executives-he' },
+      { label: { en: 'LinkedIn for Solopreneurs', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05e2\u05e6\u05de\u05d0\u05d9\u05dd' }, href: '/linkedin-for-solopreneurs-he' },
+      { label: { en: 'Fractional CMO', he: '\u05e9\u05d9\u05d5\u05d5\u05e7 \u05d1\u05de\u05d9\u05e7\u05d5\u05e8 \u05d7\u05d5\u05e5' }, href: '/fractional-cmo-he' },
+      { label: { en: 'AI Tools & Agents', he: '\u05e1\u05d5\u05db\u05e0\u05d9 \u05d5\u05db\u05dc\u05d9 AI' }, href: '/ai-tools-agents-he' },
     ],
   },
   process: {
@@ -901,20 +901,84 @@ function HPServices() {
   const [torn, setTorn] = useState<Record<number,boolean>>({})
   const [tearing, setTearing] = useState<number|null>(null)
 
-  const serviceUrls: Record<number,string> = {
-    0: "/services/linkedin-for-executives",
-    1: "/services/linkedin-for-solopreneurs",
-    2: "/services/linkedin-for-organizations",
-    3: "/services/fractional-cmo",
-    4: "/services/ai-tools-agents",
+  const serviceUrls: Record<string, Record<number,string>> = {
+    en: {
+      0: "/linkedin-for-organizations",
+      1: "/linkedin-for-executives",
+      2: "/linkedin-for-solopreneurs",
+      3: "/fractional-cmo",
+      4: "/ai-tools-agents",
+    },
+    he: {
+      0: "/linkedin-for-organizations-he",
+      1: "/linkedin-for-executives-he",
+      2: "/linkedin-for-solopreneurs-he",
+      3: "/fractional-cmo-he",
+      4: "/ai-tools-agents-he",
+    }
   }
 
   const stripIcons = [
-    <svg viewBox="0 0 24 24" fill="none" stroke={C.purple} strokeWidth="1.5" style={{ width: 48, height: 48 }}><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>,
-    <svg viewBox="0 0 24 24" fill="none" stroke={C.purple} strokeWidth="1.5" style={{ width: 48, height: 48 }}><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/></svg>,
-    <svg viewBox="0 0 24 24" fill="none" stroke={C.purple} strokeWidth="1.5" style={{ width: 48, height: 48 }}><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22V12h6v10M9 6h.01M15 6h.01M9 10h.01M15 10h.01"/></svg>,
-    <svg viewBox="0 0 24 24" fill="none" stroke={C.purple} strokeWidth="1.5" style={{ width: 48, height: 48 }}><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>,
-    <svg viewBox="0 0 24 24" fill="none" stroke={C.purple} strokeWidth="1.5" style={{ width: 48, height: 48 }}><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>,
+    <svg viewBox="0 0 44 44" fill="none" style={{ width: 44, height: 44 }}>
+      <circle cx="22" cy="8" r="3.5" stroke={C.purple} strokeWidth="1.2"/>
+      <circle cx="12" cy="24" r="3" stroke={C.purple} strokeWidth="1.2"/>
+      <circle cx="32" cy="24" r="3" stroke={C.purple} strokeWidth="1.2"/>
+      <circle cx="8" cy="38" r="2" fill={C.purple} fillOpacity=".35" stroke={C.purple} strokeWidth="1"/>
+      <circle cx="18" cy="38" r="2" fill={C.purple} fillOpacity=".35" stroke={C.purple} strokeWidth="1"/>
+      <circle cx="36" cy="38" r="2" fill={C.purple} fillOpacity=".35" stroke={C.purple} strokeWidth="1"/>
+      <line x1="22" y1="11.5" x2="22" y2="19" stroke={C.purple} strokeWidth="1.2" strokeDasharray="2 2"/>
+      <line x1="22" y1="19" x2="12" y2="21" stroke={C.purple} strokeWidth="1.2"/>
+      <line x1="22" y1="19" x2="32" y2="21" stroke={C.purple} strokeWidth="1.2"/>
+      <line x1="12" y1="27" x2="8" y2="36" stroke={C.purple} strokeWidth=".9" strokeDasharray="2 2"/>
+      <line x1="12" y1="27" x2="18" y2="36" stroke={C.purple} strokeWidth=".9" strokeDasharray="2 2"/>
+      <line x1="32" y1="27" x2="36" y2="36" stroke={C.purple} strokeWidth=".9" strokeDasharray="2 2"/>
+    </svg>,
+    <svg viewBox="0 0 44 44" fill="none" style={{ width: 44, height: 44 }}>
+      <text x="22" y="5" fontFamily="'Aeonik', sans-serif" fontWeight="700" fontSize="6" fill={C.purple} textAnchor="middle" letterSpacing="0.4">CEO &amp;</text>
+      <text x="22" y="12" fontFamily="'Aeonik', sans-serif" fontWeight="700" fontSize="6" fill={C.purple} textAnchor="middle" letterSpacing="0.4">FOUNDER</text>
+      <circle cx="18" cy="21" r="4" stroke={C.purple} strokeWidth="1.2"/>
+      <path d="M11 39 Q11 29 18 29 Q25 29 26 33" stroke={C.purple} strokeWidth="1.2" strokeLinecap="round"/>
+      <path d="M31 25 L31 22.5 Q31 21 34 21 Q37 21 37 22.5 L37 25" stroke={C.purple} strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round"/>
+      <rect x="28" y="25" width="13" height="9" rx="1.5" stroke={C.purple} strokeWidth="1.2"/>
+      <line x1="34.5" y1="25" x2="34.5" y2="34" stroke={C.purple} strokeWidth=".8" opacity=".45"/>
+    </svg>,
+    <svg viewBox="0 0 44 44" fill="none" style={{ width: 44, height: 44 }}>
+      <text x="22" y="7" fontFamily="'Aeonik', sans-serif" fontWeight="700" fontSize="6.5" fill={C.purple} textAnchor="middle" letterSpacing="0.3">Biz Owner</text>
+      <circle cx="13" cy="17" r="3.5" stroke={C.purple} strokeWidth="1.2"/>
+      <path d="M7 33 Q7 25 13 25 Q19 25 20 29" stroke={C.purple} strokeWidth="1.2" strokeLinecap="round"/>
+      <rect x="25" y="21" width="16" height="11" rx="1" stroke={C.purple} strokeWidth="1.2"/>
+      <line x1="27" y1="24" x2="39" y2="24" stroke={C.purple} strokeWidth=".7" opacity=".4"/>
+      <line x1="27" y1="27" x2="37" y2="27" stroke={C.purple} strokeWidth=".7" opacity=".4"/>
+      <line x1="27" y1="30" x2="33" y2="30" stroke={C.purple} strokeWidth=".7" opacity=".4"/>
+      <path d="M24 32 L41 32 L39.5 36 L25.5 36 Z" stroke={C.purple} strokeWidth="1" strokeLinejoin="round"/>
+    </svg>,
+    <svg viewBox="0 0 44 44" fill="none" style={{ width: 44, height: 44 }}>
+      <circle cx="22" cy="22" r="18" stroke={C.purple} strokeWidth="1.2"/>
+      <circle cx="22" cy="22" r="11" stroke={C.purple} strokeWidth="1.2"/>
+      <circle cx="22" cy="22" r="5" stroke={C.purple} strokeWidth="1.2"/>
+      <circle cx="22" cy="22" r="1.8" fill={C.purple}/>
+      <line x1="22" y1="2" x2="22" y2="7" stroke={C.purple} strokeWidth="1.2" strokeLinecap="round"/>
+      <line x1="22" y1="37" x2="22" y2="42" stroke={C.purple} strokeWidth="1.2" strokeLinecap="round"/>
+      <line x1="2" y1="22" x2="7" y2="22" stroke={C.purple} strokeWidth="1.2" strokeLinecap="round"/>
+      <line x1="37" y1="22" x2="42" y2="22" stroke={C.purple} strokeWidth="1.2" strokeLinecap="round"/>
+    </svg>,
+    <svg viewBox="0 0 44 44" fill="none" style={{ width: 44, height: 44 }}>
+      <rect x="16" y="16" width="12" height="12" rx="2" fill={C.purple} fillOpacity=".07" stroke={C.purple} strokeWidth="1.2"/>
+      <line x1="10" y1="19.5" x2="16" y2="19.5" stroke={C.purple} strokeWidth="1" strokeLinecap="round"/>
+      <line x1="10" y1="24.5" x2="16" y2="24.5" stroke={C.purple} strokeWidth="1" strokeLinecap="round"/>
+      <line x1="28" y1="19.5" x2="34" y2="19.5" stroke={C.purple} strokeWidth="1" strokeLinecap="round"/>
+      <line x1="28" y1="24.5" x2="34" y2="24.5" stroke={C.purple} strokeWidth="1" strokeLinecap="round"/>
+      <circle cx="22" cy="22" r="2" fill={C.purple}/>
+      <circle cx="22" cy="5" r="2" stroke={C.purple} strokeWidth="1.1"/>
+      <path d="M19.5 10 Q19.5 8.5 22 8.5 Q24.5 8.5 24.5 10" stroke={C.purple} strokeWidth="1.1" strokeLinecap="round"/>
+      <line x1="22" y1="10" x2="22" y2="16" stroke={C.purple} strokeWidth="1" strokeLinecap="round" opacity=".5"/>
+      <circle cx="8" cy="37" r="2" stroke={C.purple} strokeWidth="1.1"/>
+      <path d="M5.5 42 Q5.5 40.5 8 40.5 Q10.5 40.5 10.5 42" stroke={C.purple} strokeWidth="1.1" strokeLinecap="round"/>
+      <line x1="10.5" y1="39" x2="16" y2="28" stroke={C.purple} strokeWidth="1" strokeLinecap="round" opacity=".5"/>
+      <circle cx="36" cy="37" r="2" stroke={C.purple} strokeWidth="1.1"/>
+      <path d="M33.5 42 Q33.5 40.5 36 40.5 Q38.5 40.5 38.5 42" stroke={C.purple} strokeWidth="1.1" strokeLinecap="round"/>
+      <line x1="33.5" y1="39" x2="28" y2="28" stroke={C.purple} strokeWidth="1" strokeLinecap="round" opacity=".5"/>
+    </svg>,
   ]
 
   const handleTear = (i: number) => {
@@ -923,6 +987,8 @@ function HPServices() {
     setTimeout(() => {
       setTearing(null)
       setTorn(prev => ({ ...prev, [i]: true }))
+      const urls = serviceUrls[lang] || serviceUrls.en
+      window.location.href = urls[i] || '/'
     }, 600)
   }
 
@@ -971,10 +1037,20 @@ function HPServices() {
                     textAlign: "center", minHeight: 180,
                     borderRight: i < HP.services.strips.length - 1 ? `1px dashed rgba(113,46,172,0.3)` : "none" }}>
                   <span style={{ fontSize: 13, fontWeight: 700, color: C.purple, lineHeight: 1.4,
-                    marginBottom: 12, fontFamily: F.body,
+                    marginBottom: i < 3 ? 6 : 12, fontFamily: F.body,
                     textDecoration: torn[i] ? "line-through" : "none" }}>
                     {hpT(strip.label)}
                   </span>
+                  {i < 3 && (
+                    <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
+                      <svg viewBox="0 0 20 20" fill="none" style={{ width: 20, height: 20 }}>
+                        <rect width="20" height="20" rx="3.5" fill={C.purple} fillOpacity=".1" stroke={C.purple} strokeWidth=".9"/>
+                        <path d="M7 9.5v5.5" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round"/>
+                        <circle cx="7" cy="7.2" r="1" fill={C.purple}/>
+                        <path d="M10.5 15V12q0-2.5 2.5-2.5t2.5 2.5v3" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  )}
                   <div style={{ marginTop: "auto", opacity: 0.6 }}>{stripIcons[i]}</div>
                 </motion.div>
               ))}
@@ -1284,15 +1360,15 @@ function HPFAQ() {
 function HPBookCall() {
   const w = useWindowSize(); const isMobile = w < 768
   return (
-    <section style={{ background: C.lime, padding: "0 0 clamp(32px,5vw,60px)" }}>
+    <section style={{ background: C.lime, padding: "clamp(48px,6vw,80px) 0 clamp(32px,5vw,60px)" }}>
       <Container>
         <Reveal>
           <div style={{ position: "relative", maxWidth: 800, margin: "0 auto" }}>
             <div style={{ display: "flex", gap: 24, marginBottom: 20, fontSize: 15,
               color: C.deepPurple, fontWeight: 600, fontFamily: F.body,
               flexDirection: isMobile ? "column" : "row", gap: isMobile ? 8 : 24 } as any}>
-              <span>\u2460 {hpT({ en: "Not sure where to start?", he: "\u05dc\u05d0 \u05d1\u05d8\u05d5\u05d7\u05d9\u05dd \u05de\u05d0\u05d9\u05e4\u05d4 \u05dc\u05d4\u05ea\u05d7\u05d9\u05dc?" })}</span>
-              <span>\u2461 {hpT({ en: "Let's figure it out together.", he: "\u05d1\u05d5\u05d0\u05d5 \u05e0\u05d1\u05d9\u05df \u05d1\u05d9\u05d7\u05d3." })}</span>
+              <span>\u2460 {hpT({ en: "Not sure where to start?", he: "\u05d9\u05d5\u05ea\u05e8 \u05de\u05d9\u05d3\u05d9 \u05d0\u05d5\u05e4\u05e6\u05d9\u05d5\u05ea?" })}</span>
+              <span>\u2461 {hpT({ en: "Let's figure it out together.", he: "\u05dc\u05d0 \u05d1\u05d8\u05d5\u05d7\u05d9\u05dd \u05de\u05d4 \u05de\u05ea\u05d0\u05d9\u05dd?" })}</span>
             </div>
             <div style={{ border: `2.5px solid ${C.deepPurple}`, borderRadius: 12,
               padding: isMobile ? "24px 20px" : "32px 40px",
@@ -1301,10 +1377,10 @@ function HPBookCall() {
               textAlign: isMobile ? "center" : "start" } as any}>
               <span style={{ fontWeight: 700, fontSize: "clamp(24px,3.5vw,40px)",
                 color: C.deepPurple, fontFamily: F.body }}>
-                {hpT({ en: "Book a Call With Me", he: "\u05e7\u05d1\u05e2\u05d5 \u05d0\u05d9\u05ea\u05d9 \u05e9\u05d9\u05d7\u05d4" })}
+                {hpT({ en: "Book a Call With Me", he: "\u05ea\u05d0\u05de\u05d5 \u05d0\u05d9\u05ea\u05d9 \u05e9\u05d9\u05d7\u05d4" })}
               </span>
               <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
-                {hpT({ en: "Let's Talk ✨", he: "\u05d1\u05d5\u05d0\u05d5 \u05e0\u05d3\u05d1\u05e8 ✨" })}
+                {hpT({ en: "Let's Talk ✨", he: "\u05d3\u05d1\u05e8\u05d9 \u05d0\u05dc\u05d9\u05d9, \u05d0\u05e0\u05d9 \u05de\u05d5\u05dc \u05d4\u05d9\u05d5\u05de\u05df ✨" })}
               </Btn>
             </div>
             {/* Starburst */}
@@ -1322,36 +1398,6 @@ function HPBookCall() {
         </Reveal>
       </Container>
     </section>
-  )
-}
-
-// ─── FINAL CTA ────────────────────────────────────────────────────────────────
-function HPFinalCTA() {
-  return (
-    <Sec bg={C.lime} id="contact">
-      <Container>
-        <div style={{ textAlign: "center" }}>
-          <Reveal>
-            <h2 style={{ fontFamily: F.display, fontWeight: 500,
-              fontSize: "clamp(28px,4.5vw,48px)", color: C.deepPurple, marginBottom: 16 }}>
-              {hpT(HP.finalCta.title)}
-            </h2>
-            <p style={{ fontSize: 17, color: C.deepPurple, opacity: 0.7, maxWidth: 500,
-              margin: "0 auto 32px", lineHeight: 1.6, fontFamily: F.body }}>
-              {hpT(HP.finalCta.sub)}
-            </p>
-          </Reveal>
-          <Reveal delay={100}>
-            <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
-              {hpT(HP.finalCta.cta)}
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Btn>
-          </Reveal>
-        </div>
-      </Container>
-    </Sec>
   )
 }
 
@@ -1719,7 +1765,6 @@ export default function OctaLoomHomepageV2() {
           <HPAbout />
           <HPFAQ />
           <HPBookCall />
-          <HPFinalCTA />
           <HPLinkedInFeed />
           <HPBlog />
           <HPNewsletter />
