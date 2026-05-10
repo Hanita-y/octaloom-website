@@ -551,6 +551,20 @@ function HPNav() {
               </AnimatePresence>
             </div>
 
+            {/* About / Blog / Contact */}
+            {([
+              { en: "About",   he: "עליי",      href: "#about" },
+              { en: "Blog",    he: "בלוג",      href: "/blog" },
+              { en: "Contact", he: "צור קשר",  href: "#contact" },
+            ] as {en:string;he:string;href:string}[]).map((item, i) => (
+              <a key={i} href={item.href}
+                style={{ fontSize: 14, color: C.textDim, textDecoration: "none", fontFamily: F.body, transition: "color 0.25s" }}
+                onMouseEnter={e => (e.currentTarget.style.color = C.deepPurple)}
+                onMouseLeave={e => (e.currentTarget.style.color = C.textDim)}>
+                {lang === "he" ? item.he : item.en}
+              </a>
+            ))}
+
             {/* Goodies */}
             <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer"
               style={{ fontSize: 14, color: C.textDim, textDecoration: "none", fontFamily: F.body, transition: "color 0.25s" }}
@@ -619,6 +633,18 @@ function HPNav() {
                 </a>
               ))}
             </div>
+          ))}
+
+          {([
+            { en: "About",   he: "עליי",     href: "#about" },
+            { en: "Blog",    he: "בלוג",     href: "/blog" },
+            { en: "Contact", he: "צור קשר", href: "#contact" },
+          ] as {en:string;he:string;href:string}[]).map((item, i) => (
+            <a key={i} href={item.href} onClick={() => setMobileOpen(false)}
+              style={{ display: "block", fontSize: 18, color: C.deepPurple, textDecoration: "none",
+                fontFamily: F.body, padding: "14px 0", borderBottom: `1px solid rgba(113,46,172,0.07)` }}>
+              {lang === "he" ? item.he : item.en}
+            </a>
           ))}
 
           <a href="https://octagoodies.com" target="_blank" onClick={() => setMobileOpen(false)}
