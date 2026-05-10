@@ -178,7 +178,7 @@ const HP = {
     none: { en: 'None of them work.', he: '\u05e9\u05dc\u05d5\u05e9\u05ea\u05df \u05dc\u05d0 \u05e2\u05d5\u05d1\u05d3\u05d5\u05ea.' },
   },
   fourthOption: {
-    but: { en: 'The Fourth Option: AI-Powered B2B Marketing', he: '\u05d0\u05d1\u05dc... \u05d9\u05e9 \u05d0\u05d5\u05e4\u05e6\u05d9\u05d4 \u05e8\u05d1\u05d9\u05e2\u05d9\u05ea: \u05e9\u05d9\u05d5\u05d5\u05e7 B2B \u05de\u05d1\u05d5\u05e1\u05e1 AI.' },
+    but: { en: 'The Fourth Option.', he: '\u05d0\u05d1\u05dc... \u05d9\u05e9 \u05d0\u05d5\u05e4\u05e6\u05d9\u05d4 \u05e8\u05d1\u05d9\u05e2\u05d9\u05ea.' },
     desc: {
       en: "OctaLoom transforms your marketing into a high-performance growth engine without the friction of a traditional agency. I'm Hanita Yudovski, a Fractional CMO who builds your end-to-end marketing strategy from establishing LinkedIn authority to building automation infrastructure, newsletters, and lead-gen funnels.",
       he: 'OctaLoom \u05d4\u05d5\u05e4\u05db\u05ea \u05d0\u05ea \u05d4\u05e9\u05d9\u05d5\u05d5\u05e7 \u05e9\u05dc\u05db\u05dd \u05dc\u05de\u05e0\u05d5\u05e2 \u05e6\u05de\u05d9\u05d7\u05d4 \u05de\u05e9\u05d5\u05de\u05df, \u05d1\u05dc\u05d9 \u05d4\u05e1\u05e8\u05d1\u05d5\u05dc \u05e9\u05dc \u05e1\u05d5\u05db\u05e0\u05d5\u05ea \u05d2\u05d3\u05d5\u05dc\u05d4. \u05d0\u05e0\u05d9 \u05d7\u05e0\u05d9\u05ea\u05d4 \u05d9\u05d5\u05d3\u05d5\u05d1\u05e1\u05e7\u05d9, FCMO \u05e9\u05d1\u05d5\u05e0\u05d4 \u05e2\u05d1\u05d5\u05e8\u05db\u05dd \u05d0\u05ea \u05d4\u05d0\u05e1\u05d8\u05e8\u05d8\u05d2\u05d9\u05d4 \u05d4\u05de\u05dc\u05d0\u05d4, \u05de\u05d1\u05d9\u05e1\u05d5\u05e1 \u05e1\u05de\u05db\u05d5\u05ea \u05d1\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05d5\u05e2\u05d3 \u05ea\u05e9\u05ea\u05d9\u05d5\u05ea \u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d4, \u05e0\u05d9\u05d5\u05d6\u05dc\u05d8\u05e8\u05d9\u05dd \u05d5\u05de\u05e9\u05e4\u05db\u05d9 \u05e9\u05d9\u05d5\u05d5\u05e7.'
@@ -792,7 +792,7 @@ function HPHero() {
                   {avatarUrls.map((src, i) => (
                     <img key={i} src={src} alt=""
                       style={{ width: 34, height: 34, borderRadius: "50%",
-                        border: `2px solid ${C.cream}`, marginLeft: i === 0 ? 0 : -8,
+                        border: `2px solid ${C.cream}`, marginInlineStart: i === 0 ? 0 : -8,
                         objectFit: "cover", display: "block" }} />
                   ))}
                 </div>
@@ -1321,6 +1321,7 @@ function HPCaseStudy() {
 
 // ─── ABOUT ────────────────────────────────────────────────────────────────────
 function HPAbout() {
+  const { lang } = useLang()
   const w = useWindowSize(); const isMobile = w < 768
   return (
     <Sec bg={C.cream} id="about">
@@ -1351,7 +1352,7 @@ function HPAbout() {
             </Reveal>
             <Reveal delay={300}>
               <Btn href="https://www.linkedin.com/in/hanita-yudovski/" variant="purple">
-                <LiIcon size={16} /> {hpT(HP.about.cta)}
+                {lang === "he" ? <>{hpT(HP.about.cta)} <LiIcon size={16} /></> : <><LiIcon size={16} /> {hpT(HP.about.cta)}</>}
               </Btn>
             </Reveal>
           </div>
@@ -1418,17 +1419,28 @@ function HPBookCall() {
       <Container>
         <Reveal>
           <div style={{ position: "relative", maxWidth: 800, margin: "0 auto" }}>
-            <div style={{ display: "flex", gap: 24, marginBottom: 20, fontSize: 15,
+            <div style={{ display: "flex", marginBottom: 20, fontSize: 15,
               color: C.deepPurple, fontWeight: 600, fontFamily: F.body,
               flexDirection: isMobile ? "column" : "row", gap: isMobile ? 8 : 24 } as any}>
-              <span>\u2460 {hpT({ en: "Not sure where to start?", he: "\u05d9\u05d5\u05ea\u05e8 \u05de\u05d9\u05d3\u05d9 \u05d0\u05d5\u05e4\u05e6\u05d9\u05d5\u05ea?" })}</span>
-              <span>\u2461 {hpT({ en: "Let's figure it out together.", he: "\u05dc\u05d0 \u05d1\u05d8\u05d5\u05d7\u05d9\u05dd \u05de\u05d4 \u05de\u05ea\u05d0\u05d9\u05dd?" })}</span>
+              <span>{"\u2460"} {hpT({ en: "Not sure where to start?", he: "\u05d9\u05d5\u05ea\u05e8 \u05de\u05d9\u05d3\u05d9 \u05d0\u05d5\u05e4\u05e6\u05d9\u05d5\u05ea?" })}</span>
+              <span>{"\u2461"} {hpT({ en: "Let's figure it out together.", he: "\u05dc\u05d0 \u05d1\u05d8\u05d5\u05d7\u05d9\u05dd \u05de\u05d4 \u05de\u05ea\u05d0\u05d9\u05dd?" })}</span>
             </div>
-            <div style={{ border: `2.5px solid ${C.deepPurple}`, borderRadius: 12,
+            <div style={{ position: "relative", border: `2.5px solid ${C.deepPurple}`, borderRadius: 12,
               padding: isMobile ? "24px 20px" : "32px 40px",
               display: "flex", alignItems: "center", justifyContent: "space-between",
               gap: 24, flexDirection: isMobile ? "column" : "row",
               textAlign: isMobile ? "center" : "start" } as any}>
+              {/* Starburst */}
+              <div style={{ position: "absolute", top: -22, right: -16, width: 72, height: 72,
+                display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
+                <svg viewBox="0 0 72 72" width="72" height="72" style={{ position: "absolute" }}>
+                  <polygon points="36,2 42,22 62,10 50,28 70,36 50,44 62,62 42,50 36,70 30,50 10,62 22,44 2,36 22,28 10,10 30,22" fill={C.purple} />
+                </svg>
+                <span style={{ position: "relative", zIndex: 1, fontSize: 11, fontWeight: 800,
+                  color: "white", textAlign: "center", lineHeight: 1.2, fontFamily: F.body }}>
+                  It's<br/>FREE!
+                </span>
+              </div>
               <span style={{ fontWeight: 700, fontSize: "clamp(24px,3.5vw,40px)",
                 color: C.deepPurple, fontFamily: F.body }}>
                 {hpT({ en: "Book a Call With Me", he: "\u05ea\u05d0\u05de\u05d5 \u05d0\u05d9\u05ea\u05d9 \u05e9\u05d9\u05d7\u05d4" })}
@@ -1436,17 +1448,6 @@ function HPBookCall() {
               <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
                 {hpT({ en: "Let's Talk ✨", he: "\u05d3\u05d1\u05e8\u05d9 \u05d0\u05dc\u05d9\u05d9, \u05d0\u05e0\u05d9 \u05de\u05d5\u05dc \u05d4\u05d9\u05d5\u05de\u05df ✨" })}
               </Btn>
-            </div>
-            {/* Starburst */}
-            <div style={{ position: "absolute", top: -18, right: -12, width: 72, height: 72,
-              display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg viewBox="0 0 72 72" width="72" height="72" style={{ position: "absolute" }}>
-                <polygon points="36,2 42,22 62,10 50,28 70,36 50,44 62,62 42,50 36,70 30,50 10,62 22,44 2,36 22,28 10,10 30,22" fill={C.purple} />
-              </svg>
-              <span style={{ position: "relative", zIndex: 1, fontSize: 11, fontWeight: 800,
-                color: "white", textAlign: "center", lineHeight: 1.2, fontFamily: F.body }}>
-                It's<br/>FREE!
-              </span>
             </div>
           </div>
         </Reveal>
@@ -1462,6 +1463,7 @@ function HPLinkedInFeed() {
     { text: { en: "3 things I learned from managing 15+ LinkedIn profiles this quarter: consistency beats virality every single time. The algorithm rewards showing up...", he: "3 \u05d3\u05d1\u05e8\u05d9\u05dd \u05e9\u05dc\u05de\u05d3\u05ea\u05d9 \u05de\u05e0\u05d9\u05d4\u05d5\u05dc 15+ \u05e4\u05e8\u05d5\u05e4\u05d9\u05dc\u05d9 \u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05d4\u05e8\u05d1\u05e2\u05d5\u05df \u05d4\u05d6\u05d4: \u05e2\u05e7\u05d1\u05d9\u05d5\u05ea \u05de\u05e0\u05e6\u05d7\u05ea \u05d5\u05d9\u05e8\u05d0\u05dc\u05d9\u05d5\u05ea. \u05db\u05dc \u05e4\u05e2\u05dd..." }, date: "5d" },
     { text: { en: "AI won't replace marketers. But marketers who use AI will replace those who don't. Here's what my AI agents actually do every day...", he: "AI \u05dc\u05d0 \u05d9\u05d7\u05dc\u05d9\u05e3 \u05d0\u05e0\u05e9\u05d9 \u05e9\u05d9\u05d5\u05d5\u05e7. \u05d0\u05d1\u05dc \u05d0\u05e0\u05e9\u05d9 \u05e9\u05d9\u05d5\u05d5\u05e7 \u05e9\u05de\u05e9\u05ea\u05de\u05e9\u05d9\u05dd \u05d1-AI \u05d9\u05d7\u05dc\u05d9\u05e4\u05d5 \u05d0\u05ea \u05d0\u05dc\u05d4 \u05e9\u05dc\u05d0. \u05db\u05da \u05e0\u05e8\u05d0\u05d4 \u05d4\u05d9\u05d5\u05dd \u05e9\u05dc\u05d9 \u05e2\u05dd \u05d4\u05e1\u05d5\u05db\u05e0\u05d9\u05dd..." }, date: "1w" },
   ]
+  const { lang } = useLang()
   const w = useWindowSize(); const isMobile = w < 768
 
   return (
@@ -1503,7 +1505,7 @@ function HPLinkedInFeed() {
         <Reveal delay={400}>
           <div style={{ textAlign: "center" }}>
             <Btn href="https://www.linkedin.com/in/hanita-yudovski/" variant="outline">
-              <LiIcon size={16} /> {hpT(HP.linkedinFeed.followCta)}
+              {lang === "he" ? <>{hpT(HP.linkedinFeed.followCta)} <LiIcon size={16} /></> : <><LiIcon size={16} /> {hpT(HP.linkedinFeed.followCta)}</>}
             </Btn>
           </div>
         </Reveal>
@@ -1676,7 +1678,7 @@ function HPFooter() {
           {/* Brand */}
           <div>
             <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
-              alt="OctaLoom" style={{ height: 40, width: "auto", display: "block" }} />
+              alt="OctaLoom" style={{ height: 72, width: "auto", display: "block" }} />
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14,
               maxWidth: 240, fontFamily: F.body, lineHeight: 1.65 }}>
               {lang === "he"
