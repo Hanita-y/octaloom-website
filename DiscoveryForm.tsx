@@ -114,11 +114,10 @@ export default function DiscoveryForm() {
   const [status, setStatus]   = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errMsg, setErrMsg]   = useState("")
 
-  const detectLang = useCallback((): "he" | "en" => {
+  const detectLang = useCallback(() => {
     if (typeof window === "undefined") return "he"
     const saved = localStorage.getItem("octaloom-lang")
-    if (saved === "en") return "en"
-    if (saved === "he") return "he"
+    if (saved === "en" || saved === "he") return saved
     const domLang = document.documentElement.lang ?? ""
     if (domLang === "en") return "en"
     return "he"
