@@ -1661,7 +1661,7 @@ function HPHero() {
 
           {/* Video column */}
 
-          <Reveal delay={200}>
+          <Reveal delay={200} style={{ order: isMobile ? -1 : 0 }}>
 
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
 
