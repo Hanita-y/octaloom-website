@@ -275,7 +275,7 @@ export default function DiscoveryForm() {
                 <div style={{ textAlign: "center", padding: "24px 0" }}>
                   <div style={{ fontSize: 52, marginBottom: 16 }}>🎉</div>
                   <h2 style={{ fontSize: 22, fontWeight: 700, color: C.deepPurple, margin: "0 0 28px", fontFamily: ff }}>{t.successTitle}</h2>
-                  <
+                  <a
                     href={NOTION_CALENDAR}
                     target="_blank"
                     rel="noopener noreferrer"
