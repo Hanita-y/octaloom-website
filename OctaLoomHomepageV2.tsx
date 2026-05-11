@@ -790,15 +790,28 @@ const HP = {
 
     viewAll: { en: 'Full Blog', he: '\u05dc\u05d1\u05dc\u05d5\u05d2 \u05d4\u05de\u05dc\u05d0' },
 
-    // Placeholder articles
-
     posts: [
 
-      { title: { en: 'Article title placeholder', he: '\u05db\u05d5\u05ea\u05e8\u05ea \u05de\u05d0\u05de\u05e8 - \u05de\u05de\u05ea\u05d9\u05e0\u05d4 \u05dc\u05ea\u05d5\u05db\u05df' }, date: '2026-04' },
+      {
+        title: { en: 'The Marketing Automation Stack You Actually Need in 2026', he: '\u05e1\u05d8\u05d0\u05e7 \u05d4\u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d4 \u05d4\u05e9\u05d9\u05d5\u05d5\u05e7\u05d9\u05ea \u05e9\u05d0\u05ea\u05dd \u05d1\u05d0\u05de\u05ea \u05e6\u05e8\u05d9\u05db\u05d9\u05dd \u05d1-2026' },
+        date: 'Feb 20, 2026',
+        href: '/articles/marketing-automation-stack-2026',
+        image: 'https://framerusercontent.com/images/bbc8plIg9FnEbLXe2bsnSB2iSCw.jpeg?width=800',
+      },
 
-      { title: { en: 'Article title placeholder', he: '\u05db\u05d5\u05ea\u05e8\u05ea \u05de\u05d0\u05de\u05e8 - \u05de\u05de\u05ea\u05d9\u05e0\u05d4 \u05dc\u05ea\u05d5\u05db\u05df' }, date: '2026-04' },
+      {
+        title: { en: 'Why Most B2B Companies Waste Money on Social Media', he: '\u05dc\u05de\u05d4 \u05e8\u05d5\u05d1 \u05d7\u05d1\u05e8\u05d5\u05ea B2B \u05de\u05d1\u05d6\u05d1\u05d6\u05d5\u05ea \u05db\u05e1\u05e3 \u05e2\u05dc \u05e1\u05d5\u05e9\u05d9\u05d0\u05dc \u05de\u05d3\u05d9\u05d4' },
+        date: 'Feb 20, 2026',
+        href: '/articles/b2b-social-media-waste',
+        image: 'https://framerusercontent.com/images/EvckL6XIpKQUWNyl7s4MPwnzQQ.jpeg?scale-down-to=1024',
+      },
 
-      { title: { en: 'Article title placeholder', he: '\u05db\u05d5\u05ea\u05e8\u05ea \u05de\u05d0\u05de\u05e8 - \u05de\u05de\u05ea\u05d9\u05e0\u05d4 \u05dc\u05ea\u05d5\u05db\u05df' }, date: '2026-03' },
+      {
+        title: { en: 'How to Turn LinkedIn Into a Real Sales Channel', he: '\u05d0\u05d9\u05da \u05dc\u05d4\u05e4\u05d5\u05da \u05d0\u05ea \u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05de\u05e0\u05d5\u05e2 \u05de\u05db\u05d9\u05e8\u05d5\u05ea \u05d0\u05de\u05d9\u05ea\u05d9' },
+        date: 'Feb 20, 2026',
+        href: '/articles/linkedin-sales-channel',
+        image: 'https://framerusercontent.com/images/qJXyxrZ0IeCMEfcQxk0bRd2RBwA.jpeg?scale-down-to=1024',
+      },
 
     ],
 
@@ -3163,19 +3176,23 @@ function HPBlog() {
 
             <Reveal key={i} delay={i * 120}>
 
-              <a href="#" style={{ display: "flex", flexDirection: "column", borderRadius: 12,
-
+              <a href={(post as any).href || '/blog'}
+                target="_blank" rel="noopener noreferrer"
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 32px rgba(32,30,75,0.12)" }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none" }}
+                style={{ display: "flex", flexDirection: "column", borderRadius: 12,
                 overflow: "hidden", background: "white", border: "1px solid rgba(32,30,75,0.06)",
+                textDecoration: "none", transition: "transform 0.3s, box-shadow 0.3s" }}>
 
-                textDecoration: "none", transition: "all 0.35s" }}>
-
-                <div style={{ aspectRatio: "16/10", overflow: "hidden", display: "flex",
-
-                  alignItems: "center", justifyContent: "center",
-
-                  background: thumbColors[i], fontSize: 11, fontFamily: "monospace",
-
-                  opacity: 0.5, color: C.lime }}>article image</div>
+                <div style={{ aspectRatio: "16/10", overflow: "hidden" }}>
+                  {(post as any).image
+                    ? <img src={(post as any).image} alt={hpT(post.title)}
+                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    : <div style={{ width: "100%", height: "100%", background: thumbColors[i],
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: 11, fontFamily: "monospace", color: C.lime }}>article image</div>
+                  }
+                </div>
 
                 <h3 style={{ fontSize: 16, fontWeight: 700, color: C.deepPurple,
 
