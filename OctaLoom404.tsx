@@ -754,7 +754,7 @@ export default function OctaLoom404NotFound() {
   return (
     <LangCtx.Provider value={{ lang, setLang }}>
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column",
-        fontFamily: lang === "he" ? F.display : F.body, background: C.cream }}>
+        fontFamily: lang === "he" ? F.display : F.body, background: C.cream, width: "100vw" }}>
         <HPNav />
         <main style={{ flex: 1 }}>
           <OctaLoom404Inner />
