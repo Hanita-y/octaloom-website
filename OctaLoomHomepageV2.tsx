@@ -134,7 +134,7 @@ function useLangState(): [string, (l: string) => void] {
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 
-function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+function Reveal({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
 
   const ref = useRef<HTMLDivElement>(null)
 
@@ -142,7 +142,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
   return (
 
-    <motion.div ref={ref} initial={{ opacity: 0, y: 32 }}
+    <motion.div ref={ref} style={style} initial={{ opacity: 0, y: 32 }}
 
       animate={vis ? { opacity: 1, y: 0 } : {}}
 
@@ -3174,13 +3174,13 @@ function HPBlog() {
 
           {HP.blog.posts.map((post: any, i: number) => (
 
-            <Reveal key={i} delay={i * 120}>
+            <Reveal key={i} delay={i * 120} style={{ height: "100%" }}>
 
               <a href={(post as any).href || '/blog'}
                 target="_blank" rel="noopener noreferrer"
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 32px rgba(32,30,75,0.12)" }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none" }}
-                style={{ display: "flex", flexDirection: "column", borderRadius: 12,
+                style={{ display: "flex", flexDirection: "column", height: "100%", borderRadius: 12,
                 overflow: "hidden", background: "white", border: "1px solid rgba(32,30,75,0.06)",
                 textDecoration: "none", transition: "transform 0.3s, box-shadow 0.3s" }}>
 
@@ -3576,7 +3576,7 @@ function HPFooter() {
 
         <div style={{ display: "grid",
 
-          gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr 1.6fr 1fr 1fr",
+          gridTemplateColumns: isMobile ? "1fr" : w < 1024 ? "1fr 1fr" : "2fr 1fr 1.6fr 1fr 1fr",
 
           gap: isMobile ? 36 : 40, paddingBottom: 48 }}>
 
