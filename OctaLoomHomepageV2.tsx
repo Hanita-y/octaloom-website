@@ -1529,7 +1529,7 @@ function HPHero() {
 
           {/* Text column */}
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 20, order: isMobile ? 2 : 0 }}>
 
             <Reveal>
 
@@ -1603,7 +1603,7 @@ function HPHero() {
 
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap",
 
-                flexDirection: isMobile ? "column" : "row" }}>
+                flexDirection: "row", justifyContent: isMobile ? "center" : "flex-start" }}>
 
                 <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
 
@@ -1661,7 +1661,7 @@ function HPHero() {
 
           {/* Video column */}
 
-          <Reveal delay={200} style={{ order: isMobile ? -1 : 0 }}>
+          <Reveal delay={200} style={{ order: isMobile ? 1 : 0 }}>
 
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
 
