@@ -633,8 +633,8 @@ function OctaLoom404Inner() {
 
   return (
     <div style={{ position: "relative", minHeight: "calc(100vh - 80px)", display: "flex",
-      alignItems: "center", justifyContent: "center", overflow: "hidden",
-      background: C.cream, paddingTop: 80 }}>
+      flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden",
+      background: C.cream, paddingTop: 80, paddingBottom: 80 }}>
 
       {/* Canvas */}
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }} />
