@@ -136,17 +136,15 @@ function useLangState(): [string, (l: string) => void] {
 
 function Reveal({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
 
-  const ref = useRef<HTMLDivElement>(null)
-
-  const vis = useInView(ref, { once: true, amount: 0.08 })
-
   return (
 
-    <motion.div ref={ref} style={style} initial={{ opacity: 0, y: 32 }}
+    <motion.div style={style} initial={{ opacity: 0, y: 28 }}
 
-      animate={vis ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
 
-      transition={{ duration: 0.8, delay: delay / 1000, ease: [0.16, 1, 0.3, 1] }}>
+      viewport={{ once: true, amount: 0.05 }}
+
+      transition={{ duration: 0.75, delay: delay / 1000, ease: [0.16, 1, 0.3, 1] }}>
 
       {children}
 
@@ -282,8 +280,6 @@ function AnimatedNum({ value }: { value: string }) {
 
   const ref = useRef<HTMLSpanElement>(null)
 
-  const vis = useInView(ref, { once: true })
-
   const num = parseInt(value.replace(/[^0-9]/g, "")) || 0
 
   const suffix = value.replace(/[0-9,]/g, "")
@@ -292,25 +288,37 @@ function AnimatedNum({ value }: { value: string }) {
 
   useEffect(() => {
 
-    if (!vis) return
+    const el = ref.current
 
-    let start = 0
+    if (!el) return
 
-    const step = num / 40
+    const observer = new IntersectionObserver(([entry]) => {
 
-    const timer = setInterval(() => {
+      if (!entry.isIntersecting) return
 
-      start = Math.min(start + step, num)
+      observer.disconnect()
 
-      setCur(Math.round(start))
+      let start = 0
 
-      if (start >= num) clearInterval(timer)
+      const step = num / 40
 
-    }, 30)
+      const timer = setInterval(() => {
 
-    return () => clearInterval(timer)
+        start = Math.min(start + step, num)
 
-  }, [vis, num])
+        setCur(Math.round(start))
+
+        if (start >= num) clearInterval(timer)
+
+      }, 30)
+
+    }, { threshold: 0.1 })
+
+    observer.observe(el)
+
+    return () => observer.disconnect()
+
+  }, [num])
 
   return <span ref={ref}>{cur.toLocaleString()}{suffix}</span>
 
