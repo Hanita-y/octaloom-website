@@ -1721,7 +1721,7 @@ function HPProblem() {
 
         <Reveal>
 
-          <h2 style={{ fontFamily: ff, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
+          <h2 style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 600, fontSize: "clamp(28px,4vw,48px)",
 
             lineHeight: 1.15, letterSpacing: "-0.015em", color: C.deepPurple, marginBottom: 48 }}>
 
@@ -2097,7 +2097,7 @@ function HPServices() {
 
         <Reveal>
 
-          <h2 style={{ fontFamily: ff, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
+          <h2 style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 600, fontSize: "clamp(28px,4vw,48px)",
 
             lineHeight: 1.15, color: C.deepPurple, marginBottom: 48 }}>
 
@@ -2179,7 +2179,7 @@ function HPServices() {
 
               <div style={{ padding: "52px 32px 0", position: "relative", zIndex: 1 }}>
 
-                <p style={{ fontFamily: ff, fontWeight: 500,
+                <p style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 600,
 
                   fontSize: "clamp(40px,7vw,72px)", lineHeight: 1.05, color: C.deepPurple,
 
@@ -2329,7 +2329,7 @@ function HPProcess() {
 
         <Reveal>
 
-          <h2 style={{ fontFamily: ff, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
+          <h2 style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 600, fontSize: "clamp(28px,4vw,48px)",
 
             lineHeight: 1.15, color: C.cream, textAlign: "center", marginBottom: 48 }}>
 
@@ -2437,7 +2437,7 @@ function HPTestimonials() {
 
         <Reveal>
 
-          <h2 style={{ fontFamily: ff, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
+          <h2 style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 600, fontSize: "clamp(28px,4vw,48px)",
 
             lineHeight: 1.15, color: C.deepPurple, marginBottom: 48 }}>
 
@@ -2819,7 +2819,7 @@ function HPAbout() {
 
             <Reveal delay={100}>
 
-              <h2 style={{ fontFamily: ff, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
+              <h2 style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 600, fontSize: "clamp(28px,4vw,48px)",
 
                 lineHeight: 1.15, color: C.deepPurple, marginBottom: 24 }}>
 
@@ -2895,7 +2895,7 @@ function HPFAQ() {
 
         <Reveal>
 
-          <h2 style={{ fontFamily: ff, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
+          <h2 style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 600, fontSize: "clamp(28px,4vw,48px)",
 
             lineHeight: 1.15, color: C.cream, marginBottom: 48 }}>
 
@@ -3092,7 +3092,7 @@ function HPLinkedInFeed() {
     <Sec bg={C.navy}>
       <Container>
         <Reveal>
-          <h2 style={{ fontFamily: ff, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
+          <h2 style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 600, fontSize: "clamp(28px,4vw,48px)",
             lineHeight: 1.15, color: C.lime, marginBottom: 8, textAlign: "center" }}>
             {hpT(HP.linkedinFeed.title)}
           </h2>
@@ -3156,7 +3156,7 @@ function HPBlog() {
 
         <Reveal>
 
-          <h2 style={{ fontFamily: ff, fontWeight: 500, fontSize: "clamp(28px,4vw,48px)",
+          <h2 style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 600, fontSize: "clamp(28px,4vw,48px)",
 
             lineHeight: 1.15, color: C.deepPurple, marginBottom: 8 }}>
 
@@ -3594,7 +3594,7 @@ function HPFooter() {
 
             <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
 
-              alt="OctaLoom" style={{ height: 93, width: "auto", display: "block" }} />
+              alt="OctaLoom" style={{ height: 107, width: "auto", display: "block" }} />
 
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14,
 
@@ -3693,7 +3693,7 @@ function HPFooter() {
               <img
                 src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/OCTAGOODIES%20GREEN.png"
                 alt="OctaGoodies"
-                style={{ height: 32, width: "auto", display: "block", opacity: 0.9,
+                style={{ height: 37, width: "auto", display: "block", opacity: 0.9,
                   transition: "opacity 0.2s" }}
                 onMouseEnter={(e: any) => e.currentTarget.style.opacity = "1"}
                 onMouseLeave={(e: any) => e.currentTarget.style.opacity = "0.9"}
