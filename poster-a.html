@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option A — Refined Paper</title>
+<style>
+@font-face { font-family: 'DiscoveryFs'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/DiscoveryFs-Medium.ttf') format('truetype'); font-weight: 500; }
+@font-face { font-family: 'Aeonik'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/Aeonik-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Aeonik'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/Aeonik-Regular.ttf') format('truetype'); font-weight: 400; }
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  --cream: #ece9e7;
+  --paper: #f7f4ee;
+  --navy: #201e4b;
+  --purple: #712eac;
+  --lime: #c6e1a5;
+}
+
+body {
+  background: var(--cream);
+  font-family: 'Aeonik', Georgia, sans-serif;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 72px 24px 80px;
+}
+
+/* --- LANG TOGGLE --- */
+.lang-toggle { position: fixed; top: 20px; left: 20px; display: flex; gap: 6px; z-index: 100; }
+.lb {
+  border: 1.5px solid var(--purple); background: transparent; color: var(--purple);
+  padding: 5px 14px; font-family: 'Aeonik', sans-serif; font-weight: 700;
+  font-size: 12px; cursor: pointer; border-radius: 2px; transition: all 0.2s;
+}
+.lb.on { background: var(--purple); color: #fff; }
+
+.badge {
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(32,30,75,0.35); margin-bottom: 48px;
+  font-family: 'Aeonik', sans-serif; font-weight: 700;
+  border: 1px solid rgba(32,30,75,0.15); padding: 6px 16px; border-radius: 20px;
+}
+
+.section-wrap { width: 100%; max-width: 920px; }
+.section-title {
+  font-family: 'DiscoveryFs', serif; font-weight: 500;
+  font-size: clamp(26px, 3.5vw, 44px); color: var(--navy);
+  margin-bottom: 44px; line-height: 1.15;
+}
+
+/* ============================================================
+   ANIMATED NEON BORDER (from Option C)
+   ============================================================ */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes holo-spin {
+  0%   { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+/* pin-host: relative container for pins + holo-wrapper */
+.pin-host {
+  position: relative;
+}
+
+/* Pins — OUTSIDE the poster so overflow:hidden can't clip them */
+.pin {
+  position: absolute;
+  z-index: 30;          /* above holo-wrapper + poster stack */
+  width: 22px; height: 22px;
+  border-radius: 50%;   /* full circle */
+  background: radial-gradient(circle at 38% 32%,
+    #fdf0b0 0%, #d49a0e 35%, #8b6200 70%, #4a3000 100%);
+  box-shadow:
+    0 3px 8px rgba(0,0,0,0.5),
+    0 1px 3px rgba(0,0,0,0.3),
+    inset 0 1px 3px rgba(255,240,160,0.7);
+}
+/* Specular highlight — makes it look like a round sphere */
+.pin::after {
+  content: ''; position: absolute;
+  inset: 22%; border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%,
+    rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.3) 50%, transparent 70%);
+}
+/* Positions relative to pin-host (holo-wrapper edge is at y=3px) */
+.pin-tl { top: -8px; left: 56px; }
+.pin-tc { top: -8px; left: 50%; transform: translateX(-50%); }
+.pin-tr { top: -8px; right: 56px; }
+
+/* The spinning neon frame */
+.holo-wrapper {
+  padding: 3px;
+  border-radius: 4px;
+  background: conic-gradient(
+    from var(--angle),
+    rgba(198,225,165,0.85) 0%,
+    rgba(113,46,172,0.65) 15%,
+    rgba(236,233,231,0.4) 30%,
+    rgba(198,225,165,0.45) 45%,
+    rgba(113,46,172,0.85) 60%,
+    rgba(198,225,165,0.65) 75%,
+    rgba(113,46,172,0.45) 90%,
+    rgba(198,225,165,0.85) 100%
+  );
+  animation: holo-spin 4s linear infinite;
+  box-shadow:
+    0 0 18px rgba(198,225,165,0.2),
+    0 0 36px rgba(113,46,172,0.15),
+    0 12px 48px rgba(32,30,75,0.12);
+}
+
+/* ============================================================
+   STACKED PAPER LAYERS
+   ============================================================ */
+.poster-outer { position: relative; }
+
+.paper-layer {
+  position: absolute; left: 5px; bottom: -5px;
+  right: -5px; top: 5px;
+  background: #e8e0d0; border-radius: 1px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+}
+.paper-layer-2 {
+  position: absolute; left: 10px; bottom: -10px;
+  right: -10px; top: 10px;
+  background: #dfd6c8; border-radius: 1px;
+  box-shadow: 3px 3px 12px rgba(0,0,0,0.10);
+}
+
+/* ============================================================
+   MAIN PAPER — no overflow:hidden (would clip pins)
+   ============================================================ */
+.poster {
+  position: relative;
+  background: var(--paper);
+  border-radius: 1px;
+  transform: rotate(-0.4deg);
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.06),
+    0 6px 20px rgba(32,30,75,0.10);
+  z-index: 2;
+}
+
+/* Paper grain overlay */
+.poster::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  border-radius: 1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.055'/%3E%3C/svg%3E");
+}
+
+/* === POSTER BODY === */
+.poster-body {
+  padding: 52px 48px 0;
+  position: relative; z-index: 1;
+}
+
+/* Faint legal-pad margin line */
+.poster-body::before {
+  content: ''; position: absolute;
+  top: 0; bottom: 0; right: 32px;
+  width: 1px; background: rgba(200,170,255,0.18);
+}
+
+.poster-heading {
+  font-family: 'DiscoveryFs', serif; font-weight: 500;
+  font-size: clamp(44px, 7.5vw, 84px);
+  line-height: 0.96; color: var(--navy);
+  text-align: center; letter-spacing: -0.03em;
+  margin-bottom: 44px;
+  text-shadow: 1px 2px 0 rgba(32,30,75,0.08);
+}
+
+/* === TEAR LINE === */
+.tear-row {
+  display: flex; align-items: center;
+  margin-bottom: 18px;
+}
+.tear-line {
+  flex: 1; height: 0;
+  border-top: 2px dashed var(--purple); opacity: 0.6;
+}
+.tear-label {
+  font-size: 11px; letter-spacing: 0.18em; font-weight: 500;
+  color: var(--purple); font-family: 'DiscoveryFs', serif;
+  padding: 0 12px; white-space: nowrap; opacity: 0.7;
+}
+.scissors {
+  padding: 0 10px; color: var(--purple); font-size: 16px;
+  opacity: 0.5; transform: scaleX(-1);
+}
+
+/* === STRIPS === */
+.strips { display: flex; position: relative; }
+
+.strip {
+  flex: 1; min-height: 188px;
+  display: flex; flex-direction: column;
+  align-items: center; padding: 20px 10px 24px;
+  cursor: pointer; position: relative;
+  border-left: 1.5px dashed rgba(113,46,172,0.22);
+  transition: background 0.2s; user-select: none;
+}
+.strip:last-child { border-left: none; }
+[dir=ltr] .strip { border-left: none; border-right: 1.5px dashed rgba(113,46,172,0.22); }
+[dir=ltr] .strip:last-child { border-right: none; }
+
+/* Punch-hole perforation */
+.strip::before {
+  content: ''; position: absolute; top: -6px; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--cream);
+  box-shadow: inset 0 0 0 1.5px rgba(113,46,172,0.3), 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.strip:hover:not(.torn):not(.tearing) { background: rgba(113,46,172,0.04); }
+
+.strip-label {
+  font-family: 'DiscoveryFs', serif; font-size: 13px; font-weight: 500;
+  color: var(--purple); text-align: center; line-height: 1.45; padding-top: 12px;
+}
+.strip-icon { margin-top: auto; opacity: 0.45; padding-top: 12px; }
+
+.strip.torn { opacity: 0.18; cursor: default; pointer-events: none; }
+.strip.torn .strip-label { text-decoration: line-through; }
+
+@keyframes tear-off {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  15%  { transform: translateY(-3px) rotate(1.5deg) scale(1.01); }
+  100% { transform: translateY(140px) rotate(-14deg) scale(0.9); opacity: 0; }
+}
+.strip.tearing { animation: tear-off 0.7s cubic-bezier(0.4,0,1,1) forwards; pointer-events: none; }
+
+.poster-footer {
+  height: 10px;
+  background: linear-gradient(to bottom, transparent, rgba(32,30,75,0.04));
+}
+</style>
+</head>
+<body>
+<div class="lang-toggle">
+  <button class="lb on" onclick="setLang('he')">עב</button>
+  <button class="lb" onclick="setLang('en')">EN</button>
+</div>
+
+<p class="badge">Option A — Elevated Paper + Neon Frame</p>
+
+<div class="section-wrap">
+  <h2 class="section-title" id="sec-title">שירותי OCTALOOM</h2>
+
+  <!-- pin-host: relative parent for pins (outside overflow context) -->
+  <div class="pin-host">
+    <!-- Pins sit above the neon border, fully visible circles -->
+    <div class="pin pin-tl"></div>
+    <div class="pin pin-tc"></div>
+    <div class="pin pin-tr"></div>
+
+    <!-- Spinning neon border from Option C -->
+    <div class="holo-wrapper">
+      <div class="poster-outer">
+        <div class="paper-layer-2"></div>
+        <div class="paper-layer"></div>
+
+        <div class="poster">
+          <div class="poster-body">
+            <h3 class="poster-heading" id="poster-title">קחו מה<br>שאתם צריכים</h3>
+
+            <div class="tear-row">
+              <span class="scissors">✂</span>
+              <div class="tear-line"></div>
+              <span class="tear-label" id="tear-label">קרעו כאן</span>
+              <div class="tear-line"></div>
+            </div>
+
+            <div class="strips" id="strips"></div>
+          </div>
+          <div class="poster-footer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const D = {
+  he: {
+    sec: 'שירותי OCTALOOM',
+    title: ['קחו מה','שאתם צריכים'],
+    tear: 'קרעו כאן',
+    labels: ['לינקדאין למייסדים','לינקדאין לעצמאים','לינקדאין לארגונים','שיווק במיקור חוץ','סוכני וכלי AI'],
+    slugs: ['/linkedin-for-executives-he','/linkedin-for-solopreneurs-he','/linkedin-for-organizations-he','/fractional-cmo-he','/ai-tools-agents-he']
+  },
+  en: {
+    sec: 'OctaLoom Services',
+    title: ['TAKE WHAT','YOU NEED'],
+    tear: 'TEAR HERE',
+    labels: ['LinkedIn for Executives','LinkedIn for Solopreneurs','LinkedIn for Organizations','Fractional CMO','AI Tools & Agents'],
+    slugs: ['/linkedin-for-executives','/linkedin-for-solopreneurs','/linkedin-for-organizations','/fractional-cmo','/ai-tools-agents']
+  }
+}
+const icons = [
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#712eac" stroke-width="1.5" width="36" height="36"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#712eac" stroke-width="1.5" width="36" height="36"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#712eac" stroke-width="1.5" width="36" height="36"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22V12h6v10M9 6h.01M15 6h.01"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#712eac" stroke-width="1.5" width="36" height="36"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#712eac" stroke-width="1.5" width="36" height="36"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>`
+]
+let lang='he', torn={}, tearing=null
+
+function setLang(l){
+  lang=l
+  document.documentElement.lang=l
+  document.documentElement.dir=l==='he'?'rtl':'ltr'
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on', b.textContent.trim()===(l==='he'?'עב':'EN')))
+  render()
+}
+
+function render(){
+  const d=D[lang]
+  document.getElementById('sec-title').textContent=d.sec
+  document.getElementById('poster-title').innerHTML=d.title.join('<br>')
+  document.getElementById('tear-label').textContent=d.tear
+  const el=document.getElementById('strips')
+  el.innerHTML=''
+  d.labels.forEach((label,i)=>{
+    const div=document.createElement('div')
+    div.className='strip'+(torn[i]?' torn':'')
+    div.innerHTML=`<span class="strip-label">${label}</span><div class="strip-icon">${icons[i]}</div>`
+    if(!torn[i]) div.onclick=()=>handleTear(i,d.slugs[i])
+    el.appendChild(div)
+  })
+}
+
+function handleTear(i,slug){
+  if(torn[i]||tearing!==null) return
+  tearing=i
+  document.querySelectorAll('.strip')[i].classList.add('tearing')
+  setTimeout(()=>{ tearing=null; torn[i]=true; render() }, 700)
+}
+
+render()
+</script>
+</body>
+</html>

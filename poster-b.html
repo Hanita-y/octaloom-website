@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option B — Dark Stage</title>
+<style>
+@font-face { font-family: 'DiscoveryFs'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/DiscoveryFs-Medium.ttf') format('truetype'); font-weight: 500; }
+@font-face { font-family: 'Aeonik'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/Aeonik-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Aeonik'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/Aeonik-Regular.ttf') format('truetype'); font-weight: 400; }
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  --bg: #080614;
+  --surface: #100e26;
+  --border: rgba(198,225,165,0.18);
+  --navy: #201e4b;
+  --purple: #712eac;
+  --lime: #c6e1a5;
+  --cream: #f0e8d0;
+  --dim: rgba(240,232,208,0.45);
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Aeonik', Georgia, sans-serif;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 72px 24px 80px;
+}
+
+/* Radial ambient light */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 30%, rgba(113,46,172,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 70%, rgba(198,225,165,0.06) 0%, transparent 60%);
+}
+
+.lang-toggle {
+  position: fixed; top: 20px; left: 20px;
+  display: flex; gap: 6px; z-index: 100;
+}
+.lb {
+  border: 1.5px solid rgba(198,225,165,0.5); background: transparent; color: var(--lime);
+  padding: 5px 14px; font-family: 'Aeonik', sans-serif; font-weight: 700;
+  font-size: 12px; cursor: pointer; border-radius: 2px; transition: all 0.2s;
+}
+.lb.on { background: rgba(198,225,165,0.15); border-color: var(--lime); }
+
+.badge {
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(198,225,165,0.4); margin-bottom: 48px;
+  font-family: 'Aeonik', sans-serif; font-weight: 700;
+  border: 1px solid rgba(198,225,165,0.15); padding: 6px 16px; border-radius: 20px;
+  position: relative; z-index: 1;
+}
+
+.section-wrap { width: 100%; max-width: 920px; position: relative; z-index: 1; }
+
+.section-title {
+  font-family: 'DiscoveryFs', serif; font-weight: 500;
+  font-size: clamp(26px, 3.5vw, 44px); color: var(--lime);
+  margin-bottom: 44px; line-height: 1.15;
+}
+
+/* === DARK THEATER BOARD === */
+.board {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid rgba(198,225,165,0.12);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 8px 32px rgba(0,0,0,0.6),
+    0 32px 80px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Top gold trim line */
+.board::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(198,225,165,0.6) 20%,
+    rgba(198,225,165,0.9) 50%,
+    rgba(198,225,165,0.6) 80%,
+    transparent 100%);
+}
+
+/* Subtle scanline texture */
+.board::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  opacity: 0.3;
+}
+
+/* Corner ornaments */
+.corner { position: absolute; width: 20px; height: 20px; }
+.corner::before, .corner::after { content: ''; position: absolute; background: rgba(198,225,165,0.4); }
+.corner::before { top: 0; left: 0; width: 100%; height: 1px; }
+.corner::after  { top: 0; left: 0; width: 1px;  height: 100%; }
+.c-tl { top: 12px; left: 12px; }
+.c-tr { top: 12px; right: 12px; transform: scaleX(-1); }
+.c-bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.c-br { bottom: 12px; right: 12px; transform: scale(-1); }
+
+/* === BOARD INTERIOR === */
+.board-inner {
+  padding: 52px 48px 0;
+  position: relative; z-index: 1;
+}
+
+/* Grand title */
+.poster-heading {
+  font-family: 'DiscoveryFs', serif; font-weight: 500;
+  font-size: clamp(44px, 7.5vw, 88px);
+  line-height: 0.96; color: var(--cream);
+  text-align: center; letter-spacing: -0.02em;
+  margin-bottom: 52px;
+  text-shadow:
+    0 0 40px rgba(198,225,165,0.15),
+    0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* === DIVIDER === */
+.divider {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 0;
+}
+.div-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(198,225,165,0.3), transparent);
+}
+.div-diamond {
+  width: 6px; height: 6px; background: var(--lime);
+  transform: rotate(45deg); opacity: 0.6;
+}
+
+/* === SERVICE STRIPS === */
+.strips { position: relative; z-index: 1; }
+
+.strip {
+  display: flex; align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(198,225,165,0.07);
+  cursor: pointer;
+  position: relative;
+  transition: background 0.25s, padding 0.25s;
+  overflow: hidden;
+}
+.strip:last-child { border-bottom: none; }
+
+/* Hover glow sweep */
+.strip::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(90deg, rgba(198,225,165,0.06) 0%, rgba(113,46,172,0.06) 100%);
+  opacity: 0; transition: opacity 0.25s;
+}
+.strip:hover:not(.torn):not(.tearing)::before { opacity: 1; }
+.strip:hover:not(.torn):not(.tearing) { padding-right: 28px; }
+[dir=ltr] .strip:hover:not(.torn):not(.tearing) { padding-left: 28px; padding-right: 24px; }
+
+/* Indicator dot */
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--lime); opacity: 0.5; flex-shrink: 0;
+  margin-left: 16px; /* RTL: after text */
+  transition: opacity 0.25s, box-shadow 0.25s;
+}
+[dir=ltr] .dot { margin-left: 0; margin-right: 16px; }
+.strip:hover:not(.torn) .dot {
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(198,225,165,0.8), 0 0 16px rgba(198,225,165,0.4);
+}
+
+.strip-icon { opacity: 0.35; flex-shrink: 0; margin-left: 20px; z-index: 1; }
+[dir=ltr] .strip-icon { margin-left: 0; margin-right: 20px; }
+
+.strip-label {
+  font-family: 'Aeonik', sans-serif; font-size: 15px; font-weight: 700;
+  color: var(--cream); letter-spacing: 0.01em; flex: 1; z-index: 1;
+}
+
+.strip-arrow {
+  font-size: 18px; color: rgba(198,225,165,0.3);
+  margin-right: 4px; /* RTL: leading */
+  transition: all 0.25s; z-index: 1; flex-shrink: 0;
+}
+[dir=ltr] .strip-arrow { margin-right: 0; margin-left: 4px; }
+.strip:hover:not(.torn) .strip-arrow {
+  color: var(--lime); transform: translateX(-4px);
+}
+[dir=ltr] .strip:hover:not(.torn) .strip-arrow { transform: translateX(4px); }
+
+/* Torn state */
+.strip.torn { opacity: 0.15; cursor: default; pointer-events: none; }
+.strip.torn .strip-label { text-decoration: line-through; color: var(--dim); }
+
+@keyframes light-off {
+  0%  { opacity: 1; }
+  30% { opacity: 0.8; filter: brightness(1.3); }
+  60% { opacity: 0.4; filter: brightness(0.6); }
+  80% { opacity: 0.1; }
+  100%{ opacity: 0; transform: scaleY(0.9); }
+}
+.strip.tearing { animation: light-off 0.65s ease-out forwards; pointer-events: none; }
+
+.board-foot {
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent, rgba(113,46,172,0.4) 40%, rgba(113,46,172,0.4) 60%, transparent);
+}
+</style>
+</head>
+<body>
+<div class="lang-toggle">
+  <button class="lb on" onclick="setLang('he')">עב</button>
+  <button class="lb" onclick="setLang('en')">EN</button>
+</div>
+
+<p class="badge">Option B — Dark Stage</p>
+
+<div class="section-wrap">
+  <h2 class="section-title" id="sec-title">שירותי OCTALOOM</h2>
+
+  <div class="board">
+    <div class="corner c-tl"></div>
+    <div class="corner c-tr"></div>
+    <div class="corner c-bl"></div>
+    <div class="corner c-br"></div>
+
+    <div class="board-inner">
+      <h3 class="poster-heading" id="poster-title">קחו מה<br>שאתם צריכים</h3>
+
+      <div class="divider">
+        <div class="div-line"></div>
+        <div class="div-diamond"></div>
+        <div class="div-line"></div>
+      </div>
+
+      <div class="strips" id="strips"></div>
+    </div>
+    <div class="board-foot"></div>
+  </div>
+</div>
+
+<script>
+const D = {
+  he: {
+    sec: 'שירותי OCTALOOM',
+    title: ['קחו מה','שאתם צריכים'],
+    labels: ['לינקדאין למייסדים','לינקדאין לעצמאים','לינקדאין לארגונים','שיווק במיקור חוץ','סוכני וכלי AI'],
+    slugs: ['/linkedin-for-executives-he','/linkedin-for-solopreneurs-he','/linkedin-for-organizations-he','/fractional-cmo-he','/ai-tools-agents-he'],
+    arrow: '←'
+  },
+  en: {
+    sec: 'OctaLoom Services',
+    title: ['TAKE WHAT','YOU NEED'],
+    labels: ['LinkedIn for Executives','LinkedIn for Solopreneurs','LinkedIn for Organizations','Fractional CMO','AI Tools & Agents'],
+    slugs: ['/linkedin-for-executives','/linkedin-for-solopreneurs','/linkedin-for-organizations','/fractional-cmo','/ai-tools-agents'],
+    arrow: '→'
+  }
+}
+const icons = [
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="28" height="28"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="28" height="28"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="28" height="28"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22V12h6v10M9 6h.01M15 6h.01"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="28" height="28"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="28" height="28"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>`
+]
+let lang='he', torn={}, tearing=null
+
+function setLang(l){
+  lang=l
+  document.documentElement.lang=l
+  document.documentElement.dir=l==='he'?'rtl':'ltr'
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on', b.textContent.trim()===(l==='he'?'עב':'EN')))
+  render()
+}
+
+function render(){
+  const d=D[lang]
+  document.getElementById('sec-title').textContent=d.sec
+  document.getElementById('poster-title').innerHTML=d.title.join('<br>')
+  const el=document.getElementById('strips')
+  el.innerHTML=''
+  d.labels.forEach((label,i)=>{
+    const div=document.createElement('div')
+    div.className='strip'+(torn[i]?' torn':'')
+    div.innerHTML=`
+      <span class="strip-arrow">${d.arrow}</span>
+      <div class="strip-icon">${icons[i]}</div>
+      <span class="strip-label">${label}</span>
+      <span class="dot"></span>`
+    if(!torn[i]) div.onclick=()=>handleTear(i,d.slugs[i])
+    el.appendChild(div)
+  })
+}
+
+function handleTear(i,slug){
+  if(torn[i]||tearing!==null) return
+  tearing=i
+  document.querySelectorAll('.strip')[i].classList.add('tearing')
+  setTimeout(()=>{ tearing=null; torn[i]=true; render() }, 650)
+}
+
+render()
+</script>
+</body>
+</html>

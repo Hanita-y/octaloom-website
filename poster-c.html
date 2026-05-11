@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option C — Neon Holographic</title>
+<style>
+@font-face { font-family: 'DiscoveryFs'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/DiscoveryFs-Medium.ttf') format('truetype'); font-weight: 500; }
+@font-face { font-family: 'Aeonik'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/Aeonik-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Aeonik'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/Aeonik-Regular.ttf') format('truetype'); font-weight: 400; }
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  --bg: #060d3d;
+  --surface: #0a1248;
+  --purple: #712eac;
+  --lime: #c6e1a5;
+  --white: #f0f4ff;
+  --dim: rgba(240,244,255,0.35);
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Aeonik', Georgia, sans-serif;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 72px 24px 80px;
+  overflow-x: hidden;
+}
+
+/* Deep space background stars */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(198,225,165,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 60%, rgba(198,225,165,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 75%, rgba(198,225,165,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 50%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 60% 30%, rgba(198,225,165,0.3) 0%, transparent 100%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(113,46,172,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(198,225,165,0.08) 0%, transparent 60%);
+}
+
+/* Floating orb ambient */
+body::after {
+  content: ''; position: fixed;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(113,46,172,0.15) 0%, transparent 70%);
+  top: -150px; right: -150px; z-index: 0; pointer-events: none;
+  animation: pulse 8s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+
+.lang-toggle {
+  position: fixed; top: 20px; left: 20px;
+  display: flex; gap: 6px; z-index: 100;
+}
+.lb {
+  border: 1.5px solid rgba(198,225,165,0.4); background: rgba(198,225,165,0.06); color: var(--lime);
+  padding: 5px 14px; font-family: 'Aeonik', sans-serif; font-weight: 700;
+  font-size: 12px; cursor: pointer; border-radius: 2px; transition: all 0.2s;
+  backdrop-filter: blur(8px);
+}
+.lb.on { background: rgba(198,225,165,0.15); border-color: var(--lime); box-shadow: 0 0 12px rgba(198,225,165,0.3); }
+
+.badge {
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(198,225,165,0.5); margin-bottom: 48px;
+  font-family: 'Aeonik', sans-serif; font-weight: 700;
+  border: 1px solid rgba(198,225,165,0.2); padding: 6px 16px; border-radius: 20px;
+  position: relative; z-index: 1;
+  background: rgba(198,225,165,0.05); backdrop-filter: blur(8px);
+}
+
+.section-wrap { width: 100%; max-width: 920px; position: relative; z-index: 1; }
+
+.section-title {
+  font-family: 'DiscoveryFs', serif; font-weight: 500;
+  font-size: clamp(26px, 3.5vw, 44px);
+  color: var(--lime);
+  text-shadow: 0 0 24px rgba(198,225,165,0.5), 0 0 48px rgba(198,225,165,0.2);
+  margin-bottom: 44px; line-height: 1.15;
+}
+
+/* === HOLOGRAPHIC BORDER (animated conic gradient) === */
+@keyframes holo-spin {
+  0%   { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+@property --angle {
+  syntax: '<angle>'; initial-value: 0deg; inherits: false;
+}
+
+.holo-wrapper {
+  position: relative;
+  padding: 2px;
+  border-radius: 4px;
+  background: conic-gradient(
+    from var(--angle),
+    rgba(198,225,165,0.8) 0%,
+    rgba(113,46,172,0.6) 15%,
+    rgba(6,13,61,0.3) 30%,
+    rgba(198,225,165,0.4) 45%,
+    rgba(113,46,172,0.8) 60%,
+    rgba(198,225,165,0.6) 75%,
+    rgba(113,46,172,0.4) 90%,
+    rgba(198,225,165,0.8) 100%
+  );
+  animation: holo-spin 4s linear infinite;
+  box-shadow:
+    0 0 30px rgba(198,225,165,0.15),
+    0 0 60px rgba(113,46,172,0.2),
+    0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* === POSTER === */
+.poster {
+  background: linear-gradient(145deg, #0d1654 0%, #09104a 50%, #060d3d 100%);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Inner glow edge */
+.poster::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(198,225,165,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 0% 50%, rgba(113,46,172,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 100% 50%, rgba(198,225,165,0.05) 0%, transparent 60%);
+}
+
+.poster-inner { padding: 52px 48px 0; position: relative; z-index: 1; }
+
+/* === HEADING === */
+.poster-heading {
+  font-family: 'DiscoveryFs', serif; font-weight: 500;
+  font-size: clamp(40px, 7vw, 80px);
+  line-height: 0.96; color: var(--white);
+  text-align: center; letter-spacing: -0.02em;
+  margin-bottom: 48px;
+  text-shadow:
+    0 0 30px rgba(198,225,165,0.2),
+    0 0 60px rgba(198,225,165,0.1),
+    0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* === DIVIDER === */
+.divider {
+  position: relative; display: flex; align-items: center; gap: 0;
+  margin-bottom: 0;
+}
+.divider::before {
+  content: '';
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(198,225,165,0.5) 40%,
+    rgba(198,225,165,0.8) 50%,
+    rgba(198,225,165,0.5) 60%,
+    transparent 100%);
+  box-shadow: 0 0 8px rgba(198,225,165,0.3);
+}
+
+/* === STRIPS === */
+.strips {
+  display: flex;
+  border-top: 1px solid rgba(198,225,165,0.12);
+  position: relative; z-index: 1;
+}
+
+.strip {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 10px 26px;
+  cursor: pointer; position: relative;
+  border-left: 1px solid rgba(198,225,165,0.1);
+  transition: background 0.3s;
+  overflow: hidden;
+}
+.strip:last-child { border-left: none; }
+[dir=ltr] .strip { border-left: none; border-right: 1px solid rgba(198,225,165,0.1); }
+[dir=ltr] .strip:last-child { border-right: none; }
+
+/* Neon glow on hover */
+.strip::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(180deg, rgba(198,225,165,0.06) 0%, transparent 100%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.strip:hover:not(.torn)::before { opacity: 1; }
+
+/* Top glow line on hover */
+.strip::after {
+  content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(198,225,165,0.8), transparent);
+  box-shadow: 0 0 8px rgba(198,225,165,0.6);
+  transform: scaleX(0); transition: transform 0.3s; z-index: 2;
+}
+.strip:hover:not(.torn)::after { transform: scaleX(1); }
+
+.strip-label {
+  font-family: 'Aeonik', sans-serif; font-size: 11px; font-weight: 700;
+  color: var(--lime); text-align: center; line-height: 1.4;
+  padding-top: 12px; letter-spacing: 0.02em; z-index: 1;
+  text-shadow: 0 0 12px rgba(198,225,165,0.4);
+  transition: text-shadow 0.3s;
+}
+.strip:hover:not(.torn) .strip-label {
+  text-shadow: 0 0 20px rgba(198,225,165,0.8), 0 0 40px rgba(198,225,165,0.4);
+}
+
+.strip-icon { margin-top: auto; opacity: 0.4; z-index: 1; transition: opacity 0.3s; padding-top: 12px; }
+.strip:hover:not(.torn) .strip-icon { opacity: 0.7; }
+
+/* Torn state */
+.strip.torn { opacity: 0.1; cursor: default; pointer-events: none; }
+.strip.torn .strip-label { text-decoration: line-through; }
+
+/* Glitch tear animation */
+@keyframes glitch-out {
+  0%  { opacity: 1; transform: translateY(0) scaleY(1); filter: none; }
+  15% { filter: hue-rotate(90deg) saturate(3) brightness(2); clip-path: inset(20% 0 30% 0); transform: translateX(4px); }
+  30% { filter: hue-rotate(180deg) saturate(3); clip-path: inset(50% 0 10% 0); transform: translateX(-4px); }
+  45% { filter: hue-rotate(270deg) saturate(3) brightness(0.5); clip-path: inset(10% 0 60% 0); transform: translateX(2px); }
+  60% { opacity: 0.3; transform: translateY(0) scaleY(0.5); filter: brightness(2); clip-path: inset(0 0 80% 0); }
+  100%{ opacity: 0; transform: translateY(20px) scaleY(0); filter: none; }
+}
+.strip.tearing { animation: glitch-out 0.7s ease-in forwards; pointer-events: none; }
+
+/* Bottom accent line */
+.poster-foot {
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(113,46,172,0.6) 20%,
+    rgba(198,225,165,0.4) 50%,
+    rgba(113,46,172,0.6) 80%,
+    transparent 100%);
+  box-shadow: 0 -2px 12px rgba(113,46,172,0.3);
+}
+</style>
+</head>
+<body>
+<div class="lang-toggle">
+  <button class="lb on" onclick="setLang('he')">עב</button>
+  <button class="lb" onclick="setLang('en')">EN</button>
+</div>
+
+<p class="badge">Option C — Neon Holographic</p>
+
+<div class="section-wrap">
+  <h2 class="section-title" id="sec-title">שירותי OCTALOOM</h2>
+
+  <div class="holo-wrapper">
+    <div class="poster">
+      <div class="poster-inner">
+        <h3 class="poster-heading" id="poster-title">קחו מה<br>שאתם צריכים</h3>
+        <div class="divider"></div>
+        <div class="strips" id="strips"></div>
+      </div>
+      <div class="poster-foot"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const D = {
+  he: {
+    sec: 'שירותי OCTALOOM',
+    title: ['קחו מה','שאתם צריכים'],
+    labels: ['לינקדאין למייסדים','לינקדאין לעצמאים','לינקדאין לארגונים','שיווק במיקור חוץ','סוכני וכלי AI'],
+    slugs: ['/linkedin-for-executives-he','/linkedin-for-solopreneurs-he','/linkedin-for-organizations-he','/fractional-cmo-he','/ai-tools-agents-he']
+  },
+  en: {
+    sec: 'OctaLoom Services',
+    title: ['TAKE WHAT','YOU NEED'],
+    labels: ['LinkedIn for Executives','LinkedIn for Solopreneurs','LinkedIn for Organizations','Fractional CMO','AI Tools & Agents'],
+    slugs: ['/linkedin-for-executives','/linkedin-for-solopreneurs','/linkedin-for-organizations','/fractional-cmo','/ai-tools-agents']
+  }
+}
+const icons = [
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="36" height="36"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="36" height="36"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="36" height="36"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22V12h6v10M9 6h.01M15 6h.01"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="36" height="36"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="#c6e1a5" stroke-width="1.5" width="36" height="36"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>`
+]
+let lang='he', torn={}, tearing=null
+
+function setLang(l){
+  lang=l
+  document.documentElement.lang=l
+  document.documentElement.dir=l==='he'?'rtl':'ltr'
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on', b.textContent.trim()===(l==='he'?'עב':'EN')))
+  render()
+}
+
+function render(){
+  const d=D[lang]
+  document.getElementById('sec-title').textContent=d.sec
+  document.getElementById('poster-title').innerHTML=d.title.join('<br>')
+  const el=document.getElementById('strips')
+  el.innerHTML=''
+  d.labels.forEach((label,i)=>{
+    const div=document.createElement('div')
+    div.className='strip'+(torn[i]?' torn':'')
+    div.innerHTML=`<span class="strip-label">${label}</span><div class="strip-icon">${icons[i]}</div>`
+    if(!torn[i]) div.onclick=()=>handleTear(i,d.slugs[i])
+    el.appendChild(div)
+  })
+}
+
+function handleTear(i,slug){
+  if(torn[i]||tearing!==null) return
+  tearing=i
+  document.querySelectorAll('.strip')[i].classList.add('tearing')
+  setTimeout(()=>{ tearing=null; torn[i]=true; render() }, 700)
+}
+
+render()
+</script>
+</body>
+</html>
