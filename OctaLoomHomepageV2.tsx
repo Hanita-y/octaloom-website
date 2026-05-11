@@ -4026,7 +4026,7 @@ export default function OctaLoomHomepageV2() {
 
       <div style={{ fontFamily: ff, background: C.cream,
 
-        direction: lang === "he" ? "rtl" : "ltr" }}>
+        direction: lang === "he" ? "rtl" : "ltr", width: "100vw", overflowX: "hidden" }}>
 
         <CustomCursor />
 
