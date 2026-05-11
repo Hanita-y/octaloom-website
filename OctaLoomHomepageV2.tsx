@@ -1805,7 +1805,7 @@ function HPFourthOption() {
 
           <Reveal>
 
-            <p style={{ fontFamily: ff, fontWeight: 500,
+            <p style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 700,
 
               fontSize: "clamp(28px,4vw,44px)", color: C.lime, marginBottom: 8,
 
@@ -2613,7 +2613,7 @@ function HPCaseStudy() {
 
 
 
-            <h2 style={{ fontFamily: ff, fontWeight: 500,
+            <h2 style={{ fontFamily: ff, fontWeight: lang === "he" ? 500 : 700,
 
               fontSize: "clamp(22px,3vw,32px)", lineHeight: 1.2,
 
@@ -3592,7 +3592,7 @@ function HPFooter() {
 
             <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
 
-              alt="OctaLoom" style={{ height: 107, width: "auto", display: "block" }} />
+              alt="OctaLoom" style={{ height: 128, width: "auto", display: "block" }} />
 
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14,
 
