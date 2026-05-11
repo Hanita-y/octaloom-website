@@ -114,19 +114,24 @@ export default function DiscoveryForm() {
   const [status, setStatus]   = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errMsg, setErrMsg]   = useState("")
 
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      setLang(document.documentElement.lang?.startsWith("en") ? "en" : "he")
-    }
+  const detectLang = useCallback((): "he" | "en" => {
+    if (typeof window === "undefined") return "he"
+    const path = window.location.pathname
+    if (path.startsWith("/en") || path.startsWith("/en/")) return "en"
+    const domLang = document.documentElement.lang ?? ""
+    if (domLang.startsWith("en") && !domLang.startsWith("he")) return "en"
+    return "he"
   }, [])
 
   useEffect(() => {
-    const obs = new MutationObserver(() => {
-      setLang(document.documentElement.lang?.startsWith("en") ? "en" : "he")
-    })
+    setLang(detectLang())
+  }, [detectLang])
+
+  useEffect(() => {
+    const obs = new MutationObserver(() => setLang(detectLang()))
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] })
     return () => obs.disconnect()
-  }, [])
+  }, [detectLang])
 
   useEffect(() => {
     const handler = () => setOpen(true)
