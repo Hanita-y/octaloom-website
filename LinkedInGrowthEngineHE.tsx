@@ -946,7 +946,7 @@ export default function LinkedInGrowthEngineHE() {
   const [quizOpen, setQuizOpen] = useState(false)
 
   return (
-    <div style={{ fontFamily: FONT, background: CREAM, color: DEEP_PURPLE, direction: "rtl", WebkitFontSmoothing: "antialiased", overflowX: "hidden", lineHeight: 1.6 }}>
+    <div style={{ fontFamily: FONT, background: CREAM, color: DEEP_PURPLE, direction: "rtl", WebkitFontSmoothing: "antialiased", overflowX: "hidden", lineHeight: 1.6, width: "100vw", position: "relative", left: "50%", transform: "translateX(-50%)" }}>
       <Navbar onQuiz={() => setQuizOpen(true)}/>
       <HeroSection onQuiz={() => setQuizOpen(true)}/>
       <EntitySection/>
