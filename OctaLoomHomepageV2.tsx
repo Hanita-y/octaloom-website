@@ -2217,9 +2217,7 @@ function HPServices() {
 
                 {/* Strips */}
 
-                <div style={isMobile ? { overflowX: "auto", WebkitOverflowScrolling: "touch" as any,
-                  marginLeft: -20, marginRight: -20, paddingLeft: 20, paddingRight: 20 } : {}}>
-                  <div style={{ display: "flex", minWidth: isMobile ? "max-content" : undefined }}>
+                <div style={{ display: "flex" }}>
                     {HP.services.strips.map((strip: any, i: number) => (
                       <motion.div key={i}
                         animate={tearing === i ? { y: 60, rotate: -8, opacity: 0 }
@@ -2227,24 +2225,24 @@ function HPServices() {
                           : { y: 0, rotate: 0, opacity: 1 }}
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                         onClick={() => handleTear(i)}
-                        style={{ flex: isMobile ? "0 0 100px" : 1, display: "flex", flexDirection: "column",
+                        style={{ flex: 1, display: "flex", flexDirection: "column",
                           alignItems: "center", justifyContent: "flex-start",
-                          padding: isMobile ? "16px 6px 20px" : "24px 8px 28px",
+                          padding: isMobile ? "14px 4px 18px" : "24px 8px 28px",
                           cursor: torn[i] ? "default" : "pointer",
-                          textAlign: "center", minHeight: isMobile ? 140 : 188, position: "relative",
+                          textAlign: "center", minHeight: isMobile ? 100 : 188, position: "relative",
                           borderLeft: i < HP.services.strips.length - 1 ? `1.5px dashed rgba(113,46,172,.22)` : "none" }}>
                         <div style={{ position: "absolute", top: -6, left: "50%",
-                          transform: "translateX(-50%)", width: isMobile ? 10 : 12, height: isMobile ? 10 : 12,
+                          transform: "translateX(-50%)", width: isMobile ? 9 : 12, height: isMobile ? 9 : 12,
                           borderRadius: "50%", background: "#ece9e7",
                           boxShadow: "inset 0 0 0 1.5px rgba(113,46,172,.3), 0 1px 3px rgba(0,0,0,.1)" }} />
-                        <span style={{ fontSize: isMobile ? 11 : 13, fontWeight: 700, color: C.purple, lineHeight: 1.3,
-                          marginBottom: i < 3 ? 6 : 10, fontFamily: ff,
+                        <span style={{ fontSize: isMobile ? 9.5 : 13, fontWeight: isMobile ? 500 : 700,
+                          color: C.purple, lineHeight: 1.3, fontFamily: ff,
                           textDecoration: torn[i] ? "line-through" : "none" }}>
                           {hpT(strip.label)}
                         </span>
-                        {i < 3 && (
-                          <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
-                            <svg viewBox="0 0 20 20" fill="none" style={{ width: isMobile ? 16 : 20, height: isMobile ? 16 : 20 }}>
+                        {!isMobile && i < 3 && (
+                          <div style={{ display: "flex", justifyContent: "center", marginBottom: 6, marginTop: 6 }}>
+                            <svg viewBox="0 0 20 20" fill="none" style={{ width: 20, height: 20 }}>
                               <rect width="20" height="20" rx="3.5" fill={C.purple} fillOpacity=".1" stroke={C.purple} strokeWidth=".9"/>
                               <path d="M7 9.5v5.5" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round"/>
                               <circle cx="7" cy="7.2" r="1" fill={C.purple}/>
@@ -2252,13 +2250,12 @@ function HPServices() {
                             </svg>
                           </div>
                         )}
-                        <div style={{ marginTop: "auto", opacity: 0.6, transform: isMobile ? "scale(0.75)" : "none", transformOrigin: "center bottom" }}>
-                          {stripIcons[i]}
-                        </div>
+                        {!isMobile && (
+                          <div style={{ marginTop: "auto", opacity: 0.6 }}>{stripIcons[i]}</div>
+                        )}
                       </motion.div>
                     ))}
                   </div>
-                </div>
 
               </div>
 
