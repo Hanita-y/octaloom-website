@@ -639,15 +639,15 @@ function OctaLoom404Inner() {
 
   return (
     <div style={{ position: "relative", minHeight: "calc(100vh - 80px)", display: "flex",
-      flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden",
+      flexDirection: "column", alignItems: "center", justifyContent: "center", overflowX: "hidden",
       background: C.cream, paddingTop: 80, paddingBottom: isMobile ? 48 : 80 }}>
 
       {/* Canvas */}
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }} />
 
       {/* Glows */}
-      <div style={{ position: "absolute", width: 500, height: 500, borderRadius: "50%", background: C.purple,
-        filter: "blur(120px)", top: "-15%", right: "5%", opacity: 0.09, pointerEvents: "none", zIndex: 0 }} />
+      <div style={{ position: "absolute", width: 600, height: 600, borderRadius: "50%", background: C.purple,
+        filter: "blur(140px)", top: "-25%", right: "0%", opacity: 0.11, pointerEvents: "none", zIndex: 0 }} />
       <div style={{ position: "absolute", width: 400, height: 400, borderRadius: "50%", background: C.lime,
         filter: "blur(120px)", bottom: "-10%", left: "-5%", opacity: 0.12, pointerEvents: "none", zIndex: 0 }} />
 
