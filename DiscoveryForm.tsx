@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
-const WEB3FORMS_KEY = "PASTE_YOUR_WEB3FORMS_KEY_HERE"
+const WEB3FORMS_KEY = "abe931a2-a849-4da6-b9d6-ce7dfddc09d9"
 const NOTION_CALENDAR = "https://calendar.notion.so/meet/octaloom/discovery"
 
 const C = {
