@@ -645,12 +645,6 @@ function OctaLoom404Inner() {
       {/* Canvas */}
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }} />
 
-      {/* Glows */}
-      <div style={{ position: "absolute", width: 600, height: 600, borderRadius: "50%", background: C.purple,
-        filter: "blur(140px)", top: "-25%", right: "0%", opacity: 0.11, pointerEvents: "none", zIndex: 0 }} />
-      <div style={{ position: "absolute", width: 400, height: 400, borderRadius: "50%", background: C.lime,
-        filter: "blur(120px)", bottom: "-10%", left: "-5%", opacity: 0.12, pointerEvents: "none", zIndex: 0 }} />
-
       {/* Content */}
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -754,9 +748,15 @@ export default function OctaLoom404NotFound() {
   return (
     <LangCtx.Provider value={{ lang, setLang }}>
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column",
-        fontFamily: lang === "he" ? F.display : F.body, background: C.cream, width: "100vw" }}>
+        fontFamily: lang === "he" ? F.display : F.body, background: C.cream, width: "100vw",
+        position: "relative", overflow: "hidden" }}>
+        {/* Glows — full-page level so they bleed behind the nav */}
+        <div style={{ position: "absolute", width: 700, height: 700, borderRadius: "50%", background: C.purple,
+          filter: "blur(160px)", top: "-10%", right: "-5%", opacity: 0.1, pointerEvents: "none", zIndex: 0 }} />
+        <div style={{ position: "absolute", width: 400, height: 400, borderRadius: "50%", background: C.lime,
+          filter: "blur(120px)", bottom: "5%", left: "-5%", opacity: 0.12, pointerEvents: "none", zIndex: 0 }} />
         <HPNav />
-        <main style={{ flex: 1 }}>
+        <main style={{ flex: 1, position: "relative", zIndex: 1 }}>
           <OctaLoom404Inner />
         </main>
         <HPFooter />
