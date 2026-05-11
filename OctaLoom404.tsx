@@ -193,7 +193,8 @@ function HPNav() {
     <nav dir={dir} style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
       padding: scrolled ? "10px 0" : "16px 0", transition: "all 0.4s", ...navBg }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)",
-        display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 16 }}>
+        display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 16,
+        position: "relative", zIndex: 101 }}>
 
         <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
           <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
@@ -299,13 +300,16 @@ function HPNav() {
 
         {isMobile && (
           <button onClick={() => setMobileOpen(!mobileOpen)} style={{ background: "none", border: "none",
-            cursor: "pointer", width: 28, height: 20, position: "relative", gridColumn: "3" }}>
-            {[0,9,18].map((top,i) => (
-              <span key={i} style={{ position: "absolute", left: 0, width: "100%", height: 2,
-                background: C.deepPurple, borderRadius: 2, top,
-                transform: mobileOpen && i===0 ? "rotate(45deg) translateY(9px)" : mobileOpen && i===1 ? "scaleX(0)" : mobileOpen && i===2 ? "rotate(-45deg) translateY(-9px)" : "none",
-                opacity: mobileOpen && i===1 ? 0 : 1, transition: "all 0.3s" }} />
-            ))}
+            cursor: "pointer", width: 44, height: 44, position: "relative", gridColumn: "3",
+            display: "flex", alignItems: "center", justifyContent: "center", padding: 0 }}>
+            <span style={{ position: "relative", display: "block", width: 28, height: 20 }}>
+              {[0,9,18].map((top,i) => (
+                <span key={i} style={{ position: "absolute", left: 0, width: "100%", height: 2,
+                  background: C.deepPurple, borderRadius: 2, top,
+                  transform: mobileOpen && i===0 ? "rotate(45deg) translateY(9px)" : mobileOpen && i===1 ? "scaleX(0)" : mobileOpen && i===2 ? "rotate(-45deg) translateY(-9px)" : "none",
+                  opacity: mobileOpen && i===1 ? 0 : 1, transition: "all 0.3s" }} />
+              ))}
+            </span>
           </button>
         )}
       </div>
