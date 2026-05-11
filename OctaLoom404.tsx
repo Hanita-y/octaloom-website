@@ -525,6 +525,8 @@ type Spark = { id: number; x: number; y: number; color: string; dx: number; dy: 
 function OctaLoom404Inner() {
   const { lang } = useLang()
   const isRTL = lang === "he"
+  const w = useWindowSize()
+  const isMobile = w < 768
   const [copyIndex] = useState(() => Math.floor(Math.random() * 5))
   const [isFalling, setIsFalling] = useState(false)
   const [clickCount, setClickCount] = useState(0)
@@ -634,7 +636,7 @@ function OctaLoom404Inner() {
   return (
     <div style={{ position: "relative", minHeight: "calc(100vh - 80px)", display: "flex",
       flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden",
-      background: C.cream, paddingTop: 80, paddingBottom: 80 }}>
+      background: C.cream, paddingTop: 80, paddingBottom: isMobile ? 48 : 80 }}>
 
       {/* Canvas */}
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }} />
@@ -653,14 +655,14 @@ function OctaLoom404Inner() {
           direction: isRTL ? "rtl" : "ltr" }}>
 
         {/* 404 */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 32, userSelect: "none" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: isMobile ? 4 : 8, marginBottom: 32, userSelect: "none" }}>
           <motion.span animate={d1Controls} onClick={() => handleDigitClick(d1Controls)}
             whileHover={{ color: C.purple }}
-            style={{ fontFamily: F.display, fontWeight: 500, fontSize: "clamp(100px,18vw,180px)",
+            style={{ fontFamily: F.display, fontWeight: 500, fontSize: "clamp(72px,18vw,180px)",
               lineHeight: 1, color: C.deepPurple, cursor: "grab" }}>4</motion.span>
 
           <motion.div animate={logoControls} onClick={handleLogoClick}
-            style={{ width: "clamp(90px,16vw,160px)", height: "clamp(90px,16vw,160px)",
+            style={{ width: "clamp(64px,16vw,160px)", height: "clamp(64px,16vw,160px)",
               cursor: isFalling ? "default" : "pointer", color: C.purple,
               filter: "drop-shadow(0 4px 20px rgba(113,46,172,0.2))", pointerEvents: isFalling ? "none" : "auto" }}>
             <svg viewBox="0 0 301.75 301.13" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }}>
@@ -675,7 +677,7 @@ function OctaLoom404Inner() {
 
           <motion.span animate={d2Controls} onClick={() => handleDigitClick(d2Controls)}
             whileHover={{ color: C.purple }}
-            style={{ fontFamily: F.display, fontWeight: 500, fontSize: "clamp(100px,18vw,180px)",
+            style={{ fontFamily: F.display, fontWeight: 500, fontSize: "clamp(72px,18vw,180px)",
               lineHeight: 1, color: C.deepPurple, cursor: "grab" }}>4</motion.span>
         </div>
 
@@ -721,7 +723,7 @@ function OctaLoom404Inner() {
           <motion.div key="easter" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             style={{ position: "absolute", bottom: 24, left: "50%", transform: "translateX(-50%)",
               fontSize: 13, color: C.muted, fontFamily: F.body, textAlign: "center",
-              zIndex: 20, whiteSpace: "nowrap" }}>
+              zIndex: 20, whiteSpace: isMobile ? "normal" : "nowrap", width: isMobile ? "85%" : "auto" }}>
             {easterMsg}
           </motion.div>
         ) : null}
