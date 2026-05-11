@@ -533,7 +533,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
   const w = useWindowWidth()
   const isMobile = w < 768
 
-  const trustFiles = ["avatar1..jpeg","avatar2.jpeg","avatar3.jpeg","avatar4.jpeg","avatar5.jpeg"]
+  const trustFiles = ["avatar1.jpeg","avatar2.jpeg","avatar3.jpeg","avatar4.jpeg","avatar5.jpeg"]
 
   return (
     <ColorSection bg={CREAM} id="hero" innerStyle={{ paddingTop: isMobile ? 84 : 136, paddingBottom: isMobile ? 56 : 80 }}>
