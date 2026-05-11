@@ -138,13 +138,11 @@ function Reveal({ children, delay = 0, style = {} }: { children: React.ReactNode
 
   return (
 
-    <motion.div style={style} initial={{ opacity: 0, y: 28 }}
+    <motion.div style={style} initial={{ opacity: 0, y: 22 }}
 
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
 
-      viewport={{ once: true, amount: 0.05 }}
-
-      transition={{ duration: 0.75, delay: delay / 1000, ease: [0.16, 1, 0.3, 1] }}>
+      transition={{ duration: 0.7, delay: delay / 1000, ease: [0.16, 1, 0.3, 1] }}>
 
       {children}
 
@@ -1151,7 +1149,7 @@ function HPNav() {
 
             {([
 
-              { en: "About",   he: "עליי",      href: "#about" },
+              { en: "About",   he: "עליי",      href: "/about-he" },
 
               { en: "Blog",    he: "בלוג",      href: "/blog" },
 
@@ -1329,7 +1327,7 @@ function HPNav() {
 
           {([
 
-            { en: "About",   he: "עליי",     href: "#about" },
+            { en: "About",   he: "עליי",     href: "/about-he" },
 
             { en: "Blog",    he: "בלוג",     href: "/blog" },
 
@@ -3486,7 +3484,7 @@ function HPFooter() {
 
     { en: "Home",    he: "דף הבית",  href: "/" },
 
-    { en: "About",   he: "עליי",      href: "#about" },
+    { en: "About",   he: "עליי",      href: "/about-he" },
 
     { en: "Blog",    he: "בלוג",     href: "/blog" },
 
