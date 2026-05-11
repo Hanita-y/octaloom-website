@@ -1229,7 +1229,7 @@ function HPNav() {
 
         {!isMobile && (
 
-          <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple"
+          <Btn onClick={() => window.dispatchEvent(new Event("open-discovery"))} variant="purple"
 
             style={{ padding: "8px 20px", fontSize: 13 }}>
 
@@ -1391,7 +1391,7 @@ function HPNav() {
 
           <div style={{ marginTop: 14 }}>
 
-            <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple"
+            <Btn onClick={() => window.dispatchEvent(new Event("open-discovery"))} variant="purple"
 
               style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15 }}>
 
@@ -1615,7 +1615,7 @@ function HPHero() {
 
                 flexDirection: "row", justifyContent: isMobile ? "center" : "flex-start" }}>
 
-                <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
+                <Btn onClick={() => window.dispatchEvent(new Event("open-discovery"))} variant="purple">
 
                   {hpT(HP.hero.cta1)}
 
@@ -1851,7 +1851,7 @@ function HPFourthOption() {
 
             <div style={{ textAlign: "center" }}>
 
-              <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="cream">
+              <Btn onClick={() => window.dispatchEvent(new Event("open-discovery"))} variant="cream">
 
                 {hpT(HP.fourthOption.cta)}
 
@@ -2725,7 +2725,7 @@ function HPCaseStudy() {
 
                 marginBottom: 16, fontFamily: ff }}>{hpT(HP.caseStudy.bottomCta)}</p>
 
-              <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
+              <Btn onClick={() => window.dispatchEvent(new Event("open-discovery"))} variant="purple">
 
                 {hpT(HP.caseStudy.cta)}
 
@@ -3027,7 +3027,7 @@ function HPBookCall() {
 
               </span>
 
-              <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
+              <Btn onClick={() => window.dispatchEvent(new Event("open-discovery"))} variant="purple">
 
                 {hpT({ en: "Let's Talk ✨", he: "\u05d3\u05d1\u05e8\u05d9 \u05d0\u05dc\u05d9\u05d9, \u05d0\u05e0\u05d9 \u05de\u05d5\u05dc \u05d4\u05d9\u05d5\u05de\u05df ✨" })}
 
