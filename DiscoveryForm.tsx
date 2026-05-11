@@ -48,8 +48,8 @@ const T = {
     back:            "חזרה",
     send:            "שלחו",
     sending:         "שולח...",
-    successTitle:    "תודה! 🎉",
-    successSub:      "נחזור אליכם תוך 24 שעות.",
+    successTitle:    "מעולה! עכשיו שאנחנו יודעים מה אתם צריכים,",
+    successSub:      "",
     bookBtn:         "קבעו שיחה עכשיו",
     errorRequired:   "נא למלא את כל השדות",
     errorEmail:      "כתובת אימייל לא תקינה",
@@ -81,9 +81,9 @@ const T = {
     back:            "Back",
     send:            "Send",
     sending:         "Sending…",
-    successTitle:    "Thank you! 🎉",
-    successSub:      "We’ll be in touch within 24 hours.",
-    bookBtn:         "Book a call now",
+    successTitle:    "Great! Now that we know what you need,",
+    successSub:      "",
+    bookBtn:         "Book the call now",
     errorRequired:   "Please fill in all fields",
     errorEmail:      "Invalid email address",
     errorSend:       "Send failed, please try again",
@@ -269,9 +269,8 @@ export default function DiscoveryForm() {
               {status === "success" && (
                 <div style={{ textAlign: "center", padding: "24px 0" }}>
                   <div style={{ fontSize: 52, marginBottom: 16 }}>🎉</div>
-                  <h2 style={{ fontSize: 24, fontWeight: 700, color: C.deepPurple, margin: "0 0 10px", fontFamily: ff }}>{t.successTitle}</h2>
-                  <p style={{ color: C.muted, marginBottom: 32, fontSize: 16, fontFamily: ff }}>{t.successSub}</p>
-                  <a
+                  <h2 style={{ fontSize: 22, fontWeight: 700, color: C.deepPurple, margin: "0 0 28px", fontFamily: ff }}>{t.successTitle}</h2>
+                  <
                     href={NOTION_CALENDAR}
                     target="_blank"
                     rel="noopener noreferrer"
