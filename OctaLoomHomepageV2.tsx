@@ -2217,79 +2217,67 @@ function HPServices() {
 
                 {/* Strips */}
 
-                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2,1fr)" : "repeat(5,1fr)" }}>
-
-                  {HP.services.strips.map((strip: any, i: number) => (
-
-                    <motion.div key={i}
-
-                      animate={tearing === i ? { y: 60, rotate: -8, opacity: 0 }
-
-                        : torn[i] ? { opacity: 0.25 }
-
-                        : { y: 0, rotate: 0, opacity: 1 }}
-
-                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-
-                      onClick={() => handleTear(i)}
-
-                      style={{ flex: 1, display: "flex", flexDirection: "column",
-
-                        alignItems: "center", justifyContent: "flex-start",
-
-                        padding: "24px 8px 28px", cursor: torn[i] ? "default" : "pointer",
-
-                        textAlign: "center", minHeight: 188, position: "relative",
-
-                        borderLeft: i < HP.services.strips.length - 1 ? `1.5px dashed rgba(113,46,172,.22)` : "none" }}>
-
-                      {/* Perforation dot */}
-
-                      <div style={{ position: "absolute", top: -6, left: "50%",
-
-                        transform: "translateX(-50%)", width: 12, height: 12,
-
-                        borderRadius: "50%", background: "#ece9e7",
-
-                        boxShadow: "inset 0 0 0 1.5px rgba(113,46,172,.3), 0 1px 3px rgba(0,0,0,.1)" }} />
-
-                      <span style={{ fontSize: 13, fontWeight: 700, color: C.purple, lineHeight: 1.4,
-
-                        marginBottom: i < 3 ? 6 : 12, fontFamily: ff,
-
-                        textDecoration: torn[i] ? "line-through" : "none" }}>
-
-                        {hpT(strip.label)}
-
-                      </span>
-
-                      {i < 3 && (
-
-                        <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
-
-                          <svg viewBox="0 0 20 20" fill="none" style={{ width: 20, height: 20 }}>
-
-                            <rect width="20" height="20" rx="3.5" fill={C.purple} fillOpacity=".1" stroke={C.purple} strokeWidth=".9"/>
-
-                            <path d="M7 9.5v5.5" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round"/>
-
-                            <circle cx="7" cy="7.2" r="1" fill={C.purple}/>
-
-                            <path d="M10.5 15V12q0-2.5 2.5-2.5t2.5 2.5v3" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-
-                          </svg>
-
+                {isMobile ? (
+                  /* Mobile: compact vertical list */
+                  <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+                    {HP.services.strips.map((strip: any, i: number) => (
+                      <motion.div key={i}
+                        animate={tearing === i ? { x: 60, opacity: 0 } : torn[i] ? { opacity: 0.25 } : { x: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        onClick={() => handleTear(i)}
+                        style={{ display: "flex", alignItems: "center", gap: 16,
+                          padding: "16px 20px", cursor: torn[i] ? "default" : "pointer",
+                          borderBottom: i < HP.services.strips.length - 1 ? `1px dashed rgba(113,46,172,.2)` : "none" }}>
+                        <div style={{ opacity: 0.65, flexShrink: 0, width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          {stripIcons[i]}
                         </div>
-
-                      )}
-
-                      <div style={{ marginTop: "auto", opacity: 0.6 }}>{stripIcons[i]}</div>
-
-                    </motion.div>
-
-                  ))}
-
-                </div>
+                        <span style={{ fontSize: 15, fontWeight: 700, color: C.deepPurple, fontFamily: ff,
+                          textDecoration: torn[i] ? "line-through" : "none", flex: 1 }}>
+                          {hpT(strip.label)}
+                        </span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ opacity: 0.35, flexShrink: 0 }}>
+                          <path d="M6 12l4-4-4-4" stroke={C.purple} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </motion.div>
+                    ))}
+                  </div>
+                ) : (
+                  /* Desktop: original tear-off strips */
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)" }}>
+                    {HP.services.strips.map((strip: any, i: number) => (
+                      <motion.div key={i}
+                        animate={tearing === i ? { y: 60, rotate: -8, opacity: 0 } : torn[i] ? { opacity: 0.25 } : { y: 0, rotate: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                        onClick={() => handleTear(i)}
+                        style={{ flex: 1, display: "flex", flexDirection: "column",
+                          alignItems: "center", justifyContent: "flex-start",
+                          padding: "24px 8px 28px", cursor: torn[i] ? "default" : "pointer",
+                          textAlign: "center", minHeight: 188, position: "relative",
+                          borderLeft: i < HP.services.strips.length - 1 ? `1.5px dashed rgba(113,46,172,.22)` : "none" }}>
+                        <div style={{ position: "absolute", top: -6, left: "50%",
+                          transform: "translateX(-50%)", width: 12, height: 12,
+                          borderRadius: "50%", background: "#ece9e7",
+                          boxShadow: "inset 0 0 0 1.5px rgba(113,46,172,.3), 0 1px 3px rgba(0,0,0,.1)" }} />
+                        <span style={{ fontSize: 13, fontWeight: 700, color: C.purple, lineHeight: 1.4,
+                          marginBottom: i < 3 ? 6 : 12, fontFamily: ff,
+                          textDecoration: torn[i] ? "line-through" : "none" }}>
+                          {hpT(strip.label)}
+                        </span>
+                        {i < 3 && (
+                          <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
+                            <svg viewBox="0 0 20 20" fill="none" style={{ width: 20, height: 20 }}>
+                              <rect width="20" height="20" rx="3.5" fill={C.purple} fillOpacity=".1" stroke={C.purple} strokeWidth=".9"/>
+                              <path d="M7 9.5v5.5" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round"/>
+                              <circle cx="7" cy="7.2" r="1" fill={C.purple}/>
+                              <path d="M10.5 15V12q0-2.5 2.5-2.5t2.5 2.5v3" stroke={C.purple} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </div>
+                        )}
+                        <div style={{ marginTop: "auto", opacity: 0.6 }}>{stripIcons[i]}</div>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
 
               </div>
 
