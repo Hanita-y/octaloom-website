@@ -1267,133 +1267,201 @@ function HPNav() {
 
 
 
-      {/* Mobile menu */}
+      {/* Mobile menu — full-screen overlay */}
 
-      {isMobile && mobileOpen && (
+      <AnimatePresence>
 
-        <div style={{ position: "fixed", inset: 0, background: C.cream, zIndex: 99,
+        {isMobile && mobileOpen && (
 
-          display: "flex", flexDirection: "column", padding: "100px 32px 40px",
+          <motion.div
 
-          overflowY: "auto", gap: 0 }}>
+            initial={{ opacity: 0, y: -16 }}
+
+            animate={{ opacity: 1, y: 0 }}
+
+            exit={{ opacity: 0, y: -16 }}
+
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+
+            style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
+
+              background: C.cream, zIndex: 9999, display: "flex", flexDirection: "column",
+
+              overflowY: "auto" }}>
 
 
 
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
+            {/* Top bar inside overlay */}
 
-            color: C.purple, fontFamily: ff, marginBottom: 10 }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
 
-            {lang === "he" ? "שירותים" : "Services"}
+              padding: "0 24px", height: 72, flexShrink: 0,
 
-          </div>
+              borderBottom: "1px solid rgba(113,46,172,0.08)" }}>
 
+              <a href="/" onClick={() => setMobileOpen(false)} style={{ textDecoration: "none" }}>
 
+                <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
 
-          {services.map((svc, i) => (
-
-            <div key={i} style={{ borderBottom: `1px solid rgba(113,46,172,0.07)` }}>
-
-              <a href={svc.href} onClick={() => setMobileOpen(false)}
-
-                style={{ display: "block", fontSize: 18, color: C.deepPurple, textDecoration: "none",
-
-                  fontFamily: ff, padding: "12px 0", fontWeight: svc.sub ? 600 : 400 }}>
-
-                {lang === "he" ? svc.he : svc.en}
+                  alt="OctaLoom" style={{ height: 34, width: "auto", display: "block" }} />
 
               </a>
 
-              {svc.sub && svc.sub.map((sub, j) => (
+              <button onClick={() => setMobileOpen(false)} aria-label="Close menu"
 
-                <a key={j} href={sub.href} onClick={() => setMobileOpen(false)}
+                style={{ background: "none", border: "none", cursor: "pointer",
 
-                  style={{ display: "block", fontSize: 15, color: C.purple, textDecoration: "none",
+                  width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center",
 
-                    fontFamily: ff, padding: "8px 0",
+                  borderRadius: 8, color: C.deepPurple }}>
 
-                    paddingLeft: dir === "ltr" ? 16 : 0, paddingRight: dir === "rtl" ? 16 : 0 }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
 
-                  {lang === "he" ? sub.he : sub.en}
+                  <path d="M18 6L6 18M6 6l12 12"/>
+
+                </svg>
+
+              </button>
+
+            </div>
+
+
+
+            {/* Nav links */}
+
+            <div style={{ flex: 1, display: "flex", flexDirection: "column",
+
+              padding: "24px 32px 32px", gap: 0 }}>
+
+
+
+              {/* Services heading */}
+
+              <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em",
+
+                textTransform: "uppercase", color: C.purple, fontFamily: ff,
+
+                margin: "0 0 6px" }}>
+
+                {lang === "he" ? "שירותים" : "Services"}
+
+              </p>
+
+
+
+              {services.map((svc, i) => (
+
+                <div key={i}>
+
+                  <a href={svc.href} onClick={() => setMobileOpen(false)}
+
+                    style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none",
+
+                      fontFamily: ff, padding: "10px 0", fontWeight: 600,
+
+                      borderBottom: "1px solid rgba(113,46,172,0.07)" }}>
+
+                    {lang === "he" ? svc.he : svc.en}
+
+                  </a>
+
+                  {svc.sub && svc.sub.map((sub, j) => (
+
+                    <a key={j} href={sub.href} onClick={() => setMobileOpen(false)}
+
+                      style={{ display: "block", fontSize: 15, color: C.purple, textDecoration: "none",
+
+                        fontFamily: ff, padding: "7px 0 7px 20px",
+
+                        borderBottom: "1px solid rgba(113,46,172,0.05)" }}>
+
+                      {lang === "he" ? sub.he : sub.en}
+
+                    </a>
+
+                  ))}
+
+                </div>
+
+              ))}
+
+
+
+              {/* Main links */}
+
+              {([
+
+                { en: "About",   he: "עליי",     href: "/about-he" },
+
+                { en: "Blog",    he: "בלוג",     href: "/blog" },
+
+                { en: "Contact", he: "צור קשר", href: "#contact" },
+
+                { en: "Goodies", he: "Goodies",                       href: "https://octagoodies.com" },
+
+              ] as {en:string;he:string;href:string}[]).map((item, i) => (
+
+                <a key={i} href={item.href} onClick={() => setMobileOpen(false)}
+
+                  style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none",
+
+                    fontFamily: ff, padding: "10px 0", fontWeight: 500,
+
+                    borderBottom: "1px solid rgba(113,46,172,0.07)" }}>
+
+                  {lang === "he" ? item.he : item.en}
 
                 </a>
 
               ))}
 
+
+
+              {/* Lang + CTA */}
+
+              <div style={{ marginTop: 24, display: "flex", gap: 8 }}>
+
+                {["he","en"].map(l => (
+
+                  <button key={l} onClick={() => { setLang(l) }}
+
+                    style={{ background: lang === l ? C.purple : "transparent",
+
+                      color: lang === l ? "white" : C.textDim,
+
+                      border: `1.5px solid ${lang === l ? C.purple : "rgba(113,46,172,0.25)"}`,
+
+                      borderRadius: 8, padding: "9px 20px", cursor: "pointer",
+
+                      fontFamily: ff, fontWeight: 700, fontSize: 14 }}>
+
+                    {l === "en" ? "EN" : "עברית"}
+
+                  </button>
+
+                ))}
+
+              </div>
+
+              <div style={{ marginTop: 14 }}>
+
+                <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple"
+
+                  style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15 }}>
+
+                  {hpT(HP.hero.cta1)}
+
+                </Btn>
+
+              </div>
+
             </div>
 
-          ))}
+          </motion.div>
 
+        )}
 
-
-          {([
-
-            { en: "About",   he: "עליי",     href: "/about-he" },
-
-            { en: "Blog",    he: "בלוג",     href: "/blog" },
-
-            { en: "Contact", he: "צור קשר", href: "#contact" },
-
-          ] as {en:string;he:string;href:string}[]).map((item, i) => (
-
-            <a key={i} href={item.href} onClick={() => setMobileOpen(false)}
-
-              style={{ display: "block", fontSize: 18, color: C.deepPurple, textDecoration: "none",
-
-                fontFamily: ff, padding: "14px 0", borderBottom: `1px solid rgba(113,46,172,0.07)` }}>
-
-              {lang === "he" ? item.he : item.en}
-
-            </a>
-
-          ))}
-
-
-
-          <a href="https://octagoodies.com" target="_blank" onClick={() => setMobileOpen(false)}
-
-            style={{ fontSize: 18, color: C.deepPurple, textDecoration: "none",
-
-              fontFamily: ff, padding: "14px 0", borderBottom: `1px solid rgba(113,46,172,0.07)` }}>
-
-            Goodies
-
-          </a>
-
-
-
-          <div style={{ display: "flex", gap: 8, marginTop: 28 }}>
-
-            {["en","he"].map(l => (
-
-              <button key={l} onClick={() => { setLang(l); setMobileOpen(false) }}
-
-                style={{ background: lang === l ? C.purple : "transparent", color: lang === l ? "white" : C.textDim,
-
-                  border: `1px solid ${lang === l ? C.purple : C.textDim}`, borderRadius: 6,
-
-                  padding: "8px 16px", cursor: "pointer", fontFamily: ff, fontWeight: 700 }}>
-
-                {l === "en" ? "EN" : "עברית"}
-
-              </button>
-
-            ))}
-
-          </div>
-
-          <div style={{ marginTop: 16 }}>
-
-            <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple">
-
-              {hpT(HP.hero.cta1)}
-
-            </Btn>
-
-          </div>
-
-        </div>
-
-      )}
+      </AnimatePresence>
 
     </nav>
 
@@ -2231,13 +2299,15 @@ function HPServices() {
                           cursor: torn[i] ? "default" : "pointer",
                           textAlign: "center", minHeight: isMobile ? 100 : 188, position: "relative",
                           borderLeft: i < HP.services.strips.length - 1 ? `1.5px dashed rgba(113,46,172,.22)` : "none" }}>
-                        <div style={{ position: "absolute", top: -6, left: "50%",
-                          transform: "translateX(-50%)", width: isMobile ? 9 : 12, height: isMobile ? 9 : 12,
-                          borderRadius: "50%", background: "#ece9e7",
-                          boxShadow: "inset 0 0 0 1.5px rgba(113,46,172,.3), 0 1px 3px rgba(0,0,0,.1)" }} />
+                        {!isMobile && (
+                          <div style={{ position: "absolute", top: -6, left: "50%",
+                            transform: "translateX(-50%)", width: 12, height: 12,
+                            borderRadius: "50%", background: "#ece9e7",
+                            boxShadow: "inset 0 0 0 1.5px rgba(113,46,172,.3), 0 1px 3px rgba(0,0,0,.1)" }} />
+                        )}
                         <span style={{ fontSize: isMobile ? 9.5 : 13, fontWeight: isMobile ? 500 : 700,
                           color: C.purple, lineHeight: 1.3, fontFamily: ff,
-                          textDecoration: torn[i] ? "line-through" : "none" }}>
+                          textDecoration: (!isMobile && torn[i]) ? "line-through" : "none" }}>
                           {hpT(strip.label)}
                         </span>
                         {!isMobile && i < 3 && (
