@@ -978,7 +978,9 @@ function HPNav() {
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)",
 
-        display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 16 }}>
+        display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 16,
+
+        position: "relative", zIndex: 101 }}>
 
 
 
@@ -1218,7 +1220,11 @@ function HPNav() {
 
           <button onClick={() => setMobileOpen(!mobileOpen)} style={{ background: "none", border: "none",
 
-            cursor: "pointer", width: 28, height: 20, position: "relative", gridColumn: "3" }}>
+            cursor: "pointer", width: 44, height: 44, position: "relative", gridColumn: "3",
+
+            display: "flex", alignItems: "center", justifyContent: "center", padding: 0 }}>
+
+            <span style={{ position: "relative", display: "block", width: 28, height: 20 }}>
 
             {[0,9,18].map((top,i) => (
 
@@ -1231,6 +1237,8 @@ function HPNav() {
                 opacity: mobileOpen && i===1 ? 0 : 1, transition: "all 0.3s" }} />
 
             ))}
+
+            </span>
 
           </button>
 
@@ -3051,7 +3059,9 @@ function HPBookCall() {
 function HPLinkedInFeed() {
   const { lang } = useLang()
   const ff = lang === "he" ? F.display : F.body
-  const w = useWindowSize(); const isMobile = w < 768
+  const w = useWindowSize()
+  const isMobile = w < 768
+  const liCols = w < 768 ? "1fr" : w < 1024 ? "repeat(2,1fr)" : "repeat(3,1fr)"
 
   const embeds = [
     "https://www.linkedin.com/embed/feed/update/urn:li:activity:7440302334309511168",
@@ -3075,7 +3085,7 @@ function HPLinkedInFeed() {
           </p>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: liCols, gap: 24 }}>
           {embeds.map((src, i) => (
             <Reveal key={i} delay={i * 120}>
               <div style={{ borderRadius: 12, overflow: "hidden", border: `2px solid ${C.lime}`, background: "#fff" }}>
