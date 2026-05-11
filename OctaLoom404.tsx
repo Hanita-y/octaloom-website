@@ -400,12 +400,14 @@ function HPFooter() {
   const socialIcons = [
     { href: "https://www.linkedin.com/in/hanita-yudovski/", label: "LinkedIn",
       svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
-    { href: "https://www.instagram.com/octaloom/", label: "Instagram",
+    { href: "https://www.instagram.com/hanita_Y", label: "Instagram",
       svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> },
     { href: "https://www.facebook.com/octaloom", label: "Facebook",
       svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
-    { href: "https://www.youtube.com/@octaloom", label: "YouTube",
+    { href: "https://www.youtube.com/@Hanita_Octaloom", label: "YouTube",
       svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> },
+    { href: "https://open.spotify.com/show/4XmsthqR7gnj4nf2gL0T7j", label: "Spotify",
+      svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg> },
   ]
 
   return (
@@ -459,15 +461,15 @@ function HPFooter() {
           </div>
 
           <div>
-            <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-              <h4 style={{ ...headStyle, display: "flex", alignItems: "center", gap: 5, transition: "color 0.2s" }}
-                onMouseEnter={(e: any) => e.currentTarget.style.color = C.lime}
-                onMouseLeave={(e: any) => e.currentTarget.style.color = "white"}>
-                OctaGoodies
-                <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 2h8v8M2 10l8-8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-                </svg>
-              </h4>
+            <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer"
+              style={{ textDecoration: "none", display: "inline-block" }}>
+              <img
+                src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/OCTAGOODIES%20GREEN.png"
+                alt="OctaGoodies"
+                style={{ height: 32, width: "auto", display: "block", opacity: 0.9, transition: "opacity 0.2s" }}
+                onMouseEnter={(e: any) => e.currentTarget.style.opacity = "1"}
+                onMouseLeave={(e: any) => e.currentTarget.style.opacity = "0.9"}
+              />
             </a>
             <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", marginTop: 6, fontFamily: ff, lineHeight: 1.6 }}>
               {lang === "he" ? "\u05DB\u05DC\u05D9\u05DD \u05D5\u05D8\u05DE\u05E4\u05DC\u05D9\u05D9\u05D8\u05D9\u05DD \u05DC\u05E9\u05D9\u05D5\u05D5\u05E7" : "Marketing tools & templates"}
