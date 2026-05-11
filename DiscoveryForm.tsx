@@ -26,45 +26,45 @@ const F = {
 
 const T = {
   he: {
-    step1Title:      "ספרו לנו קצת על עצמכם",
-    step2Title:      "מה אתם מחפשים?",
-    step3Title:      "עוד קצת",
-    name:            "שם מלא",
-    company:         "שם החברה",
-    email:           "אימייל",
+    step1Title:      "\u05e1\u05e4\u05e8\u05d5 \u05dc\u05e0\u05d5 \u05e7\u05e6\u05ea \u05e2\u05dc \u05e2\u05e6\u05de\u05db\u05dd",
+    step2Title:      "\u05de\u05d4 \u05d0\u05ea\u05dd \u05de\u05d7\u05e4\u05e9\u05d9\u05dd?",
+    step3Title:      "\u05e2\u05d5\u05d3 \u05e7\u05e6\u05ea",
+    name:            "\u05e9\u05dd \u05de\u05dc\u05d0",
+    company:         "\u05e9\u05dd \u05d4\u05d7\u05d1\u05e8\u05d4",
+    email:           "\u05d0\u05d9\u05de\u05d9\u05d9\u05dc",
     services: [
       "LinkedIn Growth Engine",
-      "נוכחות מלאה ברשתות",
-      "תשתית שיווקית",
-      "CMO פרקציונלי",
-      "אוטומציית שיווק",
-      "פיתוח סוכן AI",
-      "עוד לא בטוח/ה",
+      "\u05e0\u05d5\u05db\u05d7\u05d5\u05ea \u05de\u05dc\u05d0\u05d4 \u05d1\u05e8\u05e9\u05ea\u05d5\u05ea",
+      "\u05ea\u05e9\u05ea\u05d9\u05ea \u05e9\u05d9\u05d5\u05d5\u05e7\u05d9\u05ea",
+      "CMO \u05e4\u05e8\u05e7\u05e6\u05d9\u05d5\u05e0\u05dc\u05d9",
+      "\u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d9\u05ea \u05e9\u05d9\u05d5\u05d5\u05e7",
+      "\u05e4\u05d9\u05ea\u05d5\u05d7 \u05e1\u05d5\u05db\u05df AI",
+      "\u05e2\u05d5\u05d3 \u05dc\u05d0 \u05d1\u05d8\u05d5\u05d7/\u05d4",
     ],
-    timelineLabel:   "מתי מחפשים להתחיל?",
-    timelines:       ["מיידי", "1–3 חודשים", "סתם בודק/ת"],
-    notesLabel:      "הוסיפו משהו שחשוב לנו לדעת (אפשרי)",
-    next:            "המשיכו",
-    back:            "חזרה",
-    send:            "שלחו",
-    sending:         "שולח...",
-    successTitle:    "מעולה! עכשיו שאנחנו יודעים מה אתם צריכים,",
+    timelineLabel:   "\u05de\u05ea\u05d9 \u05de\u05d7\u05e4\u05e9\u05d9\u05dd \u05dc\u05d4\u05ea\u05d7\u05d9\u05dc?",
+    timelines:       ["\u05de\u05d9\u05d9\u05d3\u05d9", "1\u20133 \u05d7\u05d5\u05d3\u05e9\u05d9\u05dd", "\u05e1\u05ea\u05dd \u05d1\u05d5\u05d3\u05e7/\u05ea"],
+    notesLabel:      "\u05d4\u05d5\u05e1\u05d9\u05e4\u05d5 \u05de\u05e9\u05d4\u05d5 \u05e9\u05d7\u05e9\u05d5\u05d1 \u05dc\u05e0\u05d5 \u05dc\u05d3\u05e2\u05ea (\u05d0\u05e4\u05e9\u05e8\u05d9)",
+    next:            "\u05d4\u05de\u05e9\u05d9\u05db\u05d5",
+    back:            "\u05d7\u05d6\u05e8\u05d4",
+    send:            "\u05e9\u05dc\u05d7\u05d5",
+    sending:         "\u05e9\u05d5\u05dc\u05d7...",
+    successTitle:    "\u05de\u05e2\u05d5\u05dc\u05d4! \u05e2\u05db\u05e9\u05d9\u05d5 \u05e9\u05d0\u05e0\u05d7\u05e0\u05d5 \u05d9\u05d5\u05d3\u05e2\u05d9\u05dd \u05de\u05d4 \u05d0\u05ea\u05dd \u05e6\u05e8\u05d9\u05db\u05d9\u05dd,",
     successSub:      "",
-    bookBtn:         "קבעו שיחה עכשיו",
-    errorRequired:   "נא למלא את כל השדות",
-    errorEmail:      "כתובת אימייל לא תקינה",
-    errorSend:       "שגיאה בשליחה, נסו שוב",
-    selectService:   "בחרו אפשרות",
-    selectTimeline:  "בחרו מתי",
-    emailSubject:    "פנייה חדשה",
-    emailFrom:       "מ",
-    emailTitle:      "פנייה חדשה מהאתר",
-    fName:           "שם",
-    fCompany:        "חברה",
-    fEmail:          "אימייל",
-    fService:        "מה מחפשים",
-    fTimeline:       "תיזמון",
-    fNotes:          "הערות",
+    bookBtn:         "\u05e7\u05d1\u05e2\u05d5 \u05e9\u05d9\u05d7\u05d4 \u05e2\u05db\u05e9\u05d9\u05d5",
+    errorRequired:   "\u05e0\u05d0 \u05dc\u05de\u05dc\u05d0 \u05d0\u05ea \u05db\u05dc \u05d4\u05e9\u05d3\u05d5\u05ea",
+    errorEmail:      "\u05db\u05ea\u05d5\u05d1\u05ea \u05d0\u05d9\u05de\u05d9\u05d9\u05dc \u05dc\u05d0 \u05ea\u05e7\u05d9\u05e0\u05d4",
+    errorSend:       "\u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e9\u05dc\u05d9\u05d7\u05d4, \u05e0\u05e1\u05d5 \u05e9\u05d5\u05d1",
+    selectService:   "\u05d1\u05d7\u05e8\u05d5 \u05d0\u05e4\u05e9\u05e8\u05d5\u05ea",
+    selectTimeline:  "\u05d1\u05d7\u05e8\u05d5 \u05de\u05ea\u05d9",
+    emailSubject:    "\u05e4\u05e0\u05d9\u05d9\u05d4 \u05d7\u05d3\u05e9\u05d4",
+    emailFrom:       "\u05de",
+    emailTitle:      "\u05e4\u05e0\u05d9\u05d9\u05d4 \u05d7\u05d3\u05e9\u05d4 \u05de\u05d4\u05d0\u05ea\u05e8",
+    fName:           "\u05e9\u05dd",
+    fCompany:        "\u05d7\u05d1\u05e8\u05d4",
+    fEmail:          "\u05d0\u05d9\u05de\u05d9\u05d9\u05dc",
+    fService:        "\u05de\u05d4 \u05de\u05d7\u05e4\u05e9\u05d9\u05dd",
+    fTimeline:       "\u05ea\u05d9\u05d6\u05de\u05d5\u05df",
+    fNotes:          "\u05d4\u05e2\u05e8\u05d5\u05ea",
   },
   en: {
     step1Title:      "Tell us a bit about you",
@@ -75,12 +75,12 @@ const T = {
     email:           "Email",
     services:        ["LinkedIn Growth Engine", "Full Social Presence", "Marketing Infrastructure", "Fractional CMO", "Marketing Automation", "AI Agent Development", "Not sure yet"],
     timelineLabel:   "When are you looking to start?",
-    timelines:       ["Immediately", "1–3 months", "Just exploring"],
+    timelines:       ["Immediately", "1\u20133 months", "Just exploring"],
     notesLabel:      "Anything important we should know (optional)",
     next:            "Next",
     back:            "Back",
     send:            "Send",
-    sending:         "Sending…",
+    sending:         "Sending\u2026",
     successTitle:    "Great! Now that we know what you need,",
     successSub:      "",
     bookBtn:         "Book the call now",
@@ -177,7 +177,7 @@ export default function DiscoveryForm() {
           subject:    `${t.emailSubject}: ${name} ${t.emailFrom} ${company}`,
           from_name:  "OctaLoom Website",
           name, email, company, service, timeline,
-          notes:      notes || "—",
+          notes:      notes || "\u2014",
         }),
       })
       const data = await res.json()
@@ -255,7 +255,7 @@ export default function DiscoveryForm() {
                   background: "none", border: "none", cursor: "pointer",
                   fontSize: 24, color: C.muted, lineHeight: 1, padding: 4,
                 }}
-              >×</button>
+              >\u00d7</button>
 
               {/* Progress bar */}
               {status !== "success" && (
@@ -270,10 +270,10 @@ export default function DiscoveryForm() {
                 </div>
               )}
 
-              {/* ── SUCCESS ── */}
+              {/* \u2500\u2500 SUCCESS \u2500\u2500 */}
               {status === "success" && (
                 <div style={{ textAlign: "center", padding: "24px 0" }}>
-                  <div style={{ fontSize: 52, marginBottom: 16 }}>🎉</div>
+                  <div style={{ fontSize: 52, marginBottom: 16 }}>\u1f389</div>
                   <h2 style={{ fontSize: 22, fontWeight: 700, color: C.deepPurple, margin: "0 0 28px", fontFamily: ff }}>{t.successTitle}</h2>
                   <a
                     href={NOTION_CALENDAR}
@@ -288,7 +288,7 @@ export default function DiscoveryForm() {
                 </div>
               )}
 
-              {/* ── STEP 1 ── */}
+              {/* \u2500\u2500 STEP 1 \u2500\u2500 */}
               {status !== "success" && step === 1 && (
                 <>
                   <h2 style={{ fontSize: 20, fontWeight: 700, color: C.deepPurple, margin: "0 0 22px", fontFamily: ff }}>{t.step1Title}</h2>
@@ -311,7 +311,7 @@ export default function DiscoveryForm() {
                 </>
               )}
 
-              {/* ── STEP 2 ── */}
+              {/* \u2500\u2500 STEP 2 \u2500\u2500 */}
               {status !== "success" && step === 2 && (
                 <>
                   <h2 style={{ fontSize: 20, fontWeight: 700, color: C.deepPurple, margin: "0 0 22px", fontFamily: ff }}>{t.step2Title}</h2>
@@ -337,7 +337,7 @@ export default function DiscoveryForm() {
                 </>
               )}
 
-              {/* ── STEP 3 ── */}
+              {/* \u2500\u2500 STEP 3 \u2500\u2500 */}
               {status !== "success" && step === 3 && (
                 <>
                   <h2 style={{ fontSize: 20, fontWeight: 700, color: C.deepPurple, margin: "0 0 22px", fontFamily: ff }}>{t.step3Title}</h2>
