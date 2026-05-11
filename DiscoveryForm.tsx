@@ -116,10 +116,11 @@ export default function DiscoveryForm() {
 
   const detectLang = useCallback((): "he" | "en" => {
     if (typeof window === "undefined") return "he"
-    const path = window.location.pathname
-    if (path.startsWith("/en") || path.startsWith("/en/")) return "en"
+    const saved = localStorage.getItem("octaloom-lang")
+    if (saved === "en") return "en"
+    if (saved === "he") return "he"
     const domLang = document.documentElement.lang ?? ""
-    if (domLang.startsWith("en") && !domLang.startsWith("he")) return "en"
+    if (domLang === "en") return "en"
     return "he"
   }, [])
 
