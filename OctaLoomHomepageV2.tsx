@@ -1661,31 +1661,27 @@ function HPHero() {
 
           {/* Video column */}
 
-          {!isMobile && (
+          <Reveal delay={200}>
 
-            <Reveal delay={200}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
 
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ position: "relative", width: "100%", maxWidth: isMobile ? "100%" : 520, borderRadius: 16,
 
-                <div style={{ position: "relative", width: "100%", maxWidth: 520, borderRadius: 16,
+                overflow: "hidden", boxShadow: `0 8px 40px rgba(32,30,75,0.15),0 0 0 1px rgba(113,46,172,0.1)` }}>
 
-                  overflow: "hidden", boxShadow: `0 8px 40px rgba(32,30,75,0.15),0 0 0 1px rgba(113,46,172,0.1)` }}>
+                <video autoPlay muted loop playsInline
 
-                  <video autoPlay muted loop playsInline
+                  src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/hero-video.mp4"
 
-                    src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/hero-video.mp4"
+                  style={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover",
 
-                    style={{ width: "100%", display: "block", aspectRatio: "16/9", objectFit: "cover",
-
-                      background: "rgba(113,46,172,0.04)" }} />
-
-                </div>
+                    background: "rgba(113,46,172,0.04)" }} />
 
               </div>
 
-            </Reveal>
+            </div>
 
-          )}
+          </Reveal>
 
         </div>
 
@@ -1741,7 +1737,7 @@ function HPProblem() {
 
               <div style={{ background: "white", border: "1px solid rgba(32,30,75,0.06)",
 
-                borderRadius: 12, padding: "32px 28px", height: "100%",
+                borderRadius: 12, padding: isMobile ? "20px 18px" : "32px 28px", height: "100%",
 
                 display: "flex", flexDirection: "column" }}>
 
@@ -1880,6 +1876,8 @@ function HPServices() {
   const { lang } = useLang()
 
   const ff = lang === "he" ? F.display : F.body
+
+  const w = useWindowSize(); const isMobile = w < 768
 
   const [torn, setTorn] = useState<Record<number,boolean>>({})
 
@@ -2219,7 +2217,7 @@ function HPServices() {
 
                 {/* Strips */}
 
-                <div style={{ display: "flex" }}>
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2,1fr)" : "repeat(5,1fr)" }}>
 
                   {HP.services.strips.map((strip: any, i: number) => (
 
@@ -2347,7 +2345,7 @@ function HPProcess() {
 
               <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 16,
 
-                padding: "32px 28px", height: "100%", display: "flex", flexDirection: "column" }}>
+                padding: isMobile ? "20px 18px" : "32px 28px", height: "100%", display: "flex", flexDirection: "column" }}>
 
                 <img
 
@@ -3110,7 +3108,7 @@ function HPLinkedInFeed() {
               <div style={{ borderRadius: 12, overflow: "hidden", border: `2px solid ${C.lime}`, background: "#fff" }}>
                 <iframe
                   src={src}
-                  height={500}
+                  height={isMobile ? 380 : 500}
                   width="100%"
                   frameBorder={0}
                   allowFullScreen
