@@ -4,9 +4,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
-const RESEND_API_KEY = "re_GP9AuCFq_AKEVRTcZ8Q6mGJGXy6QstpfR"
-const RESEND_FROM = "hanita@octaloom.com"
-const RESEND_TO = "Octaloom@gmail.com"
+const WEB3FORMS_KEY = "PASTE_YOUR_WEB3FORMS_KEY_HERE"
 const NOTION_CALENDAR = "https://calendar.notion.so/meet/octaloom/discovery"
 
 const C = {
@@ -35,10 +33,12 @@ const T = {
     company:         "שם החברה",
     email:           "אימייל",
     services: [
-      "ניהול לינקדאין",
+      "LinkedIn Growth Engine",
       "נוכחות מלאה ברשתות",
       "תשתית שיווקית",
       "CMO פרקציונלי",
+      "אוטומציית שיווק",
+      "פיתוח סוכן AI",
       "עוד לא בטוח/ה",
     ],
     timelineLabel:   "מתי מחפשים להתחיל?",
@@ -73,7 +73,7 @@ const T = {
     name:            "Full name",
     company:         "Company name",
     email:           "Email",
-    services:        ["LinkedIn management", "Full social presence", "Marketing infrastructure", "Fractional CMO", "Not sure yet"],
+    services:        ["LinkedIn Growth Engine", "Full Social Presence", "Marketing Infrastructure", "Fractional CMO", "Marketing Automation", "AI Agent Development", "Not sure yet"],
     timelineLabel:   "When are you looking to start?",
     timelines:       ["Immediately", "1–3 months", "Just exploring"],
     notesLabel:      "Anything important we should know (optional)",
@@ -163,43 +163,20 @@ export default function DiscoveryForm() {
     if (!timeline) { setErrMsg(t.selectTimeline); return }
     setErrMsg(""); setStatus("loading")
 
-    const notesRow = notes
-      ? `<tr><td style="padding:8px 12px;font-weight:600;color:#201e4b;border-bottom:1px solid #e5e7eb;white-space:nowrap">${t.fNotes}</td><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb">${notes}</td></tr>`
-      : ""
-
-    const html = `
-<!DOCTYPE html><html dir="${isRTL ? "rtl" : "ltr"}"><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#f5f5f5;font-family:Arial,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:32px 16px">
-<table width="100%" style="max-width:520px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08)">
-  <tr><td style="background:#712eac;padding:24px 28px">
-    <h1 style="margin:0;color:#fff;font-size:20px">${t.emailTitle} 🎉</h1>
-  </td></tr>
-  <tr><td style="padding:24px 28px">
-    <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
-      <tr><td style="padding:8px 12px;font-weight:600;color:#201e4b;border-bottom:1px solid #e5e7eb;white-space:nowrap">${t.fName}</td><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb">${name}</td></tr>
-      <tr><td style="padding:8px 12px;font-weight:600;color:#201e4b;border-bottom:1px solid #e5e7eb;white-space:nowrap">${t.fCompany}</td><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb">${company}</td></tr>
-      <tr><td style="padding:8px 12px;font-weight:600;color:#201e4b;border-bottom:1px solid #e5e7eb;white-space:nowrap">${t.fEmail}</td><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb"><a href="mailto:${email}" style="color:#712eac">${email}</a></td></tr>
-      <tr><td style="padding:8px 12px;font-weight:600;color:#201e4b;border-bottom:1px solid #e5e7eb;white-space:nowrap">${t.fService}</td><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb">${service}</td></tr>
-      <tr><td style="padding:8px 12px;font-weight:600;color:#201e4b;border-bottom:1px solid #e5e7eb;white-space:nowrap">${t.fTimeline}</td><td style="padding:8px 12px;border-bottom:1px solid #e5e7eb">${timeline}</td></tr>
-      ${notesRow}
-    </table>
-  </td></tr>
-</table>
-</td></tr></table>
-</body></html>`
-
     try {
-      const res = await fetch("https://api.resend.com/emails", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${RESEND_API_KEY}` },
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({
-          from:    RESEND_FROM,
-          to:      RESEND_TO,
-          subject: `${t.emailSubject}: ${name} ${t.emailFrom} ${company}`,
-          html,
+          access_key: WEB3FORMS_KEY,
+          subject:    `${t.emailSubject}: ${name} ${t.emailFrom} ${company}`,
+          from_name:  "OctaLoom Website",
+          name, email, company, service, timeline,
+          notes:      notes || "—",
         }),
       })
-      if (res.ok) setStatus("success")
+      const data = await res.json()
+      if (data.success) setStatus("success")
       else { setErrMsg(t.errorSend); setStatus("error") }
     } catch {
       setErrMsg(t.errorSend); setStatus("error")
