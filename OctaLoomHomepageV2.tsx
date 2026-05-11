@@ -991,15 +991,23 @@ function HPNav() {
 
   return (
 
-    <nav dir={dir} style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-
-      padding: scrolled ? "10px 0" : "16px 0", transition: "all 0.4s", ...navBg }}>
+    <nav dir={dir} style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+      transition: "background 0.4s, padding 0.3s",
+      ...(isMobile && mobileOpen
+        ? { bottom: 0, background: C.cream, overflowY: "auto", display: "flex", flexDirection: "column" }
+        : { padding: scrolled ? "10px 0" : "16px 0", ...navBg }
+      )
+    }}>
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)",
-
         display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 16,
-
-        position: "relative", zIndex: 101 }}>
+        position: "relative", zIndex: 101,
+        ...(isMobile && mobileOpen
+          ? { paddingTop: 14, paddingBottom: 14, borderBottom: "1px solid rgba(113,46,172,0.1)" }
+          : {}
+        )
+      }}>
 
 
 
@@ -1267,201 +1275,135 @@ function HPNav() {
 
 
 
-      {/* Mobile menu — full-screen overlay */}
+      {/* Mobile menu — lives INSIDE the nav so fixed positioning works in Framer */}
 
-      <AnimatePresence>
+      {isMobile && mobileOpen && (
 
-        {isMobile && mobileOpen && (
+        <div style={{ flex: 1, display: "flex", flexDirection: "column",
 
-          <motion.div
-
-            initial={{ opacity: 0, y: -16 }}
-
-            animate={{ opacity: 1, y: 0 }}
-
-            exit={{ opacity: 0, y: -16 }}
-
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-
-            style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
-
-              background: C.cream, zIndex: 9999, display: "flex", flexDirection: "column",
-
-              overflowY: "auto" }}>
+          padding: "20px 32px 40px", gap: 0 }}>
 
 
 
-            {/* Top bar inside overlay */}
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em",
 
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
+            textTransform: "uppercase", color: C.purple, fontFamily: ff, margin: "0 0 4px" }}>
 
-              padding: "0 24px", height: 72, flexShrink: 0,
+            {lang === "he" ? "שירותים" : "Services"}
 
-              borderBottom: "1px solid rgba(113,46,172,0.08)" }}>
+          </p>
 
-              <a href="/" onClick={() => setMobileOpen(false)} style={{ textDecoration: "none" }}>
 
-                <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
 
-                  alt="OctaLoom" style={{ height: 34, width: "auto", display: "block" }} />
+          {services.map((svc, i) => (
+
+            <div key={i}>
+
+              <a href={svc.href} onClick={() => setMobileOpen(false)}
+
+                style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none",
+
+                  fontFamily: ff, padding: "11px 0", fontWeight: 600,
+
+                  borderBottom: "1px solid rgba(113,46,172,0.08)" }}>
+
+                {lang === "he" ? svc.he : svc.en}
 
               </a>
 
-              <button onClick={() => setMobileOpen(false)} aria-label="Close menu"
+              {svc.sub && svc.sub.map((sub, j) => (
 
-                style={{ background: "none", border: "none", cursor: "pointer",
+                <a key={j} href={sub.href} onClick={() => setMobileOpen(false)}
 
-                  width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center",
+                  style={{ display: "block", fontSize: 15, color: C.purple, textDecoration: "none",
 
-                  borderRadius: 8, color: C.deepPurple }}>
+                    fontFamily: ff, padding: "7px 0",
 
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    paddingLeft: dir === "ltr" ? 20 : 0, paddingRight: dir === "rtl" ? 20 : 0,
 
-                  <path d="M18 6L6 18M6 6l12 12"/>
+                    borderBottom: "1px solid rgba(113,46,172,0.05)" }}>
 
-                </svg>
-
-              </button>
-
-            </div>
-
-
-
-            {/* Nav links */}
-
-            <div style={{ flex: 1, display: "flex", flexDirection: "column",
-
-              padding: "24px 32px 32px", gap: 0 }}>
-
-
-
-              {/* Services heading */}
-
-              <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em",
-
-                textTransform: "uppercase", color: C.purple, fontFamily: ff,
-
-                margin: "0 0 6px" }}>
-
-                {lang === "he" ? "שירותים" : "Services"}
-
-              </p>
-
-
-
-              {services.map((svc, i) => (
-
-                <div key={i}>
-
-                  <a href={svc.href} onClick={() => setMobileOpen(false)}
-
-                    style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none",
-
-                      fontFamily: ff, padding: "10px 0", fontWeight: 600,
-
-                      borderBottom: "1px solid rgba(113,46,172,0.07)" }}>
-
-                    {lang === "he" ? svc.he : svc.en}
-
-                  </a>
-
-                  {svc.sub && svc.sub.map((sub, j) => (
-
-                    <a key={j} href={sub.href} onClick={() => setMobileOpen(false)}
-
-                      style={{ display: "block", fontSize: 15, color: C.purple, textDecoration: "none",
-
-                        fontFamily: ff, padding: "7px 0 7px 20px",
-
-                        borderBottom: "1px solid rgba(113,46,172,0.05)" }}>
-
-                      {lang === "he" ? sub.he : sub.en}
-
-                    </a>
-
-                  ))}
-
-                </div>
-
-              ))}
-
-
-
-              {/* Main links */}
-
-              {([
-
-                { en: "About",   he: "עליי",     href: "/about-he" },
-
-                { en: "Blog",    he: "בלוג",     href: "/blog" },
-
-                { en: "Contact", he: "צור קשר", href: "#contact" },
-
-                { en: "Goodies", he: "Goodies",                       href: "https://octagoodies.com" },
-
-              ] as {en:string;he:string;href:string}[]).map((item, i) => (
-
-                <a key={i} href={item.href} onClick={() => setMobileOpen(false)}
-
-                  style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none",
-
-                    fontFamily: ff, padding: "10px 0", fontWeight: 500,
-
-                    borderBottom: "1px solid rgba(113,46,172,0.07)" }}>
-
-                  {lang === "he" ? item.he : item.en}
+                  {lang === "he" ? sub.he : sub.en}
 
                 </a>
 
               ))}
 
-
-
-              {/* Lang + CTA */}
-
-              <div style={{ marginTop: 24, display: "flex", gap: 8 }}>
-
-                {["he","en"].map(l => (
-
-                  <button key={l} onClick={() => { setLang(l) }}
-
-                    style={{ background: lang === l ? C.purple : "transparent",
-
-                      color: lang === l ? "white" : C.textDim,
-
-                      border: `1.5px solid ${lang === l ? C.purple : "rgba(113,46,172,0.25)"}`,
-
-                      borderRadius: 8, padding: "9px 20px", cursor: "pointer",
-
-                      fontFamily: ff, fontWeight: 700, fontSize: 14 }}>
-
-                    {l === "en" ? "EN" : "עברית"}
-
-                  </button>
-
-                ))}
-
-              </div>
-
-              <div style={{ marginTop: 14 }}>
-
-                <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple"
-
-                  style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15 }}>
-
-                  {hpT(HP.hero.cta1)}
-
-                </Btn>
-
-              </div>
-
             </div>
 
-          </motion.div>
+          ))}
 
-        )}
 
-      </AnimatePresence>
+
+          {([
+
+            { en: "About",   he: "עליי",     href: "/about-he" },
+
+            { en: "Blog",    he: "בלוג",     href: "/blog" },
+
+            { en: "Contact", he: "צור קשר", href: "#contact" },
+
+            { en: "Goodies", he: "Goodies",   href: "https://octagoodies.com" },
+
+          ] as {en:string;he:string;href:string}[]).map((item, i) => (
+
+            <a key={i} href={item.href} onClick={() => setMobileOpen(false)}
+
+              style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none",
+
+                fontFamily: ff, padding: "11px 0", fontWeight: 500,
+
+                borderBottom: "1px solid rgba(113,46,172,0.08)" }}>
+
+              {lang === "he" ? item.he : item.en}
+
+            </a>
+
+          ))}
+
+
+
+          <div style={{ display: "flex", gap: 8, marginTop: 24 }}>
+
+            {["he","en"].map(l => (
+
+              <button key={l} onClick={() => setLang(l)}
+
+                style={{ background: lang === l ? C.purple : "transparent",
+
+                  color: lang === l ? "white" : C.textDim,
+
+                  border: `1.5px solid ${lang === l ? C.purple : "rgba(113,46,172,0.25)"}`,
+
+                  borderRadius: 8, padding: "9px 20px", cursor: "pointer",
+
+                  fontFamily: ff, fontWeight: 700, fontSize: 14 }}>
+
+                {l === "en" ? "EN" : "עברית"}
+
+              </button>
+
+            ))}
+
+          </div>
+
+
+
+          <div style={{ marginTop: 14 }}>
+
+            <Btn href="https://calendar.notion.so/meet/octaloom/discovery" variant="purple"
+
+              style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15 }}>
+
+              {hpT(HP.hero.cta1)}
+
+            </Btn>
+
+          </div>
+
+        </div>
+
+      )}
 
     </nav>
 
