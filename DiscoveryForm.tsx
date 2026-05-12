@@ -255,7 +255,7 @@ export default function DiscoveryForm() {
                   background: "none", border: "none", cursor: "pointer",
                   fontSize: 24, color: C.muted, lineHeight: 1, padding: 4,
                 }}
-              >\u00d7</button>
+              >{"\u00d7"}</button>
 
               {/* Progress bar */}
               {status !== "success" && (
@@ -273,7 +273,7 @@ export default function DiscoveryForm() {
               {/* \u2500\u2500 SUCCESS \u2500\u2500 */}
               {status === "success" && (
                 <div style={{ textAlign: "center", padding: "24px 0" }}>
-                  <div style={{ fontSize: 52, marginBottom: 16 }}>\u1f389</div>
+                  <div style={{ fontSize: 52, marginBottom: 16 }}>{"\ud83c\udf89"}</div>
                   <h2 style={{ fontSize: 22, fontWeight: 700, color: C.deepPurple, margin: "0 0 28px", fontFamily: ff }}>{t.successTitle}</h2>
                   <a
                     href={NOTION_CALENDAR}
