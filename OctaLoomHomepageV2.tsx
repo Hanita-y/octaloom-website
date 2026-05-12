@@ -2242,7 +2242,9 @@ function HPServices() {
                           padding: isMobile ? "14px 4px 18px" : "24px 8px 28px",
                           cursor: torn[i] ? "default" : "pointer",
                           textAlign: "center", minHeight: isMobile ? 100 : 188, position: "relative",
-                          borderLeft: i < HP.services.strips.length - 1 ? `1.5px dashed rgba(113,46,172,.22)` : "none" }}>
+                          ...(lang === "he"
+                            ? { borderLeft: i < HP.services.strips.length - 1 ? `1.5px dashed rgba(113,46,172,.22)` : "none" }
+                            : { borderRight: i < HP.services.strips.length - 1 ? `1.5px dashed rgba(113,46,172,.22)` : "none" }) }}>
                         {!isMobile && (
                           <div style={{ position: "absolute", top: -6, left: "50%",
                             transform: "translateX(-50%)", width: 12, height: 12,
@@ -3021,9 +3023,9 @@ function HPBookCall() {
 
               </div>
 
-              <span style={{ fontWeight: 500, fontSize: "clamp(24px,3.5vw,40px)",
-
-                color: C.deepPurple, fontFamily: ff }}>
+              <span onClick={() => window.dispatchEvent(new Event("open-discovery"))}
+                style={{ fontWeight: 500, fontSize: "clamp(24px,3.5vw,40px)",
+                color: C.deepPurple, fontFamily: ff, cursor: "pointer" }}>
 
                 {hpT({ en: "Book a Call With Me", he: "\u05ea\u05d0\u05de\u05d5 \u05d0\u05d9\u05ea\u05d9 \u05e9\u05d9\u05d7\u05d4" })}
 
