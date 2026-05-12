@@ -183,8 +183,8 @@ button{font-family:inherit;border:none;background:none;cursor:pointer}
 .cta__sub{font-size:17px;color:var(--deep-purple);opacity:0.7;max-width:500px;margin:0 auto 32px;line-height:1.6;font-family:var(--font-en)}
 .cta__actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
 .cta__note{font-size:14px;color:var(--deep-purple);opacity:0.5}
-@media(max-width:768px){.exec-hero__grid{grid-template-columns:1fr}.exec-hero__visual{display:none}.exec-hero__h1{font-size:32px}.exec-hero__sub{font-size:16px}.fit-grid{grid-template-columns:1fr}.included-grid{grid-template-columns:1fr}.results__grid{grid-template-columns:1fr 1fr}.about__layout{grid-template-columns:1fr;text-align:center}.about__photo{display:flex;justify-content:center}.about__links{justify-content:center}.sec-title{font-size:28px}.btn{padding:12px 20px;font-size:14px}.cta__actions{flex-direction:column;align-items:center}.timeline__item{gap:16px}}
-@media(max-width:480px){.results__grid{grid-template-columns:1fr}.container{padding:0 16px}.exec-hero__h1{font-size:28px}.faq__q h3{font-size:15px}}
+@media(max-width:768px){.exec-hero__grid{grid-template-columns:1fr}.exec-hero__visual{display:none}.exec-hero__h1{font-size:32px}.exec-hero__sub{font-size:16px}.exec-hero .section-inner{padding-bottom:48px!important}.sec-title{font-size:26px;margin-bottom:24px}.pull-quote p{font-size:17px}.exec-entity__text{font-size:16px}.exec-brand__p{font-size:15px}.timeline__title{font-size:19px}.timeline__item{gap:16px}.timeline__content{padding-bottom:28px}.fit-grid{grid-template-columns:1fr}.fit-card{padding:28px 20px}.included-grid{grid-template-columns:1fr;gap:28px}.results__grid{grid-template-columns:1fr 1fr}.about__layout{grid-template-columns:1fr;text-align:center}.about__photo{display:flex;justify-content:center}.about__content{text-align:center}.about__links{justify-content:center}.btn{padding:12px 20px;font-size:14px}.cta__actions{flex-direction:column;align-items:center}.ba-card__dm{display:none}.better-toasts{right:12px;left:12px;bottom:16px;max-width:none}.lang-float{top:12px;right:12px}}
+@media(max-width:480px){.results__grid{grid-template-columns:1fr}.container{padding:0 16px}.exec-hero__h1{font-size:28px}.faq__q h3{font-size:15px}.fit-card{padding:24px 16px}.sec-title{font-size:24px}}
     `
     document.head.appendChild(s)
   }, [])
@@ -641,10 +641,10 @@ function HPNav() {
         )}
 
         {!isMobile && (
-          <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: "var(--purple)", color: "#fff", textDecoration: "none", fontFamily }}>
+          <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: "var(--purple)", color: "#fff", textDecoration: "none", fontFamily, border: "none", cursor: "pointer" }}>
             Book a Call
-          </a>
+          </button>
         )}
 
         {isMobile && (
@@ -690,10 +690,10 @@ function HPNav() {
             </a>
           ))}
           <div style={{ marginTop: 14 }}>
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-              style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: "var(--purple)", color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily }}>
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+              style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: "var(--purple)", color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily, border: "none", cursor: "pointer", width: "100%" }}>
               Book a Free Call
-            </a>
+            </button>
           </div>
         </div>
       )}
@@ -928,10 +928,10 @@ function ExecHero() {
             <Reveal delay={150}><h1 className="exec-hero__h1">{t(EX.hero.h1)}</h1></Reveal>
             <Reveal delay={300}><p className="exec-hero__sub">{t(EX.hero.sub)}</p></Reveal>
             <Reveal delay={450}>
-              <a href="https://calendar.notion.so/meet/octaloom/discovery" className="btn btn--lime" target="_blank" rel="noopener noreferrer">
+              <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))} className="btn btn--lime">
                 {t(EX.hero.cta)}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </a>
+              </button>
             </Reveal>
           </div>
           <div className="exec-hero__visual">
@@ -1327,10 +1327,10 @@ function ExecCTA() {
           <h2 className="cta__title">{t(EX.cta.title)}</h2>
           <p className="cta__sub">{t(EX.cta.sub)}</p>
           <div className="cta__actions">
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" className="btn btn--purple" target="_blank" rel="noopener noreferrer">
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))} className="btn btn--purple">
               {t(EX.cta.cta1)}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </a>
+            </button>
           </div>
           <p className="cta__note">{t(EX.cta.note)}</p>
         </Reveal>
