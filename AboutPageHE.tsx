@@ -864,15 +864,19 @@ function PersonalSection({ isMobile }: { isMobile: boolean }) {
               </p>
             </Reveal>
           </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignContent: "flex-start" }}>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
+            gap: isMobile ? 10 : 12,
+            alignContent: "flex-start",
+          }}>
             {traits.map((t, i) => (
-              <Reveal key={i} delay={i * 80} from="scale">
+              <Reveal key={i} delay={i * 80} from="scale" style={{ height: "100%" }}>
                 <div style={{
                   display: "flex", flexDirection: "column", gap: 4,
-                  padding: "18px 22px", borderRadius: 20,
+                  padding: isMobile ? "16px 18px" : "18px 22px", borderRadius: 20,
                   background: t.bg, border: t.border,
-                  minWidth: isMobile ? 130 : 148,
-                  flex: "1 0 auto",
+                  height: "100%",
                   boxShadow: "0 2px 12px rgba(32,30,75,0.07)",
                 }}>
                   <span style={{ fontSize: 26, lineHeight: 1 }}>{t.icon}</span>

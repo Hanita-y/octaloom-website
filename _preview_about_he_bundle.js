@@ -33917,16 +33917,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         }, children: "\u05E2\u05D5\u05D3 \u05E7\u05E6\u05EA \u05E2\u05DC\u05D9\u05D9" }) }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Reveal, { delay: 100, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { fontSize: isMobile ? 16 : 18, lineHeight: 1.85, color: C.textDim, fontFamily: FF }, children: "\u05D1\u05EA \u05D0\u05D3\u05DD \u05E9\u05DE\u05EA\u05E8\u05D2\u05E9\u05EA \u05D1\u05D0\u05D5\u05EA\u05D4 \u05DE\u05D9\u05D3\u05D4 \u05DE-workflow \u05DE\u05D3\u05D5\u05D9\u05E7 \u05D5\u05DE\u05DE\u05DE\u05E1\u05E2\u05D3\u05EA vegan fine dining \u05D7\u05D3\u05E9\u05D4 \u05D1\u05DB\u05DC \u05E2\u05D9\u05E8 \u05E9\u05D0\u05E0\u05D9 \u05DE\u05D2\u05D9\u05E2\u05D4 \u05D0\u05DC\u05D9\u05D4. \u05D0\u05DE\u05D0 \u05E9\u05DC \u05E7\u05D0\u05E8\u05D4, \u05DB\u05E0\u05E2\u05E0\u05D9\u05EA \u05D7\u05E8\u05D3\u05EA\u05D9\u05EA \u05E2\u05DD \u05D3\u05E2\u05D5\u05EA \u05D7\u05D6\u05E7\u05D5\u05EA \u05DC\u05D2\u05D1\u05D9 \u05E9\u05E2\u05D5\u05EA \u05D4\u05E2\u05D1\u05D5\u05D3\u05D4 \u05E9\u05DC\u05D9. \u05E1\u05E0\u05D5\u05D1\u05D9\u05EA \u05E7\u05E4\u05D4, \u05D8\u05D1\u05E2\u05D5\u05E0\u05D9\u05EA \u05DB\u05D1\u05E8 13 \u05D5\u05D7\u05E6\u05D9 \u05E9\u05E0\u05D9\u05DD. \u05D1\u05E2\u05DC\u05EA \u05DE\u05D5\u05D7 ADHD \u05E2\u05DD \u05DE\u05D5\u05E1\u05E8 \u05E2\u05D1\u05D5\u05D3\u05D4 \u05E1\u05D5\u05D1\u05D9\u05D9\u05D8\u05D9, \u05E9\u05D6\u05D4 \u05D1\u05E2\u05E6\u05DD \u05D4\u05D9\u05EA\u05E8\u05D5\u05DF \u05D4\u05DC\u05D0 \u05D4\u05D5\u05D2\u05DF \u05E9\u05DC\u05D0 \u05D9\u05D3\u05E2\u05EA\u05DD \u05E9\u05D0\u05EA\u05DD \u05DE\u05E7\u05D1\u05DC\u05D9\u05DD." }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { display: "flex", flexWrap: "wrap", gap: 12, alignContent: "flex-start" }, children: traits.map((t, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Reveal, { delay: i * 80, from: "scale", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: {
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: {
+        display: "grid",
+        gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
+        gap: isMobile ? 10 : 12,
+        alignContent: "flex-start"
+      }, children: traits.map((t, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Reveal, { delay: i * 80, from: "scale", style: { height: "100%" }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: {
         display: "flex",
         flexDirection: "column",
         gap: 4,
-        padding: "18px 22px",
+        padding: isMobile ? "16px 18px" : "18px 22px",
         borderRadius: 20,
         background: t.bg,
         border: t.border,
-        minWidth: isMobile ? 130 : 148,
-        flex: "1 0 auto",
+        height: "100%",
         boxShadow: "0 2px 12px rgba(32,30,75,0.07)"
       }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { style: { fontSize: 26, lineHeight: 1 }, children: t.icon }),
