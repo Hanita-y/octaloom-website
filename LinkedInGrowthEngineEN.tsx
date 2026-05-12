@@ -478,10 +478,10 @@ function Navbar() {
         )}
 
         {!isMobile && (
-          <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: PURPLE, color: "#fff", textDecoration: "none", fontFamily: FONT }}>
+          <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: PURPLE, color: "#fff", textDecoration: "none", fontFamily: FONT, border: "none", cursor: "pointer" }}>
             Book a Call
-          </a>
+          </button>
         )}
 
         {isMobile && (
@@ -527,10 +527,10 @@ function Navbar() {
             </a>
           ))}
           <div style={{ marginTop: 14 }}>
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-              style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: PURPLE, color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily: FONT }}>
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+              style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: PURPLE, color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily: FONT, border: "none", cursor: "pointer", width: "100%" }}>
               Book a Free Call
-            </a>
+            </button>
           </div>
         </div>
       )}
@@ -571,7 +571,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
           </Reveal>
           <Reveal delay={240}>
             <div style={{ display: "flex", gap: 11, flexWrap: "wrap", marginBottom: 18 }}>
-              <Btn variant="primary" href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank">
+              <Btn variant="primary" onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}>
                 {hero.cta1} <ArrowRight/>
               </Btn>
               <Btn variant="outline" onClick={onQuiz}>{hero.cta2}</Btn>
@@ -1054,7 +1054,7 @@ function BottomCTA({ onQuiz }: { onQuiz: () => void }) {
           {ctaData.sub}
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: isMobile ? "stretch" : "center", flexWrap: "wrap", marginBottom: 18, flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "stretch" : undefined }}>
-          <Btn variant="purple" href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" style={isMobile ? { width: "100%", justifyContent: "center" } : {}}>
+          <Btn variant="purple" onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))} style={isMobile ? { width: "100%", justifyContent: "center" } : {}}>
             {ctaData.cta1} <ArrowRight/>
           </Btn>
           <Btn variant="outline-dark" onClick={onQuiz} style={isMobile ? { width: "100%", justifyContent: "center" } : {}}>{ctaData.cta2}</Btn>
