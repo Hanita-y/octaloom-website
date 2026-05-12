@@ -489,78 +489,165 @@ const SOLO = {
 
 // ── Navbar (from LinkedInGrowthEngineHE.tsx — pill style, RTL) ────────────────
 function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const w = useWindowWidth();
-  const isMobile = w < 768;
+  const dir = 'rtl';
+  const fontFamily = FONT;
+  const [scrolled, setScrolled] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [servicesOpen, setServicesOpen] = React.useState(false);
+  const [linkedinOpen, setLinkedinOpen] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+  const closeTimerRef = React.useRef(null);
+  const liCloseTimerRef = React.useRef(null);
 
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 30);
-    window.addEventListener('scroll', fn, { passive: true });
-    return () => window.removeEventListener('scroll', fn);
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onResize = () => { setIsMobile(window.innerWidth < 768); if (window.innerWidth >= 768) setMenuOpen(false); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onResize); };
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.body.style.overflow = (isMobile && menuOpen) ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen, isMobile]);
 
+  const linkedinSub = [
+    { label: 'LinkedIn לארגונים', href: '/linkedin-for-organizations' },
+    { label: 'LinkedIn למנהלים', href: '/linkedin-for-executives' },
+    { label: 'LinkedIn לעצמאים', href: '/linkedin-for-solopreneurs' },
+  ];
+  const otherServices = [
+    { label: 'CMO במיקור חוץ', href: '/fractional-cmo' },
+    { label: 'כלי AI וסוכנים', href: '/ai-tools-agents' },
+    { label: 'סדנאות', href: '/workshops' },
+  ];
   const navLinks = [
-    { label: 'שירותים', href: '#vnav-services' },
-    { label: 'אודות',    href: 'https://octaloom.com/about-he' },
-    { label: 'בלוג',      href: 'https://octaloom.com/blog'     },
-    { label: 'OctaGoodies',  href: '/octagoodies'                   },
+    { label: 'אודות', href: '/about' },
+    { label: 'בלוג', href: '/blog' },
+    { label: 'צרו קשר', href: '#contact' },
+    { label: 'Goodies', href: 'https://octagoodies.com' },
   ];
 
   const navStyle = {
-    position: 'fixed', top: 16, left: '50%', transform: 'translateX(-50%)', zIndex: 1000,
-    width: 'calc(100% - 48px)', maxWidth: 1152, borderRadius: 100,
-    background: scrolled ? 'rgba(236,233,231,0.88)' : 'rgba(236,233,231,0.6)',
-    backdropFilter: 'blur(50px)', WebkitBackdropFilter: 'blur(50px)',
-    border: '1px solid rgba(32,30,75,0.08)', padding: '10px 20px',
-    display: 'flex', alignItems: 'center', justifyContent: 'space-between', direction: 'rtl',
-    fontFamily: FONT, transition: 'background 0.3s, box-shadow 0.3s',
-    boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.08)' : 'none',
+    position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+    padding: scrolled ? '10px 0' : '16px 0',
+    transition: 'all 0.4s',
+    background: scrolled ? 'rgba(236,233,231,0.88)' : 'var(--cream)',
+    backdropFilter: scrolled ? 'blur(24px) saturate(1.3)' : 'none',
+    WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(1.3)' : 'none',
+    borderBottom: scrolled ? '1px solid rgba(113,46,172,0.1)' : '1px solid rgba(113,46,172,0.06)',
+    boxShadow: scrolled ? '0 1px 24px rgba(32,30,75,0.07)' : '0 1px 0 rgba(0,0,0,0.04)',
+  };
+  const dropBase = {
+    position: 'absolute', minWidth: 240, background: '#fff', borderRadius: 12,
+    boxShadow: '0 8px 40px rgba(113,46,172,0.15), 0 2px 8px rgba(0,0,0,0.06)',
+    border: '1px solid rgba(113,46,172,0.08)', zIndex: 200, padding: '8px 0',
+  };
+  const dropItemStyle = {
+    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+    padding: '10px 18px', fontSize: 14, color: 'var(--deep-purple)',
+    textDecoration: 'none', gap: 8, background: 'transparent', transition: 'background 0.15s',
+    direction: 'rtl', textAlign: 'right', fontFamily,
   };
 
-  const linkStyle = { fontSize: 14, color: 'rgba(32,30,75,0.55)', textDecoration: 'none', transition: 'color 0.25s', fontFamily: FONT };
-
   return (
-    <nav style={navStyle}>
-      <a href="https://octaloom.com" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-        <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
-          alt="OctaLoom" style={{ height: 36, width: 'auto', display: 'block' }}
-          onError={(e) => { e.target.style.display = 'none'; }}/>
-      </a>
+    <nav style={isMobile && menuOpen
+      ? { ...navStyle, bottom: 0, background: 'var(--cream)', overflowY: 'auto', display: 'flex', flexDirection: 'column', padding: 0 }
+      : navStyle}>
+      <div style={{
+        maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px,4vw,48px)',
+        display: 'grid', gridTemplateColumns: 'auto 1fr auto', alignItems: 'center', gap: 16,
+        direction: dir, position: 'relative', zIndex: 101,
+        ...(isMobile && menuOpen ? { paddingTop: 14, paddingBottom: 14, borderBottom: '1px solid rgba(113,46,172,0.1)' } : {}),
+      }}>
+        <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
+            alt="OctaLoom" style={{ height: 36, width: 'auto', display: 'block' }}
+            onError={(e) => { e.target.style.display = 'none'; }} />
+        </a>
 
-      {!isMobile && (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 28, direction: 'rtl' }}>
-          {navLinks.map((item, i) => (
-            <a key={i} href={item.href} style={linkStyle}
-              onMouseEnter={(e) => e.currentTarget.style.color = DEEP_PURPLE}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(32,30,75,0.55)'}>
-              {item.label}
-            </a>
-          ))}
-        </div>
-      )}
-
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center', direction: 'ltr' }}>
         {!isMobile && (
-          <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-            style={{ padding: '8px 20px', borderRadius: 100, background: PURPLE, color: '#fff', fontSize: 13, fontWeight: 600, fontFamily: FONT, textDecoration: 'none' }}>
-            בואו נדבר
-          </a>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 28, direction: dir }}>
+            <div style={{ position: 'relative' }}
+              onMouseEnter={() => { if (closeTimerRef.current) clearTimeout(closeTimerRef.current); setServicesOpen(true); }}
+              onMouseLeave={() => { closeTimerRef.current = setTimeout(() => { setServicesOpen(false); setLinkedinOpen(false); }, 200); }}>
+              <button style={{
+                background: 'none', border: 'none', cursor: 'pointer', fontSize: 14,
+                color: servicesOpen ? 'var(--deep-purple)' : 'rgba(32,30,75,0.55)',
+                display: 'flex', alignItems: 'center', gap: 5, padding: '6px 0',
+                transition: 'color 0.25s', fontFamily, direction: dir,
+              }}>
+                שירותים
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"
+                  style={{ transition: 'transform 0.25s', transform: servicesOpen ? 'rotate(180deg)' : 'none' }}>
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {servicesOpen && (
+                <div style={{ ...dropBase, top: 'calc(100% + 10px)', right: 0 }}>
+                  <div style={{ position: 'relative' }}
+                    onMouseEnter={() => { if (liCloseTimerRef.current) clearTimeout(liCloseTimerRef.current); setLinkedinOpen(true); }}
+                    onMouseLeave={() => { liCloseTimerRef.current = setTimeout(() => setLinkedinOpen(false), 150); }}>
+                    <a href="/linkedin-growth-engine-he" style={{ ...dropItemStyle, flexDirection: 'row-reverse' }}
+                      onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
+                      onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
+                      <span>מנוע צמיחה LinkedIn</span>
+                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ opacity: 0.45, flexShrink: 0, transform: 'scaleX(-1)' }}>
+                        <path d="M4 2l4 4-4 4" stroke="var(--deep-purple)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
+                    {linkedinOpen && (
+                      <div style={{ ...dropBase, top: 0, right: 'calc(100% + 6px)' }}>
+                        {linkedinSub.map((sub, i) => (
+                          <a key={i} href={sub.href} style={{ ...dropItemStyle, justifyContent: 'flex-start' }}
+                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
+                            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
+                            {sub.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  {otherServices.map((svc, i) => (
+                    <a key={i} href={svc.href} style={{ ...dropItemStyle, justifyContent: 'flex-start' }}
+                      onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
+                      onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
+                      {svc.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+            {navLinks.map((item, i) => (
+              <a key={i} href={item.href}
+                style={{ fontSize: 14, color: 'rgba(32,30,75,0.55)', textDecoration: 'none', transition: 'color 0.25s', fontFamily }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--deep-purple)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(32,30,75,0.55)'}>
+                {item.label}
+              </a>
+            ))}
+          </div>
         )}
+
+        {!isMobile && (
+          <button onClick={() => window.open('https://calendar.notion.so/meet/octaloom/discovery', '_blank')}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 20px', borderRadius: 100, fontSize: 13, fontWeight: 600, background: 'var(--purple)', color: '#fff', fontFamily, border: 'none', cursor: 'pointer' }}>
+            בואו נדבר
+          </button>
+        )}
+
         {isMobile && (
           <button onClick={() => setMenuOpen(!menuOpen)} aria-label="תפריט"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            style={{ background: 'none', border: 'none', cursor: 'pointer', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', gridColumn: '3' }}>
             <span style={{ position: 'relative', display: 'block', width: 28, height: 20 }}>
               {[0, 9, 18].map((top, i) => (
-                <span key={i} style={{ position: 'absolute', left: 0, width: '100%', height: 2,
-                  background: DEEP_PURPLE, borderRadius: 2, top,
-                  transform: menuOpen && i===0 ? 'rotate(45deg) translateY(9px)' : menuOpen && i===1 ? 'scaleX(0)' : menuOpen && i===2 ? 'rotate(-45deg) translateY(-9px)' : 'none',
-                  opacity: menuOpen && i===1 ? 0 : 1, transition: 'all 0.3s' }}/>
+                <span key={i} style={{
+                  position: 'absolute', left: 0, width: '100%', height: 2,
+                  background: 'var(--deep-purple)', borderRadius: 2, top,
+                  transform: menuOpen && i === 0 ? 'rotate(45deg) translateY(9px)' : menuOpen && i === 1 ? 'scaleX(0)' : menuOpen && i === 2 ? 'rotate(-45deg) translateY(-9px)' : 'none',
+                  opacity: menuOpen && i === 1 ? 0 : 1, transition: 'all 0.3s',
+                }} />
               ))}
             </span>
           </button>
@@ -568,18 +655,35 @@ function Navbar() {
       </div>
 
       {isMobile && menuOpen && (
-        <div style={{ position: 'absolute', top: 'calc(100% + 8px)', right: 0, left: 0, background: '#fff', borderRadius: 16, padding: '20px 32px 32px', boxShadow: '0 8px 32px rgba(0,0,0,0.12)', direction: 'rtl', zIndex: 50, maxHeight: 'calc(100vh - 100px)', overflowY: 'auto' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '20px 32px 40px', gap: 0, direction: dir }}>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--purple)', margin: '0 0 4px', fontFamily }}>שירותים</p>
+          <a href="/linkedin-growth-engine-he" onClick={() => setMenuOpen(false)}
+            style={{ display: 'block', fontSize: 20, color: 'var(--deep-purple)', textDecoration: 'none', padding: '11px 0', fontWeight: 600, borderBottom: '1px solid rgba(113,46,172,0.08)', fontFamily }}>
+            מנוע צמיחה LinkedIn
+          </a>
+          {linkedinSub.map((sub, i) => (
+            <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
+              style={{ display: 'block', fontSize: 15, color: 'var(--purple)', textDecoration: 'none', padding: '7px 0 7px 20px', borderBottom: '1px solid rgba(113,46,172,0.05)', fontFamily }}>
+              {sub.label}
+            </a>
+          ))}
+          {otherServices.map((svc, i) => (
+            <a key={i} href={svc.href} onClick={() => setMenuOpen(false)}
+              style={{ display: 'block', fontSize: 20, color: 'var(--deep-purple)', textDecoration: 'none', padding: '11px 0', fontWeight: 600, borderBottom: '1px solid rgba(113,46,172,0.08)', fontFamily }}>
+              {svc.label}
+            </a>
+          ))}
           {navLinks.map((item, i) => (
             <a key={i} href={item.href} onClick={() => setMenuOpen(false)}
-              style={{ display: 'block', fontSize: 20, color: DEEP_PURPLE, textDecoration: 'none', padding: '11px 0', fontWeight: 500, borderBottom: i < navLinks.length - 1 ? '1px solid rgba(113,46,172,0.08)' : 'none', fontFamily: FONT }}>
+              style={{ display: 'block', fontSize: 20, color: 'var(--deep-purple)', textDecoration: 'none', padding: '11px 0', fontWeight: 500, borderBottom: '1px solid rgba(113,46,172,0.08)', fontFamily }}>
               {item.label}
             </a>
           ))}
           <div style={{ marginTop: 14 }}>
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-              style={{ display: 'block', textAlign: 'center', padding: '14px 24px', fontSize: 15, fontWeight: 600, background: PURPLE, color: '#fff', borderRadius: 100, textDecoration: 'none', fontFamily: FONT }}>
-              קבעו שיחה
-            </a>
+            <button onClick={() => window.open('https://calendar.notion.so/meet/octaloom/discovery', '_blank')}
+              style={{ display: 'block', textAlign: 'center', padding: '14px 24px', fontSize: 15, fontWeight: 600, background: 'var(--purple)', color: '#fff', borderRadius: 100, fontFamily, border: 'none', cursor: 'pointer', width: '100%' }}>
+              קביעת שיחה חינם
+            </button>
           </div>
         </div>
       )}
@@ -587,7 +691,7 @@ function Navbar() {
   );
 }
 
-// ── Footer (from LinkedInGrowthEngineHE.tsx) ─────────────────────────────────
+
 function Footer() {
   const w = useWindowWidth();
   const isMobile = w < 768;
@@ -701,7 +805,7 @@ function SoloHero() {
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
   return (
-    <ColorSection bg="var(--purple)" className="solo-hero">
+    <ColorSection bg="var(--purple)" className="solo-hero" id="solo-hero">
       <div className="container">
         <div className="solo-hero__grid">
           <div className="solo-hero__text">
@@ -798,7 +902,7 @@ function SoloWhatItMeans() {
   ];
   const items = t(SOLO.whatItMeans.items);
   return (
-    <ColorSection bg="var(--cream)" className="solo-what">
+    <ColorSection bg="var(--cream)" className="solo-what" id="solo-what">
       <div className="container">
         <Reveal className="rv--blur"><h2 className="sec-title sec-title--dark">{t(SOLO.whatItMeans.title)}</h2></Reveal>
         <Reveal delay={80}><p className="solo-what__intro">{t(SOLO.whatItMeans.intro)}</p></Reveal>
@@ -846,7 +950,7 @@ function SoloWhatItMeans() {
 
 function SoloTiers() {
   return (
-    <ColorSection bg="var(--deep-purple)" className="solo-tiers">
+    <ColorSection bg="var(--deep-purple)" className="solo-tiers" id="solo-tiers">
       <div className="container">
         <Reveal className="rv--blur"><h2 className="sec-title sec-title--light">{t(SOLO.tiers.title)}</h2></Reveal>
         <div className="tiers-grid">
@@ -874,7 +978,7 @@ function SoloTiers() {
 
 function SoloFit() {
   return (
-    <ColorSection bg="var(--cream)" className="solo-fit">
+    <ColorSection bg="var(--cream)" className="solo-fit" id="solo-fit">
       <div className="container">
         <Reveal className="rv--blur"><h2 className="sec-title sec-title--dark">{t(SOLO.fit.title)}</h2></Reveal>
         <div className="fit-grid">
@@ -898,7 +1002,7 @@ function SoloFit() {
 
 function SoloCourseVsService() {
   return (
-    <ColorSection bg="var(--purple)" className="solo-compare">
+    <ColorSection bg="var(--purple)" className="solo-compare" id="solo-compare">
       <div className="container">
         <Reveal className="rv--blur"><h2 className="sec-title sec-title--light">{t(SOLO.courseVsService.title)}</h2></Reveal>
         <div className="compare-grid">
@@ -934,7 +1038,7 @@ function SoloCourseVsService() {
 
 function SoloResults() {
   return (
-    <ColorSection bg="var(--cream)" className="solo-results">
+    <ColorSection bg="var(--cream)" className="solo-results" id="solo-results">
       <div className="container">
         <Reveal className="rv--blur"><h2 className="sec-title sec-title--dark">{t(SOLO.results.title)}</h2></Reveal>
         <Reveal delay={80}><p className="sec-sub--dark">{t(SOLO.results.sub)}</p></Reveal>
@@ -985,7 +1089,7 @@ function SoloTestimonial() {
 
 function SoloLinkedInScore() {
   return (
-    <ColorSection bg="var(--lime)" className="solo-score">
+    <ColorSection bg="var(--lime)" className="solo-score" id="solo-score">
       <div className="container">
         <Reveal className="rv--scale">
           <div className="score-card">
@@ -1005,7 +1109,7 @@ function SoloLinkedInScore() {
 
 function SoloAbout() {
   return (
-    <ColorSection bg="var(--cream)" className="about">
+    <ColorSection bg="var(--cream)" className="about" id="solo-about">
       <div className="container">
         <div className="about__layout">
           <Reveal className="rv--right">
@@ -1075,81 +1179,80 @@ function SoloCTA() {
 // ============ APP ============
 
 function VerticalNav() {
-  const [active, setActive] = React.useState(0);
-  const [hovered, setHovered] = React.useState(-1);
-  const w = useWindowWidth();
-  const isMobile = w < 768;
+  const DARK_SECTIONS = new Set(['solo-hero', 'solo-tiers', 'solo-compare']);
+  const [active, setActive] = React.useState('solo-hero');
+  const onDark = DARK_SECTIONS.has(active);
 
   const sections = [
-    { id: 'vnav-hero',     label: 'התחלה'         },
-    { id: 'vnav-services', label: 'חבילות'   },
-    { id: 'vnav-fit',      label: 'זה בשבילי?' },
-    { id: 'vnav-compare',  label: 'מול קורסים' },
-    { id: 'vnav-results',  label: 'תוצאות'   },
-    { id: 'vnav-score',    label: 'ציון'               },
-    { id: 'vnav-about',    label: 'אודות'         },
-    { id: 'vnav-faq',      label: 'שאלות'         },
+    { id: 'solo-hero',    label: 'פתיחה'       },
+    { id: 'solo-what',    label: 'התהליך'  },
+    { id: 'solo-tiers',   label: 'חבילות' },
+    { id: 'solo-fit',     label: 'זה בשבילי?' },
+    { id: 'solo-compare', label: 'מול קורסים' },
+    { id: 'solo-results', label: 'תוצאות' },
+    { id: 'solo-score',   label: 'ציון LinkedIn'    },
+    { id: 'solo-about',   label: 'אודות'       },
+    { id: 'faq',          label: 'שאלות'       },
+    { id: 'contact',      label: 'לתיאום שיחה' },
   ];
 
   React.useEffect(() => {
-    const obs = [];
-    sections.forEach((s, i) => {
-      const el = document.getElementById(s.id);
+    const observers = [];
+    sections.forEach(({ id }) => {
+      const el = document.getElementById(id);
       if (!el) return;
-      const o = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActive(i); },
-        { rootMargin: '-20% 0px -65% 0px' }
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActive(id); },
+        { threshold: 0.3 }
       );
-      o.observe(el);
-      obs.push({ o, el });
+      obs.observe(el);
+      observers.push(obs);
     });
-    return () => obs.forEach(({ o, el }) => o.unobserve(el));
+    return () => observers.forEach(o => o.disconnect());
   }, []);
 
-  if (isMobile) return null;
-
-  const scrollTo = (id, i) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setActive(i);
-  };
+  const dotActive   = onDark ? 'rgba(255,255,255,0.95)' : 'var(--purple)';
+  const dotInactive = onDark ? 'rgba(255,255,255,0.3)'  : 'rgba(32,30,75,0.2)';
+  const labelColor  = onDark ? 'rgba(255,255,255,0.9)'  : 'var(--purple)';
+  const shadow      = onDark ? '0 0 0 3px rgba(255,255,255,0.2)' : '0 0 0 3px rgba(113,46,172,0.2)';
 
   return (
-    <nav style={{
-      position: 'fixed', left: 20, top: '50%', transform: 'translateY(-50%)',
-      zIndex: 500, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4,
-      direction: 'rtl',
+    <div style={{
+      position: 'fixed', top: '50%', transform: 'translateY(-50%)',
+      right: 16, zIndex: 90,
+      display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end',
+      transition: 'color 0.4s',
     }}>
-      {sections.map((s, i) => {
-        const isActive = active === i;
-        const isHov = hovered === i;
-        const showLabel = isActive || isHov;
+      {sections.map(s => {
+        const isActive = active === s.id;
         return (
-          <div key={s.id}
-            onClick={() => scrollTo(s.id, i)}
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(-1)}
-            style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: 8, cursor: 'pointer', padding: '4px 0' }}>
+          <a key={s.id}
+            onClick={(e) => { e.preventDefault(); document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' }); }}
+            href={'#' + s.id}
+            title={s.label}
+            style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', textDecoration: 'none', flexDirection: 'row-reverse' }}>
             <div style={{
-              width: isActive ? 9 : 5, height: isActive ? 9 : 5, borderRadius: '50%', flexShrink: 0,
-              background: isActive ? PURPLE : isHov ? 'rgba(113,46,172,0.35)' : 'rgba(32,30,75,0.18)',
-              transition: 'all 0.25s ease',
-              boxShadow: isActive ? '0 0 0 3px rgba(113,46,172,0.15)' : 'none',
+              width: isActive ? 9 : 5, height: isActive ? 9 : 5,
+              borderRadius: '50%', flexShrink: 0,
+              background: isActive ? dotActive : dotInactive,
+              transition: 'all 0.25s',
+              boxShadow: isActive ? shadow : 'none',
             }} />
             <span style={{
-              fontSize: 11, fontFamily: FONT, letterSpacing: '0.02em',
-              color: isActive ? PURPLE : 'rgba(32,30,75,0.5)',
-              fontWeight: isActive ? 600 : 400,
-              transition: 'opacity 0.25s, transform 0.25s, color 0.25s',
-              opacity: showLabel ? 1 : 0,
-              transform: showLabel ? 'translateX(0)' : 'translateX(-6px)',
-              whiteSpace: 'nowrap', userSelect: 'none', pointerEvents: 'none',
-            }}>{s.label}</span>
-          </div>
+              fontSize: 11, fontWeight: 600, color: labelColor,
+              fontFamily: FONT,
+              transition: 'opacity 0.25s', whiteSpace: 'nowrap',
+              opacity: isActive ? 1 : 0, pointerEvents: 'none',
+            }}>
+              {s.label}
+            </span>
+          </a>
         );
       })}
-    </nav>
+    </div>
   );
 }
+
 
 function App() {
   useEffect(() => {
@@ -1163,17 +1266,17 @@ function App() {
       <div dir="rtl">
         <Navbar />
         <VerticalNav />
-        <div id="vnav-hero"><SoloHero /></div>
+        <SoloHero />
         <SoloEntity />
         <SoloWhatItMeans />
-        <div id="vnav-services"><SoloTiers /></div>
-        <div id="vnav-fit"><SoloFit /></div>
-        <div id="vnav-compare"><SoloCourseVsService /></div>
-        <div id="vnav-results"><SoloResults /></div>
+        <SoloTiers />
+        <SoloFit />
+        <SoloCourseVsService />
+        <SoloResults />
         <SoloTestimonial />
-        <div id="vnav-score"><SoloLinkedInScore /></div>
-        <div id="vnav-about"><SoloAbout /></div>
-        <div id="vnav-faq"><SoloFAQ /></div>
+        <SoloLinkedInScore />
+        <SoloAbout />
+        <SoloFAQ />
         <SoloCTA />
         <Footer />
       </div>
