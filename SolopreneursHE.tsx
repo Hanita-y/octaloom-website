@@ -1,5 +1,6 @@
 // @framerSupportedLayoutWidth any
 // @framerSupportedLayoutHeight any
+// @ts-nocheck
 
 import * as React from "react"
 const { useState, useEffect, useRef, useContext, createContext } = React
