@@ -1072,6 +1072,75 @@ function QuizModal({ onClose }: { onClose: () => void }) {
 }
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
+// ─── Custom Cursor ────────────────────────────────────────────────────────────
+function CustomCursor() {
+  const dotRef = useRef<HTMLDivElement>(null)
+  const ringRef = useRef<HTMLDivElement>(null)
+  const pos = useRef({ x: -100, y: -100 })
+  const ringPos = useRef({ x: -100, y: -100 })
+  const raf = useRef<number>()
+  const st = useRef({ hover: false, click: false })
+  const w = useWindowWidth()
+
+  useEffect(() => {
+    if (w < 768) return
+    const style = document.createElement("style")
+    style.textContent = "@media (pointer: fine) { * { cursor: none !important; } }"
+    document.head.appendChild(style)
+    const dot = dotRef.current
+    const ring = ringRef.current
+    if (!dot || !ring) return
+    const setDot = () => {
+      dot.style.width = st.current.hover ? "5px" : "8px"
+      dot.style.height = st.current.hover ? "5px" : "8px"
+      dot.style.background = st.current.hover ? LIME : PURPLE
+    }
+    const setRing = () => {
+      const { hover, click } = st.current
+      if (click) { ring.style.width = "28px"; ring.style.height = "28px"; ring.style.borderColor = LIME }
+      else if (hover) { ring.style.width = "54px"; ring.style.height = "54px"; ring.style.borderColor = PURPLE }
+      else { ring.style.width = "38px"; ring.style.height = "38px"; ring.style.borderColor = "rgba(113,46,172,.45)" }
+    }
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+    const tick = () => {
+      dot.style.left = pos.current.x + "px"; dot.style.top = pos.current.y + "px"
+      ringPos.current.x = lerp(ringPos.current.x, pos.current.x, 0.12)
+      ringPos.current.y = lerp(ringPos.current.y, pos.current.y, 0.12)
+      ring.style.left = ringPos.current.x + "px"; ring.style.top = ringPos.current.y + "px"
+      raf.current = requestAnimationFrame(tick)
+    }
+    const isBtn = (t: EventTarget | null) => t instanceof Element && !!t.closest("a,button,[role='button'],input,select,label")
+    const onMove = (e: MouseEvent) => { pos.current = { x: e.clientX, y: e.clientY } }
+    const onOver = (e: MouseEvent) => { if (isBtn(e.target)) { st.current.hover = true; setDot(); setRing() } }
+    const onOut  = (e: MouseEvent) => { if (isBtn(e.target) && !isBtn(e.relatedTarget)) { st.current.hover = false; setDot(); setRing() } }
+    const onDown = () => { st.current.click = true; setRing() }
+    const onUp   = () => { st.current.click = false; setRing() }
+    document.addEventListener("mousemove", onMove)
+    document.addEventListener("mouseover", onOver)
+    document.addEventListener("mouseout", onOut)
+    document.addEventListener("mousedown", onDown)
+    document.addEventListener("mouseup", onUp)
+    raf.current = requestAnimationFrame(tick)
+    return () => {
+      style.remove()
+      document.removeEventListener("mousemove", onMove)
+      document.removeEventListener("mouseover", onOver)
+      document.removeEventListener("mouseout", onOut)
+      document.removeEventListener("mousedown", onDown)
+      document.removeEventListener("mouseup", onUp)
+      cancelAnimationFrame(raf.current!)
+    }
+  }, [w])
+
+  if (w < 768) return null
+  return (
+    <>
+      <div ref={dotRef} style={{ position: "fixed", top: 0, left: -100, width: 8, height: 8, borderRadius: "50%", background: PURPLE, pointerEvents: "none", zIndex: 9999, transform: "translate(-50%,-50%)", transition: "width .15s, height .15s, background .15s" }}/>
+      <div ref={ringRef} style={{ position: "fixed", top: 0, left: -100, width: 38, height: 38, borderRadius: "50%", border: "1.5px solid rgba(113,46,172,.45)", pointerEvents: "none", zIndex: 9998, transform: "translate(-50%,-50%)", transition: "width .25s, height .25s, border-color .25s" }}/>
+    </>
+  )
+}
+
 // ─── Page Nav (vertical side dots) ───────────────────────────────────────────
 function PageNav() {
   const sections = [
@@ -1188,6 +1257,7 @@ export default function LinkedInGrowthEngineHE() {
       <FAQSection/>
       <BottomCTA onQuiz={() => setQuizOpen(true)}/>
       <Footer/>
+      <CustomCursor/>
       <PageNav/>
       <ClickReactions/>
       <AnimatePresence>
