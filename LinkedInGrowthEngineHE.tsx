@@ -425,7 +425,7 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
 function HeroSection({ onQuiz }: { onQuiz: () => void }) {
   const w = useWindowWidth()
   const isMobile = w < 768
-  const trustFiles = ["avatar1.jpeg", "avatar2.jpeg", "avatar3.jpeg", "avatar4.jpeg", "avatar5.jpeg"]
+  const trustFiles = ["avatar1..jpeg", "avatar2.jpeg", "avatar3.jpeg", "avatar4.jpeg", "avatar5.jpeg"]
   const FALLBACK_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='17' fill='%23712eac'/%3E%3C/svg%3E"
 
   return (
@@ -468,7 +468,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
                   {trustFiles.map((f, i) => (
                     <img key={i} src={`https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/${f}`}
                       alt="" loading="lazy" width={34} height={34}
-                      style={{ width: 34, height: 34, borderRadius: "50%", border: `2.5px solid ${CREAM}`, marginLeft: i === trustFiles.length - 1 ? 0 : -10, objectFit: "cover" }}
+                      style={{ width: 34, height: 34, borderRadius: "50%", border: `2.5px solid ${CREAM}`, marginLeft: i === 0 ? 0 : -10, objectFit: "cover" }}
                       onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = FALLBACK_SVG }}/>
                   ))}
                 </div>

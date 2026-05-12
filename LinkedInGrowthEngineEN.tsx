@@ -241,9 +241,11 @@ function SecSub({ children, light = false, style = {} }: { children: React.React
 function ColorSection({ bg, children, id, innerStyle = {} }: {
   bg?: string; children: React.ReactNode; id?: string; innerStyle?: React.CSSProperties
 }) {
+  const w = useWindowWidth()
+  const isMobile = w < 768
   return (
     <section style={{ background: bg || CREAM, position: "relative" }} id={id}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 32px", ...innerStyle }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: isMobile ? "40px 18px" : "80px 32px", ...innerStyle }}>
         {children}
       </div>
     </section>
@@ -533,7 +535,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
   const w = useWindowWidth()
   const isMobile = w < 768
 
-  const trustFiles = ["avatar1.jpeg","avatar2.jpeg","avatar3.jpeg","avatar4.jpeg","avatar5.jpeg"]
+  const trustFiles = ["avatar1..jpeg","avatar2.jpeg","avatar3.jpeg","avatar4.jpeg","avatar5.jpeg"]
 
   return (
     <ColorSection bg={CREAM} id="hero" innerStyle={{ paddingTop: isMobile ? 84 : 136, paddingBottom: isMobile ? 56 : 80 }}>
@@ -579,8 +581,9 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
               <div style={{ display: "flex", alignItems: "center" }}>
                 {trustFiles.map((f, i) => (
                   <img key={i} src={`https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/${f}`}
-                    alt="" loading="lazy"
-                    style={{ width: 34, height: 34, borderRadius: "50%", border: `2.5px solid ${CREAM}`, marginLeft: i===0 ? 0 : -10, objectFit: "cover" }}/>
+                    alt="" loading="lazy" width={34} height={34}
+                    style={{ width: 34, height: 34, borderRadius: "50%", border: `2.5px solid ${CREAM}`, marginLeft: i===0 ? 0 : -10, objectFit: "cover" }}
+                    onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='17' fill='%23712eac'/%3E%3C/svg%3E" }}/>
                 ))}
               </div>
               <span style={{ fontSize: 13, color: MUTED, maxWidth: 190, lineHeight: 1.4, fontFamily: FONT }}>{hero.trusted}</span>
@@ -615,6 +618,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
                 </div>
               </div>
             </div>
+            {!isMobile && (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 7 }}>
               {[{t:"Profile views",n:"4,892",g:"312%"},{t:"Search appear.",n:"1,247",g:"185%"},{t:"Inbound leads",n:"87",g:"420%"}].map((c,i) => (
                 <div key={i} style={{ background: "#f8f9fa", borderRadius: 10, padding: 10, border: "1px solid #e8ebed", display: "flex", flexDirection: "column", gap: 2 }}>
@@ -624,6 +628,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
                 </div>
               ))}
             </div>
+            )}
           </div>
         </div>
       </div>
@@ -754,7 +759,7 @@ function PathsSection() {
     <ColorSection bg={DEEP_PURPLE} id="services">
       <Reveal variant="blur"><SecTitle light>{pathsData.title}</SecTitle></Reveal>
       <Reveal delay={80}><SecSub light>{pathsData.sub}</SecSub></Reveal>
-      <div style={{ display: "grid", gridTemplateColumns: cols, gap: isMobile ? 16 : 22, marginTop: 48 }}>
+      <div style={{ display: "grid", gridTemplateColumns: cols, gap: isMobile ? 16 : 22, marginTop: isMobile ? 24 : 48 }}>
         {pathsData.cards.map((card, i) => (
           <Reveal key={i} delay={140+i*140}>
             <TiltCard>
@@ -804,7 +809,7 @@ function WhyOctaloomSection() {
     <ColorSection bg={CREAM} id="why-us">
       <Reveal><SecTitle>{whyOctaloomData.title}</SecTitle></Reveal>
       <Reveal delay={80}><SecSub style={{ marginBottom: 0 }}>{whyOctaloomData.intro}</SecSub></Reveal>
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2,1fr)", gap: 22, marginTop: 48 }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2,1fr)", gap: 22, marginTop: isMobile ? 24 : 48 }}>
         {whyOctaloomData.items.map((item, i) => (
           <Reveal key={i} delay={i*110} variant="left" style={{ height: "100%" }}>
             <GradientBorderCard>
@@ -833,15 +838,15 @@ function ResultsSection() {
     <ColorSection bg={CREAM} id="results">
       <Reveal><SecTitle>{resultsData.title}</SecTitle></Reveal>
       <Reveal delay={80}><SecSub style={{ marginBottom: 0 }}>{resultsData.sub}</SecSub></Reveal>
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4,1fr)", gap: isMobile ? 12 : 24, marginTop: 48 }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4,1fr)", gap: isMobile ? 10 : 24, marginTop: isMobile ? 28 : 48 }}>
         {resultsData.items.map((item, i) => (
           <Reveal key={i} delay={i*90} variant="scale">
             <motion.div whileHover={{ boxShadow: SHADOW_PURPLE, y: -3 }}
-              style={{ display: "flex", flexDirection: "column", gap: 9, padding: "24px 20px", background: "#fff", borderRadius: 20, border: `1px solid ${BORDER}`, textAlign: "center", transition: "box-shadow .2s" }}>
-              <span style={{ fontSize: "clamp(30px,3.5vw,46px)", fontWeight: 700, color: PURPLE, lineHeight: 1, fontFamily: FONT }}>
+              style={{ display: "flex", flexDirection: "column", gap: isMobile ? 6 : 9, padding: isMobile ? "16px 14px" : "24px 20px", background: "#fff", borderRadius: 20, border: `1px solid ${BORDER}`, textAlign: "center", transition: "box-shadow .2s" }}>
+              <span style={{ fontSize: isMobile ? "clamp(24px,6vw,36px)" : "clamp(30px,3.5vw,46px)", fontWeight: 700, color: PURPLE, lineHeight: 1, fontFamily: FONT }}>
                 <AnimatedNum value={item.num}/>
               </span>
-              <span style={{ fontSize: 13, lineHeight: 1.55, color: MUTED, fontFamily: FONT }}>{item.label}</span>
+              <span style={{ fontSize: isMobile ? 12 : 13, lineHeight: 1.55, color: MUTED, fontFamily: FONT }}>{item.label}</span>
             </motion.div>
           </Reveal>
         ))}
@@ -865,7 +870,7 @@ function TestimonialsSection() {
   return (
     <ColorSection bg={PURPLE} id="testimonials">
       <Reveal variant="blur"><SecTitle light>What Clients Say</SecTitle></Reveal>
-      <div style={{ display: "grid", gridTemplateColumns: cols, gap: isMobile ? 16 : 18, marginTop: 48 }}>
+      <div style={{ display: "grid", gridTemplateColumns: cols, gap: isMobile ? 16 : 18, marginTop: isMobile ? 24 : 48 }}>
         {testimonialsData.map((testi, i) => (
           <Reveal key={i} delay={i*130} style={{ height: "100%" }}>
             <div style={{ background: "#fff", borderRadius: 12, display: "flex", flexDirection: "column", boxShadow: "0 2px 12px rgba(0,0,0,.08)", height: "100%" }}>
@@ -955,7 +960,7 @@ function AboutSection() {
           <div style={{ position: isMobile ? "static" : "sticky", top: 96 }}>
             <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/HAN.png"
               alt="Hanita Yudovski"
-              style={{ width: "100%", borderRadius: "50%", aspectRatio: "1/1", objectFit: "cover", objectPosition: "top center", maxWidth: 340, margin: "0 auto", display: "block", boxShadow: "0 4px 20px rgba(0,0,0,.09)" }}
+              style={{ width: "100%", borderRadius: "50%", aspectRatio: "1/1", objectFit: "cover", objectPosition: "top center", maxWidth: isMobile ? 180 : 340, margin: "0 auto", display: "block", boxShadow: "0 4px 20px rgba(0,0,0,.09)" }}
               onError={(e: any) => { e.target.style.background = "linear-gradient(135deg,#712eac,#201e4b)"; e.target.src = "" }}/>
           </div>
         </Reveal>
@@ -984,20 +989,22 @@ function AboutSection() {
 
 function FAQSection() {
   const [open, setOpen] = useState<number|null>(null)
+  const w = useWindowWidth()
+  const isMobile = w < 768
 
   return (
     <ColorSection bg={CREAM} id="faq">
       <Reveal><SecTitle>Frequently Asked Questions</SecTitle></Reveal>
-      <div style={{ maxWidth: 700, marginTop: 40, border: `1px solid ${BORDER}`, borderRadius: 20, overflow: "hidden" }}>
+      <div style={{ maxWidth: 700, marginTop: isMobile ? 24 : 40, border: `1px solid ${BORDER}`, borderRadius: 20, overflow: "hidden" }}>
         {faqItems.map((item, i) => (
           <Reveal key={i} delay={i*60} variant="left">
             <div
               onClick={() => setOpen(open===i ? null : i)}
-              style={{ padding: "18px 22px", borderBottom: i < faqItems.length-1 ? `1px solid ${BORDER}` : "none", cursor: "pointer", background: open===i ? "#f9f8f7" : "#fff", transition: "background .18s" }}
+              style={{ padding: isMobile ? "14px 16px" : "18px 22px", borderBottom: i < faqItems.length-1 ? `1px solid ${BORDER}` : "none", cursor: "pointer", background: open===i ? "#f9f8f7" : "#fff", transition: "background .18s" }}
               onMouseEnter={(e: any) => { if (open!==i) e.currentTarget.style.background="#f9f8f7" }}
               onMouseLeave={(e: any) => { if (open!==i) e.currentTarget.style.background="#fff" }}>
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 14 }}>
-                <h3 style={{ fontSize: 15, fontWeight: 600, color: DEEP_PURPLE, lineHeight: 1.4, fontFamily: FONT }}>{item.q}</h3>
+                <h3 style={{ fontSize: isMobile ? 14 : 15, fontWeight: 600, color: DEEP_PURPLE, lineHeight: 1.4, fontFamily: FONT }}>{item.q}</h3>
                 <motion.span animate={{ rotate: open===i ? 45 : 0 }} transition={{ duration: 0.25 }}
                   style={{ fontSize: 20, fontWeight: 300, color: PURPLE, flexShrink: 0, lineHeight: 1, marginTop: 1, display: "block" }}>
                   +
@@ -1026,20 +1033,22 @@ function FAQSection() {
 // ─── Bottom CTA ───────────────────────────────────────────────────────────────
 
 function BottomCTA({ onQuiz }: { onQuiz: () => void }) {
+  const w = useWindowWidth()
+  const isMobile = w < 768
   return (
-    <ColorSection bg={LIME} id="contact" innerStyle={{ padding: "80px 32px", textAlign: "center" }}>
+    <ColorSection bg={LIME} id="contact" innerStyle={{ textAlign: "center" }}>
       <Reveal>
-        <h2 style={{ fontSize: "clamp(26px,3.8vw,46px)", fontWeight: 700, color: DEEP_PURPLE, marginBottom: 14, fontFamily: FONT }}>
+        <h2 style={{ fontSize: isMobile ? "clamp(22px,6.5vw,32px)" : "clamp(26px,3.8vw,46px)", fontWeight: 700, color: DEEP_PURPLE, marginBottom: 14, fontFamily: FONT }}>
           {ctaData.title}
         </h2>
-        <p style={{ fontSize: 17, lineHeight: 1.65, color: "rgba(32,30,75,.7)", maxWidth: 540, margin: "0 auto 32px", fontFamily: FONT }}>
+        <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.65, color: "rgba(32,30,75,.7)", maxWidth: 540, margin: isMobile ? "0 auto 24px" : "0 auto 32px", fontFamily: FONT }}>
           {ctaData.sub}
         </p>
-        <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 18 }}>
-          <Btn variant="purple" href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank">
+        <div style={{ display: "flex", gap: 12, justifyContent: isMobile ? "stretch" : "center", flexWrap: "wrap", marginBottom: 18, flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "stretch" : undefined }}>
+          <Btn variant="purple" href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" style={isMobile ? { width: "100%", justifyContent: "center" } : {}}>
             {ctaData.cta1} <ArrowRight/>
           </Btn>
-          <Btn variant="outline-dark" onClick={onQuiz}>{ctaData.cta2}</Btn>
+          <Btn variant="outline-dark" onClick={onQuiz} style={isMobile ? { width: "100%", justifyContent: "center" } : {}}>{ctaData.cta2}</Btn>
         </div>
         <p style={{ fontSize: 13, color: "rgba(32,30,75,.55)", maxWidth: 420, margin: "0 auto", fontFamily: FONT }}>
           <strong>{ctaData.note1}</strong><br/>{ctaData.note2}
