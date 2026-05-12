@@ -300,7 +300,7 @@ function Navbar() {
         direction: dir, position: 'relative', zIndex: 101,
         ...(isMobile && menuOpen ? { paddingTop: 14, paddingBottom: 14, borderBottom: '1px solid rgba(113,46,172,0.1)' } : {}),
       }}>
-        <a href="https://octaloom.com" style={ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+        <a href="https://octaloom.com" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
             alt="OctaLoom" style={{ height: 36, width: 'auto', display: 'block' }}
             onError={(e: any) => { e.target.style.display = 'none'; }} />
