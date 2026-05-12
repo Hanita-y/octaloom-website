@@ -11,7 +11,6 @@ const HEADSHOT   = "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-a
 const GIF_HANITA = "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/gif%20hanita.gif"
 const LOGO_NAV   = "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
 const LOGO_FOOT  = "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
-const LOGO_GOOD  = "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/OCTAGOODIES%20GREEN.png"
 
 const C = {
   purple:     "#712eac",
@@ -23,7 +22,7 @@ const C = {
   surface:    "#f5f2f0",
   white:      "#ffffff",
 }
-const FF = "'Aeonik', sans-serif"
+const FF = "'Discovery Fs', 'Aeonik', sans-serif"
 
 // ─── HOOKS ────────────────────────────────────────────────────────────────────
 function useWindowSize() {
@@ -54,16 +53,19 @@ function useIntersect(threshold = 0.1) {
 // ─── GLOBAL STYLES ────────────────────────────────────────────────────────────
 function useGlobalStyles() {
   useEffect(() => {
-    const id = "about-en-styles"
+    const id = "about-he-styles"
     if (document.getElementById(id)) return
     const s = document.createElement("style")
     s.id = id
     s.textContent = `
+@font-face{font-family:'Discovery Fs';src:url('https://raw.githubusercontent.com/Hanita-y/octaloom-fonts/main/DiscoveryFs-Light.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Discovery Fs';src:url('https://raw.githubusercontent.com/Hanita-y/octaloom-fonts/main/DiscoveryFs-Medium.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Discovery Fs';src:url('https://raw.githubusercontent.com/Hanita-y/octaloom-fonts/main/DiscoveryFs-Medium.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:'Aeonik';src:url('https://raw.githubusercontent.com/Hanita-y/octaloom-fonts/main/Aeonik-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'Aeonik';src:url('https://raw.githubusercontent.com/Hanita-y/octaloom-fonts/main/Aeonik-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
-body{font-family:'Aeonik',sans-serif;background:#ece9e7;color:#201e4b;overflow-x:hidden}
+body{font-family:'Discovery Fs','Aeonik',sans-serif;background:#ece9e7;color:#201e4b;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 `
@@ -89,8 +91,7 @@ function Reveal({ children, delay = 0, style = {}, from = "bottom" }: { children
     from === "left"   ? "translateX(-32px)" :
     from === "right"  ? "translateX(32px)" :
                         "translateY(36px)"
-  const shown =
-    from === "scale" ? "scale(1) translateY(0)" : "translate(0)"
+  const shown = from === "scale" ? "scale(1) translateY(0)" : "translate(0)"
   return (
     <div ref={ref} style={{
       opacity: visible ? 1 : 0,
@@ -156,11 +157,9 @@ function CustomCursor() {
     const style = document.createElement("style")
     style.textContent = "@media (pointer: fine) { * { cursor: none !important; } }"
     document.head.appendChild(style)
-
     const dot  = dotRef.current
     const ring = ringRef.current
     if (!dot || !ring) return
-
     const setDot  = () => { dot.style.width  = st.current.hover ? "5px" : "8px"; dot.style.height = st.current.hover ? "5px" : "8px"; dot.style.background = st.current.hover ? C.lime : C.purple }
     const setRing = () => { const { hover, click } = st.current; if (click) { ring.style.width = "28px"; ring.style.height = "28px"; ring.style.borderColor = C.lime } else if (hover) { ring.style.width = "54px"; ring.style.height = "54px"; ring.style.borderColor = C.purple } else { ring.style.width = "38px"; ring.style.height = "38px"; ring.style.borderColor = "rgba(113,46,172,.45)" } }
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t
@@ -171,14 +170,12 @@ function CustomCursor() {
     const onOut   = (e: MouseEvent) => { if (isBtn(e.target) && !isBtn(e.relatedTarget)) { st.current.hover = false; setDot(); setRing() } }
     const onDown  = () => { st.current.click = true;  setRing() }
     const onUp    = () => { st.current.click = false; setRing() }
-
     document.addEventListener("mousemove", onMove)
     document.addEventListener("mouseover", onOver)
     document.addEventListener("mouseout",  onOut)
     document.addEventListener("mousedown", onDown)
     document.addEventListener("mouseup",   onUp)
     raf.current = requestAnimationFrame(tick)
-
     return () => {
       style.remove()
       document.removeEventListener("mousemove", onMove)
@@ -193,14 +190,14 @@ function CustomCursor() {
   if (w < 768) return null
   return (
     <>
-      <div ref={dotRef} style={{ position: "fixed", top: 0, left: -100, width: 8, height: 8, borderRadius: "50%", background: C.purple, pointerEvents: "none", zIndex: 9999, transform: "translate(-50%,-50%)", transition: "width .15s,height .15s,background .15s" }} />
+      <div ref={dotRef}  style={{ position: "fixed", top: 0, left: -100, width: 8, height: 8, borderRadius: "50%", background: C.purple, pointerEvents: "none", zIndex: 9999, transform: "translate(-50%,-50%)", transition: "width .15s,height .15s,background .15s" }} />
       <div ref={ringRef} style={{ position: "fixed", top: 0, left: -100, width: 38, height: 38, borderRadius: "50%", border: "1.5px solid rgba(113,46,172,.45)", pointerEvents: "none", zIndex: 9998, transform: "translate(-50%,-50%)", transition: "width .25s,height .25s,border-color .25s" }} />
     </>
   )
 }
 
 // ─── NAV ──────────────────────────────────────────────────────────────────────
-function NavEN() {
+function NavHE() {
   const [scrolled, setScrolled]     = useState(false)
   const [menuOpen, setMenuOpen]     = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
@@ -221,26 +218,26 @@ function NavEN() {
   }, [menuOpen, isMobile])
 
   const liSub = [
-    { label: "LinkedIn for Organizations",  href: "/linkedin-for-organizations" },
-    { label: "LinkedIn for Founders & CEOs", href: "/linkedin-for-executives" },
-    { label: "LinkedIn for Freelancers",     href: "/linkedin-for-solopreneurs" },
+    { label: "לינקדאין לארגונים",      href: "/linkedin-for-organizations-he" },
+    { label: "לינקדאין למייסדים ומנכ״לים", href: "/linkedin-for-executives-he" },
+    { label: "לינקדאין לעצמאיים",       href: "/linkedin-for-solopreneurs-he" },
   ]
   const otherSub = [
-    { label: "Fractional CMO",     href: "/fractional-cmo" },
-    { label: "AI Tools & Agents",  href: "/ai-tools-agents" },
-    { label: "Workshops",          href: "#" },
+    { label: "סמנכ״לית שיווק במיקור חוץ", href: "/fractional-cmo-he" },
+    { label: "כלי AI וסוכנים", href: "/ai-tools-agents-he" },
+    { label: "סדנאות", href: "#" },
   ]
   const topLinks = [
-    { label: "About",   href: "/about",                    active: true },
-    { label: "Blog",    href: "/blog" },
-    { label: "Contact", href: "/contact" },
-    { label: "Goodies", href: "https://octagoodies.com" },
+    { label: "עליי",    href: "/about-he",              active: true },
+    { label: "בלוג",    href: "/blog-he" },
+    { label: "צור קשר", href: "/contact-he" },
+    { label: "גודיז", href: "https://octagoodies.com" },
   ]
 
   const dropBase: React.CSSProperties = {
     position: "absolute", background: "#fff", borderRadius: 12, padding: "8px 6px",
     boxShadow: "0 8px 32px rgba(0,0,0,0.12)", border: "1px solid rgba(32,30,75,0.08)",
-    minWidth: 200, zIndex: 50,
+    minWidth: 220, zIndex: 50,
   }
   const dropItem: React.CSSProperties = {
     display: "flex", alignItems: "center", gap: 6, padding: "8px 12px",
@@ -252,7 +249,7 @@ function NavEN() {
   }
 
   const burger = (
-    <button onClick={() => setMenuOpen(!menuOpen)} aria-label="menu"
+    <button onClick={() => setMenuOpen(!menuOpen)} aria-label="תפריט"
       style={{ width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
       <span style={{ position: "relative", display: "block", width: 28, height: 20 }}>
         {[0, 9, 18].map((top, i) => (
@@ -275,7 +272,7 @@ function NavEN() {
       onMouseLeave={() => { setServicesOpen(false); setLinkedinOpen(false) }}>
       <button style={{ fontSize: 14, color: servicesOpen ? C.deepPurple : dim, fontFamily: FF,
         display: "flex", alignItems: "center", gap: 5, padding: "6px 0", transition: "color 0.25s" }}>
-        {"Services"}
+        {"שירותים"}
         <svg width={11} height={11} viewBox="0 0 12 12" fill="none"
           style={{ transition: "transform 0.25s", transform: servicesOpen ? "rotate(180deg)" : "none" }}>
           <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -284,21 +281,21 @@ function NavEN() {
       <AnimatePresence>
         {servicesOpen && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }}
-            style={{ ...dropBase, top: "calc(100% + 10px)", left: 0 }}>
+            style={{ ...dropBase, top: "calc(100% + 10px)", right: 0 }}>
             <div style={{ position: "relative" }}
               onMouseEnter={() => setLinkedinOpen(true)}
               onMouseLeave={() => setLinkedinOpen(false)}>
-              <a href="/linkedin-for-organizations" style={{ ...dropItem, justifyContent: "space-between" }}
+              <a href="/linkedin-for-organizations-he" style={{ ...dropItem, justifyContent: "space-between" }}
                 onMouseEnter={e => hDrop(e, true)} onMouseLeave={e => hDrop(e, false)}>
-                <span>{"LinkedIn Growth Engine"}</span>
                 <svg width={11} height={11} viewBox="0 0 12 12" fill="none" style={{ opacity: 0.45 }}>
-                  <path d="M4 2l4 4-4 4" stroke={C.deepPurple} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M8 2l-4 4 4 4" stroke={C.deepPurple} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
+                <span>{"לינקדאין"}</span>
               </a>
               <AnimatePresence>
                 {linkedinOpen && (
-                  <motion.div initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}
-                    style={{ ...dropBase, top: 0, left: "calc(100% + 6px)" }}>
+                  <motion.div initial={{ opacity: 0, x: 6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}
+                    style={{ ...dropBase, top: 0, right: "calc(100% + 6px)" }}>
                     {liSub.map((s, i) => (
                       <a key={i} href={s.href} style={dropItem}
                         onMouseEnter={e => hDrop(e, true)} onMouseLeave={e => hDrop(e, false)}>
@@ -329,11 +326,11 @@ function NavEN() {
       zIndex: 50, maxHeight: "calc(100vh - 100px)", overflowY: "auto" as const,
     }}>
       <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: C.purple, margin: "0 0 4px", fontFamily: FF }}>
-        {"Services"}
+        {"שירותים"}
       </p>
-      <a href="/linkedin-for-organizations" onClick={() => setMenuOpen(false)}
+      <a href="/linkedin-for-organizations-he" onClick={() => setMenuOpen(false)}
         style={{ display: "block", fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF }}>
-        {"LinkedIn Growth Engine"}
+        {"לינקדאין"}
       </a>
       {liSub.map((s, i) => (
         <a key={i} href={s.href} onClick={() => setMenuOpen(false)}
@@ -353,28 +350,25 @@ function NavEN() {
           {item.label}
         </a>
       ))}
-      <div style={{ marginTop: 16 }}>
-        <a href="https://www.octaloom.com/about-he" style={{ fontSize: 14, color: dim, fontFamily: FF }}>&#1506;&#1489;</a>
-      </div>
     </div>
   )
 
   return (
-    <nav dir="ltr" style={{
-      position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", zIndex: 1000,
-      width: "calc(100% - 48px)", maxWidth: 1152, borderRadius: 100,
-      background: scrolled ? "rgba(236,233,231,0.88)" : "rgba(236,233,231,0.6)",
-      backdropFilter: "blur(50px)", WebkitBackdropFilter: "blur(50px)",
-      border: "1px solid rgba(32,30,75,0.08)", padding: "10px 20px",
+    <nav style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
+      padding: isMobile ? "12px 20px" : "14px 40px",
       display: "flex", alignItems: "center", justifyContent: "space-between",
-      fontFamily: FF, transition: "background 0.3s, box-shadow 0.3s",
-      boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.08)" : "none",
+      background: scrolled ? "rgba(236,233,231,0.85)" : "transparent",
+      backdropFilter: scrolled ? "blur(20px)" : "none",
+      WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+      transition: "background 0.4s, box-shadow 0.4s",
+      boxShadow: scrolled ? "0 1px 0 rgba(32,30,75,0.06)" : "none",
     }}>
-      <a href="/" style={{ display: "flex", alignItems: "center" }}>
-        <img src={LOGO_NAV} alt="OctaLoom" style={{ height: 36, width: "auto", display: "block" }}/>
+      <a href="/about-he" style={{ display: "flex", alignItems: "center" }}>
+        <img src={LOGO_NAV} alt="OctaLoom" style={{ height: isMobile ? 28 : 36, width: "auto" }} />
       </a>
       {!isMobile && (
-        <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 32, position: "relative" }}>
           {desktopDrop}
           {topLinks.map((item, i) => (
             <a key={i} href={item.href}
@@ -387,13 +381,13 @@ function NavEN() {
         </div>
       )}
       <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-        <a href="https://www.octaloom.com/about-he" style={{ fontSize: 13, fontWeight: 700, color: dim, fontFamily: FF, padding: "5px 10px" }}>&#1506;&#1489;</a>
+        <a href="https://www.octaloom.com/about" style={{ fontSize: 13, fontWeight: 700, color: dim, fontFamily: "'Aeonik', sans-serif", padding: "5px 10px" }}>EN</a>
         {!isMobile && (
           <a href={NOTION_CALENDAR} target="_blank" rel="noopener noreferrer"
             style={{ display: "inline-flex", alignItems: "center", padding: "9px 20px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 13, fontWeight: 700, fontFamily: FF, transition: "box-shadow 0.25s, transform 0.15s" }}
             onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(113,46,172,0.35)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)" }}
             onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
-            {"Let’s Talk"}
+            {"בואו נדבר"}
           </a>
         )}
         {isMobile && burger}
@@ -413,14 +407,13 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
   return (
     <section style={{ background: C.cream, paddingTop: isMobile ? 88 : 110, paddingBottom: isMobile ? 64 : 88, overflow: "hidden" }}>
       <Container>
-        {/* Full-width landscape photo with parallax */}
         <motion.div
           initial={{ opacity: 0, scale: 1.04 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, ease }}
           style={{ overflow: "hidden", borderRadius: isMobile ? 16 : 24, marginBottom: isMobile ? 40 : 56, position: "relative" }}>
           <motion.img
             src={HEADSHOT}
-            alt="Hanita Yudovski, LinkedIn-Led Fractional CMO and founder of OctaLoom"
+            alt="חניתה יודובסקי, Fractional CMO ומייסדת OctaLoom"
             style={{
               width: "100%",
               height: isMobile ? 260 : 520,
@@ -433,7 +426,6 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
           />
         </motion.div>
 
-        {/* Text below photo */}
         <div style={{ maxWidth: 760 }}>
           <motion.div
             initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
@@ -445,7 +437,7 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
               color: C.purple, fontFamily: FF, letterSpacing: "0.07em",
               textTransform: "uppercase" as const, marginBottom: 24,
             }}>
-              {"LinkedIn-Led Fractional CMO · Founder, OctaLoom"}
+              {"מומחית לינקדאין | מייסדת OctaLoom"}
             </span>
           </motion.div>
 
@@ -455,33 +447,33 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
             style={{
               fontFamily: FF, fontWeight: 700,
               fontSize: isMobile ? "clamp(40px,10vw,54px)" : "clamp(52px,5.5vw,76px)",
-              lineHeight: 1.0, letterSpacing: "-0.03em",
+              lineHeight: 1.0, letterSpacing: "-0.02em",
               color: C.deepPurple, marginBottom: 10,
             }}>
-            {"Hi, I’m Hanita."}
+            {"היי, אני חניתה."}
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: dur, delay: 0.4, ease }}
             style={{ fontSize: isMobile ? 14 : 16, fontFamily: FF, color: C.textDim, marginBottom: 28, fontStyle: "italic", lineHeight: 1.5 }}>
-            {"(Yudovski, but like Madonna, first name is enough. 😅)"}
+            {"(יודובסקי. אבל כמו מדונה, שם הפרטי מספיק. 😅)"}
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: dur, delay: 0.48, ease }}>
-            <p style={{ fontSize: isMobile ? 16 : 18, lineHeight: 1.8, color: C.deepPurple, marginBottom: 6, fontFamily: FF }}>
-              {"I’m a LinkedIn-Led Fractional CMO and the founder of OctaLoom."}
-            </p>
             <p style={{ fontSize: isMobile ? 16 : 18, lineHeight: 1.8, color: C.deepPurple, marginBottom: 18, fontFamily: FF }}>
-              {"In plain terms: your marketing department, minus the department."}
+              {"מומחית לינקדאין, חובבת סוכני AI מושבעת (ויש שיגידו נופלת לכל הייפ AI) ומנהלת שיווק במיקור חוץ. בשורה התחתונה: אני מחלקת השיווק שלכם, רק בלי מחלקה."}
             </p>
             <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 18, fontFamily: FF }}>
-              {"For five years I’ve built marketing systems for B2B founders and companies who want serious marketing without hiring a full team. And if there’s one thing I’ve learned: most B2B founders don’t have a marketing problem. They have a LinkedIn problem."}
+              {"כבר חמש שנים שאני עובדת עם מייסדים וחברות B2B שרוצים שיווק שמזיז את המחט. מה שלמדתי בדרך: למייסדים אין בעיית שיווק – יש להם בעיית נראות."}
+            </p>
+            <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 18, fontFamily: FF }}>
+              {"לינקדאין הוא המקום שבו B2B קורה. לפני כל מייל או שיחה, הלקוח כבר חיפש אתכם שם. הבעיה היא שרוב המייסדים פשוט לא נוכחים בזירה."}
             </p>
             <p style={{ fontSize: isMobile ? 16 : 18, lineHeight: 1.6, color: C.deepPurple, fontWeight: 700, marginBottom: 36, fontFamily: FF }}>
-              {"That’s the gap I close."}
+              {"את זה אני מתקנת."}
             </p>
           </motion.div>
 
@@ -493,7 +485,7 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 15, fontWeight: 700, fontFamily: FF, transition: "box-shadow 0.25s, transform 0.15s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 28px rgba(113,46,172,0.35)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)" }}
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
-              {"Let’s Talk"}
+              {"בואו נדבר"}
             </a>
             <a href="https://www.linkedin.com/in/hanita-yudovski/" target="_blank" rel="noopener noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 8, background: "transparent", color: C.purple, border: `1.5px solid ${C.purple}`, fontSize: 15, fontWeight: 700, fontFamily: FF, transition: "background 0.2s, color 0.2s" }}
@@ -502,7 +494,7 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
               <svg width={15} height={15} viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
-              {"Connect on LinkedIn"}
+              {"חיבור בלינקדאין"}
             </a>
           </motion.div>
         </div>
@@ -511,7 +503,7 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
   )
 }
 
-// ─── HOW I GOT HERE ───────────────────────────────────────────────────────────
+// ─── TIMELINE ─────────────────────────────────────────────────────────────────
 function TimelineSection({ isMobile }: { isMobile: boolean }) {
   return (
     <section style={{ background: C.surface, padding: isMobile ? "72px 0" : "104px 0" }}>
@@ -522,7 +514,6 @@ function TimelineSection({ isMobile }: { isMobile: boolean }) {
           gap: isMobile ? 36 : 72,
           alignItems: "start",
         }}>
-          {/* Label column */}
           <Reveal>
             <div>
               <h2 style={{
@@ -531,52 +522,29 @@ function TimelineSection({ isMobile }: { isMobile: boolean }) {
                 lineHeight: 1.15, letterSpacing: "-0.02em",
                 color: C.deepPurple, marginBottom: 18,
               }}>
-                {"How I got here"}
+                {"איך הגעתי לכאן"}
               </h2>
               <div style={{ width: 44, height: 3, background: C.lime, borderRadius: 2 }} />
             </div>
           </Reveal>
 
-          {/* Narrative column */}
           <div>
             <Reveal delay={80}>
               <div style={{
-                paddingLeft: 24,
-                borderLeft: `3px solid ${C.purple}`,
+                paddingRight: 24,
+                borderRight: `3px solid ${C.purple}`,
                 marginBottom: 36,
               }}>
                 <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.85, color: C.deepPurple, marginBottom: 16, fontFamily: FF }}>
-                  {"Between 2024 and 2025, I led marketing operations at Adopt Me. Three teams, 18 people. That’s where something clicked: everything a large team or agency spends months building, one person with the right systems can do differently."}
+                  {"בין 2024 ל-2025 ניהלתי את כל מערך השיווק ב-Adopt Me. שלושה צוותים, 18 בני אדם, הכל. ושם הבנתי משהו ששינה לי הכל: כל מה שצוות שלם בונה בחודשים, אשת שיווק אחת עם המערכות הנכונות יכולה לעשות לבד. בלי כל העברות מקל, בלי כל האינסוף פגישות, ובלי שהאסטרטגיה נמחקת בדרך לביצוע."}
                 </p>
-                <p style={{ fontSize: isMobile ? 15 : 16, lineHeight: 1.8, color: C.textDim, fontFamily: FF }}>
-                  {"No management layers. No handoffs. No strategy lost on the way to execution."}
+                <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.85, color: C.textDim, marginBottom: 16, fontFamily: FF }}>
+                  {"ב-2022 נכנסתי עמוק ל-AI ואוטומציה, ראיתי איך העולם נודד לכיוונים יעילים ומהירים ואני רק בעד. היום הצוות שלי הוא אני, והסוכנים שבניתי. מחלקה שלמה רק בלי המחלקה."}
                 </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={150}>
-              <div style={{
-                paddingLeft: 24,
-                borderLeft: `3px solid ${C.lime}`,
-                marginBottom: 36,
-              }}>
-                <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.85, color: C.deepPurple, fontFamily: FF }}>
-                  {"I went deep into AI and automation starting in 2022, not as a side tool but as a core way to work. Today my team is me and the AI agents I’ve built. What used to take five people, I deliver as one operator, faster, with full strategic coherence."}
+                <p style={{ fontSize: isMobile ? 16 : 18, fontWeight: 700, color: C.purple, fontFamily: FF }}>
+                  {"זה OctaLoom."}
                 </p>
               </div>
-            </Reveal>
-
-            <Reveal delay={220}>
-              <p style={{
-                fontSize: isMobile ? 19 : 22,
-                fontWeight: 700,
-                color: C.purple,
-                fontFamily: FF,
-                letterSpacing: "-0.01em",
-                lineHeight: 1.3,
-              }}>
-                {"That’s OctaLoom: your marketing department, minus the department."}
-              </p>
             </Reveal>
           </div>
         </div>
@@ -585,20 +553,20 @@ function TimelineSection({ isMobile }: { isMobile: boolean }) {
   )
 }
 
-// ─── IN PRACTICE ──────────────────────────────────────────────────────────────
+// ─── STATS ────────────────────────────────────────────────────────────────────
 function StatsSection({ isMobile }: { isMobile: boolean }) {
   const stats = [
-    { target: 770,  suffix: "K+",  prefix: "",  label: "organic impressions for a B2B SaaS client in 3 months" },
-    { target: 300,  suffix: "%",   prefix: "",  label: "engagement growth on a LinkedIn business page" },
-    { target: 70,   suffix: "%",   prefix: "",  label: "less manual work through custom AI automation" },
-    { target: 5000, suffix: "+",   prefix: "~", label: "organic B2B followers, zero ad spend" },
+    { target: 770,  suffix: "K+",  prefix: "",  label: "חשיפות אורגניות ל-3 חודשים" },
+    { target: 300,  suffix: "%",   prefix: "",  label: "צמיחה במעורבות בדף לינקדאין" },
+    { target: 70,   suffix: "%",   prefix: "",  label: "פחות עבודה ידנית דרך AI ואוטומציה" },
+    { target: 5000, suffix: "+",   prefix: "~", label: "עוקבי B2B אורגניים, ללא תקציב פרסום" },
   ]
   return (
     <section style={{ background: C.deepPurple, padding: isMobile ? "72px 0" : "104px 0" }}>
       <Container>
         <Reveal>
           <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: C.lime, marginBottom: 10, fontFamily: FF }}>
-            {"In practice"}
+            {"בפועל"}
           </p>
           <h2 style={{
             fontFamily: FF, fontWeight: 700,
@@ -606,7 +574,7 @@ function StatsSection({ isMobile }: { isMobile: boolean }) {
             lineHeight: 1.15, letterSpacing: "-0.02em",
             color: "#fff", marginBottom: isMobile ? 40 : 56,
           }}>
-            {"Results that compound."}
+            {"תוצאות שמצטברות."}
           </h2>
         </Reveal>
         <div style={{
@@ -623,7 +591,7 @@ function StatsSection({ isMobile }: { isMobile: boolean }) {
                 border: "1px solid rgba(255,255,255,0.07)",
               }}>
                 <div style={{
-                  fontFamily: FF, fontWeight: 700,
+                  fontFamily: "'Aeonik', sans-serif", fontWeight: 700,
                   fontSize: isMobile ? "clamp(30px,7vw,42px)" : "clamp(36px,3.8vw,52px)",
                   lineHeight: 1, color: C.lime, marginBottom: 12,
                   letterSpacing: "-0.02em",
@@ -646,37 +614,37 @@ function StatsSection({ isMobile }: { isMobile: boolean }) {
 function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
   const liClients = [
     {
-      title: "Organizations",
-      desc: "Full LinkedIn strategy and page management, content systems, and employee advocacy programs for B2B companies that need consistent brand presence at scale.",
-      href: "/linkedin-for-organizations",
+      title: "לינקדאין לארגונים",
+      desc: "אסטרטגיה, ניהול תוכן ונוכחות מלאה לדפים עסקיים, תוכניות שגרירי מותג שהופכות את עובדי הארגון למכפילי כח.",
+      href: "/linkedin-for-organizations-he",
     },
     {
-      title: "Founders & Executives",
-      desc: "Personal brand building for founders and senior leaders who need to become the face clients recognize and trust before they ever reach out.",
-      href: "/linkedin-for-executives",
+      title: "לינקדאין למייסדים ומנכ״לים",
+      desc: "בניית מותג אישי בלינקדאין למי שרוצה שהלקוחות יזהו אותו ויסמכו עליו, הרבה לפני שהם פנו אליו.",
+      href: "/linkedin-for-executives-he",
     },
     {
-      title: "Solopreneurs",
-      desc: "LinkedIn presence for freelancers and independent consultants who need inbound leads without an ad budget.",
-      href: "/linkedin-for-solopreneurs",
+      title: "לינקדאין לעצמאיים",
+      desc: "נוכחות בלינקדאין לפרילנסרים ויועצים שרוצים ליידים נכנסים בלי תקציב פרסום.",
+      href: "/linkedin-for-solopreneurs-he",
     },
   ]
   const beyond = [
     {
-      title: "Fractional CMO",
-      desc: "CMO-level strategic leadership for companies that need a real marketing brain at the table without a full-time hire.",
-      href: "/fractional-cmo",
+      title: "סמנכ״לית שיווק במיקור חוץ",
+      desc: "הנהגה שיווקית ברמת CMO לחברות שצריכות מי שינהל להן את מערך השיווק, בלי משרה מלאה.",
+      href: "/fractional-cmo-he",
     },
     {
-      title: "AI Tools & Agents",
-      desc: "Custom AI agents and automation systems that replace manual marketing processes.",
-      href: "/ai-tools-agents",
+      title: "כלי AI וסוכנים",
+      desc: "סוכני AI מותאמים ואוטומציות שמחליפות עבודה ידנית, ועושות את מה שפעם דרש צוות שלם.",
+      href: "/ai-tools-agents-he",
     },
     {
-      title: "Workshops",
-      desc: "LinkedIn and AI marketing workshops for organizations building internal capability.",
+      title: "סדנאות",
+      desc: "סדנאות לינקדאין ושיווק AI לארגונים שרוצים לבנות יכולות פנימיות.",
       href: "#",
-      badge: "Coming soon",
+      badge: "בקרוב",
     },
   ]
 
@@ -690,14 +658,13 @@ function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
             lineHeight: 1.15, letterSpacing: "-0.02em",
             color: C.deepPurple, marginBottom: 20,
           }}>
-            {"What I do"}
+            {"אז מה אני עושה?"}
           </h2>
-          <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, maxWidth: 600, marginBottom: isMobile ? 36 : 48, fontFamily: FF }}>
-            {"LinkedIn is the core of everything I do. Whether I’m working with a company, a founder, or a solopreneur, LinkedIn is where strategy starts. It’s the one platform where B2B trust and deal flow actually compound over time."}
+          <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, maxWidth: 640, marginBottom: isMobile ? 36 : 48, fontFamily: FF }}>
+            {"לינקדאין היא הלב של הפעילות שלי. זו הפלטפורמה המרכזית שבה מתקבלות החלטות B2B, והיא מהווה את הזירה העיקרית לבניית אמון וסמכות מקצועית."}
           </p>
         </Reveal>
 
-        {/* LinkedIn client cards */}
         <div style={{
           display: "grid",
           gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)",
@@ -705,12 +672,12 @@ function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
           marginBottom: 16,
         }}>
           {liClients.map((c, i) => (
-            <Reveal key={i} delay={i * 70}>
+            <Reveal key={i} delay={i * 70} style={{ height: "100%" }}>
               <a href={c.href} style={{
                 display: "block", background: C.white, borderRadius: 16,
                 padding: isMobile ? "24px 20px" : "28px 24px",
                 border: "1px solid rgba(32,30,75,0.07)",
-                borderLeft: `4px solid ${C.purple}`,
+                borderRight: `4px solid ${C.purple}`,
                 height: "100%",
                 transition: "box-shadow 0.25s, transform 0.2s",
               }}
@@ -723,7 +690,7 @@ function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
                   {c.desc}
                 </p>
                 <span style={{ fontSize: 13, fontWeight: 700, color: C.purple, fontFamily: FF }}>
-                  {"Learn more →"}
+                  {"לדף השירות ←"}
                 </span>
               </a>
             </Reveal>
@@ -732,11 +699,10 @@ function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
 
         <div style={{ marginBottom: isMobile ? 48 : 64 }} />
 
-        {/* Beyond LinkedIn */}
         <Reveal>
           <div style={{ borderTop: "1px solid rgba(32,30,75,0.1)", paddingTop: isMobile ? 48 : 64 }}>
             <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: C.textDim, marginBottom: 24, fontFamily: FF }}>
-              {"Beyond LinkedIn"}
+              {"ומעבר ללינקדאין"}
             </p>
             <div style={{
               display: "grid",
@@ -769,7 +735,7 @@ function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
                       <p style={{ fontSize: 13, lineHeight: 1.6, color: C.textDim, fontFamily: FF }}>{b.desc}</p>
                     </div>
                     <svg width={16} height={16} viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: 3, opacity: 0.35 }}>
-                      <path d="M3 8h10M9 4l4 4-4 4" stroke={C.deepPurple} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M13 8H3M7 4l-4 4 4 4" stroke={C.deepPurple} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </a>
                 </Reveal>
@@ -790,7 +756,7 @@ function PodcastSection({ isMobile }: { isMobile: boolean }) {
         <Reveal>
           <div>
             <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "rgba(6,13,61,0.5)", marginBottom: 16, fontFamily: FF }}>
-              {"B2B Marketing Podcast"}
+              {"פודקאסט שיווק B2B"}
             </p>
             <h2 style={{
               fontFamily: FF, fontWeight: 700,
@@ -798,10 +764,10 @@ function PodcastSection({ isMobile }: { isMobile: boolean }) {
               lineHeight: 1.2, letterSpacing: "-0.02em",
               color: C.navy, marginBottom: 16,
             }}>
-              {"“What’s the Story With?” 🎙️"}
+              {"“מה הסיפור עם?” 🎙️"}
             </h2>
             <p style={{ fontSize: isMobile ? 15 : 16, lineHeight: 1.75, color: "rgba(6,13,61,0.7)", maxWidth: 560, marginBottom: 28, fontFamily: FF }}>
-              {"I co-host with Noga Fink, a B2B marketing podcast where we break down what actually works in LinkedIn strategy, AI, campaigns, and fractional leadership. No frameworks. Just real marketing conversations."}
+              {"יחד עם נגה פינק אני מנחה פודקאסט שיווק B2B שבו אנחנו מפרקות את מה שבאמת עובד: לינקדאין, AI, קמפיינים, ומה זה אומר להוביל שיווק בשטח. בלי תיאוריות שנמכרות בכנסים. רק שיחות אמיתיות."}
             </p>
             <a href="https://whatsthestorywith.com/" target="_blank" rel="noopener noreferrer"
               style={{
@@ -814,9 +780,8 @@ function PodcastSection({ isMobile }: { isMobile: boolean }) {
               }}
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 24px rgba(32,30,75,0.35)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)" }}
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
-              {"Watch or listen →"}
+              {"לשמיעה ולצפייה →"}
             </a>
-            {/* Spotify embed */}
             <div style={{ borderRadius: 12, overflow: "hidden", maxWidth: 520 }}>
               <iframe
                 src="https://open.spotify.com/embed/show/4XmsthqR7gnj4nf2gL0T7j?utm_source=generator&theme=0"
@@ -837,12 +802,12 @@ function PodcastSection({ isMobile }: { isMobile: boolean }) {
 // ─── ON A PERSONAL LEVEL ──────────────────────────────────────────────────────
 function PersonalSection({ isMobile }: { isMobile: boolean }) {
   const traits = [
-    { icon: "🐕", label: "Dog mom to Kara", sub: "Anxious Canaanite", bg: C.purple,     color: "#fff",       border: "none" },
-    { icon: "☕", label: "Coffee snob",      sub: "No compromise",    bg: C.lime,        color: C.deepPurple, border: "none" },
-    { icon: "🌱", label: "Plant-based",      sub: "13+ years strong", bg: C.white,       color: C.deepPurple, border: `1.5px solid ${C.purple}` },
-    { icon: "⚡", label: "ADHD brain",       sub: "Wired differently", bg: C.deepPurple, color: "#fff",       border: "none" },
-    { icon: "💪", label: "Soviet work ethic", sub: "Your unfair advantage", bg: C.lime,  color: C.deepPurple, border: "none" },
-    { icon: "🏋️", label: "Pilates reformer",  sub: "Mat is for amateurs",  bg: C.white, color: C.deepPurple, border: `1.5px solid ${C.purple}` },
+    { icon: "🐕", label: "אמא של קארה",             sub: "כנענית חרדתית",        bg: C.purple,     color: "#fff",       border: "none" },
+    { icon: "☕",       label: "סנובית קפה",             sub: "ללא פשרות",                             bg: C.lime,       color: C.deepPurple, border: "none" },
+    { icon: "🌱", label: "טבעונית",                          sub: "13.5 שנים ועוד",                        bg: C.white,      color: C.deepPurple, border: `1.5px solid ${C.purple}` },
+    { icon: "⚡",       label: "מוח ADHD",                                             sub: "חושבת אחרת",                      bg: C.deepPurple, color: "#fff",       border: "none" },
+    { icon: "💪", label: "אתיקת עבודה סובייטית", sub: "היתרון הלא הוגן שלכם", bg: C.lime, color: C.deepPurple, border: "none" },
+    { icon: "🏋️", label: "פילאטיס מכשירים", sub: "המזרן הוא לאחרים", bg: C.white, color: C.deepPurple, border: `1.5px solid ${C.purple}` },
   ]
   return (
     <section style={{ background: C.surface, padding: isMobile ? "72px 0" : "104px 0" }}>
@@ -853,7 +818,6 @@ function PersonalSection({ isMobile }: { isMobile: boolean }) {
           gap: isMobile ? 48 : 80,
           alignItems: "start",
         }}>
-          {/* Left: text */}
           <div>
             <Reveal>
               <h2 style={{
@@ -862,32 +826,22 @@ function PersonalSection({ isMobile }: { isMobile: boolean }) {
                 lineHeight: 1.15, letterSpacing: "-0.02em",
                 color: C.deepPurple, marginBottom: 24,
               }}>
-                {"On a Personal Level"}
+                {"עוד קצת עליי"}
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p style={{ fontSize: isMobile ? 16 : 18, lineHeight: 1.85, color: C.textDim, fontFamily: FF }}>
-                {"I’m a dog mom to an anxious Canaanite named Kara, coffee snob, plant-based for over 13 years, with an ADHD brain and a Soviet work ethic which is probably the unfair advantage you didn’t know you were getting."}
+                {"בת אדם שמתרגשת באותה מידה מ-workflow מדויק ומממסעדת vegan fine dining חדשה בכל עיר שאני מגיעה אליה. אמא של קארה, כנענית חרדתית עם דעות חזקות לגבי שעות העבודה שלי. סנובית קפה, טבעונית כבר 13 וחצי שנים. בעלת מוח ADHD עם אתיקת עבודה סובייטית, שזה בעצם היתרון הלא הוגן שלא ידעתם שאתם מקבלים."}
               </p>
             </Reveal>
           </div>
-          {/* Right: trait chips */}
-          <div style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 12,
-            alignContent: "flex-start",
-          }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignContent: "flex-start" }}>
             {traits.map((t, i) => (
-              <Reveal key={i} delay={i * 80} from="right">
+              <Reveal key={i} delay={i * 80} from="scale">
                 <div style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 4,
-                  padding: "18px 22px",
-                  borderRadius: 20,
-                  background: t.bg,
-                  border: t.border,
+                  display: "flex", flexDirection: "column", gap: 4,
+                  padding: "18px 22px", borderRadius: 20,
+                  background: t.bg, border: t.border,
                   minWidth: isMobile ? 130 : 148,
                   flex: "1 0 auto",
                   boxShadow: "0 2px 12px rgba(32,30,75,0.07)",
@@ -910,20 +864,20 @@ function FAQSection({ isMobile }: { isMobile: boolean }) {
   const [openIdx, setOpenIdx] = useState<number | null>(null)
   const faqs = [
     {
-      q: "What is a LinkedIn-Led Fractional CMO?",
-      a: "A Fractional CMO is a senior marketing leader who works with your company part-time rather than full-time. LinkedIn-Led means my approach is built around the platform where B2B decisions actually happen. I handle strategy, content, execution, and marketing leadership without the overhead of a full-time hire.",
+      q: "מה זה Fractional CMO?",
+      a: "אם הייתם שוכרים CMO במשרה מלאה, הייתם משלמים 40-60 אלף שקל בחודש על מישהו שלוקח חצי שנה להבין את העסק שלכם. Fractional CMO זה אותה הנהגה שיווקית, בלי המשכורת הזאת ובלי חודשי ההסתגלות. אני נכנסת, מבינה מהר, ומתחילה לעבוד.",
     },
     {
-      q: "Who do you work with?",
-      a: "B2B founders and companies who need serious marketing leadership but aren’t at the stage where a full-time CMO makes financial sense. If your LinkedIn presence is thin, your content is inconsistent, and you’re losing visibility to competitors who show up every week. That’s exactly what I fix.",
+      q: "עם מי את עובדת?",
+      a: "בעיקר עם מייסדים וחברות B2B שצריכים שיווק רציני, אבל לא בשלב שגיוס CMO במשרה מלאה הגיוני להם כלכלית. אם הנוכחות שלכם בלינקדאין דלה, התוכן לא עקבי, ואתם מפסידים נראות למתחרים שנמצאים שם כל שבוע, זה בדיוק המקרה שלכם.",
     },
     {
-      q: "What makes OctaLoom different from an agency?",
-      a: "An agency wins when more people work on your account. I win when fewer people do more. You get one strategist who knows your business, builds the systems, and executes, with no account managers between strategy and the actual work.",
+      q: "מה ההבדל בין OctaLoom לסוכנות שיווק?",
+      a: "סוכנות מרוויחה כשיש יותר אנשים בתיק שלכם. אני מרוויחה כשצריך פחות. אתם מקבלים אסטרטגית אחת שמכירה את הסיפור שלכם, עושה את העבודה בעצמה, ולא מעבירה אתכם ממנהלת לקוח אחת לאחרת כל רבעון.",
     },
     {
-      q: "What is Vibe Marketing?",
-      a: "The framework I work by: the same philosophy Andrej Karpathy defined with Vibe Coding for software development, applied to marketing. AI handles the scale. I handle the thinking. What used to require five people, delivered by one operator.",
+      q: "מה זה Vibe Marketing?",
+      a: "אנדריי קרפתי הגדיר Vibe Coding לפיתוח תוכנה: ה-AI עושה את הסקייל, האדם עושה את החשיבה. Vibe Marketing זאת אותה פילוסופיה, רק על שיווק. מה שפעם היה צריך חמישה אנשים לבנות, אני מספקת לבד, בלי לוותר על האיכות.",
     },
   ]
 
@@ -937,7 +891,7 @@ function FAQSection({ isMobile }: { isMobile: boolean }) {
             lineHeight: 1.15, letterSpacing: "-0.02em",
             color: "#fff", marginBottom: isMobile ? 36 : 52,
           }}>
-            {"FAQ"}
+            {"שאלות שכדאי לשאול"}
           </h2>
         </Reveal>
         <div style={{ maxWidth: 720 }}>
@@ -952,11 +906,8 @@ function FAQSection({ isMobile }: { isMobile: boolean }) {
                   aria-expanded={openIdx === i}
                   style={{
                     width: "100%", display: "flex", justifyContent: "space-between",
-                    alignItems: "center", padding: "20px 0", textAlign: "left" as const,
+                    alignItems: "center", padding: "20px 0", textAlign: "right" as const,
                   }}>
-                  <span style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: "#fff", lineHeight: 1.4, paddingRight: 20, fontFamily: FF }}>
-                    {faq.q}
-                  </span>
                   <svg width={20} height={20} viewBox="0 0 20 20" fill="none" style={{
                     flexShrink: 0,
                     transform: openIdx === i ? "rotate(180deg)" : "none",
@@ -965,6 +916,9 @@ function FAQSection({ isMobile }: { isMobile: boolean }) {
                   }}>
                     <path d="M5 7.5l5 5 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
+                  <span style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: "#fff", lineHeight: 1.4, paddingLeft: 20, fontFamily: FF }}>
+                    {faq.q}
+                  </span>
                 </button>
                 <AnimatePresence>
                   {openIdx === i && (
@@ -997,10 +951,9 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
       <Container>
         <Reveal>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
-            {/* GIF */}
             <img
               src={GIF_HANITA}
-              alt="Hanita Yudovski"
+              alt="חניתה יודובסקי"
               style={{
                 width: isMobile ? 88 : 110,
                 height: isMobile ? 88 : 110,
@@ -1014,10 +967,10 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
             <h2 style={{
               fontFamily: FF, fontWeight: 700,
               fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,4.5vw,60px)",
-              lineHeight: 1.05, letterSpacing: "-0.03em",
+              lineHeight: 1.05, letterSpacing: "-0.02em",
               color: C.purple, marginBottom: 16,
             }}>
-              {"Ready to connect?"}
+              {"מוכנים לדבר?"}
             </h2>
             <p style={{
               fontSize: isMobile ? 16 : 19,
@@ -1025,9 +978,9 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
               color: C.deepPurple,
               marginBottom: isMobile ? 36 : 48,
               fontFamily: FF,
-              maxWidth: 480,
+              maxWidth: 520,
             }}>
-              {"Let’s weave something great together."}
+              {"אם אתם מייסדים או חברת B2B שצריכים שיווק לינקדאין רציני עם ביצוע אמיתי, בואו נדבר."}
             </p>
             <a href={NOTION_CALENDAR} target="_blank" rel="noopener noreferrer"
               style={{
@@ -1042,7 +995,7 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
               }}
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 10px 40px rgba(113,46,172,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)" }}
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
-              {"Let’s Talk"}
+              {"בואו נדבר"}
             </a>
           </div>
         </Reveal>
@@ -1052,58 +1005,54 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
 }
 
 // ─── FOOTER ───────────────────────────────────────────────────────────────────
-function FooterEN({ isMobile }: { isMobile: boolean }) {
+function FooterHE({ isMobile }: { isMobile: boolean }) {
   const linkStyle: React.CSSProperties = { fontSize: 14, color: "rgba(255,255,255,0.5)", display: "block", lineHeight: "1.9", fontFamily: FF, transition: "color 0.2s" }
-  const headStyle: React.CSSProperties = { fontSize: 13, fontWeight: 700, color: C.cream, margin: "0 0 14px", fontFamily: FF }
+  const headStyle: React.CSSProperties = { fontSize: 13, fontWeight: 700, color: "#ece9e7", margin: "0 0 14px", fontFamily: FF }
   const hov = (e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => { e.currentTarget.style.color = enter ? C.lime : "rgba(255,255,255,0.5)" }
 
   const serviceLinks = [
-    { label: "LinkedIn for Organizations",   href: "/linkedin-for-organizations" },
-    { label: "LinkedIn for Founders & CEOs", href: "/linkedin-for-executives" },
-    { label: "LinkedIn for Freelancers",      href: "/linkedin-for-solopreneurs" },
+    { label: "לינקדאין לארגונים",      href: "/linkedin-for-organizations-he" },
+    { label: "לינקדאין למייסדים", href: "/linkedin-for-executives-he" },
+    { label: "לינקדאין לעצמאיים",  href: "/linkedin-for-solopreneurs-he" },
   ]
   const otherLinks = [
-    { label: "Fractional CMO",    href: "/fractional-cmo" },
-    { label: "AI Tools & Agents", href: "/ai-tools-agents" },
-    { label: "Workshops",         href: "/workshops" },
+    { label: "סמנכ״לית שיווק",  href: "/fractional-cmo-he" },
+    { label: "כלי AI וסוכנים", href: "/ai-tools-agents-he" },
+    { label: "סדנאות",                             href: "#" },
   ]
   const pageLinks = [
-    { label: "Home",    href: "/" },
-    { label: "About",   href: "/about" },
-    { label: "Blog",    href: "/blog" },
-    { label: "Contact", href: "/contact" },
+    { label: "בית",        href: "/he" },
+    { label: "עליי",  href: "/about-he" },
+    { label: "בלוג",  href: "/blog-he" },
+    { label: "צור קשר", href: "/contact-he" },
   ]
   const legalLinks = [
-    { label: "Privacy",       href: "/privacy-policy" },
-    { label: "Terms",         href: "/terms" },
-    { label: "Accessibility", href: "/accessibility" },
+    { label: "פרטיות",  href: "/privacy-policy" },
+    { label: "תנאים",        href: "/terms" },
+    { label: "נגישות",  href: "/accessibility" },
   ]
   const socialIcons = [
     { href: "https://www.linkedin.com/in/hanita-yudovski/", label: "LinkedIn",
       icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
     { href: "https://www.instagram.com/hanita_Y", label: "Instagram",
       icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> },
-    { href: "https://www.facebook.com/octaloom", label: "Facebook",
-      icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
-    { href: "https://www.youtube.com/@Hanita_Octaloom", label: "YouTube",
-      icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> },
     { href: "https://open.spotify.com/show/4XmsthqR7gnj4nf2gL0T7j", label: "Spotify",
       icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg> },
   ]
 
   return (
-    <footer dir="ltr" style={{ padding: isMobile ? "32px 0 0" : "64px 0 0", background: "#201b4e", color: "rgba(255,255,255,0.7)", fontFamily: FF }}>
+    <footer dir="rtl" style={{ padding: isMobile ? "32px 0 0" : "64px 0 0", background: "#201b4e", color: "rgba(255,255,255,0.7)", fontFamily: FF }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2fr 0.65fr 1fr 0.8fr 0.8fr 0.8fr", gap: isMobile ? 20 : 24, paddingBottom: isMobile ? 24 : 48 }}>
           <div>
             <img src={LOGO_FOOT} alt="OctaLoom" style={{ height: isMobile ? 64 : 100, width: "auto", display: "block" }}/>
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14, maxWidth: 240, lineHeight: 1.65, fontFamily: FF }}>
-              {"Your marketing department,"}<br/>{"without the department."}
+              {"מחלקת השיווק שלכם,"}<br/>{"רק בלי המחלקה."}
             </p>
           </div>
           {!isMobile && (
             <div>
-              <h4 style={headStyle}>{"Pages"}</h4>
+              <h4 style={headStyle}>{"דפים"}</h4>
               {pageLinks.map((l, i) => (
                 <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hov(e, true)} onMouseLeave={e => hov(e, false)}>{l.label}</a>
               ))}
@@ -1111,7 +1060,7 @@ function FooterEN({ isMobile }: { isMobile: boolean }) {
           )}
           {!isMobile && (
             <div>
-              <h4 style={headStyle}>{"LinkedIn Services"}</h4>
+              <h4 style={headStyle}>{"שירותי לינקדאין"}</h4>
               {serviceLinks.map((l, i) => (
                 <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hov(e, true)} onMouseLeave={e => hov(e, false)}>{l.label}</a>
               ))}
@@ -1119,7 +1068,7 @@ function FooterEN({ isMobile }: { isMobile: boolean }) {
           )}
           {!isMobile && (
             <div>
-              <h4 style={headStyle}>{"More Services"}</h4>
+              <h4 style={headStyle}>{"ומעבר"}</h4>
               {otherLinks.map((l, i) => (
                 <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hov(e, true)} onMouseLeave={e => hov(e, false)}>{l.label}</a>
               ))}
@@ -1127,39 +1076,35 @@ function FooterEN({ isMobile }: { isMobile: boolean }) {
           )}
           {!isMobile && (
             <div>
-              <h4 style={{ ...headStyle, fontWeight: 300, fontSize: 12 }}>
-                {"Free Marketing"}<br/>{"Tools & Templates"}
-              </h4>
-              <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", opacity: 0.9 }}>
-                <img src={LOGO_GOOD} alt="OctaGoodies" style={{ height: 44, width: "auto", display: "block" }}/>
-              </a>
+              <h4 style={headStyle}>{"משפטי"}</h4>
+              {legalLinks.map((l, i) => (
+                <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hov(e, true)} onMouseLeave={e => hov(e, false)}>{l.label}</a>
+              ))}
             </div>
           )}
           <div>
-            {!isMobile && <h4 style={headStyle}>{"Connect"}</h4>}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            <h4 style={{ ...headStyle, marginBottom: 16 }}>{"Social"}</h4>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" as const }}>
               {socialIcons.map((s, i) => (
                 <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                  style={{ color: "rgba(255,255,255,0.5)", transition: "color 0.2s" }}
+                  style={{ color: "rgba(255,255,255,.38)", transition: "color 0.2s" }}
                   onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.lime }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.5)" }}>
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,.38)" }}>
                   {s.icon}
                 </a>
               ))}
             </div>
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 0", borderTop: "1px solid rgba(255,255,255,0.1)", fontSize: 12, color: "rgba(255,255,255,.38)", flexWrap: "wrap" as const, gap: 12, fontFamily: FF }}>
-          <span>{"© 2026 OctaLoom"}</span>
-          <div style={{ display: "flex", gap: 18 }}>
-            {legalLinks.map((l, i) => (
-              <a key={i} href={l.href} style={{ color: "rgba(255,255,255,.38)", transition: "color 0.2s", fontFamily: FF }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.lime }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,.38)" }}>
-                {l.label}
-              </a>
-            ))}
-          </div>
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", padding: "20px 0", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" as const, gap: 8 }}>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", fontFamily: FF }}>
+            {"© 2025 OctaLoom. כל הזכויות שמורות."}
+          </p>
+          <a href="https://www.octaloom.com/about" style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", fontFamily: "'Aeonik', sans-serif", transition: "color 0.2s" }}
+            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.lime }}
+            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.3)" }}>
+            {"EN"}
+          </a>
         </div>
       </div>
     </footer>
@@ -1167,22 +1112,19 @@ function FooterEN({ isMobile }: { isMobile: boolean }) {
 }
 
 // ─── SCHEMA ───────────────────────────────────────────────────────────────────
-function SchemaAbout() {
+function SchemaAboutHE() {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Person",
         "@id": "https://octaloom.com/#hanita",
-        "name": "Hanita Yudovski",
-        "jobTitle": "LinkedIn-Led Fractional CMO",
-        "description": "I'm Hanita Yudovski, LinkedIn-Led Fractional CMO and founder of OctaLoom. I help B2B founders and companies build LinkedIn authority and marketing systems that generate real business. 770K+ impressions.",
-        "url": "https://octaloom.com/about",
+        "name": "חניתה יודובסקי",
+        "jobTitle": "Fractional CMO",
+        "description": "חניתה יודובסקי, Fractional CMO ומייסדת OctaLoom. בונה מערכות שיווק ולינקדאין למייסדים וחברות B2B.",
+        "url": "https://octaloom.com/about-he",
         "image": HEADSHOT,
-        "sameAs": [
-          "https://www.linkedin.com/in/hanita-yudovski/",
-          "https://www.instagram.com/hanita_Y",
-        ],
+        "sameAs": ["https://www.linkedin.com/in/hanita-yudovski/"],
         "worksFor": {
           "@type": "Organization",
           "@id": "https://octaloom.com/#org",
@@ -1195,23 +1137,13 @@ function SchemaAbout() {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is a LinkedIn-Led Fractional CMO?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A Fractional CMO is a senior marketing leader who works with your company part-time rather than full-time. LinkedIn-Led means my approach is built around the platform where B2B decisions actually happen. I handle strategy, content, execution, and marketing leadership without the overhead of a full-time hire." },
+            "name": "מה זה Fractional CMO?",
+            "acceptedAnswer": { "@type": "Answer", "text": "אם הייתם שוכרים CMO במשרה מלאה, הייתם משלמים 40-60 אלף שקל בחודש. Fractional CMO זה אותה הנהגה שיווקית, בלי המשכורת." },
           },
           {
             "@type": "Question",
-            "name": "Who does OctaLoom work with?",
-            "acceptedAnswer": { "@type": "Answer", "text": "B2B founders and companies who need serious marketing leadership but aren't at the stage where a full-time CMO makes financial sense." },
-          },
-          {
-            "@type": "Question",
-            "name": "What makes OctaLoom different from an agency?",
-            "acceptedAnswer": { "@type": "Answer", "text": "An agency wins when more people work on your account. I win when fewer people do more. You get one strategist who knows your business, builds the systems, and executes with no account managers between strategy and the actual work." },
-          },
-          {
-            "@type": "Question",
-            "name": "What is Vibe Marketing?",
-            "acceptedAnswer": { "@type": "Answer", "text": "The framework I work by: the same philosophy Andrej Karpathy defined with Vibe Coding for software development, applied to marketing. AI handles the scale. I handle the thinking." },
+            "name": "עם מי את עובדת?",
+            "acceptedAnswer": { "@type": "Answer", "text": "בעיקר עם מייסדים וחברות B2B שצריכים שיווק רציני בלינקדאין." },
           },
         ],
       },
@@ -1226,17 +1158,17 @@ function SchemaAbout() {
 }
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-export default function AboutPageEN() {
+export default function AboutPageHE() {
   useGlobalStyles()
   const w = useWindowSize()
   const isMobile = w < 768
 
   return (
-    <div dir="ltr" style={{ width: "100vw", overflowX: "hidden", fontFamily: FF, background: C.cream }}>
-      <SchemaAbout />
+    <div dir="rtl" style={{ width: "100vw", overflowX: "hidden", fontFamily: FF, background: C.cream }}>
+      <SchemaAboutHE />
       <ScrollProgress />
       <CustomCursor />
-      <NavEN />
+      <NavHE />
       <main>
         <HeroSection isMobile={isMobile} />
         <TimelineSection isMobile={isMobile} />
@@ -1247,7 +1179,7 @@ export default function AboutPageEN() {
         <FAQSection isMobile={isMobile} />
         <CTASection isMobile={isMobile} />
       </main>
-      <FooterEN isMobile={isMobile} />
+      <FooterHE isMobile={isMobile} />
     </div>
   )
 }
