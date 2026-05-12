@@ -62,8 +62,9 @@ function useWindowWidth() {
 // ─── Content ─────────────────────────────────────────────────────────────────
 
 const hero = {
-  h1a: "Turn LinkedIn Into Your #1",
-  h1b: "Growth Engine.",
+  h1a: "Turn LinkedIn",
+  h1b: "Into Your #1",
+  h1c: "Growth Engine.",
   sub: "If your LinkedIn bio says some version of “helping companies grow” and your last post is from three months ago, we should probably talk. OctaLoom builds LinkedIn management systems for B2B SaaS founders, SMB owners, and lean teams who know LinkedIn should be working harder, and finally want it to.",
   cta1: "Book a Free LinkedIn Audit",
   cta2: "Find Your Plan",
@@ -562,7 +563,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
           </Reveal>
           <Reveal delay={80}>
             <h1 style={{ fontSize: "clamp(34px,4.8vw,62px)", fontWeight: 700, lineHeight: 1.08, color: DEEP_PURPLE, marginBottom: 22, fontFamily: FONT }}>
-              {hero.h1a}<br/>{hero.h1b}
+              {hero.h1a}<br/>{hero.h1b}<br/>{hero.h1c}
             </h1>
           </Reveal>
           <Reveal delay={160}>
