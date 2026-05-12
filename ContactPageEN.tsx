@@ -315,35 +315,35 @@ function FooterEN() {
   ]
 
   return (
-    <footer dir="ltr" style={{ padding: "64px 0 0", background: "#201b4e", color: "rgba(255,255,255,0.7)", fontFamily: FF }}>
+    <footer dir="ltr" style={{ padding: isMobile ? "32px 0 0" : "64px 0 0", background: "#201b4e", color: "rgba(255,255,255,0.7)", fontFamily: FF }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "2fr 0.65fr 1fr 0.8fr 0.8fr 0.8fr", gap: isMobile ? "28px 20px" : 24, paddingBottom: 48 }}>
-          <div style={{ gridColumn: isMobile ? "1 / -1" : "1" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2fr 0.65fr 1fr 0.8fr 0.8fr 0.8fr", gap: isMobile ? 20 : 24, paddingBottom: isMobile ? 24 : 48 }}>
+          <div>
             <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
-              alt="OctaLoom" style={{ height: 100, width: "auto", display: "block" }}/>
+              alt="OctaLoom" style={{ height: isMobile ? 64 : 100, width: "auto", display: "block" }}/>
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14, maxWidth: 240, lineHeight: 1.65, fontFamily: FF }}>
               {"Your marketing department,"}<br/>{"without the department."}
             </p>
           </div>
-          <div>
+          {!isMobile && <div>
             <h4 style={headStyle}>{"Pages"}</h4>
             {pageLinks.map((l, i) => (
               <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{l.label}</a>
             ))}
-          </div>
-          <div>
+          </div>}
+          {!isMobile && <div>
             <h4 style={headStyle}>{"LinkedIn Services"}</h4>
             {serviceLinks.map((l, i) => (
               <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{l.label}</a>
             ))}
-          </div>
-          <div>
+          </div>}
+          {!isMobile && <div>
             <h4 style={headStyle}>{"More Services"}</h4>
             {otherLinks.map((l, i) => (
               <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{l.label}</a>
             ))}
-          </div>
-          <div>
+          </div>}
+          {!isMobile && <div>
             <h4 style={{ ...headStyle, fontWeight: 300, fontSize: 12 }}>
               {"Free Marketing"}<br/>{"Tools & Templates"}
             </h4>
@@ -352,9 +352,9 @@ function FooterEN() {
               <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/OCTAGOODIES%20GREEN.png"
                 alt="OctaGoodies" style={{ height: 44, width: "auto", display: "block" }}/>
             </a>
-          </div>
+          </div>}
           <div>
-            <h4 style={headStyle}>{"Connect"}</h4>
+            {!isMobile && <h4 style={headStyle}>{"Connect"}</h4>}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
               {socialIcons.map((s, i) => (
                 <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
