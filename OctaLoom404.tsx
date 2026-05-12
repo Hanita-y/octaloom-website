@@ -163,14 +163,14 @@ function HPNav() {
   }, [])
 
   const linkedinSub = [
-    { en: "LinkedIn for Organizations",             he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD",               href: "/services/linkedin-for-organizations" },
-    { en: "LinkedIn for Executives",                he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05E0\u05D4\u05DC\u05D9\u05DD",                href: "/services/linkedin-for-executives" },
-    { en: "LinkedIn for Solopreneurs & Biz Owners", he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05E2\u05E6\u05DE\u05D0\u05D9\u05DD \u05D5\u05D1\u05E2\u05DC\u05D9 \u05E2\u05E1\u05E7\u05D9\u05DD",   href: "/services/linkedin-for-solopreneurs" },
+    { en: "LinkedIn for Organizations",             he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD",               href: "/linkedin-for-organizations" },
+    { en: "LinkedIn for Executives",                he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05E0\u05D4\u05DC\u05D9\u05DD",                href: "/linkedin-for-executives" },
+    { en: "LinkedIn for Solopreneurs & Biz Owners", he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05E2\u05E6\u05DE\u05D0\u05D9\u05DD \u05D5\u05D1\u05E2\u05DC\u05D9 \u05E2\u05E1\u05E7\u05D9\u05DD",   href: "/linkedin-for-solopreneurs" },
   ]
   const services = [
-    { en: "LinkedIn Growth Engine", he: "\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4 \u05D1\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF", href: "/services/linkedin-growth-engine", sub: linkedinSub },
-    { en: "Fractional CMO",         he: "Fractional CMO",         href: "/services/fractional-cmo",         sub: null },
-    { en: "AI Tools & Agents",      he: "\u05DB\u05DC\u05D9 AI \u05D5\u05E1\u05D5\u05DB\u05E0\u05D9\u05DD",        href: "/services/ai-tools-agents",        sub: null },
+    { en: "LinkedIn Growth Engine", he: "\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4 \u05D1\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF", href: "/linkedin-growth-engine", sub: linkedinSub },
+    { en: "Fractional CMO",         he: "Fractional CMO",         href: "/fractional-cmo",         sub: null },
+    { en: "AI Tools & Agents",      he: "\u05DB\u05DC\u05D9 AI \u05D5\u05E1\u05D5\u05DB\u05E0\u05D9\u05DD",        href: "/ai-tools-agents",        sub: null },
   ]
 
   const navBg: React.CSSProperties = scrolled
@@ -443,9 +443,9 @@ function HPFooter() {
           <div>
             <h4 style={headStyle}>{lang === "he" ? "\u05E9\u05D9\u05E8\u05D5\u05EA\u05D9 \u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF" : "LinkedIn Services"}</h4>
             {([
-              { en: "LinkedIn for Organizations", he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD", href: "/services/linkedin-for-organizations" },
-              { en: "LinkedIn for Founders",      he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD", href: "/services/linkedin-for-executives" },
-              { en: "LinkedIn for Solopreneurs",  he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05E2\u05E6\u05DE\u05D0\u05D9\u05DD",  href: "/services/linkedin-for-solopreneurs" },
+              { en: "LinkedIn for Organizations", he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD", href: "/linkedin-for-organizations" },
+              { en: "LinkedIn for Founders",      he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD", href: "/linkedin-for-executives" },
+              { en: "LinkedIn for Solopreneurs",  he: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05E2\u05E6\u05DE\u05D0\u05D9\u05DD",  href: "/linkedin-for-solopreneurs" },
             ] as {en:string;he:string;href:string}[]).map((s, i) => (
               <a key={i} href={s.href} style={linkStyle}
                 onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>
@@ -454,8 +454,8 @@ function HPFooter() {
             ))}
             <h4 style={{ ...headStyle, marginTop: 20 }}>{lang === "he" ? "\u05E9\u05D9\u05E8\u05D5\u05EA\u05D9\u05DD \u05E0\u05D5\u05E1\u05E4\u05D9\u05DD" : "More Services"}</h4>
             {([
-              { en: "Fractional CMO",    he: "Fractional CMO",     href: "/services/fractional-cmo" },
-              { en: "AI Tools & Agents", he: "\u05DB\u05DC\u05D9 AI \u05D5\u05E1\u05D5\u05DB\u05E0\u05D9\u05DD", href: "/services/ai-tools-agents" },
+              { en: "Fractional CMO",    he: "Fractional CMO",     href: "/fractional-cmo" },
+              { en: "AI Tools & Agents", he: "\u05DB\u05DC\u05D9 AI \u05D5\u05E1\u05D5\u05DB\u05E0\u05D9\u05DD", href: "/ai-tools-agents" },
             ] as {en:string;he:string;href:string}[]).map((s, i) => (
               <a key={i} href={s.href} style={linkStyle}
                 onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>
