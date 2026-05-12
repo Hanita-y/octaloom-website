@@ -10,7 +10,7 @@ const { useState, useEffect, useRef, useCallback } = React
 
 const CREAM = "#ece9e7"
 const DEEP_PURPLE = "#201e4b"
-const NAVY = "#060d3d"
+const NAVY = "#201b4e"
 const LIME = "#c6e1a5"
 const PURPLE = "#712eac"
 const BORDER = "#e5e7eb"
@@ -1086,7 +1086,7 @@ function Footer() {
   ]
 
   return (
-    <footer style={{ padding: "64px 0 0", background: DEEP_PURPLE, color: "rgba(255,255,255,0.7)", fontFamily: FONT }}>
+    <footer style={{ padding: "64px 0 0", background: NAVY, color: "rgba(255,255,255,0.7)", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "2fr 0.65fr 1fr 0.8fr 0.8fr 0.8fr", gap: isMobile ? "28px 20px" : 24, paddingBottom: 48 }}>
           {/* Brand */}

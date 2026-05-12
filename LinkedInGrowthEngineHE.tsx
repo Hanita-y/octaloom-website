@@ -9,7 +9,7 @@ const { useState, useEffect, useRef, useCallback } = React
 // ─── Tokens ──────────────────────────────────────────────────────────────────
 const CREAM = "#ece9e7"
 const DEEP_PURPLE = "#201e4b"
-const NAVY = "#060d3d"
+const NAVY = "#201b4e"
 const LIME = "#c6e1a5"
 const PURPLE = "#712eac"
 const BORDER = "#e5e7eb"
