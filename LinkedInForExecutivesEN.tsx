@@ -146,8 +146,9 @@ button{font-family:inherit;border:none;background:none;cursor:pointer}
 .checklist__icon--animated{transition:transform 0.3s,box-shadow 0.3s}
 .rv-in .checklist__icon--animated{animation:checkPop 0.4s cubic-bezier(.16,1,.3,1)}
 @keyframes checkPop{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
-.results__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.results__item{text-align:center;padding:28px 16px;background:rgba(113,46,172,0.04);border-radius:14px;border:1px solid rgba(113,46,172,0.06);transition:transform 0.3s}
+.results__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.results__grid>*{height:100%;display:flex}
+.results__item{text-align:center;padding:28px 16px;background:rgba(113,46,172,0.04);border-radius:14px;border:1px solid rgba(113,46,172,0.06);transition:transform 0.3s;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .results__item:hover{transform:translateY(-2px)}
 .results__num{font-size:clamp(32px,4vw,48px);font-weight:700;color:var(--purple);display:block;margin-bottom:8px}
 .results__label{font-size:14px;color:var(--deep-purple);opacity:0.65;line-height:1.4;font-family:var(--font-en)}
