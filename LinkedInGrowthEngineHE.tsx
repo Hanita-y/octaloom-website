@@ -393,6 +393,9 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
               display: "flex", alignItems: "center", gap: 5, padding: "6px 0", transition: "color 0.25s", fontFamily: FONT }}>
               שירותים<ChevronDown open={servicesOpen}/>
             </button>
+            {servicesOpen && (
+              <div style={{ position: "absolute", top: "100%", left: 0, right: 0, height: 12, zIndex: 199 }} />
+            )}
             <AnimatePresence>
               {servicesOpen && (
                 <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }}
@@ -409,6 +412,9 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
                         <path d="M4 2l4 4-4 4" stroke={DEEP_PURPLE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </a>
+                    {linkedinOpen && (
+                      <div style={{ position: "absolute", top: 0, bottom: 0, right: "100%", width: 8, zIndex: 199 }} />
+                    )}
                     <AnimatePresence>
                       {linkedinOpen && (
                         <motion.div initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -6 }}

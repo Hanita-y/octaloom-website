@@ -428,35 +428,41 @@ function Navbar() {
                 Services <ChevronDown open={servicesOpen}/>
               </button>
               {servicesOpen && (
-                <div style={{ ...dropBase, top: "calc(100% + 10px)", left: 0 }}>
-                  <div style={{ position: "relative" }}
-                    onMouseEnter={() => setLinkedinOpen(true)}
-                    onMouseLeave={() => setLinkedinOpen(false)}>
-                    <a href="/linkedin-growth-engine" style={dropItem}
-                      onMouseEnter={(e: any) => e.currentTarget.style.background="rgba(113,46,172,0.05)"}
-                      onMouseLeave={(e: any) => e.currentTarget.style.background="transparent"}>
-                      <span>LinkedIn Growth Engine</span><ChevronRight/>
-                    </a>
-                    {linkedinOpen && (
-                      <div style={{ ...dropBase, top: 0, left: "calc(100% + 6px)" }}>
-                        {linkedinSub.map((sub, i) => (
-                          <a key={i} href={sub.href} style={{ ...dropItem, justifyContent: "flex-start" }}
-                            onMouseEnter={(e: any) => e.currentTarget.style.background="rgba(113,46,172,0.05)"}
-                            onMouseLeave={(e: any) => e.currentTarget.style.background="transparent"}>
-                            {sub.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
+                <>
+                  <div style={{ position: "absolute", top: "100%", left: 0, right: 0, height: 12, zIndex: 199 }} />
+                  <div style={{ ...dropBase, top: "calc(100% + 10px)", left: 0 }}>
+                    <div style={{ position: "relative" }}
+                      onMouseEnter={() => setLinkedinOpen(true)}
+                      onMouseLeave={() => setLinkedinOpen(false)}>
+                      <a href="/linkedin-growth-engine" style={dropItem}
+                        onMouseEnter={(e: any) => e.currentTarget.style.background="rgba(113,46,172,0.05)"}
+                        onMouseLeave={(e: any) => e.currentTarget.style.background="transparent"}>
+                        <span>LinkedIn Growth Engine</span><ChevronRight/>
+                      </a>
+                      {linkedinOpen && (
+                        <>
+                          <div style={{ position: "absolute", top: 0, bottom: 0, left: "100%", width: 8, zIndex: 199 }} />
+                          <div style={{ ...dropBase, top: 0, left: "calc(100% + 6px)" }}>
+                            {linkedinSub.map((sub, i) => (
+                              <a key={i} href={sub.href} style={{ ...dropItem, justifyContent: "flex-start" }}
+                                onMouseEnter={(e: any) => e.currentTarget.style.background="rgba(113,46,172,0.05)"}
+                                onMouseLeave={(e: any) => e.currentTarget.style.background="transparent"}>
+                                {sub.label}
+                              </a>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    {otherServices.map((svc, i) => (
+                      <a key={i} href={svc.href} style={{ ...dropItem, justifyContent: "flex-start" }}
+                        onMouseEnter={(e: any) => e.currentTarget.style.background="rgba(113,46,172,0.05)"}
+                        onMouseLeave={(e: any) => e.currentTarget.style.background="transparent"}>
+                        {svc.label}
+                      </a>
+                    ))}
                   </div>
-                  {otherServices.map((svc, i) => (
-                    <a key={i} href={svc.href} style={{ ...dropItem, justifyContent: "flex-start" }}
-                      onMouseEnter={(e: any) => e.currentTarget.style.background="rgba(113,46,172,0.05)"}
-                      onMouseLeave={(e: any) => e.currentTarget.style.background="transparent"}>
-                      {svc.label}
-                    </a>
-                  ))}
-                </div>
+                </>
               )}
             </div>
             {navLinks.map((item, i) => (
