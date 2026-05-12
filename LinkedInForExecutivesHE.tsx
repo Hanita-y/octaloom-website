@@ -735,7 +735,7 @@ function HPNav() {
         {!isMobile && (
           <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
             style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: "var(--purple)", color: "#fff", textDecoration: "none", fontFamily, border: "none", cursor: "pointer" }}>
-            קביעת שיחה
+            בואו נדבר
           </button>
         )}
 
