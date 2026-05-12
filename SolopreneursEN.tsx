@@ -27,8 +27,8 @@ const t = (obj) => {
   return obj.en || '';
 };
 
-function useInView(threshold = 0.12) {
-  const ref = useRef(null);
+function useInView(threshold = 0.12): [React.RefObject<any>, boolean] {
+  const ref = useRef<any>(null);
   const [vis, setVis] = useState(false);
   useEffect(() => {
     const el = ref.current; if (!el) return;
@@ -58,7 +58,7 @@ function useWindowWidth() {
   return w;
 }
 
-function Reveal({ children, delay = 0, className = '', style = {} }) {
+function Reveal({ children, delay = 0, className = '', style = {} }: any) {
   const [ref, vis] = useInView(0.08);
   return (
     <div ref={ref} className={`rv ${vis ? 'rv-in' : ''} ${className}`}
@@ -68,10 +68,10 @@ function Reveal({ children, delay = 0, className = '', style = {} }) {
   );
 }
 
-function ColorSection({ bg, children, className = '', id, style = {} }) {
+function ColorSection({ bg, children, className = '', id, style = {} }: any) {
   return (
     <section className={`color-section ${className}`} id={id}
-      style={{ '--section-bg': bg, ...style }}>
+      style={{ backgroundColor: bg, transition: 'background-color 0.6s ease', ...style }}>
       <div className="section-inner">{children}</div>
     </section>
   );
@@ -216,8 +216,8 @@ function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [linkedinOpen, setLinkedinOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
-  const closeTimerRef = useRef(null);
-  const liCloseTimerRef = useRef(null);
+  const closeTimerRef = useRef<any>(null);
+  const liCloseTimerRef = useRef<any>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -284,7 +284,7 @@ function Navbar() {
         <a href="https://octaloom.com" style={ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
             alt="OctaLoom" style={{ height: 36, width: 'auto', display: 'block' }}
-            onError={(e) => { e.target.style.display = 'none'; }} />
+            onError={(e: any) => { e.target.style.display = 'none'; }} />
         </a>
 
         {!isMobile && (
@@ -310,8 +310,8 @@ function Navbar() {
                     onMouseEnter={() => { if (liCloseTimerRef.current) clearTimeout(liCloseTimerRef.current); setLinkedinOpen(true); }}
                     onMouseLeave={() => { liCloseTimerRef.current = setTimeout(() => setLinkedinOpen(false), 150); }}>
                     <a href="https://octaloom.com/linkedin-growth-engine" style={{ ...dropItemStyle }}
-                      onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
-                      onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
+                      onMouseEnter={(e: any) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
+                      onMouseLeave={(e: any) => e.currentTarget.style.background = 'transparent'}>
                       <span>LinkedIn Growth Engine</span>
                       <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ opacity: 0.45, flexShrink: 0 }}>
                         <path d="M4 2l4 4-4 4" stroke="var(--deep-purple)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -321,8 +321,8 @@ function Navbar() {
                       <div style={{ ...dropBase, top: 0, left: 'calc(100% + 6px)' }}>
                         {linkedinSub.map((sub, i) => (
                           <a key={i} href={sub.href} style={{ ...dropItemStyle, justifyContent: 'flex-start' }}
-                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
-                            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
+                            onMouseEnter={(e: any) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
+                            onMouseLeave={(e: any) => e.currentTarget.style.background = 'transparent'}>
                             {sub.label}
                           </a>
                         ))}
@@ -331,8 +331,8 @@ function Navbar() {
                   </div>
                   {otherServices.map((svc, i) => (
                     <a key={i} href={svc.href} style={{ ...dropItemStyle, justifyContent: 'flex-start' }}
-                      onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
-                      onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
+                      onMouseEnter={(e: any) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
+                      onMouseLeave={(e: any) => e.currentTarget.style.background = 'transparent'}>
                       {svc.label}
                     </a>
                   ))}
@@ -342,8 +342,8 @@ function Navbar() {
             {navLinks.map((item, i) => (
               <a key={i} href={item.href}
                 style={{ fontSize: 14, color: 'rgba(32,30,75,0.55)', textDecoration: 'none', transition: 'color 0.25s', fontFamily: FONT }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--deep-purple)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(32,30,75,0.55)'}>
+                onMouseEnter={(e: any) => e.currentTarget.style.color = 'var(--deep-purple)'}
+                onMouseLeave={(e: any) => e.currentTarget.style.color = 'rgba(32,30,75,0.55)'}>
                 {item.label}
               </a>
             ))}
@@ -445,7 +445,7 @@ function Footer() {
           <div>
             <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
               alt="OctaLoom" style={{ height: isMobile ? 64 : 100, width: 'auto' }}
-              onError={(e) => { e.target.style.display='none'; }}/>
+              onError={(e: any) => { e.target.style.display='none'; }}/>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', marginTop: 14, maxWidth: 240, lineHeight: 1.65, fontFamily: FONT }}>
               Your marketing department,<br/>minus the department.
             </p>
@@ -474,8 +474,8 @@ function Footer() {
             </h4>
             <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer"
               style={{ textDecoration: 'none', display: 'inline-block' }}
-              onMouseEnter={(e) => e.currentTarget.style.opacity='1'}
-              onMouseLeave={(e) => e.currentTarget.style.opacity='0.9'}>
+              onMouseEnter={(e: any) => e.currentTarget.style.opacity='1'}
+              onMouseLeave={(e: any) => e.currentTarget.style.opacity='0.9'}>
               <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/OCTAGOODIES%20GREEN.png"
                 alt="OctaGoodies" style={{ height: 44, width: 'auto', opacity: 0.9, transition: 'opacity 0.2s' }}/>
             </a>
@@ -486,8 +486,8 @@ function Footer() {
               {socialIcons.map((s, i) => (
                 <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
                   style={{ color: 'rgba(255,255,255,0.5)', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = LIME}
-                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}>
+                  onMouseEnter={(e: any) => e.currentTarget.style.color = LIME}
+                  onMouseLeave={(e: any) => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}>
                   {s.svg}
                 </a>
               ))}
@@ -499,8 +499,8 @@ function Footer() {
           <div style={{ display: 'flex', gap: 18 }}>
             {[{ label: 'Privacy', href: 'https://octaloom.com/privacy-policy' }, { label: 'Terms', href: 'https://octaloom.com/terms' }, { label: 'Accessibility', href: 'https://octaloom.com/accessibility' }].map((l, i) => (
               <a key={i} href={l.href} style={{ color: 'rgba(255,255,255,.38)', textDecoration: 'none', transition: 'color 0.2s', fontFamily: FONT }}
-                onMouseEnter={(e) => e.currentTarget.style.color = LIME}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,.38)'}>
+                onMouseEnter={(e: any) => e.currentTarget.style.color = LIME}
+                onMouseLeave={(e: any) => e.currentTarget.style.color = 'rgba(255,255,255,.38)'}>
                 {l.label}
               </a>
             ))}
@@ -800,7 +800,7 @@ function SoloAbout() {
         <div className="about__layout">
           <Reveal className="rv--right">
             <div className="about__photo">
-              <img src="assets/hanita.png" alt="Hanita Yudovski" className="about__photo-img" onError={(e) => { e.target.style.display='none'; }} />
+              <img src="assets/hanita.png" alt="Hanita Yudovski" className="about__photo-img" onError={(e: any) => { e.target.style.display='none'; }} />
             </div>
           </Reveal>
           <div className="about__content">
@@ -913,7 +913,7 @@ function VerticalNav() {
         const isActive = active === s.id;
         return (
           <a key={s.id}
-            onClick={(e) => { e.preventDefault(); document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' }); }}
+            onClick={(e: any) => { e.preventDefault(); document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' }); }}
             href={'#' + s.id}
             title={s.label}
             style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', textDecoration: 'none', flexDirection: 'row' }}>
