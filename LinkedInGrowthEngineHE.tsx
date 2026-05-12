@@ -454,7 +454,7 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
         {!isMobile && (
           <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
             style={{ padding: "8px 20px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 13, fontWeight: 600, fontFamily: FONT, textDecoration: "none" }}>
-            קביעת שיחה
+            בואו נדבר
           </a>
         )}
         {isMobile && (
@@ -499,7 +499,7 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
           <div style={{ marginTop: 14 }}>
             <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
               style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: PURPLE, color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily: FONT }}>
-              קביעת שיחה חינם
+              בואו נדבר חינם
             </a>
           </div>
         </div>
