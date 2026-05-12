@@ -559,7 +559,13 @@ function LiIcon({ size = 16, color = "#0A66C2" }: any) {
 }
 
 function LiReaction({ type, size = 24 }: any) {
-  return <img src={`assets/reactions/${type}.png`} width={size} height={size} alt={type} style={{ display: "block" }} />
+  const map: Record<string,string> = { like:"👍", celebrate:"👏", support:"💚", love:"❤️", insightful:"💡", funny:"😄" }
+  const bg: Record<string,string>  = { like:"#0A66C2", celebrate:"#44712e", support:"#5f9b41", love:"#e34d41", insightful:"#e7a33e", funny:"#e7a33e" }
+  return (
+    <span style={{ display:"inline-flex", alignItems:"center", justifyContent:"center",
+      width:size, height:size, borderRadius:"50%", background:bg[type]||"#0A66C2",
+      fontSize:size*0.62, lineHeight:1, flexShrink:0 }}>{map[type]||"👍"}</span>
+  )
 }
 
 // ─── AnimatedNum ─────────────────────────────────────────────────────────────
