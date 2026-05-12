@@ -944,11 +944,6 @@ function QuizModal({ onClose }: { onClose: () => void }) {
 export default function LinkedInGrowthEngineHE() {
   useGlobalStyles()
   const [quizOpen, setQuizOpen] = useState(false)
-  useEffect(() => {
-    const prev = document.body.style.background
-    document.body.style.background = NAVY
-    return () => { document.body.style.background = prev }
-  }, [])
 
   return (
     <div style={{ fontFamily: FONT, background: CREAM, color: DEEP_PURPLE, direction: "rtl", WebkitFontSmoothing: "antialiased", overflowX: "hidden", lineHeight: 1.6, width: "100vw", position: "relative", left: "50%", transform: "translateX(-50%)" }}>
