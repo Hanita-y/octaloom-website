@@ -506,10 +506,10 @@ function Navbar() {
   }, [menuOpen, isMobile]);
 
   const navLinks = [
-    { label: 'שירותים', href: '#services' },
-    { label: 'שאלות', href: '#faq' },
-    { label: 'אודות', href: 'https://octaloom.com/about-he' },
-    { label: 'בלוג', href: 'https://octaloom.com/blog' },
+    { label: 'שירותים', href: '#vnav-services' },
+    { label: 'אודות',    href: 'https://octaloom.com/about-he' },
+    { label: 'בלוג',      href: 'https://octaloom.com/blog'     },
+    { label: 'OctaGoodies',  href: '/octagoodies'                   },
   ];
 
   const navStyle = {
@@ -620,7 +620,7 @@ function Footer() {
   ];
 
   return (
-    <footer style={{ padding: isMobile ? '32px 0 0' : '64px 0 0', background: NAVY, color: 'rgba(255,255,255,0.7)', direction: 'rtl', fontFamily: FONT }}>
+    <footer style={{ padding: isMobile ? '32px 0 0' : '64px 0 0', background: '#201b4e', color: 'rgba(255,255,255,0.7)', direction: 'rtl', fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '2fr 0.65fr 1fr 0.8fr 0.8fr 0.8fr', gap: isMobile ? '20px' : 24, paddingBottom: isMobile ? 24 : 48 }}>
           <div>
@@ -1073,6 +1073,84 @@ function SoloCTA() {
 }
 
 // ============ APP ============
+
+function VerticalNav() {
+  const [active, setActive] = React.useState(0);
+  const [hovered, setHovered] = React.useState(-1);
+  const w = useWindowWidth();
+  const isMobile = w < 768;
+
+  const sections = [
+    { id: 'vnav-hero',     label: 'התחלה'         },
+    { id: 'vnav-services', label: 'חבילות'   },
+    { id: 'vnav-fit',      label: 'זה בשבילי?' },
+    { id: 'vnav-compare',  label: 'מול קורסים' },
+    { id: 'vnav-results',  label: 'תוצאות'   },
+    { id: 'vnav-score',    label: 'ציון'               },
+    { id: 'vnav-about',    label: 'אודות'         },
+    { id: 'vnav-faq',      label: 'שאלות'         },
+  ];
+
+  React.useEffect(() => {
+    const obs = [];
+    sections.forEach((s, i) => {
+      const el = document.getElementById(s.id);
+      if (!el) return;
+      const o = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActive(i); },
+        { rootMargin: '-20% 0px -65% 0px' }
+      );
+      o.observe(el);
+      obs.push({ o, el });
+    });
+    return () => obs.forEach(({ o, el }) => o.unobserve(el));
+  }, []);
+
+  if (isMobile) return null;
+
+  const scrollTo = (id, i) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setActive(i);
+  };
+
+  return (
+    <nav style={{
+      position: 'fixed', left: 20, top: '50%', transform: 'translateY(-50%)',
+      zIndex: 500, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4,
+      direction: 'rtl',
+    }}>
+      {sections.map((s, i) => {
+        const isActive = active === i;
+        const isHov = hovered === i;
+        const showLabel = isActive || isHov;
+        return (
+          <div key={s.id}
+            onClick={() => scrollTo(s.id, i)}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(-1)}
+            style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', gap: 8, cursor: 'pointer', padding: '4px 0' }}>
+            <div style={{
+              width: isActive ? 9 : 5, height: isActive ? 9 : 5, borderRadius: '50%', flexShrink: 0,
+              background: isActive ? PURPLE : isHov ? 'rgba(113,46,172,0.35)' : 'rgba(32,30,75,0.18)',
+              transition: 'all 0.25s ease',
+              boxShadow: isActive ? '0 0 0 3px rgba(113,46,172,0.15)' : 'none',
+            }} />
+            <span style={{
+              fontSize: 11, fontFamily: FONT, letterSpacing: '0.02em',
+              color: isActive ? PURPLE : 'rgba(32,30,75,0.5)',
+              fontWeight: isActive ? 600 : 400,
+              transition: 'opacity 0.25s, transform 0.25s, color 0.25s',
+              opacity: showLabel ? 1 : 0,
+              transform: showLabel ? 'translateX(0)' : 'translateX(-6px)',
+              whiteSpace: 'nowrap', userSelect: 'none', pointerEvents: 'none',
+            }}>{s.label}</span>
+          </div>
+        );
+      })}
+    </nav>
+  );
+}
+
 function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -1084,17 +1162,18 @@ function App() {
     <LangCtx.Provider value={{ lang: LANG }}>
       <div dir="rtl">
         <Navbar />
-        <SoloHero />
+        <VerticalNav />
+        <div id="vnav-hero"><SoloHero /></div>
         <SoloEntity />
         <SoloWhatItMeans />
-        <div id="services"><SoloTiers /></div>
-        <SoloFit />
-        <SoloCourseVsService />
-        <SoloResults />
+        <div id="vnav-services"><SoloTiers /></div>
+        <div id="vnav-fit"><SoloFit /></div>
+        <div id="vnav-compare"><SoloCourseVsService /></div>
+        <div id="vnav-results"><SoloResults /></div>
         <SoloTestimonial />
-        <SoloLinkedInScore />
-        <SoloAbout />
-        <div id="faq"><SoloFAQ /></div>
+        <div id="vnav-score"><SoloLinkedInScore /></div>
+        <div id="vnav-about"><SoloAbout /></div>
+        <div id="vnav-faq"><SoloFAQ /></div>
         <SoloCTA />
         <Footer />
       </div>
