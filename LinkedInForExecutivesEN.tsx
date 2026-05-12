@@ -1356,6 +1356,125 @@ function ExecBackLink() {
   )
 }
 
+// ─── Exec Custom Cursor ──────────────────────────────────────────────────────
+const EXEC_DARK_SECTIONS = new Set(["exec-hero", "exec-brand", "exec-fit", "exec-testi"])
+const CURSOR_PURPLE = "#712eac"
+const CURSOR_CREAM  = "#ece9e7"
+const CURSOR_LIME   = "#c5e6a2"
+
+function ExecCustomCursor() {
+  const dotRef  = useRef<HTMLDivElement>(null)
+  const ringRef = useRef<HTMLDivElement>(null)
+  const pos     = useRef({ x: -100, y: -100 })
+  const ringPos = useRef({ x: -100, y: -100 })
+  const raf     = useRef<number>()
+  const st      = useRef({ hover: false, click: false, dark: false })
+
+  useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth < 768) return
+
+    const style = document.createElement("style")
+    style.textContent = "@media (pointer: fine) { * { cursor: none !important; } }"
+    document.head.appendChild(style)
+
+    const dot  = dotRef.current
+    const ring = ringRef.current
+    if (!dot || !ring) return
+
+    const isDark = (x: number, y: number) => {
+      const el = document.elementFromPoint(x, y)
+      if (!el) return false
+      let node: Element | null = el
+      while (node) {
+        if (node.id && EXEC_DARK_SECTIONS.has(node.id)) return true
+        node = node.parentElement
+      }
+      return false
+    }
+
+    const applyDot = () => {
+      const { hover, dark } = st.current
+      dot.style.width      = hover ? "5px" : "8px"
+      dot.style.height     = hover ? "5px" : "8px"
+      dot.style.background = hover ? CURSOR_LIME : (dark ? CURSOR_CREAM : CURSOR_PURPLE)
+    }
+    const applyRing = () => {
+      const { hover, click, dark } = st.current
+      if (click) {
+        ring.style.width       = "28px"
+        ring.style.height      = "28px"
+        ring.style.borderColor = CURSOR_LIME
+      } else if (hover) {
+        ring.style.width       = "54px"
+        ring.style.height      = "54px"
+        ring.style.borderColor = dark ? CURSOR_CREAM : CURSOR_PURPLE
+      } else {
+        ring.style.width       = "38px"
+        ring.style.height      = "38px"
+        ring.style.borderColor = dark ? "rgba(236,233,231,0.5)" : "rgba(113,46,172,0.45)"
+      }
+    }
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+    const tick = () => {
+      dot.style.left    = pos.current.x + "px"
+      dot.style.top     = pos.current.y + "px"
+      ringPos.current.x = lerp(ringPos.current.x, pos.current.x, 0.12)
+      ringPos.current.y = lerp(ringPos.current.y, pos.current.y, 0.12)
+      ring.style.left   = ringPos.current.x + "px"
+      ring.style.top    = ringPos.current.y + "px"
+      raf.current       = requestAnimationFrame(tick)
+    }
+
+    const isBtn  = (t: EventTarget | null) => t instanceof Element && !!t.closest("a,button,[role='button'],input,select,label")
+    const onMove = (e: MouseEvent) => {
+      pos.current = { x: e.clientX, y: e.clientY }
+      const nowDark = isDark(e.clientX, e.clientY)
+      if (nowDark !== st.current.dark) { st.current.dark = nowDark; applyDot(); applyRing() }
+    }
+    const onOver = (e: MouseEvent) => { if (isBtn(e.target)) { st.current.hover = true;  applyDot(); applyRing() } }
+    const onOut  = (e: MouseEvent) => { if (isBtn(e.target) && !isBtn(e.relatedTarget)) { st.current.hover = false; applyDot(); applyRing() } }
+    const onDown = () => { st.current.click = true;  applyRing() }
+    const onUp   = () => { st.current.click = false; applyRing() }
+
+    document.addEventListener("mousemove", onMove)
+    document.addEventListener("mouseover", onOver)
+    document.addEventListener("mouseout",  onOut)
+    document.addEventListener("mousedown", onDown)
+    document.addEventListener("mouseup",   onUp)
+    raf.current = requestAnimationFrame(tick)
+
+    return () => {
+      style.remove()
+      document.removeEventListener("mousemove", onMove)
+      document.removeEventListener("mouseover", onOver)
+      document.removeEventListener("mouseout",  onOut)
+      document.removeEventListener("mousedown", onDown)
+      document.removeEventListener("mouseup",   onUp)
+      cancelAnimationFrame(raf.current!)
+    }
+  }, [])
+
+  return (
+    <>
+      <div ref={dotRef} style={{
+        position: "fixed", top: 0, left: 0, width: 8, height: 8,
+        borderRadius: "50%", background: CURSOR_PURPLE,
+        pointerEvents: "none", zIndex: 9999,
+        transform: "translate(-50%, -50%)",
+        transition: "width .15s, height .15s, background .2s",
+      }} />
+      <div ref={ringRef} style={{
+        position: "fixed", top: 0, left: 0, width: 38, height: 38,
+        borderRadius: "50%", border: "1.5px solid rgba(113,46,172,0.45)",
+        pointerEvents: "none", zIndex: 9998,
+        transform: "translate(-50%, -50%)",
+        transition: "width .25s, height .25s, border-color .3s",
+      }} />
+    </>
+  )
+}
+
 // ─── Main Export ─────────────────────────────────────────────────────────────
 export default function LinkedInForExecutivesEN() {
   useGlobalStyles()
@@ -1364,6 +1483,7 @@ export default function LinkedInForExecutivesEN() {
 
   return (
     <div dir="ltr" lang="en" style={{ fontFamily: "var(--font-en)", background: "var(--cream)", minHeight: "100vh" }}>
+      {!isMobile && <ExecCustomCursor />}
       <HPNav />
       {!isMobile && <VerticalNav />}
       <ExecHero />
