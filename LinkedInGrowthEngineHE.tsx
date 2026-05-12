@@ -366,6 +366,7 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
   const otherSub = [
     { label: "CMO במיקור חוץ", href: "/fractional-cmo-he" },
     { label: "כלי AI וסוכנים", href: "/ai-tools-agents-he" },
+    { label: "סדנאות", href: "/workshops-he" },
   ]
   const navLinks = [
     { label: "אודות", href: "/about" },
@@ -465,7 +466,7 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
         )}
       </div>
       {isMobile && menuOpen && (
-        <div style={{ position: "absolute", top: "calc(100% + 8px)", right: 0, left: 0, background: "#fff", borderRadius: 16, padding: "20px 32px 32px", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", direction: "rtl", zIndex: 50 }}>
+        <div style={{ position: "absolute", top: "calc(100% + 8px)", right: 0, left: 0, background: "#fff", borderRadius: 16, padding: "20px 32px 32px", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", direction: "rtl", zIndex: 50, maxHeight: "calc(100vh - 100px)", overflowY: "auto" }}>
           <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: PURPLE, margin: "0 0 4px", fontFamily: FONT }}>שירותים</p>
           <a href="/linkedin-growth-engine-he" onClick={() => setMenuOpen(false)}
             style={{ display: "block", fontSize: 20, color: DEEP_PURPLE, textDecoration: "none", padding: "11px 0", fontWeight: 600, borderBottom: `1px solid rgba(113,46,172,0.08)`, fontFamily: FONT }}>
@@ -509,7 +510,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
   const FALLBACK_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='17' fill='%23712eac'/%3E%3C/svg%3E"
 
   return (
-    <section id="hero" style={{ background: CREAM, paddingTop: isMobile ? 84 : 136, paddingBottom: isMobile ? 56 : 80, fontFamily: FONT }}>
+    <section id="hero" style={{ background: CREAM, paddingTop: isMobile ? 110 : 136, paddingBottom: isMobile ? 56 : 80, fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 28 : 56, alignItems: "center", direction: "rtl" }}>
           {/* Text column */}
@@ -933,6 +934,7 @@ function Footer() {
   const otherLinks = [
     { label: "CMO במיקור חוץ", href: "/fractional-cmo-he" },
     { label: "כלי AI וסוכנים", href: "/ai-tools-agents-he" },
+    { label: "סדנאות", href: "/workshops-he" },
   ]
   const pageLinks = [
     { label: "עמוד הבית", href: "/" },

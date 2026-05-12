@@ -939,7 +939,9 @@ function HPNav() {
 
     { en: "Fractional CMO",         he: "Fractional CMO",                                                                                                    href: "/fractional-cmo",          sub: null },
 
-    { en: "AI Tools & Agents",      he: "כלי AI וסוכנים",                                                 href: "/ai-tools-agents",         sub: null },
+    { en: "AI Tools & Agents",      he: "כלי AI וסוכנים",                                                                                                href: "/ai-tools-agents",         sub: null },
+
+    { en: "Workshops",              he: "סדנאות",                                                                                                                              href: "/workshops",               sub: null },
 
   ]
 
@@ -3486,6 +3488,8 @@ function HPFooter() {
 
     { label: { en: "AI Tools & Agents",                  he: "כלי AI וסוכנים" },                  href: "/ai-tools-agents",           indent: false },
 
+    { label: { en: "Workshops",                          he: "סדנאות" },                          href: "/workshops",                 indent: false },
+
   ]
 
 
@@ -3643,6 +3647,8 @@ function HPFooter() {
               { en: "Fractional CMO",    he: "Fractional CMO",                                                href: "/fractional-cmo" },
 
               { en: "AI Tools & Agents", he: "כלי AI וסוכנים", href: "/ai-tools-agents" },
+
+              { en: "Workshops",         he: "סדנאות",         href: "/workshops" },
 
             ] as {en:string;he:string;href:string}[]).map((s, i) => (
 

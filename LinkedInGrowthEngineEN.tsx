@@ -366,6 +366,7 @@ function Navbar() {
   const otherServices = [
     { label: "Fractional CMO",   href: "/fractional-cmo" },
     { label: "AI Tools & Agents", href: "/ai-tools-agents" },
+    { label: "Workshops",         href: "/workshops" },
   ]
   const navLinks = [
     { label: "About",   href: "/about" },
@@ -538,7 +539,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
   const trustFiles = ["avatar1..jpeg","avatar2.jpeg","avatar3.jpeg","avatar4.jpeg","avatar5.jpeg"]
 
   return (
-    <ColorSection bg={CREAM} id="hero" innerStyle={{ paddingTop: isMobile ? 84 : 136, paddingBottom: isMobile ? 56 : 80 }}>
+    <ColorSection bg={CREAM} id="hero" innerStyle={{ paddingTop: isMobile ? 110 : 136, paddingBottom: isMobile ? 56 : 80 }}>
       <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 28 : 56, alignItems: "center" }}>
         {/* Text */}
         <div>
@@ -1076,6 +1077,7 @@ function Footer() {
   const otherLinks = [
     { label: "Fractional CMO",    href: "/fractional-cmo" },
     { label: "AI Tools & Agents", href: "/ai-tools-agents" },
+    { label: "Workshops",         href: "/workshops" },
   ]
   const socialIcons = [
     { href: "https://www.linkedin.com/in/hanita-yudovski/", label: "LinkedIn", svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d={LI_PATH}/></svg> },
