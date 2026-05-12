@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn for Solopreneurs — OctaLoom</title>
+<meta name="description" content="LinkedIn personal branding and profile optimization for coaches, consultants, and solo founders. One-time setup that turns your profile into a client magnet.">
+
+<style>
+@font-face { font-family: 'Aeonik'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/Aeonik-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Aeonik'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/Aeonik-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Discovery'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/DiscoveryFs-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Discovery'; src: url('https://cdn.jsdelivr.net/gh/Hanita-y/octaloom-fonts@main/DiscoveryFs-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+</style>
+
+<style>
+:root {
+  --purple: #712eac;
+  --deep-purple: #201e4b;
+  --navy: #060d3d;
+  --lime: #c5e6a2;
+  --cream: #ece9e7;
+  --text-dark: #201e4b;
+  --text-mid: #3d3a5c;
+  --text-light: #ece9e7;
+  --font-en: 'Aeonik', sans-serif;
+  --font-he: 'Discovery', sans-serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-en); background: var(--cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; border: none; background: none; cursor: pointer; }
+.container { max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
+.rv { opacity: 0; transform: translateY(36px); transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1), filter 0.8s cubic-bezier(.16,1,.3,1); }
+.rv.rv-in { opacity: 1 !important; transform: translateY(0) !important; filter: none !important; }
+.rv--left { transform: translateX(-40px) translateY(0); }
+.rv--left.rv-in { transform: translateX(0) !important; }
+.rv--right { transform: translateX(40px) translateY(0); }
+.rv--right.rv-in { transform: translateX(0) !important; }
+.rv--scale { transform: scale(0.92); }
+.rv--scale.rv-in { transform: scale(1) !important; }
+.rv--blur { filter: blur(8px); transform: translateY(20px); }
+.rv--blur.rv-in { filter: blur(0) !important; transform: translateY(0) !important; }
+.rv--tilt { transform: perspective(800px) rotateX(6deg) translateY(30px); transform-origin: bottom; }
+.rv--tilt.rv-in { transform: perspective(800px) rotateX(0) translateY(0) !important; }
+.color-section { background-color: var(--section-bg, var(--cream)); transition: background-color 0.6s ease; }
+.section-inner { padding: clamp(64px, 10vw, 120px) 0; }
+.sec-title { font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.015em; margin-bottom: 40px; font-weight: 700; }
+.sec-title--dark { color: var(--deep-purple); }
+.sec-title--light { color: var(--text-light); }
+.sec-sub--dark { font-size: 17px; color: var(--deep-purple); opacity: 0.6; margin-bottom: 32px; max-width: 560px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 700; transition: all 0.25s; cursor: pointer; white-space: nowrap; }
+.btn--lime { background: var(--lime); color: var(--navy); }
+.btn--lime:hover { box-shadow: 0 4px 24px rgba(197,230,162,0.4); transform: translateY(-1px); }
+.btn--purple { background: var(--purple); color: white; }
+.btn--purple:hover { box-shadow: 0 4px 24px rgba(113,46,172,0.35); transform: translateY(-1px); }
+.btn--outline { background: transparent; color: var(--purple); border: 1.5px solid var(--purple); }
+.btn--outline:hover { background: var(--purple); color: white; }
+.btn--ghost { color: var(--purple); padding: 12px 24px; font-size: 14px; font-weight: 700; }
+.btn--ghost:hover { text-decoration: underline; }
+
+/* HERO */
+.solo-hero { color: var(--text-light); }
+.solo-hero .section-inner { padding: clamp(100px, 15vw, 160px) 0 clamp(80px, 12vw, 120px); }
+.solo-hero__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+.solo-hero__label { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); margin-bottom: 24px; }
+.solo-hero__h1 { font-size: clamp(30px, 4.5vw, 48px); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; color: white; max-width: 620px; margin-bottom: 20px; }
+.solo-hero__sub { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 540px; margin-bottom: 16px; }
+.solo-hero__hook { font-size: 18px; font-weight: 700; color: var(--lime); margin-bottom: 32px; max-width: 540px; }
+.solo-hero__visual { display: flex; justify-content: center; perspective: 800px; }
+.hero-ba { display: flex; align-items: center; gap: 12px; }
+.hero-ba__card { width: 200px; padding: 16px; border-radius: 12px; background: white; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; box-shadow: 0 4px 20px rgba(0,0,0,0.12); transition: all 0.8s cubic-bezier(.16,1,.3,1); }
+.hero-ba__card--before { opacity: 0.9; filter: grayscale(0.4) brightness(0.97); }
+.hero-ba__card--dim { opacity: 0.6; filter: grayscale(0.6) brightness(0.93); }
+.hero-ba__card--after { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+.hero-ba__card--glow { box-shadow: 0 4px 28px rgba(10,102,194,0.2), 0 0 0 1px rgba(10,102,194,0.1); }
+.hero-ba__tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin-bottom: 10px; }
+.hero-ba__tag--after { color: #0A66C2; }
+.hero-ba__profile { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.hero-ba__avatar--gray-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0; filter: grayscale(0.7) brightness(0.9); opacity: 0.7; }
+.hero-ba__avatar--color-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0; box-shadow: 0 0 0 2px #2d7a2d; }
+.hero-ba__rows { display: flex; flex-direction: column; gap: 5px; }
+.hero-ba__row { display: flex; justify-content: space-between; align-items: center; font-size: 11px; padding: 4px 8px; border-radius: 4px; background: #fafafa; }
+.hero-ba__card--after .hero-ba__row { background: #f0f8e8; }
+.hero-ba__rlabel { color: #666; font-weight: 600; }
+.hero-ba__rempty { color: #bbb; font-style: italic; }
+.hero-ba__rempty--warn { color: #e85d5d; font-style: normal; font-weight: 600; }
+.hero-ba__rok { color: #2d7a2d; font-weight: 600; }
+.hero-ba__arrow { opacity: 0; transform: scaleX(0); flex-shrink: 0; transition: all 0.5s cubic-bezier(.16,1,.3,1) 0.3s; }
+.hero-ba__arrow--show { opacity: 1; transform: scaleX(1); }
+.hero-ba__dm { position: absolute; top: -10px; left: -12px; display: flex; align-items: center; gap: 5px; padding: 5px 8px; background: white; border-radius: 8px; box-shadow: 0 3px 12px rgba(0,0,0,0.12); opacity: 0; transform: translateY(6px) scale(0.9); transition: all 0.5s cubic-bezier(.16,1,.3,1) 0.8s; }
+.hero-ba__dm--show { opacity: 1; transform: translateY(0) scale(1); }
+.hero-ba__card--after { position: relative; }
+
+/* ENTITY */
+.solo-entity .section-inner { padding-top: 60px; padding-bottom: 30px; }
+.solo-entity__text { font-size: 18px; line-height: 1.75; color: var(--deep-purple); opacity: 0.75; max-width: 720px; }
+
+/* WHAT IT MEANS */
+.solo-what .section-inner { padding-top: 30px; }
+.solo-what__intro { font-size: 16px; line-height: 1.7; color: var(--deep-purple); opacity: 0.7; margin-bottom: 28px; max-width: 680px; }
+.solo-what__layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; margin-bottom: 28px; }
+.solo-what__grid { display: flex; flex-direction: column; gap: 8px; }
+.solo-what__item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 16px; border-radius: 10px; background: rgba(113,46,172,0.04); border: 1px solid rgba(113,46,172,0.06); font-size: 14px; color: var(--deep-purple); line-height: 1.5; transition: border-color 0.3s; }
+.solo-what__item:hover { border-color: rgba(113,46,172,0.15); }
+.solo-what__check { flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; background: #ddd; display: flex; align-items: center; justify-content: center; transition: background 0.4s cubic-bezier(.16,1,.3,1), transform 0.3s; margin-top: 1px; }
+.solo-what__check--on { background: #2d7a2d; animation: checkBounce 0.4s cubic-bezier(.16,1,.3,1); }
+@keyframes checkBounce { 0% { transform: scale(0); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
+.solo-what__item-label { display: block; font-weight: 700; font-size: 14px; color: var(--deep-purple); }
+.solo-what__item-desc { display: block; font-size: 13px; color: var(--text-mid); opacity: 0.7; margin-top: 2px; }
+.solo-what__outro { font-size: 18px; font-weight: 700; color: var(--purple); max-width: 600px; }
+.solo-what__note { font-size: 14px; color: var(--deep-purple); opacity: 0.5; margin-top: 8px; }
+.solo-what__meter-wrap { position: sticky; top: 100px; }
+.strength-meter { padding: 24px 20px; border-radius: 14px; background: white; box-shadow: 0 2px 16px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.04); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+.strength-meter__header { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #191919; margin-bottom: 16px; }
+.strength-meter__bar-bg { height: 8px; border-radius: 4px; background: #e8e8e8; overflow: hidden; margin-bottom: 8px; }
+.strength-meter__bar { height: 100%; width: 15%; border-radius: 4px; background: linear-gradient(90deg, #e85d5d, #f0ad4e); transition: width 1.5s cubic-bezier(.16,1,.3,1), background 1.5s; }
+.strength-meter__bar--full { width: 100%; background: linear-gradient(90deg, #f0ad4e 0%, #5cb85c 50%, #2d7a2d 100%); }
+.strength-meter__labels { display: flex; justify-content: space-between; margin-bottom: 14px; }
+.strength-meter__level { font-size: 10px; color: #bbb; font-weight: 600; text-transform: uppercase; transition: color 0.5s; }
+.strength-meter__level--active { color: #191919; }
+.strength-meter__status { text-align: center; font-size: 12px; font-weight: 700; padding: 8px 12px; border-radius: 8px; background: #fef2f2; color: #e85d5d; transition: all 0.8s cubic-bezier(.16,1,.3,1); }
+.strength-meter__status--done { background: #f0f8e8; color: #2d7a2d; }
+
+/* TIERS */
+.tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.tier-card { position: relative; padding: 32px 28px; border-radius: 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s, box-shadow 0.3s; height: 100%; display: flex; flex-direction: column; }
+.tier-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+.tier-card--popular { background: rgba(197,230,162,0.08); border-color: rgba(197,230,162,0.25); box-shadow: 0 0 24px rgba(197,230,162,0.08); }
+.tier-card__badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); padding: 4px 14px; border-radius: 12px; background: var(--lime); color: var(--navy); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+.tier-card__name { font-size: 20px; font-weight: 700; color: white; margin-bottom: 12px; }
+.tier-card__desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 20px; }
+.tier-card__list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; flex: 1; }
+.tier-card__list li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+.tier-card__list li svg { flex-shrink: 0; margin-top: 2px; }
+.tier-card__for { font-size: 13px; color: var(--lime); font-weight: 600; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: auto; }
+.tiers-note { text-align: center; font-size: 15px; color: rgba(255,255,255,0.5); margin-top: 32px; font-style: italic; }
+
+/* FIT */
+.fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.fit-card { padding: 36px 32px; border-radius: 16px; height: 100%; }
+.fit-card--light.fit-card--yes { background: rgba(197,230,162,0.15); border: 1px solid rgba(197,230,162,0.3); }
+.fit-card--light.fit-card--yes:hover { box-shadow: 0 0 30px rgba(197,230,162,0.15); }
+.fit-card--light.fit-card--no { background: rgba(113,46,172,0.04); border: 1px solid rgba(113,46,172,0.08); }
+.fit-card--light.fit-card--no:hover { box-shadow: 0 0 30px rgba(113,46,172,0.08); }
+.fit-card--light h3 { font-size: 18px; font-weight: 700; color: var(--deep-purple); margin-bottom: 20px; }
+.fit-card--light ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.fit-card--light li { display: flex; gap: 10px; font-size: 15px; color: var(--deep-purple); opacity: 0.8; line-height: 1.5; }
+.fit-check { color: #2d7a2d; font-weight: 700; flex-shrink: 0; }
+.fit-x { color: #e85d5d; font-weight: 700; flex-shrink: 0; }
+
+/* COURSE VS SERVICE */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+.compare-card { padding: 32px 28px; border-radius: 16px; transition: transform 0.3s; height: 100%; display: flex; flex-direction: column; }
+.compare-card:hover { transform: translateY(-2px); }
+.compare-card--course { background: rgba(255,255,255,0.06); border: 1px solid rgba(232,93,93,0.15); opacity: 0.75; }
+.compare-card--service { background: rgba(197,230,162,0.08); border: 1px solid rgba(197,230,162,0.2); }
+.compare-card__icon { margin-bottom: 16px; }
+.compare-card h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 12px; }
+.compare-card p { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.7); }
+.compare-card--service p { color: rgba(255,255,255,0.85); }
+.pull-quote { display: flex; gap: 16px; margin: 28px 0; padding: 20px 0; }
+.pull-quote__bar { width: 4px; border-radius: 2px; flex-shrink: 0; background: linear-gradient(to bottom, var(--purple), var(--lime)); }
+.pull-quote p { font-size: 20px; font-weight: 700; line-height: 1.5; color: rgba(255,255,255,0.9); letter-spacing: -0.01em; }
+
+/* RESULTS */
+.results__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.results__grid--2 { grid-template-columns: repeat(2, 1fr); max-width: 600px; margin: 0 auto; }
+.results__item { text-align: center; padding: 28px 16px; background: rgba(113,46,172,0.04); border-radius: 14px; border: 1px solid rgba(113,46,172,0.06); transition: transform 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.results__item:hover { transform: translateY(-2px); }
+.results__num { font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: var(--purple); display: block; margin-bottom: 8px; }
+.results__label { font-size: 14px; color: var(--deep-purple); opacity: 0.65; line-height: 1.4; }
+
+/* ABOUT */
+.about__layout { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+.about__photo-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 3px solid var(--purple); }
+.about__p { font-size: 16px; line-height: 1.7; color: var(--deep-purple); opacity: 0.7; margin-bottom: 14px; }
+.about__links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+
+/* FAQ */
+.faq__list { max-width: 700px; display: flex; flex-direction: column; gap: 2px; }
+.faq__item { border-bottom: 1px solid rgba(0,0,0,0.06); cursor: pointer; overflow: hidden; }
+.faq__q { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; gap: 16px; }
+.faq__q h3 { font-size: 17px; font-weight: 700; color: var(--deep-purple); }
+.faq__toggle { font-size: 22px; color: var(--purple); flex-shrink: 0; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+.faq__item.open .faq__toggle { transform: rotate(180deg); }
+.faq__a { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(.16,1,.3,1), padding 0.4s; padding: 0; }
+.faq__item.open .faq__a { max-height: 400px; padding-bottom: 20px; }
+.faq__a p { font-size: 15px; color: var(--deep-purple); line-height: 1.65; opacity: 0.65; }
+
+/* CTA */
+.bottom-cta { color: var(--deep-purple); text-align: center; }
+.cta__title { font-size: clamp(28px, 4.5vw, 48px); line-height: 1.12; color: var(--deep-purple); margin-bottom: 16px; font-weight: 700; }
+.cta__sub { font-size: 17px; color: var(--deep-purple); opacity: 0.7; max-width: 500px; margin: 0 auto 32px; line-height: 1.6; }
+.cta__actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.cta__note { font-size: 14px; color: var(--deep-purple); opacity: 0.5; }
+
+/* LINKEDIN SCORE */
+.solo-score .section-inner { padding: 60px 0; }
+.score-card { text-align: center; max-width: 600px; margin: 0 auto; }
+
+/* EQUAL HEIGHT CARDS — Reveal div must stretch inside grid */
+.tiers-grid .rv,
+.fit-grid .rv,
+.compare-grid .rv { height: 100%; }
+.tiers-grid { align-items: stretch; }
+.fit-grid { align-items: stretch; }
+.compare-grid { align-items: stretch; }
+
+/* TABLET */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .solo-hero__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .solo-hero__h1 { font-size: clamp(26px, 3.5vw, 38px); }
+  .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+  .tiers-grid .rv:last-child { grid-column: 1 / -1; max-width: 400px; margin: 0 auto; width: 100%; }
+  .solo-what__layout { grid-template-columns: 1fr 240px; }
+  .about__layout { grid-template-columns: 160px 1fr; gap: 32px; }
+  .about__photo-img { width: 130px; height: 130px; }
+  .sec-title { font-size: clamp(26px, 3.5vw, 38px); }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .solo-hero__grid { grid-template-columns: 1fr; }
+  .solo-hero__visual { display: none; }
+  .solo-hero__h1 { font-size: 30px; }
+  .solo-what__layout { grid-template-columns: 1fr; }
+  .solo-what__meter-wrap { position: static; }
+  .tiers-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .fit-grid { grid-template-columns: 1fr; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .results__grid--2 { grid-template-columns: 1fr; max-width: 320px; }
+  .about__layout { grid-template-columns: 1fr; text-align: center; }
+  .about__photo { display: flex; justify-content: center; }
+  .about__links { justify-content: center; }
+  .sec-title { font-size: 28px; }
+  .btn { padding: 12px 20px; font-size: 14px; }
+  .cta__actions { flex-direction: column; align-items: center; }
+  .fit-card { padding: 28px 24px; }
+  .tier-card { padding: 28px 24px; }
+  .compare-card { padding: 24px 20px; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .solo-hero__h1 { font-size: 26px; }
+  .faq__q h3 { font-size: 15px; }
+  .sec-title { font-size: 24px; }
+  .results__grid--2 { grid-template-columns: 1fr 1fr; max-width: 100%; }
+}
+
+/* NAV */
+.solo-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0; transition: all 0.35s ease;
+}
+.solo-nav--scrolled {
+  background: rgba(236,233,231,0.88);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  padding: 10px 0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.solo-nav__inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px,5vw,48px);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.solo-nav__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.solo-nav__logo svg { height: 28px; width: auto; color: var(--deep-purple); }
+.solo-nav__wordmark { font-weight: 700; font-size: 18px; color: var(--deep-purple); letter-spacing: -0.02em; }
+.solo-nav__links { display: flex; align-items: center; gap: 28px; }
+.solo-nav__link { font-size: 14px; color: var(--text-mid); transition: color 0.2s; text-decoration: none; }
+.solo-nav__link:hover { color: var(--deep-purple); }
+.solo-nav__cta {
+  display: inline-flex; align-items: center; padding: 10px 22px; border-radius: 8px;
+  background: var(--purple); color: white; font-size: 14px; font-weight: 700;
+  transition: box-shadow 0.3s, transform 0.15s; text-decoration: none;
+}
+.solo-nav__cta:hover { box-shadow: 0 4px 20px rgba(113,46,172,0.3); transform: translateY(-1px); }
+.solo-nav__burger { display: none; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; background: none; border: none; cursor: pointer; padding: 0; z-index: 101; }
+.solo-nav__burger span { display: block; width: 100%; height: 2px; background: var(--text-dark); border-radius: 2px; transition: all 0.3s; }
+.solo-nav__burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.solo-nav__burger.open span:nth-child(2) { opacity: 0; }
+.solo-nav__burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+@media (max-width: 768px) {
+  .solo-nav__links {
+    display: none; flex-direction: column; align-items: flex-start;
+    position: fixed; inset: 0; background: var(--cream);
+    padding: 100px 32px 32px; gap: 24px; z-index: 99;
+  }
+  .solo-nav__links.open { display: flex; }
+  .solo-nav__burger { display: flex; }
+}
+
+/* FOOTER */
+.site-footer { background: var(--navy); color: rgba(255,255,255,0.55); padding: 64px 0 0; }
+.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 48px; }
+.footer__brand-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.footer__brand-logo svg { height: 32px; width: auto; color: white; }
+.footer__brand-logotext { font-weight: 700; font-size: 20px; color: white; letter-spacing: -0.02em; }
+.footer__brand p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.6; max-width: 260px; }
+.footer__col { display: flex; flex-direction: column; gap: 10px; }
+.footer__col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: white; margin-bottom: 6px; }
+.footer__col a { font-size: 14px; color: rgba(255,255,255,0.5); transition: color 0.2s; text-decoration: none; }
+.footer__col a:hover { color: var(--lime); }
+.footer__socials { display: flex; gap: 10px; margin-top: 16px; }
+.footer__social-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.07); color: white; transition: background 0.2s; text-decoration: none; }
+.footer__social-icon:hover { background: var(--purple); }
+.footer__bottom { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; color: rgba(255,255,255,0.35); }
+.footer__legal { display: flex; gap: 16px; }
+.footer__legal a { color: rgba(255,255,255,0.35); transition: color 0.2s; text-decoration: none; }
+.footer__legal a:hover { color: var(--lime); }
+@media (max-width: 768px) {
+  .site-footer { padding: 32px 0 0; }
+  .footer__grid { grid-template-columns: 1fr; padding-bottom: 24px; }
+  .footer__col { display: none; }
+  .footer__brand p { max-width: 100%; }
+  .footer__bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer__legal { flex-wrap: wrap; justify-content: center; }
+}
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef, useContext, createContext } = React;
+
+// ============ LANG — ENGLISH ONLY ============
+const LANG = 'en';
+const LangCtx = createContext({ lang: LANG });
+const useLang = () => useContext(LangCtx);
+const t = (obj) => {
+  if (!obj) return '';
+  if (typeof obj === 'string') return obj;
+  if (Array.isArray(obj)) return obj;
+  return obj.en || '';
+};
+
+function useInView(threshold = 0.12) {
+  const ref = useRef(null);
+  const [vis, setVis] = useState(false);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVis(true); obs.unobserve(el); } }, { threshold });
+    obs.observe(el); return () => obs.disconnect();
+  }, []);
+  return [ref, vis];
+}
+
+function Reveal({ children, delay = 0, className = '', style = {} }) {
+  const [ref, vis] = useInView(0.08);
+  return (
+    <div ref={ref} className={`rv ${vis ? 'rv-in' : ''} ${className}`}
+      style={{ transitionDelay: `${delay}ms`, ...style }}>
+      {children}
+    </div>
+  );
+}
+
+function ColorSection({ bg, children, className = '', id, style = {} }) {
+  return (
+    <section className={`color-section ${className}`} id={id}
+      style={{ '--section-bg': bg, ...style }}>
+      <div className="section-inner">{children}</div>
+    </section>
+  );
+}
+
+const LI_ICON_PATH = "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z";
+function LiIcon({ size = 16, color = '#0A66C2' }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill={color}><path d={LI_ICON_PATH}/></svg>;
+}
+
+function AnimatedNum({ value }) {
+  const [ref, isVis] = useInView(0.3);
+  const [display, setDisplay] = useState('0');
+  useEffect(() => {
+    if (!isVis) return;
+    const numericPart = value.replace(/[^0-9.]/g, '');
+    const target = parseFloat(numericPart) || 0;
+    const hasPlus = value.includes('+');
+    const hasComma = value.includes(',');
+    const hasTilde = value.includes('~');
+    const hasPercent = value.includes('%');
+    const hasK = /K/i.test(value);
+    const duration = 1500;
+    const startTime = Date.now();
+    const tick = () => {
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - pct, 3);
+      const current = Math.round(target * eased);
+      let formatted = hasComma ? current.toLocaleString() : String(current);
+      setDisplay((hasTilde ? '~' : '') + formatted + (hasK ? 'K' : '') + (hasPercent ? '%' : '') + (hasPlus ? '+' : ''));
+      if (pct < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [isVis]);
+  return <span ref={ref}>{display}</span>;
+}
+
+// ============ DATA ============
+const SOLO = {
+  hero: {
+    h1: { en: 'Your LinkedIn Profile Is Costing You Clients. Let\'s Fix That.', he: 'בואו נהפוך את הלינקדאין שלכם לדף נחיתה שעובד עבורכם 24/7.' },
+    sub: { en: 'People are checking your LinkedIn before they reply to your email, before they book your call, before they refer you to a friend. And what they see right now? A headline that sounds like a resume from 2019, an About section that reads like a cover letter, and a Featured section that doesn\'t exist.', he: 'לקוחות פוטנציאליים בודקים את הפרופיל שלכם לפני שהם עונים למייל, לפני שהם נכנסים לשיחה ולפעמים לפני שהם בכלל שולחים הודעה. ומה שהם מוצאים? לא תואם את מה שאתם באמת מספקים.' },
+    hook: { en: 'Your expertise is real. Your LinkedIn doesn\'t show it.\nThat\'s fixable.', he: 'אז אם הפרופיל שלכם בלינקדאין נראה כמו קורות חיים מ-2019, הגיע הזמן שהוא יעבוד כמו דף נחיתה: למשוך, לשכנע, ולהמיר מבקרים ללידים.' },
+    cta: { en: 'Book a Free Discovery Call', he: 'בואו נדבר' },
+  },
+  entity: {
+    en: "OctaLoom builds LinkedIn profile optimization and personal branding systems for coaches, consultants, freelancers, and solo founders. A one-time setup that turns your profile into a client magnet and gives you a content system to run on your own.",
+    he: 'OctaLoom בונה ומבצעת אופטימיזציה לפרופילים בלינקדאין עד שהם מתפקדים בדיוק ככה. אופטימיזציה של פרופיל קיים, מיצוב ואסטרטגיית תוכן, ואתם ממשיכים לבד.',
+  },
+  whatItMeans: {
+    title: { en: 'What LinkedIn Profile Optimization Actually Means', he: 'מה זה אופטימיזציית פרופיל לינקדאין (ברמה של דף נחיתה)' },
+    intro: { en: 'This goes beyond updating your headline and adding a banner. Profile optimization means turning your entire LinkedIn presence into a conversion system:', he: 'זה הרבה מעבר לעדכון כותרת והוספת באנר. זה להפוך את הפרופיל שלכם למכונת המרה:' },
+    items: {
+      en: ['Headline that signals exactly who you help and how, not just your job title', 'About section that tells your story in a way that attracts clients (and filters out the wrong ones)', 'Featured section with work samples, testimonials, or lead magnets that show your value', 'Experience section framed as proof and results, not a job history', 'Keywords embedded throughout so you show up when potential clients search', 'Content strategy: what to publish, how to position yourself, which formats work in your niche', 'Engagement playbook: what to comment, where, when, so the algorithm works for you'],
+      he: ['כותרת שמסבירה בדיוק למי אתם עוזרים ואיך, לא רק מה התפקיד שלכם', 'סקשן אודות שמספר את הסיפור שלכם בצורה שמושכת לקוחות, ופחות גורמת להם לגלול הלאה', 'Featured section עם עבודות, עדויות, או lead magnets שמראים מה אתם שווים', 'ניסיון מקצועי שממוסגר כהוכחה ותוצאות, לא כהיסטוריית עבודה', 'מילות מפתח מוטמעות כדי שתופיעו כשאנשים מחפשים את מה שאתם עושים', 'אסטרטגיית תוכן: מה לפרסם, איך למצב את עצמכם, אילו פורמטים עובדים בנישה שלכם', 'Engagement playbook: מה להגיב, איפה, מתי, כדי שהאלגוריתם יעבוד בשבילכם'],
+    },
+    outro: { en: 'Built once. Runs as long as you keep showing up.', he: 'בין אם הפרופיל שלכם ריק ובין אם יש לכם כבר פרופיל שצריך שדרוג רציני, התוצאה היא אותו דבר: לינקדאין שמתפקד כדף נחיתה, לא כקורות חיים.' },
+    note: { en: '', he: 'עבודת עומק חד פעמית או ליווי חודשי.' },
+  },
+  tiers: {
+    title: { en: 'Three Ways to Work Together', he: 'שלוש דרכים לעבוד יחד' },
+    items: [
+      { name: { en: 'Strategy Essentials', he: 'יסודות אסטרטגיים (סטארטר)' }, desc: { en: 'The foundation. Your profile gets fully optimized, your voice and positioning are defined, and you walk away with a strategic framework and engagement playbook.', he: '' }, items: { en: ['Full profile optimization: headline, About, Featured, SEO', 'Voice and positioning definition', 'Content strategy and engagement playbook', 'Strategic framework to run on your own'], he: ['מסמכי בסיס לעבודה עם AI: הגדרת קול AI, זיכרון מותג, תוכנית אסטרטגית, playbook מעורבות', 'אופטימיזציית פרופיל מלאה: כותרת, אודות, Featured, SEO', 'אסטרטגיית תוכן: מה לפרסם, איך למצב, אילו פורמטים עובדים'] }, forLine: { en: 'For solopreneurs who know their niche but need structure and a system.', he: 'בשביל: עצמאים שמכירים את הנישה שלהם אבל צריכים מבנה ומערכת' } },
+      { name: { en: 'Strategy + Launch', he: 'אסטרטגיה + השקה' }, popular: true, desc: { en: 'Everything in Strategy Essentials, plus a full month of ready-to-publish content and templates so you can keep creating on your own.', he: '' }, items: { en: ['Everything in Strategy Essentials', 'Full month of ready-to-publish content (storytelling, educational, case study)', 'Content templates for independent continuation'], he: ['הכל מיסודות אסטרטגיים', 'חודש שלם של תוכן מוכן לפרסום (סטוריטלינג, תוכן חינוכי, קייס סטאדי)', 'תבניות תוכן להמשך עצמאי'] }, forLine: { en: 'For solopreneurs who want to launch immediately and start posting from day one.', he: 'בשביל: עצמאים שרוצים להתחיל עם מומנטום ולפרסם מהיום הראשון' } },
+      { name: { en: 'VIP 90-Day Kickstart', he: 'VIP 90 יום' }, desc: { en: 'Everything in Strategy + Launch, plus a 90-day content roadmap and monthly check-ins for accountability and strategic adjustments.', he: '' }, items: { en: ['Everything in Strategy + Launch', '90-day content roadmap', 'Monthly check-ins with strategic adjustments'], he: ['הכל מאסטרטגיה + השקה', 'תוכנית תוכן ל-90 יום', 'צ׳ק-אין חודשי (והתאמות אסטרטגיות)'] }, forLine: { en: 'For solopreneurs who want hands-on partnership for the first quarter.', he: 'בשביל: עצמאים שרוצים שותפות hands-on לרבעון הראשון' } },
+    ],
+    note: { en: 'Not sure which fits? Book a discovery call and we\'ll figure it out together.', he: 'לא בטוחים מה מתאים? קבעו שיחה ונבין יחד.' },
+  },
+  fit: {
+    title: { en: 'Who This Is For', he: 'למי זה מתאים (ולמי לא)' },
+    forYou: {
+      title: { en: 'This is for you if:', he: 'בואו נעבוד יחד אם:' },
+      items: { en: ['You\'re a coach, consultant, freelancer, or solo founder', 'Your expertise is real but your LinkedIn profile doesn\'t reflect it', 'You want clients coming to you instead of chasing them', 'You want a one-time setup (with optional ongoing support), not a retainer lock-in', 'You\'re willing to put in 20-60 minutes per week maintaining what we build'], he: ['אתם יועצים, קואצ׳רים, פרילנסרים, או מייסדי סולו', 'המומחיות שלכם אמיתית אבל הפרופיל בלינקדאין לא משקף אותה', 'אתם רוצים שלקוחות יגיעו אליכם במקום לרדוף אחריהם', 'אתם רוצים אופטימיזציה חד פעמית (עם אפשרות לתמיכה שוטפת)', 'אתם מוכנים להשקיע 20-30 דקות בשבוע בתחזוקה של מה שנבנה'] },
+    },
+    notForYou: {
+      title: { en: 'This is not for you if:', he: 'אולי עדיף שלא אם:' },
+      items: { en: ['You want someone to run your LinkedIn for you indefinitely (see LinkedIn for Executives)', 'You want guaranteed client numbers in 30 days (personal branding compounds, it doesn\'t convert on command)', 'You\'re not willing to show up consistently after the setup (consistency is the whole game)'], he: ['אתם רוצים מישהו שינהל לכם את הלינקדאין לצמיתות (ראו לינקדאין למייסדים)', 'אתם רוצים הבטחה למספר לקוחות (מותג מצטבר, הוא לא ממיר לפי פקודה)'] },
+    },
+  },
+  courseVsService: {
+    title: { en: 'What Makes This Different From a LinkedIn Course', he: 'למה לא פשוט לקנות קורס לינקדאין?' },
+    course: { en: 'Courses teach theory. You watch 6 hours of video, feel motivated for a week, create two posts, then stop. Three months later, the course is still in your bookmarks and your LinkedIn looks exactly the same.\n\nHeads up: an OctaLoom LinkedIn course is on the way. When it drops, you\'ll have another option. Until then — if you\'d rather have the system built for you, keep reading.', he: 'קורסים מלמדים תיאוריה. הם לא בונים לכם את המערכת. צופים 6 שעות של וידאו, מרגישים מוטיבציה לשבוע, ואז מפסיקים לפרסם.' },
+    service: { en: 'OctaLoom is for the people who learn better by doing than by watching. We build the system for you: optimized profile, voice framework, content strategy, engagement playbook. You start from something finished — not from a tab you\'ll close by Friday.', he: 'OctaLoom מבצעת אופטימיזציה מלאה של הפרופיל שלכם עד שהלינקדאין מתפקד כדף נחיתה: כותרת שממירה, אודות שמושך, Featured שמציג הוכחות, מילות מפתח שמביאות אתכם בחיפושים. מעבר לפרופיל: מסגרת קול, מערכת תוכן, playbook מעורבות. ואז אתם מריצים. מתחילים ממערכת מוכנה, לא מדף ריק.' },
+    metaphor: { en: 'Think of it this way: it\'s the difference between buying an online workout course and training with a personal coach who builds your specific plan. Both explain how to train correctly, but only one will get you results faster.', he: 'תחשבו על זה ככה: לשכור אדריכל מול לקחת קורס באדריכלות. שניהם מלמדים על בניינים. אחד מהם נותן לכם תוכנית שאפשר באמת לגור בה.' },
+  },
+  results: {
+    title: { en: 'Real Results', he: 'תוצאות אמיתיות' },
+    sub: { en: 'The system I build for solopreneurs is the same system I use myself.\nIf it didn\'t work, you\'d see it on my own profile first.', he: 'המערכת שאני בונה לעצמאים היא אותה מערכת שאני מריצה בעצמי:' },
+    items: [
+      { num: '5,000+', label: { en: 'engaged B2B followers grown 100% organically across clients', he: 'עוקבים עסקיים שנבנו 100% אורגנית בקרב הלקוחות שלי.' } },
+      { num: '300%', label: { en: 'engagement lift on a B2B SaaS founder\'s personal brand (same methodology, different audience)', he: 'עלייה במעורבות בפרופיל של מייסד B2B SaaS ישראלי. אותה מתודולוגיה.' } },
+    ],
+    note: { en: '', he: 'אני לא באה למכור תיאוריה. אני מוכרת משהו שאני עושה בעצמי כל יום.' },
+  },
+  testimonial: {
+    quote: { en: '', he: 'העבודה עם חניתה יצרה לי בהירות. היא עזרה לי להבין מה נכון לנו שיווקית, העבודה שלה פשוט נכנסה לי לורידים.' },
+    author: { en: 'Lior Sade', he: 'ליאור שדה' },
+    role: { en: 'CEO, Moving Art', he: 'מנכ"ל Moving Art' },
+    photo: 'https://media.licdn.com/dms/image/v2/D4E03AQEExXTRrA5LTA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1713255104700?e=1779321600&v=beta&t=8PN91gFSszqr-JUAvZ_4Zqqo9rBlJx2E_H1skbyPsPA',
+    heOnly: true,
+  },
+  about: {
+    title: { en: "Hi, I'm Hanita", he: 'קצת עליי' },
+    text: {
+      en: ["Hi, I'm Hanita. I build LinkedIn systems for solopreneurs who are tired of being invisible.", "I'm a LinkedIn-led Fractional CMO, and I've spent the last 5+ years deep in B2B marketing, with the last 3 focused on what AI changes about all of it. I host What's the Story With?, a B2B marketing podcast where I break down what actually works.", "I know what it's like to be one person running everything. The marketing falls to the bottom of the list because client work always comes first. That's exactly why I built this service: a system that gets built once and keeps working while you focus on what you do best.", "If your LinkedIn profile isn't earning you clients, my DMs are open."],
+      he: ['אני חניתה (יודובסקי, אבל כמו מדונה השם הפרטי שלי מספיק), סמנכ״לית שיווק במיקור חוץ עם התמחות בלינקדאין.', 'אני בונה מערכות לינקדאין לעצמאים שנמאס להם להיות בלתי נראים. 5+ שנים של בניית מערכות שיווק B2B, אותה מערכת בדיוק שרצה על הפרופיל שלי.', 'אני מנחה את הפודקאסט ״מה הסיפור עם?״ שבו אנחנו מפרקים את מה שבאמת עובד בשיווק B2B.'],
+    },
+    cta1: { en: 'Connect on LinkedIn', he: 'לינקדאין של חניתה' },
+    cta2: { en: 'Listen to the podcast', he: 'לפודקאסט ״מה הסיפור עם?״' },
+  },
+  faq: {
+    title: { en: 'Frequently Asked Questions', he: 'שאלות נפוצות' },
+    items: [
+      { q: { en: 'How long does the profile optimization take?', he: 'כמה זמן לוקחת בניית או אופטימיזציית הפרופיל?' }, a: { en: "After filling out a questionnaire and an initial meeting, the process takes 1-3 weeks depending on scope and complexity. The VIP option includes monthly check-ins on top of that.", he: 'אחרי מילוי שאלון ופגישה ראשונית, התהליך לוקח 1-3 שבועות לפי סקופ ומורכבות. VIP כולל גם צ׳ק-אינים חודשיים מעבר לזה.' } },
+      { q: { en: 'Do I need to keep paying monthly after the setup?', he: 'צריך להמשיך לשלם חודשי אחרי הבנייה?' }, a: { en: "No. The core offering is one-time. You own everything we build. Optional ongoing support exists if you want check-ins or accountability sessions, but there's no retainer lock-in.", he: 'לא. ההצעה הבסיסית היא חד פעמית. אתם הבעלים של כל מה שנבנה. יש אפשרות לתמיכה שוטפת אם רוצים צ׳ק-אינים, אבל אין נעילה לריטיינר.' } },
+      { q: { en: 'Will you write my posts for me?', he: 'את כותבת לי את הפוסטים?' }, a: { en: "The Strategy + Launch and VIP packages include a full month of ready-to-publish content and templates. After that, you write your own using the system we built. If you want ongoing ghostwriting, check out the LinkedIn for Executives service.", he: 'בחבילות אסטרטגיה + השקה ו-VIP יש תוכן מוכן לפרסום + תבניות. אחרי כן, אתם כותבים לבד (עם המערכת והתבניות שבנינו). אם רוצים ניהול שוטף של תוכן, ראו את שירות לינקדאין למייסדים.' } },
+      { q: { en: "I'm not a \"personal brand\" person. Is this still for me?", he: 'אני לא "בן אדם של פרסונל ברנד." זה עדיין בשבילי?' }, a: { en: "You don't need to become an influencer. Personal branding for solopreneurs means: when someone checks your LinkedIn before a call, what they see matches (or exceeds) your actual expertise. No dancing reels. No motivational quotes. Just a profile that signals competence.", he: 'לא צריך להפוך למשפיענים. מיתוג אישי לעצמאים אומר: כשמישהו מגוגל אתכם או בודק את הלינקדאין שלכם לפני שיחה, מה שהוא מוצא תואם (או עולה על) המומחיות האמיתית שלכם.' } },
+      { q: { en: "What if I don't know what to post about?", he: 'מה אם אני לא יודע מה לפרסם?' }, a: { en: "That's literally what the content strategy solves. By the time we're done, you'll have a framework, topic bank, and posting approach tailored to your niche. The question shifts from \"what should I post\" to \"which of these ideas should I post first.\"", he: 'בדיוק בשביל זה קיימת מערכת התוכן שאנחנו בונים. בסוף התהליך יהיו לכם מסגרת תוכן, בנק נושאים, ולוח זמנים לפרסום.' } },
+      { q: { en: 'Can I upgrade to ongoing management later?', he: 'אפשר לשדרג לניהול שוטף אחר כך?' }, a: { en: "Yes. Some solopreneurs start with the setup, run it themselves for a few months, and then decide they want ongoing support. We scale up when you're ready. No pressure, no upsell theater.", he: 'כן. חלק מהעצמאים מתחילים עם האופטימיזציה, מריצים לבד כמה חודשים, ואז מחליטים שרוצים תמיכה שוטפת. משדרגים כשמוכנים.' } },
+    ],
+  },
+  linkedinScore: {
+    title: { en: 'Want to Know Where You Stand?' },
+    stat: { en: '75% of B2B buyers check a service provider\'s\nLinkedIn profile before purchasing.' },
+    desc: { en: 'Before we start working together, it\'s worth knowing where we\'re starting from. Check your LinkedIn presence score for free: 3 minutes, 6 categories, instant results with specific insights for your profile.' },
+    cta: { en: 'Check My Score' },
+  },
+
+  cta: {
+    title: { en: 'Ready to Fix Your LinkedIn Profile?', he: 'מוכנים להפוך את הלינקדאין לדף נחיתה?' },
+    sub: { en: 'Your profile should be working for you while you sleep. Right now, it\'s probably working against you. Let\'s change that.', he: 'אפשר להמשיך לחשוב על זה, ואפשר לקבוע שיחה. 15 דקות, נבין מה מתאים לכם.' },
+    cta1: { en: 'Book a Free Discovery Call', he: 'בואו נדבר' },
+    note: { en: "(We'll figure out which setup fits in 15 minutes. No pitch, no pressure.)", he: 'עדיין לא בטוחים? חזרו לכל שירותי הלינקדאין.' },
+  },
+};
+
+// ============ NAV + FOOTER ============
+function SoloNav() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+  const OctaLoomSVG = () => (
+    <svg viewBox="0 0 301.75 301.13" xmlns="http://www.w3.org/2000/svg" style={{height:28,width:'auto',color:'var(--deep-purple)'}}>
+      <path d="M198.3,194.74l-1.05-.84c-.08-.07-.16-.13-.24-.22l-13.67-13.67,15.51-15.51,12.7,12.7,10.6-10.61-12.7-12.7,15.52-15.5,13.65,13.65c.09.09.17.17.24.27l.83,1.05-41.39,41.38ZM187.58,180.01l10.6,10.61,11.27-11.27-10.6-10.61-11.27,11.27ZM213.69,153.89l10.61,10.61,11.27-11.26-10.6-10.61-11.27,11.26Z" fill="currentColor"/>
+      <path d="M87.17,83.81l-13.65-13.65c-.09-.09-.16-.16-.24-.26l-.84-1.05,41.4-41.39,1.05.84c.09.07.17.15.26.24l13.65,13.65-15.5,15.51-12.7-12.7-10.61,10.6,12.7,12.7-15.51,15.51ZM76.57,68.97l10.6,10.6,11.27-11.27-10.6-10.6-11.27,11.27ZM102.69,42.85l10.61,10.61,11.26-11.27-10.6-10.6-11.27,11.26Z" fill="currentColor"/>
+      <path d="M156.06,222.21h0c-9.53,0-18.47-3.7-25.19-10.43l-75.48-75.5c-6.72-6.72-10.42-15.66-10.42-25.19,0-9.53,3.7-18.47,10.43-25.19l6.45-6.45,1.05,1.3,13.67,13.67-6.32,6.32c-2.76,2.76-4.28,6.43-4.28,10.35,0,3.91,1.52,7.59,4.28,10.34l32.44,32.45-12.7,12.7,10.61,10.61,12.7-12.7,32.44,32.45c2.75,2.76,6.43,4.28,10.34,4.28h0c3.91,0,7.59-1.52,10.35-4.28l6.32-6.32,13.65,13.65,1.3,1.05-1.16,1.2-5.27,5.27c-6.71,6.72-15.66,10.42-25.19,10.42Z" fill="currentColor"/>
+      <path d="M250.29,142.76l-1.05-1.31-13.67-13.67,6.32-6.33c2.76-2.76,4.28-6.43,4.28-10.34,0-3.91-1.52-7.59-4.28-10.35l-32.44-32.45,12.7-12.7-10.6-10.6-12.7,12.7-32.44-32.44c-2.76-2.76-6.43-4.28-10.35-4.28h0c-3.91,0-7.58,1.52-10.34,4.28l-6.33,6.32-13.65-13.65-1.3-1.05,1.16-1.2,5.27-5.27c6.72-6.72,15.66-10.42,25.19-10.42h0c9.53,0,18.47,3.7,25.19,10.43l75.48,75.5c6.72,6.72,10.42,15.66,10.42,25.19,0,9.53-3.7,18.47-10.42,25.19l-6.46,6.46Z" fill="currentColor"/>
+    </svg>
+  );
+  return (
+    <nav className={`solo-nav ${scrolled ? 'solo-nav--scrolled' : ''}`}>
+      <div className="solo-nav__inner">
+        <a href="https://octaloom.com" className="solo-nav__logo">
+          <OctaLoomSVG />
+          <span className="solo-nav__wordmark">OctaLoom</span>
+        </a>
+        <div className={`solo-nav__links ${menuOpen ? 'open' : ''}`}>
+          <a href="#services" className="solo-nav__link" onClick={() => setMenuOpen(false)}>Services</a>
+          <a href="#faq" className="solo-nav__link" onClick={() => setMenuOpen(false)}>FAQ</a>
+          <a href="https://octaloom.com" className="solo-nav__link" onClick={() => setMenuOpen(false)}>Back to site</a>
+          <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer" className="solo-nav__cta" onClick={() => setMenuOpen(false)}>Book a Call</a>
+        </div>
+        <button className={`solo-nav__burger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+          <span /><span /><span />
+        </button>
+      </div>
+    </nav>
+  );
+}
+
+function SiteFooter() {
+  const OctaLoomSVG = () => (
+    <svg viewBox="0 0 301.75 301.13" xmlns="http://www.w3.org/2000/svg" style={{height:32,width:'auto',color:'white'}}>
+      <path d="M198.3,194.74l-1.05-.84c-.08-.07-.16-.13-.24-.22l-13.67-13.67,15.51-15.51,12.7,12.7,10.6-10.61-12.7-12.7,15.52-15.5,13.65,13.65c.09.09.17.17.24.27l.83,1.05-41.39,41.38ZM187.58,180.01l10.6,10.61,11.27-11.27-10.6-10.61-11.27,11.27ZM213.69,153.89l10.61,10.61,11.27-11.26-10.6-10.61-11.27,11.26Z" fill="currentColor"/>
+      <path d="M87.17,83.81l-13.65-13.65c-.09-.09-.16-.16-.24-.26l-.84-1.05,41.4-41.39,1.05.84c.09.07.17.15.26.24l13.65,13.65-15.5,15.51-12.7-12.7-10.61,10.6,12.7,12.7-15.51,15.51ZM76.57,68.97l10.6,10.6,11.27-11.27-10.6-10.6-11.27,11.27ZM102.69,42.85l10.61,10.61,11.26-11.27-10.6-10.6-11.27,11.26Z" fill="currentColor"/>
+      <path d="M156.06,222.21h0c-9.53,0-18.47-3.7-25.19-10.43l-75.48-75.5c-6.72-6.72-10.42-15.66-10.42-25.19,0-9.53,3.7-18.47,10.43-25.19l6.45-6.45,1.05,1.3,13.67,13.67-6.32,6.32c-2.76,2.76-4.28,6.43-4.28,10.35,0,3.91,1.52,7.59,4.28,10.34l32.44,32.45-12.7,12.7,10.61,10.61,12.7-12.7,32.44,32.45c2.75,2.76,6.43,4.28,10.34,4.28h0c3.91,0,7.59-1.52,10.35-4.28l6.32-6.32,13.65,13.65,1.3,1.05-1.16,1.2-5.27,5.27c-6.71,6.72-15.66,10.42-25.19,10.42Z" fill="currentColor"/>
+      <path d="M250.29,142.76l-1.05-1.31-13.67-13.67,6.32-6.33c2.76-2.76,4.28-6.43,4.28-10.34,0-3.91-1.52-7.59-4.28-10.35l-32.44-32.45,12.7-12.7-10.6-10.6-12.7,12.7-32.44-32.44c-2.76-2.76-6.43-4.28-10.35-4.28h0c-3.91,0-7.58,1.52-10.34,4.28l-6.33,6.32-13.65-13.65-1.3-1.05,1.16-1.2,5.27-5.27c6.72-6.72,15.66-10.42,25.19-10.42h0c9.53,0,18.47,3.7,25.19,10.43l75.48,75.5c6.72,6.72,10.42,15.66,10.42,25.19,0,9.53-3.7,18.47-10.42,25.19l-6.46,6.46Z" fill="currentColor"/>
+    </svg>
+  );
+  return (
+    <footer className="site-footer">
+      <div className="container">
+        <div className="footer__grid">
+          <div className="footer__brand">
+            <div className="footer__brand-logo">
+              <OctaLoomSVG />
+              <span className="footer__brand-logotext">OctaLoom</span>
+            </div>
+            <p>Your marketing department, without the department.</p>
+            <div className="footer__socials">
+              <a href="https://www.linkedin.com/company/octaloom" target="_blank" rel="noopener noreferrer" className="footer__social-icon" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="mailto:octaloom@gmail.com" className="footer__social-icon" aria-label="Email">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </a>
+            </div>
+          </div>
+          <div className="footer__col">
+            <h4>LinkedIn Services</h4>
+            <a href="https://octaloom.com/services/linkedin-growth-engine">For Executives</a>
+            <a href="#">For Solopreneurs</a>
+            <a href="https://octaloom.com/services/linkedin-growth-engine">For Organizations</a>
+          </div>
+          <div className="footer__col">
+            <h4>More Services</h4>
+            <a href="https://octaloom.com/services/fractional-cmo">Fractional CMO</a>
+            <a href="https://octaloom.com/services/marketing-automation">Marketing Automation</a>
+            <a href="https://octaloom.com/services/ai-agent-development">AI Tools &amp; Agents</a>
+          </div>
+          <div className="footer__col">
+            <h4>Company</h4>
+            <a href="https://octaloom.com/about">About</a>
+            <a href="https://octaloom.com/blog">Blog</a>
+            <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer">Book a Call</a>
+          </div>
+        </div>
+        <div className="footer__bottom">
+          <span>&#169; 2026 OctaLoom</span>
+          <div className="footer__legal">
+            <a href="https://octaloom.com/privacy-policy">Privacy</a>
+            <a href="https://octaloom.com/terms">Terms</a>
+            <a href="https://octaloom.com/accessibility">Accessibility</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ============ SECTIONS ============
+function SoloHero() {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase(1), 1000);
+    const t2 = setTimeout(() => setPhase(2), 2400);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+  return (
+    <ColorSection bg="var(--purple)" className="solo-hero">
+      <div className="container">
+        <div className="solo-hero__grid">
+          <div className="solo-hero__text">
+            <Reveal className="rv--blur">
+              <span className="solo-hero__label"><LiIcon size={16} color="var(--lime)" /> LinkedIn for Solopreneurs</span>
+            </Reveal>
+            <Reveal delay={150}><h1 className="solo-hero__h1">{t(SOLO.hero.h1)}</h1></Reveal>
+            <Reveal delay={300}><p className="solo-hero__sub">{t(SOLO.hero.sub)}</p></Reveal>
+            <Reveal delay={400}><p className="solo-hero__hook" style={{whiteSpace:'pre-line'}}>{t(SOLO.hero.hook)}</p></Reveal>
+            <Reveal delay={500}>
+              <a href="https://calendar.notion.so/meet/octaloom/discovery" className="btn btn--lime" target="_blank" rel="noopener noreferrer">
+                {t(SOLO.hero.cta)}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </a>
+            </Reveal>
+          </div>
+          <div className="solo-hero__visual">
+            <Reveal delay={350} className="rv--tilt">
+              <div className="hero-ba">
+                <div className={`hero-ba__card hero-ba__card--before ${phase >= 1 ? 'hero-ba__card--dim' : ''}`}>
+                  <div className="hero-ba__tag">Before</div>
+                  <div className="hero-ba__profile">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=72&h=72&fit=crop&crop=face" className="hero-ba__avatar--gray-img" alt="" />
+                    <div>
+                      <div style={{fontSize:13,fontWeight:700,color:'#555'}}>Business Consultant</div>
+                      <div style={{fontSize:10,color:'#999'}}>Tel Aviv, Israel</div>
+                    </div>
+                  </div>
+                  <div className="hero-ba__rows">
+                    <div className="hero-ba__row"><span className="hero-ba__rlabel">About</span><span className="hero-ba__rempty">Empty</span></div>
+                    <div className="hero-ba__row"><span className="hero-ba__rlabel">Featured</span><span className="hero-ba__rempty">Empty</span></div>
+                    <div className="hero-ba__row"><span className="hero-ba__rlabel">Posts</span><span className="hero-ba__rempty hero-ba__rempty--warn">0</span></div>
+                    <div className="hero-ba__row"><span className="hero-ba__rlabel">Connections</span><span style={{fontSize:11,color:'#999'}}>43</span></div>
+                  </div>
+                </div>
+                <div className={`hero-ba__arrow ${phase >= 1 ? 'hero-ba__arrow--show' : ''}`}>
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 16h20M20 10l6 6-6 6" stroke="var(--lime)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <div className={`hero-ba__card hero-ba__card--after ${phase >= 1 ? 'hero-ba__card--glow' : ''}`}>
+                  <div className="hero-ba__tag hero-ba__tag--after">After</div>
+                  <div className="hero-ba__profile">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=72&h=72&fit=crop&crop=face" className="hero-ba__avatar--color-img" alt="" />
+                    <div>
+                      <div style={{fontSize:12,fontWeight:700,color:'#191919',lineHeight:1.3}}>Helped 50+ B2B companies double their pipeline</div>
+                      <div style={{fontSize:10,color:'#666'}}>Business Strategy Consultant</div>
+                    </div>
+                  </div>
+                  <div className="hero-ba__rows">
+                    <div className="hero-ba__row"><span className="hero-ba__rlabel">About</span><span className="hero-ba__rok">&#10003;</span></div>
+                    <div className="hero-ba__row"><span className="hero-ba__rlabel">Featured</span><span className="hero-ba__rok">&#10003;</span></div>
+                    <div className="hero-ba__row"><span className="hero-ba__rlabel">Posts</span><span className="hero-ba__rok">3 this week</span></div>
+                    <div className="hero-ba__row"><span className="hero-ba__rlabel">Connections</span><span className="hero-ba__rok">1,200+</span></div>
+                  </div>
+                  <div className={`hero-ba__dm ${phase >= 2 ? 'hero-ba__dm--show' : ''}`}>
+                    <div style={{width:18,height:18,borderRadius:'50%',background:'#E7F0FE',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="#0A66C2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    </div>
+                    <span style={{fontSize:10,color:'#191919',fontWeight:600}}>"Saw your post, can we talk?"</span>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </ColorSection>
+  );
+}
+
+function SoloEntity() {
+  return (
+    <ColorSection bg="var(--cream)" className="solo-entity">
+      <div className="container"><Reveal><p className="solo-entity__text">{t(SOLO.entity)}</p></Reveal></div>
+    </ColorSection>
+  );
+}
+
+function SoloWhatItMeans() {
+  const [meterActive, setMeterActive] = useState(false);
+  const meterRef = useRef();
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setMeterActive(true); }, { threshold: 0.3 });
+    if (meterRef.current) obs.observe(meterRef.current);
+    return () => obs.disconnect();
+  }, []);
+  const checkItems = [
+    { key: 'headline', label: 'Headline' },
+    { key: 'about', label: 'About' },
+    { key: 'featured', label: 'Featured' },
+    { key: 'experience', label: 'Experience' },
+    { key: 'seo', label: 'SEO & Keywords' },
+    { key: 'content', label: 'Content Strategy' },
+    { key: 'engagement', label: 'Engagement' },
+  ];
+  const items = t(SOLO.whatItMeans.items);
+  return (
+    <ColorSection bg="var(--cream)" className="solo-what">
+      <div className="container">
+        <Reveal className="rv--blur"><h2 className="sec-title sec-title--dark">{t(SOLO.whatItMeans.title)}</h2></Reveal>
+        <Reveal delay={80}><p className="solo-what__intro">{t(SOLO.whatItMeans.intro)}</p></Reveal>
+        <div className="solo-what__layout" ref={meterRef}>
+          <div className="solo-what__grid">
+            {checkItems.map((item, i) => (
+              <Reveal key={i} delay={100 + i * 80} className="rv--left">
+                <div className="solo-what__item">
+                  <span className={`solo-what__check ${meterActive ? 'solo-what__check--on' : ''}`} style={{transitionDelay: `${i * 0.15}s`}}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
+                  </span>
+                  <div>
+                    <strong className="solo-what__item-label">{item.label}</strong>
+                    <span className="solo-what__item-desc">{items[i] || ''}</span>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <div className="solo-what__meter-wrap">
+            <Reveal delay={200} className="rv--scale">
+              <div className="strength-meter">
+                <div className="strength-meter__header"><LiIcon size={18} color="#0A66C2" /><span>Profile Strength</span></div>
+                <div className="strength-meter__bar-bg"><div className={`strength-meter__bar ${meterActive ? 'strength-meter__bar--full' : ''}`}></div></div>
+                <div className="strength-meter__labels">
+                  <span className={`strength-meter__level ${!meterActive ? 'strength-meter__level--active' : ''}`}>Beginner</span>
+                  <span className="strength-meter__level">Intermediate</span>
+                  <span className={`strength-meter__level ${meterActive ? 'strength-meter__level--active' : ''}`}>All-Star</span>
+                </div>
+                <div className={`strength-meter__status ${meterActive ? 'strength-meter__status--done' : ''}`}>
+                  {meterActive ? 'Your profile is working for you' : 'Your profile needs work'}
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+        <Reveal delay={700}><p className="solo-what__outro">{t(SOLO.whatItMeans.outro)}</p></Reveal>
+      </div>
+    </ColorSection>
+  );
+}
+
+function SoloTiers() {
+  return (
+    <ColorSection bg="var(--deep-purple)" className="solo-tiers">
+      <div className="container">
+        <Reveal className="rv--blur"><h2 className="sec-title sec-title--light">{t(SOLO.tiers.title)}</h2></Reveal>
+        <div className="tiers-grid">
+          {SOLO.tiers.items.map((tier, i) => (
+            <Reveal key={i} delay={i * 150} className="rv--scale">
+              <div className={`tier-card ${tier.popular ? 'tier-card--popular' : ''}`}>
+                {tier.popular && <div className="tier-card__badge">Most Popular</div>}
+                <h3 className="tier-card__name">{t(tier.name)}</h3>
+                {t(tier.desc) && <p className="tier-card__desc">{t(tier.desc)}</p>}
+                <ul className="tier-card__list">
+                  {t(tier.items).map((item, ii) => (
+                    <li key={ii}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" strokeWidth="2.5"><path d="M20 6L9 17l-5-5"/></svg>{item}</li>
+                  ))}
+                </ul>
+                <p className="tier-card__for">{t(tier.forLine)}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={500}>
+          <p className="tiers-note">
+            Not sure which fits? <a href="#contact" style={{color:'rgba(255,255,255,0.75)',textDecoration:'underline',textUnderlineOffset:3}}>Book a discovery call</a> and we&rsquo;ll figure it out together.
+          </p>
+        </Reveal>
+      </div>
+    </ColorSection>
+  );
+}
+
+function SoloFit() {
+  return (
+    <ColorSection bg="var(--cream)" className="solo-fit">
+      <div className="container">
+        <Reveal className="rv--blur"><h2 className="sec-title sec-title--dark">{t(SOLO.fit.title)}</h2></Reveal>
+        <div className="fit-grid">
+          <Reveal delay={100} className="rv--left">
+            <div className="fit-card fit-card--yes fit-card--light">
+              <h3>{t(SOLO.fit.forYou.title)}</h3>
+              <ul>{t(SOLO.fit.forYou.items).map((item, i) => <li key={i}><span className="fit-check">&#10003;</span>{item}</li>)}</ul>
+            </div>
+          </Reveal>
+          <Reveal delay={250} className="rv--right">
+            <div className="fit-card fit-card--no fit-card--light">
+              <h3>{t(SOLO.fit.notForYou.title)}</h3>
+              <ul>{t(SOLO.fit.notForYou.items).map((item, i) => <li key={i}><span className="fit-x">&#10005;</span>{item}</li>)}</ul>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </ColorSection>
+  );
+}
+
+function SoloCourseVsService() {
+  return (
+    <ColorSection bg="var(--purple)" className="solo-compare">
+      <div className="container">
+        <Reveal className="rv--blur"><h2 className="sec-title sec-title--light">{t(SOLO.courseVsService.title)}</h2></Reveal>
+        <div className="compare-grid">
+          <Reveal delay={100} className="rv--left">
+            <div className="compare-card compare-card--course">
+              <div className="compare-card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e85d5d" strokeWidth="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+              <h3>LinkedIn Course</h3>
+              {t(SOLO.courseVsService.course).split('\n\n').map((para, i) => (
+                <p key={i} style={{marginBottom: i === 0 ? 12 : 0, fontStyle: i === 1 ? 'italic' : 'normal', opacity: i === 1 ? 0.85 : 1}}>{para}</p>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={250} className="rv--right">
+            <div className="compare-card compare-card--service">
+              <div className="compare-card__icon">
+                <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/11.png" alt="OctaLoom" style={{width:48,height:48,objectFit:'contain'}} />
+              </div>
+              <h3>OctaLoom</h3>
+              <p>{t(SOLO.courseVsService.service)}</p>
+            </div>
+          </Reveal>
+        </div>
+        <Reveal delay={400}>
+          <div className="pull-quote" style={{borderColor:'rgba(197,230,162,0.3)'}}>
+            <div className="pull-quote__bar" />
+            <p>{t(SOLO.courseVsService.metaphor)}</p>
+          </div>
+        </Reveal>
+      </div>
+    </ColorSection>
+  );
+}
+
+function SoloResults() {
+  return (
+    <ColorSection bg="var(--cream)" className="solo-results">
+      <div className="container">
+        <Reveal className="rv--blur"><h2 className="sec-title sec-title--dark">{t(SOLO.results.title)}</h2></Reveal>
+        <Reveal delay={80}><p className="sec-sub--dark" style={{whiteSpace:'pre-line'}}>{t(SOLO.results.sub)}</p></Reveal>
+        <div className="results__grid results__grid--2">
+          {SOLO.results.items.map((item, i) => (
+            <Reveal key={i} delay={i * 120} className="rv--scale">
+              <div className="results__item">
+                <span className="results__num"><AnimatedNum value={item.num} /></span>
+                <span className="results__label">{t(item.label)}</span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </ColorSection>
+  );
+}
+
+function SoloLinkedInScore() {
+  return (
+    <ColorSection bg="var(--lime)" className="solo-score">
+      <div className="container">
+        <Reveal className="rv--scale">
+          <div className="score-card">
+            <LiIcon size={28} color="var(--purple)" />
+            <h2 style={{fontFamily:'var(--font-en)',fontWeight:700,fontSize:'clamp(24px,3.5vw,36px)',color:'var(--deep-purple)',marginBottom:16,marginTop:12}}>{t(SOLO.linkedinScore.title)}</h2>
+            <p style={{fontSize:17,fontWeight:700,color:'var(--purple)',marginBottom:12,whiteSpace:'pre-line'}}>{t(SOLO.linkedinScore.stat)}</p>
+            <p style={{fontSize:15,color:'var(--deep-purple)',opacity:0.7,lineHeight:1.6,marginBottom:24,maxWidth:500,margin:'0 auto 24px'}}>{t(SOLO.linkedinScore.desc)}</p>
+            <a href="https://www.octaloom.com/404" className="btn btn--purple" target="_blank" rel="noopener noreferrer">
+              {t(SOLO.linkedinScore.cta)}
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </ColorSection>
+  );
+}
+
+function SoloAbout() {
+  return (
+    <ColorSection bg="var(--cream)" className="about">
+      <div className="container">
+        <div className="about__layout">
+          <Reveal className="rv--right">
+            <div className="about__photo">
+              <img src="assets/hanita.png" alt="Hanita Yudovski" className="about__photo-img" onError={(e) => { e.target.style.display='none'; }} />
+            </div>
+          </Reveal>
+          <div className="about__content">
+            <Reveal><h2 className="sec-title sec-title--dark">{t(SOLO.about.title)}</h2></Reveal>
+            {t(SOLO.about.text).map((p, i) => (
+              <Reveal key={i} delay={100 + i * 100}><p className="about__p">{p}</p></Reveal>
+            ))}
+            <Reveal delay={400}>
+              <div className="about__links">
+                <a href="https://www.linkedin.com/in/hanita-yudovski/" target="_blank" rel="noopener noreferrer" className="btn btn--outline"><LiIcon size={16} /> {t(SOLO.about.cta1)}</a>
+                <a href="https://open.spotify.com/show/whats-the-story-with" className="btn btn--ghost">{t(SOLO.about.cta2)}</a>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </ColorSection>
+  );
+}
+
+function SoloFAQ() {
+  const [openIdx, setOpenIdx] = useState(null);
+  return (
+    <ColorSection bg="var(--cream)" className="faq" id="faq">
+      <div className="container">
+        <Reveal className="rv--blur"><h2 className="sec-title sec-title--dark">{t(SOLO.faq.title)}</h2></Reveal>
+        <div className="faq__list">
+          {SOLO.faq.items.map((item, i) => (
+            <Reveal key={i} delay={i * 80} className="rv--left">
+              <div className={`faq__item ${openIdx === i ? 'open' : ''}`} onClick={() => setOpenIdx(openIdx === i ? null : i)}>
+                <div className="faq__q"><h3>{t(item.q)}</h3><span className="faq__toggle">{openIdx === i ? '−' : '+'}</span></div>
+                <div className="faq__a"><p>{t(item.a)}</p></div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </ColorSection>
+  );
+}
+
+function SoloCTA() {
+  return (
+    <ColorSection bg="var(--lime)" className="bottom-cta" id="contact">
+      <div className="container">
+        <Reveal>
+          <h2 className="cta__title">{t(SOLO.cta.title)}</h2>
+          <p className="cta__sub">{t(SOLO.cta.sub)}</p>
+          <div className="cta__actions">
+            <a href="https://calendar.notion.so/meet/octaloom/discovery" className="btn btn--purple" target="_blank" rel="noopener noreferrer">
+              {t(SOLO.cta.cta1)}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </a>
+          </div>
+          <a href="https://www.octaloom.com/linkedin-growth-engine" className="cta__note" style={{display:'inline-block',color:'var(--deep-purple)',opacity:0.6,textDecoration:'underline',textUnderlineOffset:3,fontWeight:600}}>Not sure yet? Browse all LinkedIn services.</a>
+        </Reveal>
+      </div>
+    </ColorSection>
+  );
+}
+
+// ============ APP ============
+function App() {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document.querySelectorAll('.rv:not(.rv-in)').forEach(el => el.classList.add('rv-in'));
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+  return (
+    <LangCtx.Provider value={{ lang: LANG }}>
+      <div>
+        <SoloNav />
+        <SoloHero />
+        <SoloEntity />
+        <SoloWhatItMeans />
+        <div id="services"><SoloTiers /></div>
+        <SoloFit />
+        <SoloCourseVsService />
+        <SoloResults />
+        <SoloLinkedInScore />
+        <SoloAbout />
+        <div id="faq"><SoloFAQ /></div>
+        <SoloCTA />
+        <SiteFooter />
+      </div>
+    </LangCtx.Provider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
