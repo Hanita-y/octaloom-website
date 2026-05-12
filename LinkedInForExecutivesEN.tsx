@@ -93,7 +93,8 @@ button{font-family:inherit;border:none;background:none;cursor:pointer}
 .li-mockup__popups.show .li-mockup__popup--3{transition-delay:0.4s}
 .exec-entity .section-inner{padding-top:60px;padding-bottom:30px}
 .exec-entity__text{font-size:18px;line-height:1.75;color:var(--deep-purple);opacity:0.75;max-width:720px;font-family:var(--font-en)}
-.exec-problem .section-inner{padding-top:30px;padding-bottom:48px}
+.exec-problem .section-inner{padding-top:30px;padding-bottom:40px}
+.exec-timeline .section-inner{padding-top:48px}
 .exec-problem__p{font-size:16px;line-height:1.7;color:var(--deep-purple);opacity:0.7;margin-bottom:16px;max-width:720px}
 .exec-alts{display:flex;flex-direction:column;gap:12px;margin:28px 0;max-width:640px}
 .exec-alt{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:10px;background:rgba(113,46,172,0.04);border:1px solid rgba(113,46,172,0.08);transition:border-color 0.3s,transform 0.3s;position:relative}
@@ -1044,7 +1045,7 @@ function ExecProblem() {
         <Reveal className="rv--blur">
           <h2 className="sec-title sec-title--dark" style={{ lineHeight: 1.2 }}>
             The Real Problem
-            <span style={{ display: "block", fontSize: "0.58em", fontWeight: 500, opacity: 0.6, marginTop: 8, letterSpacing: 0 }}>
+            <span style={{ display: "block", fontSize: "0.58em", fontWeight: 400, fontFamily: "'Aeonik', sans-serif", opacity: 0.6, marginTop: 8, letterSpacing: 0 }}>
               (And Why It&apos;s Not &ldquo;You Should Post More&rdquo;)
             </span>
           </h2>
