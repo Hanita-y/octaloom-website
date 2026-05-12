@@ -1099,7 +1099,7 @@ function PageNav() {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    const checkShow = () => setShow(window.scrollY > 400 && window.innerWidth > 1200)
+    const checkShow = () => setShow(window.scrollY > 80 && window.innerWidth > 1200)
     window.addEventListener("scroll", checkShow, { passive: true })
     window.addEventListener("resize", checkShow, { passive: true })
     checkShow()
@@ -1119,6 +1119,11 @@ function PageNav() {
     return () => observers.forEach(o => o && o.disconnect())
   }, [])
 
+  const isDark = ["services", "testimonials"].includes(active)
+  const dotInactive = isDark ? "rgba(255,255,255,0.35)" : "rgba(32,30,75,0.25)"
+  const dotActive   = isDark ? "#ffffff" : PURPLE
+  const labelColor  = isDark ? "rgba(255,255,255,0.9)" : DEEP_PURPLE
+
   if (!show) return null
 
   return (
@@ -1127,10 +1132,10 @@ function PageNav() {
         <a key={s.id} href={`#${s.id}`} title={s.label}
           style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", justifyContent: "flex-start", direction: "rtl" }}>
           <div style={{ width: active === s.id ? 24 : 6, height: active === s.id ? 3 : 6,
-            background: active === s.id ? PURPLE : "rgba(32,30,75,0.25)",
+            background: active === s.id ? dotActive : dotInactive,
             borderRadius: active === s.id ? 2 : "50%", transition: "all 0.3s ease", flexShrink: 0 }}/>
           {active === s.id && (
-            <span style={{ fontSize: 11, color: DEEP_PURPLE, fontWeight: 600, whiteSpace: "nowrap", opacity: 0.85, fontFamily: FONT }}>{s.label}</span>
+            <span style={{ fontSize: 11, color: labelColor, fontWeight: 600, whiteSpace: "nowrap", opacity: 0.85, fontFamily: FONT }}>{s.label}</span>
           )}
         </a>
       ))}

@@ -62,7 +62,8 @@ function useWindowWidth() {
 // ─── Content ─────────────────────────────────────────────────────────────────
 
 const hero = {
-  h1: "Turn LinkedIn Into Your #1 Growth Engine.",
+  h1a: "Turn LinkedIn Into Your #1",
+  h1b: "Growth Engine.",
   sub: "If your LinkedIn bio says some version of “helping companies grow” and your last post is from three months ago, we should probably talk. OctaLoom builds LinkedIn management systems for B2B SaaS founders, SMB owners, and lean teams who know LinkedIn should be working harder, and finally want it to.",
   cta1: "Book a Free LinkedIn Audit",
   cta2: "Find Your Plan",
@@ -561,7 +562,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
           </Reveal>
           <Reveal delay={80}>
             <h1 style={{ fontSize: "clamp(34px,4.8vw,62px)", fontWeight: 700, lineHeight: 1.08, color: DEEP_PURPLE, marginBottom: 22, fontFamily: FONT }}>
-              {hero.h1}
+              {hero.h1a}<br/>{hero.h1b}
             </h1>
           </Reveal>
           <Reveal delay={160}>
@@ -1298,7 +1299,7 @@ function PageNav() {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    const checkShow = () => setShow(window.scrollY > 400 && window.innerWidth > 1200)
+    const checkShow = () => setShow(window.scrollY > 80 && window.innerWidth > 1200)
     window.addEventListener("scroll", checkShow, { passive: true })
     window.addEventListener("resize", checkShow, { passive: true })
     checkShow()
@@ -1318,6 +1319,11 @@ function PageNav() {
     return () => observers.forEach(o => o?.disconnect())
   }, [])
 
+  const isDark = ["services", "testimonials"].includes(active)
+  const dotInactive = isDark ? "rgba(255,255,255,0.35)" : "rgba(32,30,75,0.25)"
+  const dotActive   = isDark ? "#ffffff" : PURPLE
+  const labelColor  = isDark ? "rgba(255,255,255,0.9)" : DEEP_PURPLE
+
   if (!show) return null
 
   return (
@@ -1326,9 +1332,9 @@ function PageNav() {
         <a key={s.id} href={`#${s.id}`} title={s.label}
           style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", justifyContent: "flex-end" }}>
           {active === s.id && (
-            <span style={{ fontSize: 11, color: DEEP_PURPLE, fontWeight: 600, whiteSpace: "nowrap", opacity: 0.85, fontFamily: FONT }}>{s.label}</span>
+            <span style={{ fontSize: 11, color: labelColor, fontWeight: 600, whiteSpace: "nowrap", opacity: 0.85, fontFamily: FONT }}>{s.label}</span>
           )}
-          <motion.div animate={{ width: active===s.id ? 24 : 6, height: active===s.id ? 3 : 6, borderRadius: active===s.id ? 2 : "50%", background: active===s.id ? PURPLE : "rgba(32,30,75,0.25)" }}
+          <motion.div animate={{ width: active===s.id ? 24 : 6, height: active===s.id ? 3 : 6, borderRadius: active===s.id ? 2 : "50%", background: active===s.id ? dotActive : dotInactive }}
             transition={{ duration: 0.3 }}
             style={{ flexShrink: 0 }}/>
         </a>
