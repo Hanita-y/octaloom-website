@@ -1470,7 +1470,7 @@ function ExecAbout() {
         <div className="about__layout">
           <Reveal className="rv--right">
             <div className="about__photo">
-              <img src="assets/hanita.png" alt="חניתה" className="about__photo-img" />
+              <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/HAN.png" alt="חניתה" className="about__photo-img" />
             </div>
           </Reveal>
           <div className="about__content">
