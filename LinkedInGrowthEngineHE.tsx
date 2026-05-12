@@ -500,7 +500,7 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
             <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
               style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: PURPLE, color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily: FONT, border: "none", cursor: "pointer", width: "100%" }}>
               בואו נדבר חינם
-            </a>
+            </button>
           </div>
         </div>
       )}
