@@ -112,24 +112,24 @@ const pathsData = {
   sub: "שלושה פרופילים. לכל אחד מסלול משלו.",
   cards: [
     {
-      title: "ארגונים ועסקים",
+      title: "ארגונים וחברות",
       tag: "הכי פופולרי",
-      desc: "הצוות שלך בלתי נראה בלינקדאין. המתחרים שלך כן. ניהול עמוד ארגוני, סדנאים, תוכניות עושקים והדרכות עובדים לבנות נוכחות אמיתית.",
-      cta: "לעמודים ארגוניים",
+      desc: "יש לכם פרופיל ארגוני אבל הוא מרגיש קצת כמו בית קברות. כל עובד עם פרופיל לינקדאין חזק הוא שגריר של המותג.\n\nאני עובדת עם ארגונים על הפעלת נוכחות הצוות בלינקדאין: סדנאות, תוכניות שגרירים, הדרכות אישיות ואסטרטגיה שמתחברת ליעדי החברה.",
+      cta: "התוכנית לארגונים",
       href: "/linkedin-for-organizations-he",
     },
     {
       title: "מייסדים ומנכ״לים",
       tag: "",
-      desc: "אתם יודעים שלינקדאין חשוב. אתם גם יודעים שלא פרסמתם בחודשיים. ניהול שוטף, תוכנות מובילות מחשבה ויצירת לידים נכנסים, בנויים סביב הלוח זמן שלך.",
-      cta: "למייסדים ומנכ״לים",
+      desc: "אתם יודעים שאתם צריכים להיות נוכחים בלינקדאין. אבל בין ישיבות דירקטוריון, גיוס, פיתוח מוצר וכיבוי שריפות יומיומיות, לינקדאין תמיד נדחק לשוליים.\n\nאני בונה למייסדים מערכת ניהול לינקדאין שלמה. אתם נותנים 20% (הקול וההכוונה), אני עושה את ה-80% שנשארו.",
+      cta: "איך זה עובד למייסדים",
       href: "/linkedin-for-executives-he",
     },
     {
       title: "עצמאים ויועצים",
       tag: "",
-      desc: "הפרופיל שלך עולה כסף ללקוחות שלא בגללך. לא כי אתה גרוע במה שאתה עושה, אלא כי הפרופיל לא משקף את זה. בניית פרופיל, מערכת תוכן והגדרה חד-פעמית או שיטופי שוטף.",
-      cta: "לעצמאים ויועצים",
+      desc: "הפרופיל שלך נראה כמו קורות חיים מ-2019. לקוחות פוטנציאליים נכנסים, רואים כותרת גנרית ואין פוסט אחד שמראה שאתם יודעים מה אתם עושים, אז הם עוברים הלאה.\n\nאני בונה לעצמאים פרופיל שעובד בשבילם 24/7: כותרת שמדברת לקהל הנכון, תוכן שמשדר סמכות, ומערכת שמייצרת פניות נכנסות.",
+      cta: "המסלול לעצמאים",
       href: "/linkedin-for-solopreneurs-he",
     },
   ],
@@ -206,11 +206,11 @@ const faqItems = [
   },
   {
     q: "מה ההבדל בין מומחה לינקדאין לסוכנות שיווק דיגיטלי?",
-    a: "סוכנויות שיווק דיגיטלי מתייחסות ללינקדאין כעוד פלטפורמה ברשימה. פרילנסרים לעתים מבצעים בלי אסטרטגיה רחבה. מי שמומחה לינקדאין ייעודי מכיר את הייחודיות של הפלטפורמה לעומק ומשלב את זה עם חשיבה שיווקית רחבה.",
+    a: "סוכנויות שיווק דיגיטלי מתייחסות ללינקדאין כעוד פלטפורמה ברשימה. פרילנסרים לעתים מבצעים בלי אסטרטגיה רחבה. מי שמומחה לינקדאין ייעודי מכיר את הייחודיות של הפלטפורמה לעומק ומשלב את זה עם חשיבה שיווקית רחבה. ב-OctaLoom, לינקדאין הוא המרכז, לא תוספת.",
   },
   {
     q: "למי השירות מתאים?",
-    a: "שלושה פרופילים עיקריים: מייסדים ומנכ״לים שרוצים לבנות נוכחות ומובילות מחשבתית בלינקדאין, עצמאים ויועצים שצריכים פרופיל שמייצר פנייות נכנסות, וארגונים שרוצים להפעיל את הנוכחות של העמוד הארגוני והצוות.",
+    a: "שלושה פרופילים עיקריים: מייסדים ומנכ״לים שרוצים לבנות נוכחות ומובילות מחשבתית בלינקדאין, עצמאים ויועצים שצריכים פרופיל שמייצר פניות נכנסות, וארגונים שרוצים להפעיל את הנוכחות של העמוד הארגוני והצוות שלהם.",
   },
   {
     q: "תוך כמה זמן רואים תוצאות?",
@@ -329,6 +329,7 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
+  const [linkedinOpen, setLinkedinOpen] = useState(false)
   const w = useWindowWidth()
   const isMobile = w < 768
 
@@ -337,6 +338,11 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
     window.addEventListener("scroll", fn, { passive: true })
     return () => window.removeEventListener("scroll", fn)
   }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = (isMobile && menuOpen) ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [menuOpen, isMobile])
 
   const navStyle: React.CSSProperties = {
     position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", zIndex: 1000,
@@ -349,74 +355,142 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
     boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.08)" : "none",
   }
 
-  const liStyle: React.CSSProperties = { fontSize: 14, fontWeight: 500, color: DEEP_PURPLE, cursor: "pointer", padding: "6px 10px", borderRadius: 8, transition: "background 0.2s" }
-  const serviceLinks = [
-    { label: "לארגונים", href: "/linkedin-for-organizations-he" },
-    { label: "למייסדים", href: "/linkedin-for-executives-he" },
-    { label: "לעצמאים", href: "/linkedin-for-solopreneurs-he" },
+  const linkStyle: React.CSSProperties = { fontSize: 14, color: "rgba(32,30,75,0.55)", textDecoration: "none", transition: "color 0.25s", fontFamily: FONT }
+  const dropBase: React.CSSProperties = { position: "absolute", background: "#fff", borderRadius: 12, padding: "8px 6px", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", border: `1px solid ${BORDER}`, minWidth: 170, zIndex: 50, direction: "rtl" }
+  const dropItemStyle: React.CSSProperties = { display: "flex", alignItems: "center", gap: 6, padding: "8px 12px", fontSize: 13, color: DEEP_PURPLE, borderRadius: 8, transition: "background 0.15s", textDecoration: "none" }
+  const linkedinSub = [
+    { label: "LinkedIn לארגונים", href: "/linkedin-for-organizations-he" },
+    { label: "LinkedIn למנהלים", href: "/linkedin-for-executives-he" },
+    { label: "LinkedIn לעצמאים", href: "/linkedin-for-solopreneurs-he" },
+  ]
+  const otherSub = [
+    { label: "CMO במיקור חוץ", href: "/fractional-cmo-he" },
+    { label: "כלי AI וסוכנים", href: "/ai-tools-agents-he" },
+  ]
+  const navLinks = [
+    { label: "אודות", href: "/about" },
+    { label: "בלוג", href: "/blog" },
+    { label: "צרו קשר", href: "#contact" },
+    { label: "Goodies", href: "https://octagoodies.com" },
   ]
 
   return (
     <nav style={navStyle}>
       <a href="/" style={{ fontWeight: 700, fontSize: 16, color: DEEP_PURPLE, letterSpacing: -0.3 }}>OctaLoom</a>
       {!isMobile && (
-        <div style={{ display: "flex", gap: 4, alignItems: "center", direction: "rtl" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28, direction: "rtl" }}>
+          {/* Services dropdown */}
           <div style={{ position: "relative" }}
             onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}>
-            <span style={{ ...liStyle, display: "inline-flex", alignItems: "center", gap: 4 }}>
-              לינקדאין <ChevronDown open={servicesOpen}/>
-            </span>
+            onMouseLeave={() => { setServicesOpen(false); setLinkedinOpen(false) }}>
+            <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14,
+              color: servicesOpen ? DEEP_PURPLE : "rgba(32,30,75,0.55)",
+              display: "flex", alignItems: "center", gap: 5, padding: "6px 0", transition: "color 0.25s", fontFamily: FONT }}>
+              שירותים<ChevronDown open={servicesOpen}/>
+            </button>
             <AnimatePresence>
               {servicesOpen && (
                 <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }}
-                  style={{ position: "absolute", top: "calc(100% + 8px)", right: 0, background: "#fff", borderRadius: 12, padding: "8px 6px", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", border: `1px solid ${BORDER}`, minWidth: 170, zIndex: 50, direction: "rtl" }}>
-                  {serviceLinks.map(l => (
-                    <a key={l.href} href={l.href} style={{ display: "block", padding: "8px 12px", fontSize: 13, color: DEEP_PURPLE, borderRadius: 8, transition: "background 0.15s" }}
-                      onMouseEnter={e => (e.currentTarget.style.background = "#f5f3f1")}
+                  style={{ ...dropBase, top: "calc(100% + 10px)", right: 0 }}>
+                  {/* LinkedIn with nested sub-menu */}
+                  <div style={{ position: "relative" }}
+                    onMouseEnter={() => setLinkedinOpen(true)}
+                    onMouseLeave={() => setLinkedinOpen(false)}>
+                    <a href="/linkedin-growth-engine-he" style={{ ...dropItemStyle, flexDirection: "row-reverse" }}
+                      onMouseEnter={e => (e.currentTarget.style.background = "rgba(113,46,172,0.05)")}
                       onMouseLeave={e => (e.currentTarget.style.background = "transparent")}>
-                      {l.label}
+                      <span>מנוע צמיחה LinkedIn</span>
+                      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ opacity: 0.45, transform: "scaleX(-1)" }}>
+                        <path d="M4 2l4 4-4 4" stroke={DEEP_PURPLE} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </a>
+                    <AnimatePresence>
+                      {linkedinOpen && (
+                        <motion.div initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -6 }}
+                          style={{ ...dropBase, top: 0, right: "calc(100% + 6px)" }}>
+                          {linkedinSub.map((sub, i) => (
+                            <a key={i} href={sub.href} style={{ ...dropItemStyle }}
+                              onMouseEnter={e => (e.currentTarget.style.background = "rgba(113,46,172,0.05)")}
+                              onMouseLeave={e => (e.currentTarget.style.background = "transparent")}>
+                              {sub.label}
+                            </a>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                  {otherSub.map((svc, i) => (
+                    <a key={i} href={svc.href} style={{ ...dropItemStyle }}
+                      onMouseEnter={e => (e.currentTarget.style.background = "rgba(113,46,172,0.05)")}
+                      onMouseLeave={e => (e.currentTarget.style.background = "transparent")}>
+                      {svc.label}
                     </a>
                   ))}
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
-          <a href="/about" style={liStyle}>עליינו</a>
-          <a href="/blog" style={liStyle}>מגזין</a>
+          {navLinks.map((item, i) => (
+            <a key={i} href={item.href} style={linkStyle}
+              onMouseEnter={e => (e.currentTarget.style.color = DEEP_PURPLE)}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(32,30,75,0.55)")}>
+              {item.label}
+            </a>
+          ))}
         </div>
       )}
       <div style={{ display: "flex", gap: 8, alignItems: "center", direction: "ltr" }}>
-        {!isMobile && (
-          <button onClick={onQuiz}
-            style={{ padding: "8px 18px", borderRadius: 100, border: `1.5px solid ${DEEP_PURPLE}`, background: "transparent", color: DEEP_PURPLE, fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: FONT }}>
-            מצאו את התוכנית
-          </button>
-        )}
         <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-          style={{ padding: "8px 18px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 13, fontWeight: 600, fontFamily: FONT }}>
-          בואו נדבר
+          style={{ padding: "8px 20px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 13, fontWeight: 600, fontFamily: FONT, textDecoration: "none" }}>
+          קביעת שיחה
         </a>
         {isMobile && (
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{ padding: 6, color: DEEP_PURPLE }}>
-            <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-              {menuOpen ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></> : <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
-            </svg>
+          <button onClick={() => setMenuOpen(!menuOpen)} aria-label="תפריט"
+            style={{ background: "none", border: "none", cursor: "pointer", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ position: "relative", display: "block", width: 28, height: 20 }}>
+              {[0, 9, 18].map((top, i) => (
+                <span key={i} style={{ position: "absolute", left: 0, width: "100%", height: 2,
+                  background: DEEP_PURPLE, borderRadius: 2, top,
+                  transform: menuOpen && i===0 ? "rotate(45deg) translateY(9px)" : menuOpen && i===1 ? "scaleX(0)" : menuOpen && i===2 ? "rotate(-45deg) translateY(-9px)" : "none",
+                  opacity: menuOpen && i===1 ? 0 : 1, transition: "all 0.3s" }}/>
+              ))}
+            </span>
           </button>
         )}
       </div>
-      <AnimatePresence>
-        {isMobile && menuOpen && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
-            style={{ position: "absolute", top: "calc(100% + 8px)", right: 0, left: 0, background: "#fff", borderRadius: 16, padding: "16px 20px", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", direction: "rtl", zIndex: 50 }}>
-            {serviceLinks.map(l => (
-              <a key={l.href} href={l.href} style={{ display: "block", padding: "10px 0", fontSize: 14, color: DEEP_PURPLE, borderBottom: `1px solid ${BORDER}` }}>{l.label}</a>
-            ))}
-            <a href="/about" style={{ display: "block", padding: "10px 0", fontSize: 14, color: DEEP_PURPLE, borderBottom: `1px solid ${BORDER}` }}>עליינו</a>
-            <a href="/blog" style={{ display: "block", padding: "10px 0", fontSize: 14, color: DEEP_PURPLE }}>מגזין</a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isMobile && menuOpen && (
+        <div style={{ position: "absolute", top: "calc(100% + 8px)", right: 0, left: 0, background: "#fff", borderRadius: 16, padding: "20px 32px 32px", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", direction: "rtl", zIndex: 50 }}>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: PURPLE, margin: "0 0 4px", fontFamily: FONT }}>שירותים</p>
+          <a href="/linkedin-growth-engine-he" onClick={() => setMenuOpen(false)}
+            style={{ display: "block", fontSize: 20, color: DEEP_PURPLE, textDecoration: "none", padding: "11px 0", fontWeight: 600, borderBottom: `1px solid rgba(113,46,172,0.08)`, fontFamily: FONT }}>
+            מנוע צמיחה LinkedIn
+          </a>
+          {linkedinSub.map((sub, i) => (
+            <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
+              style={{ display: "block", fontSize: 15, color: PURPLE, textDecoration: "none", padding: "7px 0 7px 20px", borderBottom: `1px solid rgba(113,46,172,0.05)`, fontFamily: FONT }}>
+              {sub.label}
+            </a>
+          ))}
+          {otherSub.map((svc, i) => (
+            <a key={i} href={svc.href} onClick={() => setMenuOpen(false)}
+              style={{ display: "block", fontSize: 20, color: DEEP_PURPLE, textDecoration: "none", padding: "11px 0", fontWeight: 600, borderBottom: `1px solid rgba(113,46,172,0.08)`, fontFamily: FONT }}>
+              {svc.label}
+            </a>
+          ))}
+          {navLinks.map((item, i) => (
+            <a key={i} href={item.href} onClick={() => setMenuOpen(false)}
+              style={{ display: "block", fontSize: 20, color: DEEP_PURPLE, textDecoration: "none", padding: "11px 0", fontWeight: 500, borderBottom: i < navLinks.length - 1 ? `1px solid rgba(113,46,172,0.08)` : "none", fontFamily: FONT }}>
+              {item.label}
+            </a>
+          ))}
+          <div style={{ marginTop: 14 }}>
+            <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
+              style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: PURPLE, color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily: FONT }}>
+              קביעת שיחה חינם
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
@@ -600,7 +674,7 @@ function PathsSection() {
                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,.14)"; (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,.07)" }}>
                 {card.tag && <span style={{ display: "inline-block", background: LIME, color: DEEP_PURPLE, fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 100, marginBottom: 14, alignSelf: "flex-end" }}>{card.tag}</span>}
                 <h3 style={{ fontSize: 21, fontWeight: 700, marginBottom: 11, color: "#fff" }}>{card.title}</h3>
-                <p style={{ fontSize: 14, lineHeight: 1.78, color: "rgba(255,255,255,.72)", flex: 1, marginBottom: 22 }}>{card.desc}</p>
+                <p style={{ fontSize: 14, lineHeight: 1.78, color: "rgba(255,255,255,.72)", flex: 1, marginBottom: 22, whiteSpace: "pre-line" }}>{card.desc}</p>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 600, color: LIME, marginTop: "auto", flexDirection: "row-reverse" }}>
                   <ArrowLeft size={13}/>{card.cta}
                 </span>
@@ -843,50 +917,98 @@ function Footer() {
   const isMobile = w < 768
   const linkStyle: React.CSSProperties = { fontSize: 14, color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s", display: "block", lineHeight: "1.9", fontFamily: FONT }
   const headStyle: React.CSSProperties = { fontSize: 13, fontWeight: 700, color: CREAM, margin: "0 0 14px", fontFamily: FONT }
+  const hover = (e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => { e.currentTarget.style.color = enter ? LIME : "rgba(255,255,255,0.5)" }
 
   const serviceLinks = [
     { label: "LinkedIn לארגונים", href: "/linkedin-for-organizations-he" },
-    { label: "LinkedIn למייסדים", href: "/linkedin-for-executives-he" },
+    { label: "LinkedIn למנהלים", href: "/linkedin-for-executives-he" },
     { label: "LinkedIn לעצמאים", href: "/linkedin-for-solopreneurs-he" },
-    { label: "סמנכ״לית שיווק", href: "/fractional-cmo-he" },
+  ]
+  const otherLinks = [
+    { label: "CMO במיקור חוץ", href: "/fractional-cmo-he" },
+    { label: "כלי AI וסוכנים", href: "/ai-tools-agents-he" },
   ]
   const pageLinks = [
-    { label: "עליינו", href: "/about" },
+    { label: "עמוד הבית", href: "/" },
+    { label: "אודות", href: "/about" },
     { label: "בלוג", href: "/blog" },
-    { label: "צור קשר", href: "/contact" },
-    { label: "ניוזלטר", href: "/newsletter" },
+    { label: "צרו קשר", href: "#contact" },
   ]
-  const legalLinks = [
-    { label: "פרטיות", href: "/privacy-policy" },
-    { label: "תנאי שימוש", href: "/terms" },
-    { label: "הצהרת נגישות", href: "/accessibility" },
+  const socialIcons = [
+    { href: "https://www.linkedin.com/in/hanita-yudovski/", label: "LinkedIn", icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
+    { href: "https://www.instagram.com/hanita_Y", label: "Instagram", icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> },
+    { href: "https://www.facebook.com/octaloom", label: "Facebook", icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
+    { href: "https://www.youtube.com/@Hanita_Octaloom", label: "YouTube", icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> },
+    { href: "https://open.spotify.com/show/4XmsthqR7gnj4nf2gL0T7j", label: "Spotify", icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg> },
   ]
 
   return (
-    <footer style={{ background: NAVY, padding: isMobile ? "56px 20px" : "64px 32px", fontFamily: FONT, direction: "rtl" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4,1fr)", gap: isMobile ? 32 : 40, marginBottom: 48 }}>
-          <div>
-            <h4 style={headStyle}>שירותים</h4>
-            {serviceLinks.map(l => <a key={l.href} href={l.href} style={linkStyle} onMouseEnter={e => (e.currentTarget.style.color = LIME)} onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}>{l.label}</a>)}
+    <footer style={{ padding: "64px 0 0", background: NAVY, color: "rgba(255,255,255,0.7)", direction: "rtl", fontFamily: FONT }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "2fr 0.65fr 1fr 0.8fr 0.8fr 0.8fr", gap: isMobile ? "28px 20px" : 24, paddingBottom: 48 }}>
+          <div style={{ gridColumn: isMobile ? "1 / -1" : "1" }}>
+            <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
+              alt="OctaLoom" style={{ height: 100, width: "auto", display: "block" }}
+              onError={e => { (e.target as HTMLImageElement).style.display = "none" }}/>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14, maxWidth: 240, lineHeight: 1.65, fontFamily: FONT }}>
+              {"מחלקת השיווק שלך,"}<br/>{"רק בלי המחלקה."}
+            </p>
           </div>
           <div>
-            <h4 style={headStyle}>עמודים</h4>
-            {pageLinks.map(l => <a key={l.href} href={l.href} style={linkStyle} onMouseEnter={e => (e.currentTarget.style.color = LIME)} onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}>{l.label}</a>)}
+            <h4 style={headStyle}>{"עמודים"}</h4>
+            {pageLinks.map((l, i) => (
+              <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{l.label}</a>
+            ))}
           </div>
           <div>
-            <h4 style={headStyle}>צור קשר</h4>
-            <a href="https://www.linkedin.com/in/hanita-yudovski/" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={e => (e.currentTarget.style.color = LIME)} onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}>LinkedIn</a>
-            <a href="mailto:octaloom@gmail.com" style={linkStyle} onMouseEnter={e => (e.currentTarget.style.color = LIME)} onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}>octaloom@gmail.com</a>
+            <h4 style={headStyle}>{"שירותי LinkedIn"}</h4>
+            {serviceLinks.map((l, i) => (
+              <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{l.label}</a>
+            ))}
           </div>
           <div>
-            <h4 style={headStyle}>מידע משפטי</h4>
-            {legalLinks.map(l => <a key={l.href} href={l.href} style={linkStyle} onMouseEnter={e => (e.currentTarget.style.color = LIME)} onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}>{l.label}</a>)}
+            <h4 style={headStyle}>{"שירותים נוספים"}</h4>
+            {otherLinks.map((l, i) => (
+              <a key={i} href={l.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{l.label}</a>
+            ))}
+          </div>
+          <div>
+            <h4 style={{ ...headStyle, fontWeight: 300, fontSize: 12 }}>
+              {"כלי שיווק"}<br/>{"חינמיים ותבניות"}
+            </h4>
+            <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer"
+              style={{ textDecoration: "none", display: "inline-block" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1" }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.9" }}>
+              <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/OCTAGOODIES%20GREEN.png"
+                alt="OctaGoodies" style={{ height: 44, width: "auto", display: "block", opacity: 0.9, transition: "opacity 0.2s" }}/>
+            </a>
+          </div>
+          <div>
+            <h4 style={headStyle}>{"התחברו"}</h4>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              {socialIcons.map((s, i) => (
+                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                  style={{ color: "rgba(255,255,255,0.5)", transition: "color 0.2s" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = LIME }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.5)" }}>
+                  {s.icon}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 28, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14, direction: "rtl" }}>
-          <span style={{ fontSize: 13, color: "rgba(255,255,255,0.3)" }}>© 2025 OctaLoom. כל הזכויות שמורות.</span>
-          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.2)" }}>עושה באהבה בישראל</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 0", borderTop: "1px solid rgba(255,255,255,0.1)", fontSize: 12, color: "rgba(255,255,255,.38)", flexWrap: "wrap", gap: 12, fontFamily: FONT }}>
+          <span>© 2026 OctaLoom</span>
+          <div style={{ display: "flex", gap: 18 }}>
+            {[{ label: "פרטיות", href: "/privacy-policy" }, { label: "תנאים", href: "/terms" }, { label: "נגישות", href: "/accessibility" }].map((l, i) => (
+              <a key={i} href={l.href} style={{ color: "rgba(255,255,255,.38)", textDecoration: "none", transition: "color 0.2s", fontFamily: FONT }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = LIME }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,.38)" }}>
+                {l.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
