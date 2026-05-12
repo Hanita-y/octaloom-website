@@ -503,7 +503,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
   const FALLBACK_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='17' fill='%23712eac'/%3E%3C/svg%3E"
 
   return (
-    <section style={{ background: CREAM, paddingTop: isMobile ? 84 : 136, paddingBottom: isMobile ? 56 : 80, fontFamily: FONT }}>
+    <section id="hero" style={{ background: CREAM, paddingTop: isMobile ? 84 : 136, paddingBottom: isMobile ? 56 : 80, fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 28 : 56, alignItems: "center", direction: "rtl" }}>
           {/* Text column */}
@@ -614,7 +614,7 @@ function WhyLinkedinSection() {
   ]
 
   return (
-    <section style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
+    <section id="why-linkedin" style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: isMobileWL ? "1fr" : "1.2fr 1fr", gap: isMobileWL ? 40 : 64, alignItems: "start", direction: "rtl" }}>
           {/* Right: text */}
@@ -662,7 +662,7 @@ function PathsSection() {
   const cols = isMobile ? "1fr" : isTablet ? "1fr 1fr" : "repeat(3,1fr)"
 
   return (
-    <section style={{ background: DEEP_PURPLE, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
+    <section id="services" style={{ background: DEEP_PURPLE, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal variant="blur"><h2 style={{ fontSize: "clamp(26px,3.8vw,44px)", fontWeight: 700, lineHeight: 1.12, marginBottom: 16, textAlign: "right", color: "#fff" }}>{pathsData.h2}</h2></Reveal>
         <Reveal delay={80}><p style={{ fontSize: 17, lineHeight: 1.65, maxWidth: 640, marginBottom: isMobile ? 28 : 48, textAlign: "right", color: "rgba(255,255,255,.75)" }}>{pathsData.sub}</p></Reveal>
@@ -697,7 +697,7 @@ function WhyOctaloomSection() {
     <LiIcon size={22}/>,
   ]
   return (
-    <section style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
+    <section id="why-us" style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal><h2 style={{ fontSize: "clamp(26px,3.8vw,44px)", fontWeight: 700, lineHeight: 1.12, marginBottom: isMobile ? 24 : 48, textAlign: "right", color: DEEP_PURPLE }}>{whyOctaloomData.h2}</h2></Reveal>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2,1fr)", gap: 22, direction: "rtl" }}>
@@ -723,7 +723,7 @@ function ResultsSection() {
   const w = useWindowWidth()
   const isMobile = w < 768
   return (
-    <section style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
+    <section id="results" style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal><h2 style={{ fontSize: "clamp(26px,3.8vw,44px)", fontWeight: 700, lineHeight: 1.12, marginBottom: 16, textAlign: "right", color: DEEP_PURPLE }}>{resultsData.h2}</h2></Reveal>
         <Reveal delay={80}><p style={{ fontSize: 17, lineHeight: 1.65, maxWidth: 640, marginBottom: 0, textAlign: "right", color: MUTED }}>{resultsData.sub}</p></Reveal>
@@ -755,7 +755,7 @@ function TestimonialsSection() {
   const reactionEmoji: Record<string, string> = { like: "\u{1F44D}", celebrate: "\u{1F389}", support: "\u{1F932}", love: "❤️", insightful: "\u{1F4A1}", funny: "\u{1F604}" }
 
   return (
-    <section style={{ background: PURPLE, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
+    <section id="testimonials" style={{ background: PURPLE, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal variant="blur"><h2 style={{ fontSize: "clamp(26px,3.8vw,44px)", fontWeight: 700, lineHeight: 1.12, marginBottom: isMobile ? 24 : 48, textAlign: "right", color: "#fff" }}>מה אומרים הלקוחות</h2></Reveal>
         <div style={{ display: "grid", gridTemplateColumns: cols, gap: isMobile ? 16 : 18 }}>
@@ -813,7 +813,7 @@ function AboutSection() {
   const w = useWindowWidth()
   const isMobile = w < 768
   return (
-    <section style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
+    <section id="about" style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.55fr 1fr", gap: isMobile ? 20 : 60, alignItems: "start", direction: "rtl" }}>
           <div style={{ paddingTop: isMobile ? 0 : 12, textAlign: "right" }}>
@@ -853,7 +853,7 @@ function FAQSection() {
   const w = useWindowWidth()
   const isMobile = w < 768
   return (
-    <section style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
+    <section id="faq" style={{ background: CREAM, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal><h2 style={{ fontSize: "clamp(26px,3.8vw,44px)", fontWeight: 700, lineHeight: 1.12, marginBottom: 0, textAlign: "right", color: DEEP_PURPLE }}>שאלות נפוצות</h2></Reveal>
         <div style={{ maxWidth: 700, marginTop: isMobile ? 24 : 40, border: `1px solid ${BORDER}`, borderRadius: 20, overflow: "hidden" }}>
@@ -886,7 +886,7 @@ function BottomCTA({ onQuiz }: { onQuiz: () => void }) {
   const w = useWindowWidth()
   const isMobile = w < 768
   return (
-    <section style={{ background: LIME, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
+    <section id="contact" style={{ background: LIME, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center", direction: "rtl" }}>
         <Reveal>
           <h2 style={{ fontSize: isMobile ? "clamp(22px,6.5vw,32px)" : "clamp(26px,3.8vw,46px)", fontWeight: 700, color: DEEP_PURPLE, marginBottom: 14 }}>{ctaData.h2}</h2>
@@ -1068,6 +1068,104 @@ function QuizModal({ onClose }: { onClose: () => void }) {
 }
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
+// ─── Page Nav (vertical side dots) ───────────────────────────────────────────
+function PageNav() {
+  const sections = [
+    { id: "hero", label: "סקירה" },
+    { id: "why-linkedin", label: "למה לינקדאין" },
+    { id: "services", label: "למי זה מתאים" },
+    { id: "why-us", label: "למה OctaLoom" },
+    { id: "results", label: "תוצאות" },
+    { id: "testimonials", label: "ממליצים" },
+    { id: "about", label: "קצת עליי" },
+    { id: "faq", label: "שאלות" },
+    { id: "contact", label: "צרו קשר" },
+  ]
+  const [active, setActive] = useState("hero")
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    const checkShow = () => setShow(window.scrollY > 400 && window.innerWidth > 1200)
+    window.addEventListener("scroll", checkShow, { passive: true })
+    window.addEventListener("resize", checkShow, { passive: true })
+    checkShow()
+    return () => { window.removeEventListener("scroll", checkShow); window.removeEventListener("resize", checkShow) }
+  }, [])
+
+  useEffect(() => {
+    const observers = sections.map(s => {
+      const el = document.getElementById(s.id)
+      if (!el) return null
+      const obs = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) setActive(s.id)
+      }, { threshold: 0.3, rootMargin: "-10% 0px -50% 0px" })
+      obs.observe(el)
+      return obs
+    })
+    return () => observers.forEach(o => o && o.disconnect())
+  }, [])
+
+  if (!show) return null
+
+  return (
+    <div style={{ position: "fixed", left: 20, top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: 6, zIndex: 50 }}>
+      {sections.map(s => (
+        <a key={s.id} href={`#${s.id}`} title={s.label}
+          style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", justifyContent: "flex-start", direction: "rtl" }}>
+          <div style={{ width: active === s.id ? 24 : 6, height: active === s.id ? 3 : 6,
+            background: active === s.id ? PURPLE : "rgba(32,30,75,0.25)",
+            borderRadius: active === s.id ? 2 : "50%", transition: "all 0.3s ease", flexShrink: 0 }}/>
+          {active === s.id && (
+            <span style={{ fontSize: 11, color: DEEP_PURPLE, fontWeight: 600, whiteSpace: "nowrap", opacity: 0.85, fontFamily: FONT }}>{s.label}</span>
+          )}
+        </a>
+      ))}
+    </div>
+  )
+}
+
+// ─── Click Reactions (emoji particles on click) ───────────────────────────────
+function ClickReactions() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const particles = useRef<any[]>([])
+  const raf = useRef<number>(0)
+  const emojis = ["👍", "🎉", "❤️", "💡", "🤲", "😄", "🚀", "⭐"]
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext("2d")!
+    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
+    resize()
+    window.addEventListener("resize", resize)
+    const onClick = (e: MouseEvent) => {
+      const t = e.target as HTMLElement
+      if (t.closest("button,a,input")) return
+      for (let i = 0; i < 6 + Math.floor(Math.random() * 4); i++) {
+        const angle = Math.random() * Math.PI * 0.8 + Math.PI * 0.1
+        const spd = 2 + Math.random() * 4
+        particles.current.push({ x: e.clientX, y: e.clientY, vx: Math.cos(angle) * spd * (Math.random() > 0.5 ? 1 : -1), vy: -Math.sin(angle) * spd - 1, sz: 18 + Math.random() * 12, op: 1, rot: Math.random() * 360, rotSpd: (Math.random() - 0.5) * 9, emoji: emojis[Math.floor(Math.random() * emojis.length)], life: 0, maxLife: 42 + Math.random() * 28 })
+      }
+    }
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      particles.current = particles.current.filter(p => {
+        p.life++; p.x += p.vx; p.y += p.vy; p.vy += 0.09; p.rot += p.rotSpd; p.op = Math.max(0, 1 - p.life / p.maxLife)
+        if (p.op <= 0) return false
+        ctx.save(); ctx.globalAlpha = p.op; ctx.translate(p.x, p.y); ctx.rotate(p.rot * Math.PI / 180)
+        ctx.font = `${p.sz}px serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(p.emoji, 0, 0); ctx.restore()
+        return true
+      })
+      raf.current = requestAnimationFrame(animate)
+    }
+    document.addEventListener("click", onClick)
+    raf.current = requestAnimationFrame(animate)
+    return () => { document.removeEventListener("click", onClick); window.removeEventListener("resize", resize); cancelAnimationFrame(raf.current) }
+  }, [])
+
+  return <canvas ref={canvasRef} style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 9999 }}/>
+}
+
 export default function LinkedInGrowthEngineHE() {
   useGlobalStyles()
   const [quizOpen, setQuizOpen] = useState(false)
@@ -1086,6 +1184,8 @@ export default function LinkedInGrowthEngineHE() {
       <FAQSection/>
       <BottomCTA onQuiz={() => setQuizOpen(true)}/>
       <Footer/>
+      <PageNav/>
+      <ClickReactions/>
       <AnimatePresence>
         {quizOpen && <QuizModal onClose={() => setQuizOpen(false)}/>}
       </AnimatePresence>
