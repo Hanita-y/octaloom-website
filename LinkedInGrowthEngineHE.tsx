@@ -540,7 +540,7 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
                   style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 15, fontWeight: 600, boxShadow: SHADOW_PURPLE, fontFamily: FONT, border: "none", cursor: "pointer" }}>
                   {hero.cta1}<ArrowLeft size={15}/>
                 </button>
-                <button onClick={onQuiz}
+                <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
                   style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: "transparent", color: DEEP_PURPLE, border: `1.5px solid ${DEEP_PURPLE}`, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT }}>
                   {hero.cta2}
                 </button>
@@ -909,7 +909,7 @@ function BottomCTA({ onQuiz }: { onQuiz: () => void }) {
               style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: DEEP_PURPLE, color: "#fff", fontSize: 15, fontWeight: 600, fontFamily: FONT, width: isMobile ? "100%" : undefined, border: "none", cursor: "pointer" }}>
               {ctaData.cta1}<ArrowLeft size={15}/>
             </button>
-            <button onClick={onQuiz}
+            <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
               style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: "transparent", color: DEEP_PURPLE, border: `1.5px solid ${DEEP_PURPLE}`, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT, width: isMobile ? "100%" : undefined }}>
               {ctaData.cta2}
             </button>
