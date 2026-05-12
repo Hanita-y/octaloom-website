@@ -923,11 +923,11 @@ function HPNav() {
 
   const linkedinSub = [
 
-    { en: "LinkedIn for Organizations",             he: "לינקדאין לארגונים",               href: "/services/linkedin-for-organizations" },
+    { en: "LinkedIn for Organizations",             he: "לינקדאין לארגונים",               href: "/linkedin-for-organizations" },
 
-    { en: "LinkedIn for Executives",                he: "לינקדאין למנהלים",                href: "/services/linkedin-for-executives" },
+    { en: "LinkedIn for Executives",                he: "לינקדאין למנהלים",                href: "/linkedin-for-executives" },
 
-    { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים", href: "/services/linkedin-for-solopreneurs" },
+    { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים", href: "/linkedin-for-solopreneurs" },
 
   ]
 
@@ -935,11 +935,11 @@ function HPNav() {
 
   const services = [
 
-    { en: "LinkedIn Growth Engine", he: "מנוע צמיחה בלינקדאין", href: "/services/linkedin-growth-engine", sub: linkedinSub },
+    { en: "LinkedIn Growth Engine", he: "מנוע צמיחה בלינקדאין", href: "/linkedin-growth-engine", sub: linkedinSub },
 
-    { en: "Fractional CMO",         he: "Fractional CMO",                                                                                                    href: "/services/fractional-cmo",          sub: null },
+    { en: "Fractional CMO",         he: "Fractional CMO",                                                                                                    href: "/fractional-cmo",          sub: null },
 
-    { en: "AI Tools & Agents",      he: "כלי AI וסוכנים",                                                 href: "/services/ai-tools-agents",         sub: null },
+    { en: "AI Tools & Agents",      he: "כלי AI וסוכנים",                                                 href: "/ai-tools-agents",         sub: null },
 
   ]
 
@@ -3474,17 +3474,17 @@ function HPFooter() {
 
   const serviceLinks = [
 
-    { label: { en: "LinkedIn Growth Engine",             he: "מנוע צמיחה בלינקדאין" },          href: "/services/linkedin-growth-engine", indent: false },
+    { label: { en: "LinkedIn Growth Engine",             he: "מנוע צמיחה בלינקדאין" },          href: "/linkedin-growth-engine", indent: false },
 
-    { label: { en: "LinkedIn for Organizations",          he: "לינקדאין לארגונים" },              href: "/services/linkedin-for-organizations", indent: true  },
+    { label: { en: "LinkedIn for Organizations",          he: "לינקדאין לארגונים" },              href: "/linkedin-for-organizations", indent: true  },
 
-    { label: { en: "LinkedIn for Executives",             he: "לינקדאין למנהלים" },              href: "/services/linkedin-for-executives",    indent: true  },
+    { label: { en: "LinkedIn for Executives",             he: "לינקדאין למנהלים" },              href: "/linkedin-for-executives",    indent: true  },
 
-    { label: { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים" }, href: "/services/linkedin-for-solopreneurs",  indent: true  },
+    { label: { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים" }, href: "/linkedin-for-solopreneurs",  indent: true  },
 
-    { label: { en: "Fractional CMO",                     he: "Fractional CMO" },                   href: "/services/fractional-cmo",            indent: false },
+    { label: { en: "Fractional CMO",                     he: "Fractional CMO" },                   href: "/fractional-cmo",            indent: false },
 
-    { label: { en: "AI Tools & Agents",                  he: "כלי AI וסוכנים" },                  href: "/services/ai-tools-agents",           indent: false },
+    { label: { en: "AI Tools & Agents",                  he: "כלי AI וסוכנים" },                  href: "/ai-tools-agents",           indent: false },
 
   ]
 
@@ -3618,11 +3618,11 @@ function HPFooter() {
 
             {([
 
-              { en: "LinkedIn for Organizations", he: "לינקדאין לארגונים", href: "/services/linkedin-for-organizations" },
+              { en: "LinkedIn for Organizations", he: "לינקדאין לארגונים", href: "/linkedin-for-organizations" },
 
-              { en: "LinkedIn for Founders",      he: "לינקדאין למייסדים", href: "/services/linkedin-for-executives" },
+              { en: "LinkedIn for Founders",      he: "לינקדאין למייסדים", href: "/linkedin-for-executives" },
 
-              { en: "LinkedIn for Solopreneurs",  he: "לינקדאין לעצמאים", href: "/services/linkedin-for-solopreneurs" },
+              { en: "LinkedIn for Solopreneurs",  he: "לינקדאין לעצמאים", href: "/linkedin-for-solopreneurs" },
 
             ] as {en:string;he:string;href:string}[]).map((s, i) => (
 
@@ -3640,9 +3640,9 @@ function HPFooter() {
 
             {([
 
-              { en: "Fractional CMO",    he: "Fractional CMO",                                                href: "/services/fractional-cmo" },
+              { en: "Fractional CMO",    he: "Fractional CMO",                                                href: "/fractional-cmo" },
 
-              { en: "AI Tools & Agents", he: "כלי AI וסוכנים", href: "/services/ai-tools-agents" },
+              { en: "AI Tools & Agents", he: "כלי AI וסוכנים", href: "/ai-tools-agents" },
 
             ] as {en:string;he:string;href:string}[]).map((s, i) => (
 
