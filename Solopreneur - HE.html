@@ -513,18 +513,18 @@ function Navbar() {
   }, [menuOpen, isMobile]);
 
   const linkedinSub = [
-    { label: 'LinkedIn לארגונים', href: '/linkedin-for-organizations' },
-    { label: 'LinkedIn למנהלים', href: '/linkedin-for-executives' },
-    { label: 'LinkedIn לעצמאים', href: '/linkedin-for-solopreneurs' },
+    { label: 'LinkedIn לארגונים', href: 'https://octaloom.com/linkedin-for-organizations' },
+    { label: 'LinkedIn למנהלים', href: 'https://octaloom.com/linkedin-for-executives' },
+    { label: 'LinkedIn לעצמאים', href: 'https://octaloom.com/linkedin-for-solopreneurs' },
   ];
   const otherServices = [
-    { label: 'CMO במיקור חוץ', href: '/fractional-cmo' },
-    { label: 'כלי AI וסוכנים', href: '/ai-tools-agents' },
-    { label: 'סדנאות', href: '/workshops' },
+    { label: 'CMO במיקור חוץ', href: 'https://octaloom.com/fractional-cmo' },
+    { label: 'כלי AI וסוכנים', href: 'https://octaloom.com/ai-tools-agents' },
+    { label: 'סדנאות', href: 'https://octaloom.com/workshops' },
   ];
   const navLinks = [
-    { label: 'אודות', href: '/about' },
-    { label: 'בלוג', href: '/blog' },
+    { label: 'אודות', href: 'https://octaloom.com/about-he' },
+    { label: 'בלוג', href: 'https://octaloom.com/blog' },
     { label: 'צרו קשר', href: '#contact' },
     { label: 'Goodies', href: 'https://octagoodies.com' },
   ];
@@ -561,7 +561,7 @@ function Navbar() {
         direction: dir, position: 'relative', zIndex: 101,
         ...(isMobile && menuOpen ? { paddingTop: 14, paddingBottom: 14, borderBottom: '1px solid rgba(113,46,172,0.1)' } : {}),
       }}>
-        <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+        <a href="https://octaloom.com" style={ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
             alt="OctaLoom" style={{ height: 36, width: 'auto', display: 'block' }}
             onError={(e) => { e.target.style.display = 'none'; }} />
@@ -589,7 +589,7 @@ function Navbar() {
                   <div style={{ position: 'relative' }}
                     onMouseEnter={() => { if (liCloseTimerRef.current) clearTimeout(liCloseTimerRef.current); setLinkedinOpen(true); }}
                     onMouseLeave={() => { liCloseTimerRef.current = setTimeout(() => setLinkedinOpen(false), 150); }}>
-                    <a href="/linkedin-growth-engine-he" style={{ ...dropItemStyle, flexDirection: 'row-reverse' }}
+                    <a href="https://octaloom.com/linkedin-growth-engine-he" style={{ ...dropItemStyle, flexDirection: 'row-reverse' }}
                       onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
                       onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
                       <span>מנוע צמיחה LinkedIn</span>
@@ -657,7 +657,7 @@ function Navbar() {
       {isMobile && menuOpen && (
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '20px 32px 40px', gap: 0, direction: dir }}>
           <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--purple)', margin: '0 0 4px', fontFamily }}>שירותים</p>
-          <a href="/linkedin-growth-engine-he" onClick={() => setMenuOpen(false)}
+          <a href="https://octaloom.com/linkedin-growth-engine-he" onClick={() => setMenuOpen(false)}
             style={{ display: 'block', fontSize: 20, color: 'var(--deep-purple)', textDecoration: 'none', padding: '11px 0', fontWeight: 600, borderBottom: '1px solid rgba(113,46,172,0.08)', fontFamily }}>
             מנוע צמיחה LinkedIn
           </a>
