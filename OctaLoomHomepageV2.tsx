@@ -1159,11 +1159,11 @@ function HPNav() {
 
             {([
 
-              { en: "About",   he: "עליי",      href: "/about-he" },
+              { en: "About",   he: "עליי",      href: lang === "he" ? "/about-he" : "/about" },
 
               { en: "Blog",    he: "בלוג",      href: "/blog" },
 
-              { en: "Contact", he: "צור קשר",  href: "/contact" },
+              { en: "Contact", he: "צור קשר",  href: lang === "he" ? "/contact-he" : "/contact" },
 
             ] as {en:string;he:string;href:string}[]).map((item, i) => (
 
@@ -1339,11 +1339,11 @@ function HPNav() {
 
           {([
 
-            { en: "About",   he: "עליי",     href: "/about-he" },
+            { en: "About",   he: "עליי",     href: lang === "he" ? "/about-he" : "/about" },
 
             { en: "Blog",    he: "בלוג",     href: "/blog" },
 
-            { en: "Contact", he: "צור קשר", href: "/contact" },
+            { en: "Contact", he: "צור קשר", href: lang === "he" ? "/contact-he" : "/contact" },
 
             { en: "Goodies", he: "Goodies",   href: "https://octagoodies.com" },
 
@@ -3464,11 +3464,11 @@ function HPFooter() {
 
     { en: "Home",    he: "דף הבית",  href: "/" },
 
-    { en: "About",   he: "עליי",      href: "/about-he" },
+    { en: "About",   he: "עליי",      href: lang === "he" ? "/about-he" : "/about" },
 
     { en: "Blog",    he: "בלוג",     href: "/blog" },
 
-    { en: "Contact", he: "צור קשר", href: "/contact" },
+    { en: "Contact", he: "צור קשר", href: lang === "he" ? "/contact-he" : "/contact" },
 
   ]
 
