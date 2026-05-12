@@ -370,7 +370,7 @@ function Navbar() {
   const navLinks = [
     { label: "About",   href: "/about" },
     { label: "Blog",    href: "/blog" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/contact" },
     { label: "Goodies", href: "https://octagoodies.com" },
   ]
 
@@ -1101,7 +1101,7 @@ function Footer() {
           {/* Pages */}
           <div>
             <h4 style={headStyle}>Pages</h4>
-            {[{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Blog", href: "/blog" }, { label: "Contact", href: "#contact" }].map((p, i) => (
+            {[{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Blog", href: "/blog" }, { label: "Contact", href: "/contact" }].map((p, i) => (
               <a key={i} href={p.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{p.label}</a>
             ))}
           </div>

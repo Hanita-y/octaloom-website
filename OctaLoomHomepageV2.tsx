@@ -1161,7 +1161,7 @@ function HPNav() {
 
               { en: "Blog",    he: "בלוג",      href: "/blog" },
 
-              { en: "Contact", he: "צור קשר",  href: "#contact" },
+              { en: "Contact", he: "צור קשר",  href: "/contact" },
 
             ] as {en:string;he:string;href:string}[]).map((item, i) => (
 
@@ -1341,7 +1341,7 @@ function HPNav() {
 
             { en: "Blog",    he: "בלוג",     href: "/blog" },
 
-            { en: "Contact", he: "צור קשר", href: "#contact" },
+            { en: "Contact", he: "צור קשר", href: "/contact" },
 
             { en: "Goodies", he: "Goodies",   href: "https://octagoodies.com" },
 
@@ -3464,7 +3464,7 @@ function HPFooter() {
 
     { en: "Blog",    he: "בלוג",     href: "/blog" },
 
-    { en: "Contact", he: "צור קשר", href: "#contact" },
+    { en: "Contact", he: "צור קשר", href: "/contact" },
 
   ]
 
