@@ -1062,7 +1062,7 @@ function FooterHE({ isMobile }: { isMobile: boolean }) {
   ]
   const legalLinks = [
     { label: "פרטיות",  href: "https://www.octaloom.com/privacy-policy-he" },
-    { label: "תנאים",        href: "https://www.octaloom.com/terms-he" },
+    { label: "תנאים",        href: "https://www.octaloom.com/terms-of-service-he" },
     { label: "נגישות",  href: "https://www.octaloom.com/accessibility-he" },
   ]
   const socialIcons = [
