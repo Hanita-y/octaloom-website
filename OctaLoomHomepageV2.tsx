@@ -935,7 +935,7 @@ function HPNav() {
 
   const services = [
 
-    { en: "LinkedIn Growth Engine", he: "מנוע צמיחה בלינקדאין", href: "/linkedin-growth-engine", sub: linkedinSub },
+    { en: "LinkedIn Growth Engine", he: "מנוע צמיחה בלינקדאין", href: lang === "he" ? "/linkedin-growth-engine-he" : "/linkedin-growth-engine", sub: linkedinSub },
 
     { en: "Fractional CMO",         he: "Fractional CMO",                                                                                                    href: "/fractional-cmo",          sub: null },
 
@@ -3476,7 +3476,7 @@ function HPFooter() {
 
   const serviceLinks = [
 
-    { label: { en: "LinkedIn Growth Engine",             he: "מנוע צמיחה בלינקדאין" },          href: "/linkedin-growth-engine", indent: false },
+    { label: { en: "LinkedIn Growth Engine",             he: "מנוע צמיחה בלינקדאין" },          href: lang === "he" ? "/linkedin-growth-engine-he" : "/linkedin-growth-engine", indent: false },
 
     { label: { en: "LinkedIn for Organizations",          he: "לינקדאין לארגונים" },              href: "/linkedin-for-organizations", indent: true  },
 
