@@ -360,7 +360,7 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
   const dropItemStyle: React.CSSProperties = { display: "flex", alignItems: "center", gap: 6, padding: "8px 12px", fontSize: 13, color: DEEP_PURPLE, borderRadius: 8, transition: "background 0.15s", textDecoration: "none" }
   const linkedinSub = [
     { label: "LinkedIn לארגונים", href: "/linkedin-for-organizations-he" },
-    { label: "LinkedIn למנהלים", href: "/linkedin-for-executives-he" },
+    { label: "LinkedIn למייסדים ומנכ״לים", href: "/linkedin-for-executives-he" },
     { label: "LinkedIn לעצמאים", href: "/linkedin-for-solopreneurs-he" },
   ]
   const otherSub = [
@@ -925,7 +925,7 @@ function Footer() {
 
   const serviceLinks = [
     { label: "LinkedIn לארגונים", href: "/linkedin-for-organizations-he" },
-    { label: "LinkedIn למנהלים", href: "/linkedin-for-executives-he" },
+    { label: "LinkedIn למייסדים ומנכ״לים", href: "/linkedin-for-executives-he" },
     { label: "LinkedIn לעצמאים", href: "/linkedin-for-solopreneurs-he" },
   ]
   const otherLinks = [

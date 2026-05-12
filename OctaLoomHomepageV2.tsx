@@ -925,7 +925,7 @@ function HPNav() {
 
     { en: "LinkedIn for Organizations",             he: "לינקדאין לארגונים",               href: "/linkedin-for-organizations" },
 
-    { en: "LinkedIn for Executives",                he: "לינקדאין למנהלים",                href: "/linkedin-for-executives" },
+    { en: "LinkedIn for Executives",                he: "לינקדאין למייסדים ומנכ״לים",                href: "/linkedin-for-executives" },
 
     { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים", href: "/linkedin-for-solopreneurs" },
 
@@ -3478,7 +3478,7 @@ function HPFooter() {
 
     { label: { en: "LinkedIn for Organizations",          he: "לינקדאין לארגונים" },              href: "/linkedin-for-organizations", indent: true  },
 
-    { label: { en: "LinkedIn for Executives",             he: "לינקדאין למנהלים" },              href: "/linkedin-for-executives",    indent: true  },
+    { label: { en: "LinkedIn for Executives",             he: "לינקדאין למייסדים ומנכ״לים" },              href: "/linkedin-for-executives",    indent: true  },
 
     { label: { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים" }, href: "/linkedin-for-solopreneurs",  indent: true  },
 
@@ -3620,7 +3620,7 @@ function HPFooter() {
 
               { en: "LinkedIn for Organizations", he: "לינקדאין לארגונים", href: "/linkedin-for-organizations" },
 
-              { en: "LinkedIn for Founders",      he: "לינקדאין למייסדים", href: "/linkedin-for-executives" },
+              { en: "LinkedIn for Founders",      he: "לינקדאין למייסדים ומנכ״לים", href: "/linkedin-for-executives" },
 
               { en: "LinkedIn for Solopreneurs",  he: "לינקדאין לעצמאים", href: "/linkedin-for-solopreneurs" },
 
