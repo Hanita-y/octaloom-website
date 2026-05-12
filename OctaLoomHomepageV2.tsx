@@ -3554,7 +3554,7 @@ function HPFooter() {
 
   return (
 
-    <footer dir={dir} style={{ padding: "64px 0 0", background: C.deepPurple, color: "rgba(255,255,255,0.7)" }}>
+    <footer dir={dir} style={{ padding: isMobile ? "32px 0 0" : "64px 0 0", background: C.deepPurple, color: "rgba(255,255,255,0.7)" }}>
 
       <Container>
 
@@ -3566,7 +3566,7 @@ function HPFooter() {
 
           gridTemplateColumns: isMobile ? "1fr" : w < 1024 ? "1fr 1fr" : "2fr 1fr 1.6fr 1fr 1fr",
 
-          gap: isMobile ? 36 : 40, paddingBottom: 48 }}>
+          gap: isMobile ? 20 : 40, paddingBottom: isMobile ? 24 : 48 }}>
 
 
 
@@ -3576,7 +3576,7 @@ function HPFooter() {
 
             <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
 
-              alt="OctaLoom" style={{ height: 128, width: "auto", display: "block" }} />
+              alt="OctaLoom" style={{ height: isMobile ? 64 : 128, width: "auto", display: "block" }} />
 
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14,
 
@@ -3596,7 +3596,7 @@ function HPFooter() {
 
           {/* Pages */}
 
-          <div>
+          {!isMobile && <div>
 
             <h4 style={headStyle}>{lang === "he" ? "דפים" : "Pages"}</h4>
 
@@ -3612,13 +3612,13 @@ function HPFooter() {
 
             ))}
 
-          </div>
+          </div>}
 
 
 
           {/* Services */}
 
-          <div>
+          {!isMobile && <div>
 
             <h4 style={headStyle}>{lang === "he" ? "שירותי לינקדאין" : "LinkedIn Services"}</h4>
 
@@ -3664,13 +3664,13 @@ function HPFooter() {
 
             ))}
 
-          </div>
+          </div>}
 
 
 
           {/* OctaGoodies */}
 
-          <div>
+          {!isMobile && <div>
 
             <a href="https://octagoodies.com" target="_blank" rel="noopener noreferrer"
               style={{ textDecoration: "none", display: "inline-block" }}>
@@ -3692,7 +3692,7 @@ function HPFooter() {
 
             </p>
 
-          </div>
+          </div>}
 
 
 
@@ -3700,7 +3700,7 @@ function HPFooter() {
 
           <div>
 
-            <h4 style={headStyle}>{lang === "he" ? "עקבו אחרינו" : "Follow Us"}</h4>
+            {!isMobile && <h4 style={headStyle}>{lang === "he" ? "עקבו אחרינו" : "Follow Us"}</h4>}
 
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
 

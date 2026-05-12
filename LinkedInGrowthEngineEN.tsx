@@ -1096,41 +1096,41 @@ function Footer() {
   ]
 
   return (
-    <footer style={{ padding: "64px 0 0", background: NAVY, color: "rgba(255,255,255,0.7)", fontFamily: FONT }}>
+    <footer style={{ padding: isMobile ? "32px 0 0" : "64px 0 0", background: NAVY, color: "rgba(255,255,255,0.7)", fontFamily: FONT }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "2fr 0.65fr 1fr 0.8fr 0.8fr 0.8fr", gap: isMobile ? "28px 20px" : 24, paddingBottom: 48 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2fr 0.65fr 1fr 0.8fr 0.8fr 0.8fr", gap: isMobile ? "20px" : 24, paddingBottom: isMobile ? 24 : 48 }}>
           {/* Brand */}
-          <div style={{ gridColumn: isMobile ? "1 / -1" : "1" }}>
+          <div>
             <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png"
-              alt="OctaLoom" style={{ height: 100, width: "auto" }}
+              alt="OctaLoom" style={{ height: isMobile ? 64 : 100, width: "auto" }}
               onError={(e: any) => { e.target.style.display="none" }}/>
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14, maxWidth: 240, lineHeight: 1.65, fontFamily: FONT }}>
               Your marketing department,<br/>minus the department.
             </p>
           </div>
           {/* Pages */}
-          <div>
+          {!isMobile && <div>
             <h4 style={headStyle}>Pages</h4>
             {[{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Blog", href: "/blog" }, { label: "Contact", href: "/contact" }].map((p, i) => (
               <a key={i} href={p.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{p.label}</a>
             ))}
-          </div>
+          </div>}
           {/* LinkedIn Services */}
-          <div>
+          {!isMobile && <div>
             <h4 style={headStyle}>LinkedIn Services</h4>
             {serviceLinks.map((s, i) => (
               <a key={i} href={s.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{s.label}</a>
             ))}
-          </div>
+          </div>}
           {/* Other Services */}
-          <div>
+          {!isMobile && <div>
             <h4 style={headStyle}>Other Services</h4>
             {otherLinks.map((s, i) => (
               <a key={i} href={s.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{s.label}</a>
             ))}
-          </div>
+          </div>}
           {/* OctaGoodies */}
-          <div>
+          {!isMobile && <div>
             <h4 style={{ ...headStyle, fontWeight: 300, letterSpacing: "0.04em", textTransform: "none", fontSize: 12 }}>
               Free Marketing<br/>Tools & Templates
             </h4>
@@ -1141,10 +1141,10 @@ function Footer() {
               <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/OCTAGOODIES%20GREEN.png"
                 alt="OctaGoodies" style={{ height: 44, width: "auto", opacity: 0.9, transition: "opacity 0.2s" }}/>
             </a>
-          </div>
+          </div>}
           {/* Connect */}
           <div>
-            <h4 style={headStyle}>Connect</h4>
+            {!isMobile && <h4 style={headStyle}>Connect</h4>}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
               {socialIcons.map((s, i) => (
                 <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
