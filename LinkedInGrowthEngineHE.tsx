@@ -444,10 +444,12 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
         </div>
       )}
       <div style={{ display: "flex", gap: 8, alignItems: "center", direction: "ltr" }}>
-        <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-          style={{ padding: "8px 20px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 13, fontWeight: 600, fontFamily: FONT, textDecoration: "none" }}>
-          קביעת שיחה
-        </a>
+        {!isMobile && (
+          <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
+            style={{ padding: "8px 20px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 13, fontWeight: 600, fontFamily: FONT, textDecoration: "none" }}>
+            קביעת שיחה
+          </a>
+        )}
         {isMobile && (
           <button onClick={() => setMenuOpen(!menuOpen)} aria-label="תפריט"
             style={{ background: "none", border: "none", cursor: "pointer", width: 44, height: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
