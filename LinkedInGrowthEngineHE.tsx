@@ -452,10 +452,10 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
       )}
       <div style={{ display: "flex", gap: 8, alignItems: "center", direction: "ltr" }}>
         {!isMobile && (
-          <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-            style={{ padding: "8px 20px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 13, fontWeight: 600, fontFamily: FONT, textDecoration: "none" }}>
+          <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+            style={{ padding: "8px 20px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 13, fontWeight: 600, fontFamily: FONT, textDecoration: "none", border: "none", cursor: "pointer" }}>
             בואו נדבר
-          </a>
+          </button>
         )}
         {isMobile && (
           <button onClick={() => setMenuOpen(!menuOpen)} aria-label="תפריט"
@@ -497,8 +497,8 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
             </a>
           ))}
           <div style={{ marginTop: 14 }}>
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-              style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: PURPLE, color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily: FONT }}>
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+              style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: PURPLE, color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily: FONT, border: "none", cursor: "pointer", width: "100%" }}>
               בואו נדבר חינם
             </a>
           </div>
@@ -536,10 +536,10 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
             </Reveal>
             <Reveal delay={240}>
               <div style={{ display: "flex", gap: 11, flexWrap: "wrap", marginBottom: 18, flexDirection: "row", justifyContent: "flex-start", direction: "rtl" }}>
-                <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-                  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 15, fontWeight: 600, boxShadow: SHADOW_PURPLE, fontFamily: FONT }}>
+                <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+                  style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: PURPLE, color: "#fff", fontSize: 15, fontWeight: 600, boxShadow: SHADOW_PURPLE, fontFamily: FONT, border: "none", cursor: "pointer" }}>
                   {hero.cta1}<ArrowLeft size={15}/>
-                </a>
+                </button>
                 <button onClick={onQuiz}
                   style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: "transparent", color: DEEP_PURPLE, border: `1.5px solid ${DEEP_PURPLE}`, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT }}>
                   {hero.cta2}
@@ -905,10 +905,10 @@ function BottomCTA({ onQuiz }: { onQuiz: () => void }) {
           <h2 style={{ fontSize: isMobile ? "clamp(22px,6.5vw,32px)" : "clamp(26px,3.8vw,46px)", fontWeight: 700, color: DEEP_PURPLE, marginBottom: 14 }}>{ctaData.h2}</h2>
           <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.75, color: "rgba(32,30,75,.7)", maxWidth: 540, margin: isMobile ? "0 auto 24px" : "0 auto 32px" }}>{ctaData.sub}</p>
           <div style={{ display: "flex", gap: 12, justifyContent: isMobile ? "stretch" : "center", flexWrap: "wrap", marginBottom: 18, flexDirection: isMobile ? "column" : "row-reverse", alignItems: isMobile ? "stretch" : undefined }}>
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: DEEP_PURPLE, color: "#fff", fontSize: 15, fontWeight: 600, fontFamily: FONT, width: isMobile ? "100%" : undefined }}>
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+              style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: DEEP_PURPLE, color: "#fff", fontSize: 15, fontWeight: 600, fontFamily: FONT, width: isMobile ? "100%" : undefined, border: "none", cursor: "pointer" }}>
               {ctaData.cta1}<ArrowLeft size={15}/>
-            </a>
+            </button>
             <button onClick={onQuiz}
               style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 26px", borderRadius: 100, background: "transparent", color: DEEP_PURPLE, border: `1.5px solid ${DEEP_PURPLE}`, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT, width: isMobile ? "100%" : undefined }}>
               {ctaData.cta2}

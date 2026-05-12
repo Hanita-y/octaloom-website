@@ -1523,10 +1523,10 @@ function ExecCTA() {
           <h2 className="cta__title">{t(EX.cta.title)}</h2>
           <p className="cta__sub">{t(EX.cta.sub)}</p>
           <div className="cta__actions">
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" className="btn btn--purple" target="_blank" rel="noopener noreferrer">
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))} className="btn btn--purple">
               {t(EX.cta.cta1)}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </a>
+            </button>
           </div>
           <p className="cta__note">{t(EX.cta.note)}</p>
         </Reveal>
