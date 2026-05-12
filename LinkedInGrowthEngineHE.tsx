@@ -376,7 +376,11 @@ function Navbar({ onQuiz }: { onQuiz: () => void }) {
 
   return (
     <nav style={navStyle}>
-      <a href="/" style={{ fontWeight: 700, fontSize: 16, color: DEEP_PURPLE, letterSpacing: -0.3 }}>OctaLoom</a>
+      <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+        <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
+          alt="OctaLoom" style={{ height: 36, width: "auto", display: "block" }}
+          onError={e => { (e.target as HTMLImageElement).style.display = "none" }}/>
+      </a>
       {!isMobile && (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 28, direction: "rtl" }}>
           {/* Services dropdown */}
