@@ -73,6 +73,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   }, [])
 }
 
+// ─── LOOPING GIF ──────────────────────────────────────────────────────────────
+function LoopingGif({ src, alt, style }: { src: string; alt: string; style?: React.CSSProperties }) {
+  const [key, setKey] = useState(0)
+  useEffect(() => {
+    const t = setInterval(() => setKey(k => k + 1), 5200)
+    return () => clearInterval(t)
+  }, [])
+  return <img key={key} src={src} alt={alt} style={style} />
+}
+
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 function Container({ children, style = {} }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
@@ -218,19 +228,19 @@ function NavHE() {
   }, [menuOpen, isMobile])
 
   const liSub = [
-    { label: "לינקדאין לארגונים",      href: "/linkedin-for-organizations-he" },
-    { label: "לינקדאין למייסדים ומנכ״לים", href: "/linkedin-for-executives-he" },
-    { label: "לינקדאין לעצמאיים",       href: "/linkedin-for-solopreneurs-he" },
+    { label: "לינקדאין לארגונים",      href: "https://www.octaloom.com/linkedin-for-organizations-he" },
+    { label: "לינקדאין למייסדים ומנכ״לים", href: "https://www.octaloom.com/linkedin-for-executives-he" },
+    { label: "לינקדאין לעצמאיים",       href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" },
   ]
   const otherSub = [
-    { label: "סמנכ״לית שיווק במיקור חוץ", href: "/fractional-cmo-he" },
-    { label: "כלי AI וסוכנים", href: "/ai-tools-agents-he" },
+    { label: "סמנכ״לית שיווק במיקור חוץ", href: "https://www.octaloom.com/fractional-cmo-he" },
+    { label: "כלי AI וסוכנים", href: "https://www.octaloom.com/ai-tools-agents-he" },
     { label: "סדנאות", href: "#" },
   ]
   const topLinks = [
-    { label: "עליי",    href: "/about-he",              active: true },
-    { label: "בלוג",    href: "/blog-he" },
-    { label: "צור קשר", href: "/contact-he" },
+    { label: "עליי",    href: "https://www.octaloom.com/about-he",              active: true },
+    { label: "בלוג",    href: "https://www.octaloom.com/blog-he" },
+    { label: "צור קשר", href: "https://www.octaloom.com/contact-he" },
     { label: "גודיז", href: "https://octagoodies.com" },
   ]
 
@@ -285,7 +295,7 @@ function NavHE() {
             <div style={{ position: "relative" }}
               onMouseEnter={() => setLinkedinOpen(true)}
               onMouseLeave={() => setLinkedinOpen(false)}>
-              <a href="/linkedin-for-organizations-he" style={{ ...dropItem, justifyContent: "space-between" }}
+              <a href="https://www.octaloom.com/linkedin-for-organizations-he" style={{ ...dropItem, justifyContent: "space-between" }}
                 onMouseEnter={e => hDrop(e, true)} onMouseLeave={e => hDrop(e, false)}>
                 <svg width={11} height={11} viewBox="0 0 12 12" fill="none" style={{ opacity: 0.45 }}>
                   <path d="M8 2l-4 4 4 4" stroke={C.deepPurple} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -328,7 +338,7 @@ function NavHE() {
       <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: C.purple, margin: "0 0 4px", fontFamily: FF }}>
         {"שירותים"}
       </p>
-      <a href="/linkedin-for-organizations-he" onClick={() => setMenuOpen(false)}
+      <a href="https://www.octaloom.com/linkedin-for-organizations-he" onClick={() => setMenuOpen(false)}
         style={{ display: "block", fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF }}>
         {"לינקדאין"}
       </a>
@@ -364,7 +374,7 @@ function NavHE() {
       transition: "background 0.4s, box-shadow 0.4s",
       boxShadow: scrolled ? "0 1px 0 rgba(32,30,75,0.06)" : "none",
     }}>
-      <a href="/about-he" style={{ display: "flex", alignItems: "center" }}>
+      <a href="https://www.octaloom.com/about-he" style={{ display: "flex", alignItems: "center" }}>
         <img src={LOGO_NAV} alt="OctaLoom" style={{ height: isMobile ? 28 : 36, width: "auto" }} />
       </a>
       {!isMobile && (
@@ -469,8 +479,11 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
             <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 18, fontFamily: FF }}>
               {"כבר חמש שנים שאני עובדת עם מייסדים וחברות B2B שרוצים שיווק שמזיז את המחט. מה שלמדתי בדרך: למייסדים אין בעיית שיווק – יש להם בעיית נראות."}
             </p>
+            <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 10, fontFamily: FF }}>
+              {"לינקדאין הוא המקום שבו B2B קורה. לפני כל מייל או שיחה, הלקוח כבר חיפש אתכם שם."}
+            </p>
             <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 18, fontFamily: FF }}>
-              {"לינקדאין הוא המקום שבו B2B קורה. לפני כל מייל או שיחה, הלקוח כבר חיפש אתכם שם. הבעיה היא שרוב המייסדים פשוט לא נוכחים בזירה."}
+              {"הבעיה היא שרוב המייסדים פשוט לא נוכחים בזירה."}
             </p>
             <p style={{ fontSize: isMobile ? 16 : 18, lineHeight: 1.6, color: C.deepPurple, fontWeight: 700, marginBottom: 36, fontFamily: FF }}>
               {"את זה אני מתקנת."}
@@ -491,10 +504,10 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 8, background: "transparent", color: C.purple, border: `1.5px solid ${C.purple}`, fontSize: 15, fontWeight: 700, fontFamily: FF, transition: "background 0.2s, color 0.2s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = C.purple; (e.currentTarget as HTMLAnchorElement).style.color = "#fff" }}
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; (e.currentTarget as HTMLAnchorElement).style.color = C.purple }}>
+              {"בואו נתחבר"}
               <svg width={15} height={15} viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
-              {"חיבור בלינקדאין"}
             </a>
           </motion.div>
         </div>
@@ -616,29 +629,29 @@ function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
     {
       title: "לינקדאין לארגונים",
       desc: "אסטרטגיה, ניהול תוכן ונוכחות מלאה לדפים עסקיים, תוכניות שגרירי מותג שהופכות את עובדי הארגון למכפילי כח.",
-      href: "/linkedin-for-organizations-he",
+      href: "https://www.octaloom.com/linkedin-for-organizations-he",
     },
     {
       title: "לינקדאין למייסדים ומנכ״לים",
       desc: "בניית מותג אישי בלינקדאין למי שרוצה שהלקוחות יזהו אותו ויסמכו עליו, הרבה לפני שהם פנו אליו.",
-      href: "/linkedin-for-executives-he",
+      href: "https://www.octaloom.com/linkedin-for-executives-he",
     },
     {
       title: "לינקדאין לעצמאיים",
       desc: "נוכחות בלינקדאין לפרילנסרים ויועצים שרוצים ליידים נכנסים בלי תקציב פרסום.",
-      href: "/linkedin-for-solopreneurs-he",
+      href: "https://www.octaloom.com/linkedin-for-solopreneurs-he",
     },
   ]
   const beyond = [
     {
       title: "סמנכ״לית שיווק במיקור חוץ",
       desc: "הנהגה שיווקית ברמת CMO לחברות שצריכות מי שינהל להן את מערך השיווק, בלי משרה מלאה.",
-      href: "/fractional-cmo-he",
+      href: "https://www.octaloom.com/fractional-cmo-he",
     },
     {
       title: "כלי AI וסוכנים",
       desc: "סוכני AI מותאמים ואוטומציות שמחליפות עבודה ידנית, ועושות את מה שפעם דרש צוות שלם.",
-      href: "/ai-tools-agents-he",
+      href: "https://www.octaloom.com/ai-tools-agents-he",
     },
     {
       title: "סדנאות",
@@ -660,8 +673,11 @@ function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
           }}>
             {"אז מה אני עושה?"}
           </h2>
+          <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, maxWidth: 640, marginBottom: 4, fontFamily: FF }}>
+            {"לינקדאין היא הלב של הפעילות שלי. זו הפלטפורמה המרכזית שבה מתקבלות החלטות B2B,"}
+          </p>
           <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, maxWidth: 640, marginBottom: isMobile ? 36 : 48, fontFamily: FF }}>
-            {"לינקדאין היא הלב של הפעילות שלי. זו הפלטפורמה המרכזית שבה מתקבלות החלטות B2B, והיא מהווה את הזירה העיקרית לבניית אמון וסמכות מקצועית."}
+            {"והיא מהווה את הזירה העיקרית לבניית אמון וסמכות מקצועית."}
           </p>
         </Reveal>
 
@@ -670,6 +686,7 @@ function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
           gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)",
           gap: isMobile ? 14 : 20,
           marginBottom: 16,
+          alignItems: "stretch",
         }}>
           {liClients.map((c, i) => (
             <Reveal key={i} delay={i * 70} style={{ height: "100%" }}>
@@ -753,36 +770,48 @@ function PodcastSection({ isMobile }: { isMobile: boolean }) {
   return (
     <section style={{ background: C.lime, padding: isMobile ? "72px 0" : "88px 0" }}>
       <Container>
-        <Reveal>
-          <div>
-            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "rgba(6,13,61,0.5)", marginBottom: 16, fontFamily: FF }}>
-              {"פודקאסט שיווק B2B"}
-            </p>
-            <h2 style={{
-              fontFamily: FF, fontWeight: 700,
-              fontSize: isMobile ? 22 : "clamp(22px,2.8vw,34px)",
-              lineHeight: 1.2, letterSpacing: "-0.02em",
-              color: C.navy, marginBottom: 16,
-            }}>
-              {"“מה הסיפור עם?” 🎙️"}
-            </h2>
-            <p style={{ fontSize: isMobile ? 15 : 16, lineHeight: 1.75, color: "rgba(6,13,61,0.7)", maxWidth: 560, marginBottom: 28, fontFamily: FF }}>
-              {"יחד עם נגה פינק אני מנחה פודקאסט שיווק B2B שבו אנחנו מפרקות את מה שבאמת עובד: לינקדאין, AI, קמפיינים, ומה זה אומר להוביל שיווק בשטח. בלי תיאוריות שנמכרות בכנסים. רק שיחות אמיתיות."}
-            </p>
-            <a href="https://whatsthestorywith.com/" target="_blank" rel="noopener noreferrer"
-              style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "12px 24px", borderRadius: 8,
-                background: C.deepPurple, color: "#fff",
-                fontSize: 14, fontWeight: 700, fontFamily: FF,
-                transition: "box-shadow 0.25s, transform 0.15s",
-                marginBottom: 28,
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 24px rgba(32,30,75,0.35)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)" }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
-              {"לשמיעה ולצפייה →"}
-            </a>
-            <div style={{ borderRadius: 12, overflow: "hidden", maxWidth: 520 }}>
+        <div style={{
+          display: isMobile ? "flex" : "grid",
+          flexDirection: "column" as const,
+          gridTemplateColumns: "1fr 1fr",
+          gap: isMobile ? 32 : 64,
+          alignItems: "center",
+        }}>
+          {/* Text column — right side in RTL */}
+          <Reveal>
+            <div>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "rgba(6,13,61,0.5)", marginBottom: 16, fontFamily: FF }}>
+                {"פודקאסט שיווק B2B"}
+              </p>
+              <h2 style={{
+                fontFamily: FF, fontWeight: 700,
+                fontSize: isMobile ? 22 : "clamp(22px,2.8vw,34px)",
+                lineHeight: 1.2, letterSpacing: "-0.02em",
+                color: C.navy, marginBottom: 16,
+              }}>
+                {"\"מה הסיפור עם?\" 🎙️"}
+              </h2>
+              <p style={{ fontSize: isMobile ? 15 : 16, lineHeight: 1.75, color: "rgba(6,13,61,0.7)", marginBottom: 28, fontFamily: FF }}>
+                {"יחד עם נגה פינק אני מנחה פודקאסט שיווק B2B שבו אנחנו מפרקות את מה שבאמת עובד: לינקדאין, AI, קמפיינים, ומה זה אומר להוביל שיווק בשטח. בלי תיאוריות שנמכרות בכנסים. רק שיחות אמיתיות."}
+              </p>
+              <a href="https://whatsthestorywith.com/" target="_blank" rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  padding: "12px 24px", borderRadius: 8,
+                  background: C.deepPurple, color: "#fff",
+                  fontSize: 14, fontWeight: 700, fontFamily: FF,
+                  transition: "box-shadow 0.25s, transform 0.15s",
+                  marginBottom: isMobile ? 24 : 0,
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 24px rgba(32,30,75,0.35)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)" }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
+                {"לשמיעה ולצפייה →"}
+              </a>
+            </div>
+          </Reveal>
+          {/* Embed column — left side in RTL */}
+          <Reveal from="left">
+            <div style={{ borderRadius: 12, overflow: "hidden" }}>
               <iframe
                 src="https://open.spotify.com/embed/show/4XmsthqR7gnj4nf2gL0T7j?utm_source=generator&theme=0"
                 width="100%"
@@ -792,8 +821,8 @@ function PodcastSection({ isMobile }: { isMobile: boolean }) {
                 style={{ border: "none", display: "block", borderRadius: 12 }}
               />
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </Container>
     </section>
   )
@@ -804,10 +833,10 @@ function PersonalSection({ isMobile }: { isMobile: boolean }) {
   const traits = [
     { icon: "🐕", label: "אמא של קארה",             sub: "כנענית חרדתית",        bg: C.purple,     color: "#fff",       border: "none" },
     { icon: "☕",       label: "סנובית קפה",             sub: "ללא פשרות",                             bg: C.lime,       color: C.deepPurple, border: "none" },
-    { icon: "🌱", label: "טבעונית",                          sub: "13.5 שנים ועוד",                        bg: C.white,      color: C.deepPurple, border: `1.5px solid ${C.purple}` },
+    { icon: "🌱", label: "טבעונית",                          sub: "13.5+ שנים",                            bg: C.white,      color: C.deepPurple, border: `1.5px solid ${C.purple}` },
     { icon: "⚡",       label: "מוח ADHD",                                             sub: "חושבת אחרת",                      bg: C.deepPurple, color: "#fff",       border: "none" },
-    { icon: "💪", label: "אתיקת עבודה סובייטית", sub: "היתרון הלא הוגן שלכם", bg: C.lime, color: C.deepPurple, border: "none" },
-    { icon: "🏋️", label: "פילאטיס מכשירים", sub: "המזרן הוא לאחרים", bg: C.white, color: C.deepPurple, border: `1.5px solid ${C.purple}` },
+    { icon: "💪", label: "מוסר עבודה סובייטי", sub: "היתרון הלא הוגן שלכם", bg: C.lime, color: C.deepPurple, border: "none" },
+    { icon: "🏋️", label: "פילאטיס מכשירים", sub: "כמו כל תל אביבית טובה", bg: C.white, color: C.deepPurple, border: `1.5px solid ${C.purple}` },
   ]
   return (
     <section style={{ background: C.surface, padding: isMobile ? "72px 0" : "104px 0" }}>
@@ -831,7 +860,7 @@ function PersonalSection({ isMobile }: { isMobile: boolean }) {
             </Reveal>
             <Reveal delay={100}>
               <p style={{ fontSize: isMobile ? 16 : 18, lineHeight: 1.85, color: C.textDim, fontFamily: FF }}>
-                {"בת אדם שמתרגשת באותה מידה מ-workflow מדויק ומממסעדת vegan fine dining חדשה בכל עיר שאני מגיעה אליה. אמא של קארה, כנענית חרדתית עם דעות חזקות לגבי שעות העבודה שלי. סנובית קפה, טבעונית כבר 13 וחצי שנים. בעלת מוח ADHD עם אתיקת עבודה סובייטית, שזה בעצם היתרון הלא הוגן שלא ידעתם שאתם מקבלים."}
+                {"בת אדם שמתרגשת באותה מידה מ-workflow מדויק ומממסעדת vegan fine dining חדשה בכל עיר שאני מגיעה אליה. אמא של קארה, כנענית חרדתית עם דעות חזקות לגבי שעות העבודה שלי. סנובית קפה, טבעונית כבר 13 וחצי שנים. בעלת מוח ADHD עם מוסר עבודה סובייטי, שזה בעצם היתרון הלא הוגן שלא ידעתם שאתם מקבלים."}
               </p>
             </Reveal>
           </div>
@@ -904,10 +933,14 @@ function FAQSection({ isMobile }: { isMobile: boolean }) {
                 <button
                   onClick={() => setOpenIdx(openIdx === i ? null : i)}
                   aria-expanded={openIdx === i}
+                  dir="rtl"
                   style={{
                     width: "100%", display: "flex", justifyContent: "space-between",
-                    alignItems: "center", padding: "20px 0", textAlign: "right" as const,
+                    alignItems: "center", padding: "20px 0",
                   }}>
+                  <span style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: "#fff", lineHeight: 1.4, paddingLeft: 20, fontFamily: FF, textAlign: "right" as const }}>
+                    {faq.q}
+                  </span>
                   <svg width={20} height={20} viewBox="0 0 20 20" fill="none" style={{
                     flexShrink: 0,
                     transform: openIdx === i ? "rotate(180deg)" : "none",
@@ -916,9 +949,6 @@ function FAQSection({ isMobile }: { isMobile: boolean }) {
                   }}>
                     <path d="M5 7.5l5 5 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span style={{ fontSize: isMobile ? 15 : 16, fontWeight: 600, color: "#fff", lineHeight: 1.4, paddingLeft: 20, fontFamily: FF }}>
-                    {faq.q}
-                  </span>
                 </button>
                 <AnimatePresence>
                   {openIdx === i && (
@@ -951,7 +981,7 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
       <Container>
         <Reveal>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
-            <img
+            <LoopingGif
               src={GIF_HANITA}
               alt="חניתה יודובסקי"
               style={{
@@ -1011,31 +1041,35 @@ function FooterHE({ isMobile }: { isMobile: boolean }) {
   const hov = (e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => { e.currentTarget.style.color = enter ? C.lime : "rgba(255,255,255,0.5)" }
 
   const serviceLinks = [
-    { label: "לינקדאין לארגונים",      href: "/linkedin-for-organizations-he" },
-    { label: "לינקדאין למייסדים", href: "/linkedin-for-executives-he" },
-    { label: "לינקדאין לעצמאיים",  href: "/linkedin-for-solopreneurs-he" },
+    { label: "לינקדאין לארגונים",      href: "https://www.octaloom.com/linkedin-for-organizations-he" },
+    { label: "לינקדאין למייסדים", href: "https://www.octaloom.com/linkedin-for-executives-he" },
+    { label: "לינקדאין לעצמאיים",  href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" },
   ]
   const otherLinks = [
-    { label: "סמנכ״לית שיווק",  href: "/fractional-cmo-he" },
-    { label: "כלי AI וסוכנים", href: "/ai-tools-agents-he" },
+    { label: "סמנכ״לית שיווק",  href: "https://www.octaloom.com/fractional-cmo-he" },
+    { label: "כלי AI וסוכנים", href: "https://www.octaloom.com/ai-tools-agents-he" },
     { label: "סדנאות",                             href: "#" },
   ]
   const pageLinks = [
-    { label: "בית",        href: "/he" },
-    { label: "עליי",  href: "/about-he" },
-    { label: "בלוג",  href: "/blog-he" },
-    { label: "צור קשר", href: "/contact-he" },
+    { label: "בית",        href: "https://www.octaloom.com/he" },
+    { label: "עליי",  href: "https://www.octaloom.com/about-he" },
+    { label: "בלוג",  href: "https://www.octaloom.com/blog-he" },
+    { label: "צור קשר", href: "https://www.octaloom.com/contact-he" },
   ]
   const legalLinks = [
-    { label: "פרטיות",  href: "/privacy-policy" },
-    { label: "תנאים",        href: "/terms" },
-    { label: "נגישות",  href: "/accessibility" },
+    { label: "פרטיות",  href: "https://www.octaloom.com/privacy-policy-he" },
+    { label: "תנאים",        href: "https://www.octaloom.com/terms-he" },
+    { label: "נגישות",  href: "https://www.octaloom.com/accessibility-he" },
   ]
   const socialIcons = [
     { href: "https://www.linkedin.com/in/hanita-yudovski/", label: "LinkedIn",
       icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
     { href: "https://www.instagram.com/hanita_Y", label: "Instagram",
       icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> },
+    { href: "https://www.facebook.com/octaloom", label: "Facebook",
+      icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
+    { href: "https://www.youtube.com/@Hanita_Octaloom", label: "YouTube",
+      icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg> },
     { href: "https://open.spotify.com/show/4XmsthqR7gnj4nf2gL0T7j", label: "Spotify",
       icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg> },
   ]
@@ -1096,15 +1130,22 @@ function FooterHE({ isMobile }: { isMobile: boolean }) {
             </div>
           </div>
         </div>
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", padding: "20px 0", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" as const, gap: 8 }}>
-          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", fontFamily: FF }}>
-            {"© 2025 OctaLoom. כל הזכויות שמורות."}
-          </p>
-          <a href="https://www.octaloom.com/about" style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", fontFamily: "'Aeonik', sans-serif", transition: "color 0.2s" }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.lime }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.3)" }}>
-            {"EN"}
-          </a>
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", padding: "22px 0", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" as const, gap: 12 }}>
+          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.38)", fontFamily: FF }}>{"© 2026 OctaLoom"}</span>
+          <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
+            {legalLinks.map((l, i) => (
+              <a key={i} href={l.href} style={{ color: "rgba(255,255,255,0.38)", textDecoration: "none", fontSize: 12, fontFamily: FF, transition: "color 0.2s" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.lime }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.38)" }}>
+                {l.label}
+              </a>
+            ))}
+            <a href="https://www.octaloom.com/about" style={{ fontSize: 12, color: "rgba(255,255,255,0.38)", fontFamily: "'Aeonik', sans-serif", transition: "color 0.2s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.lime }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.38)" }}>
+              {"EN"}
+            </a>
+          </div>
         </div>
       </div>
     </footer>
@@ -1164,7 +1205,7 @@ export default function AboutPageHE() {
   const isMobile = w < 768
 
   return (
-    <div dir="rtl" style={{ width: "100vw", overflowX: "hidden", fontFamily: FF, background: C.cream }}>
+    <div dir="rtl" style={{ width: "100%", overflowX: "hidden", fontFamily: FF, background: C.cream }}>
       <SchemaAboutHE />
       <ScrollProgress />
       <CustomCursor />
