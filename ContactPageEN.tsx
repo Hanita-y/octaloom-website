@@ -85,6 +85,7 @@ function NavEN() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [linkedinOpen, setLinkedinOpen] = useState(false)
+  const [linkedinExpanded, setLinkedinExpanded] = useState(false)
   const w = useWindowSize()
   const isMobile = w < 768
   const linkColor = "rgba(32,30,75,0.55)"
@@ -97,23 +98,24 @@ function NavEN() {
 
   useEffect(() => {
     document.body.style.overflow = (isMobile && menuOpen) ? "hidden" : ""
+    if (!menuOpen) setLinkedinExpanded(false)
     return () => { document.body.style.overflow = "" }
   }, [menuOpen, isMobile])
 
   const linkedinSub = [
-    { label: "LinkedIn for Organizations", href: "/linkedin-for-organizations" },
-    { label: "LinkedIn for Founders & CEOs", href: "/linkedin-for-executives" },
-    { label: "LinkedIn for Freelancers", href: "/linkedin-for-solopreneurs" },
+    { label: "LinkedIn for Organizations", href: "https://www.octaloom.com/linkedin-for-organizations" },
+    { label: "LinkedIn for Founders & CEOs", href: "https://www.octaloom.com/linkedin-for-executives" },
+    { label: "LinkedIn for Freelancers", href: "https://www.octaloom.com/linkedin-for-solopreneurs" },
   ]
   const otherSub = [
-    { label: "Fractional CMO", href: "/fractional-cmo" },
-    { label: "AI Tools & Agents", href: "/ai-tools-agents" },
-    { label: "Workshops", href: "/workshops" },
+    { label: "Fractional CMO", href: "https://www.octaloom.com/fractional-cmo" },
+    { label: "AI Tools & Agents", href: "https://www.octaloom.com/ai-tools-agents" },
+    { label: "Workshops", href: "https://www.octaloom.com/workshops" },
   ]
   const navLinks = [
-    { label: "About", href: "/about" },
-    { label: "Blog", href: "/blog" },
-    { label: "Contact", href: "/contact" },
+    { label: "About", href: "https://www.octaloom.com/about" },
+    { label: "Blog", href: "https://www.octaloom.com/blog" },
+    { label: "Contact", href: "https://www.octaloom.com/contact" },
     { label: "Goodies", href: "https://octagoodies.com" },
   ]
 
@@ -165,7 +167,7 @@ function NavEN() {
             <div style={{ position: "relative" }}
               onMouseEnter={() => setLinkedinOpen(true)}
               onMouseLeave={() => setLinkedinOpen(false)}>
-              <a href="/linkedin-growth-engine"
+              <a href="https://www.octaloom.com/linkedin-growth-engine"
                 style={{ ...dropItemStyle, justifyContent: "space-between" }}
                 onMouseEnter={e => hoverDrop(e, true)} onMouseLeave={e => hoverDrop(e, false)}>
                 <span>{"LinkedIn Growth Engine"}</span>
@@ -207,16 +209,35 @@ function NavEN() {
       direction: "ltr", zIndex: 50, maxHeight: "calc(100vh - 100px)", overflowY: "auto" as const,
     }}>
       <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: C.purple, margin: "0 0 4px", fontFamily: FF }}>{"Services"}</p>
-      <a href="/linkedin-growth-engine" onClick={() => setMenuOpen(false)}
-        style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none", padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF }}>
+      <button
+        onClick={() => setLinkedinExpanded(prev => !prev)}
+        style={{ display: "flex", width: "100%", alignItems: "center", justifyContent: "space-between",
+          fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600,
+          borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF,
+          background: "none", border: "none", cursor: "pointer", textAlign: "left" as const }}
+      >
         {"LinkedIn Growth Engine"}
-      </a>
-      {linkedinSub.map((sub, i) => (
-        <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
-          style={{ display: "block", fontSize: 15, color: C.purple, textDecoration: "none", padding: "7px 0 7px 20px", borderBottom: "1px solid rgba(113,46,172,0.05)", fontFamily: FF }}>
-          {sub.label}
-        </a>
-      ))}
+        <svg width={11} height={11} viewBox="0 0 12 12" fill="none"
+          style={{ transition: "transform 0.25s", transform: linkedinExpanded ? "rotate(180deg)" : "none", flexShrink: 0 }}>
+          <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      <AnimatePresence>
+        {linkedinExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            style={{ overflow: "hidden" }}
+          >
+            {linkedinSub.map((sub, i) => (
+              <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
+                style={{ display: "block", fontSize: 15, color: C.purple, textDecoration: "none", padding: "7px 0 7px 20px", borderBottom: "1px solid rgba(113,46,172,0.05)", fontFamily: FF }}>
+                {sub.label}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
       {otherSub.map((svc, i) => (
         <a key={i} href={svc.href} onClick={() => setMenuOpen(false)}
           style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none", padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF }}>
@@ -230,7 +251,7 @@ function NavEN() {
         </a>
       ))}
       <div style={{ marginTop: 16 }}>
-        <a href="/contact-he" style={{ fontSize: 14, color: linkColor, fontFamily: FF, textDecoration: "none" }}>&#1506;&#1489;</a>
+        <a href="https://www.octaloom.com/contact-he" style={{ fontSize: 14, color: linkColor, fontFamily: FF, textDecoration: "none" }}>&#1506;&#1489;</a>
       </div>
     </div>
   )
@@ -246,7 +267,7 @@ function NavEN() {
       fontFamily: FF, transition: "background 0.3s, box-shadow 0.3s",
       boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.08)" : "none",
     }}>
-      <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+      <a href="https://www.octaloom.com/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
         <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
           alt="OctaLoom" style={{ height: 36, width: "auto", display: "block" }}/>
       </a>
@@ -281,25 +302,25 @@ function FooterEN() {
   const hover = (e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => { e.currentTarget.style.color = enter ? C.lime : "rgba(255,255,255,0.5)" }
 
   const serviceLinks = [
-    { label: "LinkedIn for Organizations", href: "/linkedin-for-organizations" },
-    { label: "LinkedIn for Founders & CEOs", href: "/linkedin-for-executives" },
-    { label: "LinkedIn for Freelancers", href: "/linkedin-for-solopreneurs" },
+    { label: "LinkedIn for Organizations", href: "https://www.octaloom.com/linkedin-for-organizations" },
+    { label: "LinkedIn for Founders & CEOs", href: "https://www.octaloom.com/linkedin-for-executives" },
+    { label: "LinkedIn for Freelancers", href: "https://www.octaloom.com/linkedin-for-solopreneurs" },
   ]
   const otherLinks = [
-    { label: "Fractional CMO", href: "/fractional-cmo" },
-    { label: "AI Tools & Agents", href: "/ai-tools-agents" },
-    { label: "Workshops", href: "/workshops" },
+    { label: "Fractional CMO", href: "https://www.octaloom.com/fractional-cmo" },
+    { label: "AI Tools & Agents", href: "https://www.octaloom.com/ai-tools-agents" },
+    { label: "Workshops", href: "https://www.octaloom.com/workshops" },
   ]
   const pageLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Blog", href: "/blog" },
-    { label: "Contact", href: "/contact" },
+    { label: "Home", href: "https://www.octaloom.com/" },
+    { label: "About", href: "https://www.octaloom.com/about" },
+    { label: "Blog", href: "https://www.octaloom.com/blog" },
+    { label: "Contact", href: "https://www.octaloom.com/contact" },
   ]
   const legalLinks = [
-    { label: "Privacy", href: "/privacy-policy" },
-    { label: "Terms", href: "/terms" },
-    { label: "Accessibility", href: "/accessibility" },
+    { label: "Privacy", href: "https://www.octaloom.com/privacy-policy" },
+    { label: "Terms", href: "https://www.octaloom.com/terms-of-service" },
+    { label: "Accessibility", href: "https://www.octaloom.com/accessibility" },
   ]
   const socialIcons = [
     { href: "https://www.linkedin.com/in/hanita-yudovski/", label: "LinkedIn",
@@ -461,56 +482,74 @@ export default function ContactPageEN() {
           borderRadius: "50%", border: "1.5px solid rgba(113,46,172,0.1)", pointerEvents: "none",
         }} />
         <Container>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "stretch", maxWidth: 720, direction: "ltr", textAlign: "left", width: "100%" }}>
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              style={{
-                fontFamily: FF, fontWeight: 700,
-                fontSize: `clamp(${isMobile ? "36px" : "48px"}, 6vw, 72px)`,
-                color: C.purple, lineHeight: 1.15, margin: "0 0 28px",
-                direction: "ltr", width: "100%", textAlign: "left", whiteSpace: "pre-line",
-              }}>
-              {T.headline}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1 }}
-              style={{
-                fontSize: isMobile ? 17 : 20, fontFamily: FF, color: C.deepPurple,
-                maxWidth: 560, margin: "0 0 16px", lineHeight: 1.75, direction: "ltr",
-                fontWeight: 400, textAlign: "left", width: "100%", whiteSpace: "pre-line",
-              }}>
-              {T.sub}
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.18 }}
-              style={{
-                fontSize: isMobile ? 15 : 17, fontFamily: FF, color: C.textDim,
-                maxWidth: 480, margin: "0 0 44px", lineHeight: 1.75, direction: "ltr",
-                textAlign: "left", width: "100%",
-              }}>
-              {T.warmPara}
-            </motion.p>
-            <div style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}>
-              <motion.a href="#contact-form"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.32 }}
+          <div style={{
+            display: "flex", flexDirection: isMobile ? "column" : "row",
+            alignItems: isMobile ? "stretch" : "center",
+            gap: isMobile ? 40 : 60, width: "100%", direction: "ltr",
+          }}>
+            {/* Text column */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "stretch" }}>
+              <motion.h1
+                initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55 }}
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: 10,
-                  padding: "13px 28px", borderRadius: 50,
-                  background: C.purple, color: "white",
-                  fontSize: 15, fontFamily: FF, fontWeight: 700,
-                  textDecoration: "none", transition: "opacity 0.2s",
-                }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                onMouseLeave={e => (e.currentTarget.style.opacity = "1")}>
-                {T.toForm}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 5v14M5 12l7 7 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </motion.a>
+                  fontFamily: FF, fontWeight: 700,
+                  fontSize: `clamp(${isMobile ? "36px" : "48px"}, 6vw, 72px)`,
+                  color: C.purple, lineHeight: 1.15, margin: "0 0 28px",
+                  direction: "ltr", width: "100%", textAlign: "left", whiteSpace: "pre-line",
+                }}>
+                {T.headline}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.1 }}
+                style={{
+                  fontSize: isMobile ? 17 : 20, fontFamily: FF, color: C.deepPurple,
+                  maxWidth: 560, margin: "0 0 16px", lineHeight: 1.75, direction: "ltr",
+                  fontWeight: 400, textAlign: "left", width: "100%", whiteSpace: "pre-line",
+                }}>
+                {T.sub}
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.18 }}
+                style={{
+                  fontSize: isMobile ? 15 : 17, fontFamily: FF, color: C.textDim,
+                  maxWidth: 480, margin: "0 0 44px", lineHeight: 1.75, direction: "ltr",
+                  textAlign: "left", width: "100%",
+                }}>
+                {T.warmPara}
+              </motion.p>
+              <div style={{ width: "100%", display: "flex", justifyContent: "flex-start" }}>
+                <motion.a href="#contact-form"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.32 }}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 10,
+                    padding: "13px 28px", borderRadius: 50,
+                    background: C.purple, color: "white",
+                    fontSize: 15, fontFamily: FF, fontWeight: 700,
+                    textDecoration: "none", transition: "opacity 0.2s",
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+                  onMouseLeave={e => (e.currentTarget.style.opacity = "1")}>
+                  {T.toForm}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5v14M5 12l7 7 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </motion.a>
+              </div>
             </div>
+            {/* Image column */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              style={{ flex: "0 0 auto", width: isMobile ? "100%" : 420 }}>
+              <img
+                src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/BOOK%20A%20CALL%20WEBSITE.png"
+                alt="Book a discovery call with OctaLoom"
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: 16 }}
+              />
+            </motion.div>
           </div>
         </Container>
       </section>

@@ -285,6 +285,7 @@ function NavHE() {
       backdropFilter: "blur(50px)", WebkitBackdropFilter: "blur(50px)",
       border: "1px solid rgba(32,30,75,0.08)", padding: "10px 20px",
       display: "flex", alignItems: "center", justifyContent: "space-between",
+      flexDirection: isMobile ? "row-reverse" : undefined,
       fontFamily: FF, transition: "background 0.3s, box-shadow 0.3s",
       boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.08)" : "none",
     }}>
@@ -509,56 +510,74 @@ export default function ContactPageHE() {
           borderRadius: "50%", border: "1.5px solid rgba(113,46,172,0.1)", pointerEvents: "none",
         }} />
         <Container>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "stretch", maxWidth: 720, direction: "rtl", textAlign: "right", width: "100%" }}>
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              style={{
-                fontFamily: FF, fontWeight: 500,
-                fontSize: `clamp(${isMobile ? "36px" : "48px"}, 6vw, 72px)`,
-                color: C.purple, lineHeight: 1.15, margin: "0 0 28px",
-                direction: "rtl", width: "100%", textAlign: "right", whiteSpace: "pre-line",
-              }}>
-              {T.headline}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1 }}
-              style={{
-                fontSize: isMobile ? 17 : 20, fontFamily: FF, color: C.deepPurple,
-                maxWidth: 560, margin: "0 0 16px", lineHeight: 1.75, direction: "rtl",
-                fontWeight: 400, textAlign: "right", width: "100%", whiteSpace: "pre-line",
-              }}>
-              {T.sub}
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.18 }}
-              style={{
-                fontSize: isMobile ? 15 : 17, fontFamily: FF, color: C.textDim,
-                maxWidth: 480, margin: "0 0 44px", lineHeight: 1.75, direction: "rtl",
-                textAlign: "right", width: "100%",
-              }}>
-              {T.warmPara}
-            </motion.p>
-            <div style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
-              <motion.a href="#contact-form"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.32 }}
+          <div style={{
+            display: "flex", flexDirection: isMobile ? "column" : "row",
+            alignItems: isMobile ? "stretch" : "center",
+            gap: isMobile ? 40 : 60, width: "100%", direction: "rtl",
+          }}>
+            {/* Text column — in RTL row, first child appears on right */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "stretch" }}>
+              <motion.h1
+                initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55 }}
                 style={{
-                  display: "inline-flex", alignItems: "center", gap: 10,
-                  padding: "13px 28px", borderRadius: 50,
-                  background: C.purple, color: "white",
-                  fontSize: 15, fontFamily: FF, fontWeight: 700,
-                  textDecoration: "none", transition: "opacity 0.2s",
-                }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                onMouseLeave={e => (e.currentTarget.style.opacity = "1")}>
-                {T.toForm}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 5v14M5 12l7 7 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </motion.a>
+                  fontFamily: FF, fontWeight: 500,
+                  fontSize: `clamp(${isMobile ? "36px" : "48px"}, 6vw, 72px)`,
+                  color: C.purple, lineHeight: 1.15, margin: "0 0 28px",
+                  direction: "rtl", width: "100%", textAlign: "right", whiteSpace: "pre-line",
+                }}>
+                {T.headline}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.1 }}
+                style={{
+                  fontSize: isMobile ? 17 : 20, fontFamily: FF, color: C.deepPurple,
+                  maxWidth: 560, margin: "0 0 16px", lineHeight: 1.75, direction: "rtl",
+                  fontWeight: 400, textAlign: "right", width: "100%", whiteSpace: "pre-line",
+                }}>
+                {T.sub}
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.18 }}
+                style={{
+                  fontSize: isMobile ? 15 : 17, fontFamily: FF, color: C.textDim,
+                  maxWidth: 480, margin: "0 0 44px", lineHeight: 1.75, direction: "rtl",
+                  textAlign: "right", width: "100%",
+                }}>
+                {T.warmPara}
+              </motion.p>
+              <div style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+                <motion.a href="#contact-form"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.32 }}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 10,
+                    padding: "13px 28px", borderRadius: 50,
+                    background: C.purple, color: "white",
+                    fontSize: 15, fontFamily: FF, fontWeight: 700,
+                    textDecoration: "none", transition: "opacity 0.2s",
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+                  onMouseLeave={e => (e.currentTarget.style.opacity = "1")}>
+                  {T.toForm}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5v14M5 12l7 7 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </motion.a>
+              </div>
             </div>
+            {/* Image column — in RTL row, second child appears on left */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              style={{ flex: "0 0 auto", width: isMobile ? "100%" : 420 }}>
+              <img
+                src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/BOOK%20A%20CALL%20WEBSITE.png"
+                alt="בואו נדבר עם OctaLoom"
+                style={{ width: "100%", height: "auto", display: "block", borderRadius: 16 }}
+              />
+            </motion.div>
           </div>
         </Container>
       </section>
