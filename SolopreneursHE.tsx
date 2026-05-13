@@ -969,9 +969,11 @@ function SoloCTA() {
 // ============ APP ============
 
 function VerticalNav() {
+  const w = useWindowWidth();
   const DARK_SECTIONS = new Set(['solo-hero', 'solo-tiers', 'solo-compare']);
   const [active, setActive] = useState('solo-hero');
   const onDark = DARK_SECTIONS.has(active);
+  if (w < 1200) return null;
 
   const sections = [
     { id: 'solo-hero',    label: 'פתיחה'       },
@@ -1009,8 +1011,8 @@ function VerticalNav() {
   return (
     <div style={{
       position: 'fixed', top: '50%', transform: 'translateY(-50%)',
-      right: 16, zIndex: 90,
-      display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end',
+      left: 16, zIndex: 90,
+      display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-start',
       transition: 'color 0.4s',
     }}>
       {sections.map(s => {
@@ -1020,7 +1022,7 @@ function VerticalNav() {
             onClick={(e: any) => { e.preventDefault(); document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' }); }}
             href={'#' + s.id}
             title={s.label}
-            style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', textDecoration: 'none', flexDirection: 'row-reverse' }}>
+            style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', textDecoration: 'none', flexDirection: 'row' }}>
             <div style={{
               width: isActive ? 9 : 5, height: isActive ? 9 : 5,
               borderRadius: '50%', flexShrink: 0,

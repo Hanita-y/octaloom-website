@@ -909,9 +909,11 @@ function SoloCTA() {
 // ============ APP ============
 
 function VerticalNav() {
+  const w = useWindowWidth();
   const DARK_SECTIONS = new Set(['solo-hero', 'solo-tiers', 'solo-compare']);
   const [active, setActive] = useState('solo-hero');
   const onDark = DARK_SECTIONS.has(active);
+  if (w < 1200) return null;
 
   const sections = [
     { id: 'solo-hero',    label: 'Intro'           },
