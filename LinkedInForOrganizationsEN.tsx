@@ -194,6 +194,8 @@ button{font-family:inherit;border:none;background:none;cursor:pointer}
   .results__grid{grid-template-columns:1fr}.container{padding:0 16px}
   .org-hero__h1{font-size:26px}.faq__q h3{font-size:15px}
 }
+.mob-br{display:none}
+@media(max-width:768px){.mob-br{display:block}}
 `
     document.head.appendChild(s)
   }, [])
@@ -478,7 +480,14 @@ function OrgHero() {
             <Reveal className="rv--blur">
               <span className="org-hero__label"><LiIcon size={16} color="var(--lime)" /> {t(ORG.hero.label)}</span>
             </Reveal>
-            <Reveal delay={150}><h1 className="org-hero__h1">{t(ORG.hero.h1)}</h1></Reveal>
+            <Reveal delay={150}>
+              <h1 className="org-hero__h1">
+                {"Your Company Page"}<br className="mob-br" />
+                {" Is a Ghost Town."}<br />
+                {"Let’s Turn It"}<br className="mob-br" />
+                {" Into a Growth Channel."}
+              </h1>
+            </Reveal>
             <Reveal delay={300}><p className="org-hero__sub">{t(ORG.hero.sub)}</p></Reveal>
             <Reveal delay={400}><p className="org-hero__fix">{t(ORG.hero.fix)}</p></Reveal>
             <Reveal delay={500}>
