@@ -49,6 +49,7 @@ const PURPLE = '#712eac';
 const FONT = "'Aeonik', sans-serif";
 
 function getLangToggleUrl(isHE: boolean): string {
+  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/solopreneurs" : "https://www.octaloom.com/solopreneurs-he"
   const path = window.location.pathname
   if (isHE) {
     const enPath = path.replace(/-he$/, "") || "/"

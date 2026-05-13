@@ -25,6 +25,7 @@ const C = {
 const FF = "'Discovery Fs', 'Aeonik', sans-serif"
 
 function getLangToggleUrl(isHE: boolean): string {
+  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/" : "https://www.octaloom.com/about-he"
   const path = window.location.pathname
   if (isHE) {
     const enPath = path.replace(/-he$/, "") || "/"
