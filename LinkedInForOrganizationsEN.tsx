@@ -410,7 +410,7 @@ const ORG: any = {
     ],
   },
   cta: {
-    title: { en: "Ready to Make LinkedIn Work — for Your Page, Your Founders, or Your Whole Team?" },
+    title: { en: "Ready to Make LinkedIn Work for Your Page, Your Founders, or Your Whole Team?" },
     sub: { en: "Your company page should be building trust while your team builds pipeline. Right now, your competitors are already doing this. Let’s close the gap." },
     cta1: { en: "Book a Free Discovery Call" },
     note: { en: "(Whether you need company page management, a workshop for your team, or a full employee advocacy program, we’ll figure out the right starting point in one conversation.)" },
@@ -1046,7 +1046,7 @@ function SiteNavbar() {
           <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 10 }}>
             <button onClick={() => { setMenuOpen(false); window.dispatchEvent(new CustomEvent("open-discovery")) }}
               style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: _P, color: "#fff", borderRadius: 100, fontFamily: _F, border: "none", cursor: "pointer", width: "100%" }}>
-              Let’s Talk — Free
+              Let’s Talk. Free.
             </button>
             <a href="https://www.octaloom.com/linkedin-for-organizations-he"
               style={{ display: "block", textAlign: "center", padding: "11px 24px", fontSize: 13, fontWeight: 600, color: _D, borderRadius: 100, fontFamily: _F, border: "1px solid rgba(32,30,75,0.2)", textDecoration: "none", width: "100%", boxSizing: "border-box" }}>
