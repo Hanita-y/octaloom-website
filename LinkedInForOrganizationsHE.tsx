@@ -390,7 +390,7 @@ const ORG: any = {
   about: {
     title: { he: "קצת עליי" },
     text: { he: [
-      'אני חניתה (יודובסקי, אבל כמו מדונה, השם הפרטי שלי מספיק), סמנ"לית שיווק במיקור חוץ עם התמחות בלינקדאין.',
+      'אני חניתה (יודובסקי, אבל כמו מדונה, השם הפרטי שלי מספיק), סמנכ"לית שיווק במיקור חוץ עם התמחות בלינקדאין.',
       "אני בונה מערכות שיווק ונוכחות בלינקדאין לארגונים, חברות הייטק, ומייסדים. +5 שנים של שיווק B2B, כולל ניהול דפי חברה, סדנאות, ותוכניות הפעלת עובדים (שגרירים).",
       'אני מנחה את הפודקאסט "מה הסיפור עם?" שבו אנחנו מפרקים את מה שבאמת עובד בשיווק B2B.',
     ]},
@@ -953,7 +953,7 @@ function SiteNavbarHe() {
     { label: "לינקדאין לעצמאיים", href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" },
   ]
   const otherSub = [
-    { label: 'סמנ"כ שיווק במיקור חוץ', href: "https://www.octaloom.com/fractional-cmo-he" },
+    { label: 'סמנכ"לית שיווק במיקור חוץ', href: "https://www.octaloom.com/fractional-cmo-he" },
     { label: "כלי AI וסוכנים",          href: "https://www.octaloom.com/ai-tools-agents-he" },
     { label: "סדנאות",                  href: "#workshops" },
   ]
@@ -1044,13 +1044,18 @@ function SiteNavbarHe() {
       {isMobile && menuOpen && (
         <div style={{ position: "absolute", top: "calc(100% + 8px)", right: 0, left: 0, background: "#fff", borderRadius: 16, padding: "20px 32px 32px", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", zIndex: 50, maxHeight: "calc(100vh - 100px)", overflowY: "auto", direction: "rtl" }}>
           <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: _P, margin: "0 0 4px", fontFamily: _F }}>שירותים</p>
-          <button onClick={() => setLinkedinExpanded(p => !p)}
-            style={{ display: "flex", width: "100%", alignItems: "center", justifyContent: "space-between", fontSize: 20, color: _D, padding: "11px 0", fontWeight: 700, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: _F, background: "none", border: "none", cursor: "pointer", textAlign: "right" }}>
-            מנוע צמיחה בלינקדאין
-            <svg width={11} height={11} viewBox="0 0 12 12" fill="none" style={{ transition: "transform 0.25s", transform: linkedinExpanded ? "rotate(180deg)" : "none" }}>
-              <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+          <div style={{ display: "flex", width: "100%", alignItems: "center", borderBottom: "1px solid rgba(113,46,172,0.08)" }}>
+            <a href="https://www.octaloom.com/linkedin-growth-engine-he" onClick={() => setMenuOpen(false)}
+              style={{ flex: 1, fontSize: 20, color: _D, padding: "11px 0", fontWeight: 700, fontFamily: _F, textAlign: "right", textDecoration: "none" }}>
+              מנוע צמיחה בלינקדאין
+            </a>
+            <button onClick={() => setLinkedinExpanded(p => !p)} aria-label="הצג שירותי לינקדאין"
+              style={{ background: "none", border: "none", padding: "11px 8px", cursor: "pointer", color: _D, display: "flex", alignItems: "center" }}>
+              <svg width={11} height={11} viewBox="0 0 12 12" fill="none" style={{ transition: "transform 0.25s", transform: linkedinExpanded ? "rotate(180deg)" : "none" }}>
+                <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
           {linkedinExpanded && liSub.map((s, i) => (
             <a key={i} href={s.href} onClick={() => setMenuOpen(false)} style={{ display: "block", fontSize: 15, color: _P, textDecoration: "none", padding: "7px 20px 7px 0", borderBottom: "1px solid rgba(113,46,172,0.05)", fontFamily: _F, textAlign: "right" }}>{s.label}</a>
           ))}
@@ -1085,7 +1090,7 @@ function SiteFooterHe() {
     { label: "לינקדאין לעצמאיים", href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" },
   ]
   const otherLinks = [
-    { label: 'סמנ"כ שיווק במיקור חוץ', href: "https://www.octaloom.com/fractional-cmo-he" },
+    { label: 'סמנכ"לית שיווק במיקור חוץ', href: "https://www.octaloom.com/fractional-cmo-he" },
     { label: "כלי AI וסוכנים",          href: "https://www.octaloom.com/ai-tools-agents-he" },
     { label: "סדנאות",                  href: "#workshops" },
   ]
