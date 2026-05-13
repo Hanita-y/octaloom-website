@@ -355,9 +355,9 @@ const ORG: any = {
     title: { en: "LinkedIn Workshops & Training" },
     sub: { en: "A separate service for organizations that want to activate their team’s presence through hands-on learning." },
     items: [
-      { title: { en: "LinkedIn Authority Talk" },  duration: { en: "60-90 minutes" },     desc: { en: "Keynote-style presentation on personal branding and LinkedIn presence. For conferences, team meetings, company events, or leadership offsites. Virtual or in-person." }},
+      { title: { en: "LinkedIn Authority" },  duration: { en: "60-90 minutes" },     desc: { en: "Keynote-style presentation on personal branding and LinkedIn presence. For conferences, team meetings, company events, or leadership offsites. Virtual or in-person." }},
       { title: { en: "Practical Workshop" },        duration: { en: "Half-day, hands-on" }, desc: { en: "Participants optimize their profiles, write their first posts, and build engagement plans in real time. Hands-on, practical, everyone walks out with an updated profile and a posting plan. In-person, small groups." }},
-      { title: { en: "Executive Intensive" },       duration: { en: "Multi-session" },      desc: { en: "Deep strategy work for the leadership team. Personal positioning, content strategy, and a LinkedIn roadmap for each executive." }},
+      { title: { en: "LinkedIn Leadership Blueprint" },       duration: { en: "Multi-session" },      desc: { en: "Deep strategy work for the leadership team. Personal positioning, content strategy, and a LinkedIn roadmap for each executive." }},
       { title: { en: "Virtual Workshops" },         duration: { en: "Flexible" },           desc: { en: "Same practical content, delivered online. Shorter formats for distributed teams." }},
     ],
     note: { en: "Every workshop is customized to your industry, your team’s level, and your goals. No generic slide decks. No motivational fluff." },
