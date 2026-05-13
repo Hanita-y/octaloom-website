@@ -21,6 +21,7 @@ const SHADOW_LG = "0 20px 60px rgba(0,0,0,.13)"
 const SHADOW_PURPLE = "0 8px 32px rgba(113,46,172,.25)"
 
 function getLangToggleUrl(isHE: boolean): string {
+  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/linkedin-growth-engine" : "https://www.octaloom.com/linkedin-growth-engine-he"
   const path = window.location.pathname
   if (isHE) {
     const enPath = path.replace(/-he$/, "") || "/"

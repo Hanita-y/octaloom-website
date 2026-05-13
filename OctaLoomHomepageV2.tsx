@@ -63,6 +63,7 @@ const F = {
 
 
 function getLangToggleUrl(isHE: boolean): string {
+  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/" : "https://www.octaloom.com/"
   const path = window.location.pathname
   if (isHE) {
     const enPath = path.replace(/-he$/, "") || "/"
@@ -897,6 +898,8 @@ function HPNav() {
 
   const [linkedinOpen, setLinkedinOpen] = useState(false)
 
+  const [linkedinExpanded, setLinkedinExpanded] = useState(false)
+
   const servicesRef = useRef<HTMLDivElement>(null)
 
   const dir = lang === "he" ? "rtl" : "ltr"
@@ -938,6 +941,10 @@ function HPNav() {
     return () => document.removeEventListener("mousedown", fn)
 
   }, [])
+
+  useEffect(() => {
+    if (!mobileOpen) setLinkedinExpanded(false)
+  }, [mobileOpen])
 
 
 
@@ -1024,7 +1031,7 @@ function HPNav() {
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)",
         display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 16,
-        position: "relative", zIndex: 101,
+        position: "relative", zIndex: 101, direction: isMobile ? "ltr" : dir,
         ...(isMobile && mobileOpen
           ? { paddingTop: 14, paddingBottom: 14, borderBottom: "1px solid rgba(113,46,172,0.1)" }
           : {}
@@ -1321,35 +1328,45 @@ function HPNav() {
 
             <div key={i}>
 
-              <a href={svc.href} onClick={() => setMobileOpen(false)}
-
-                style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none",
-
-                  fontFamily: ff, padding: "11px 0", fontWeight: 600,
-
-                  borderBottom: "1px solid rgba(113,46,172,0.08)" }}>
-
-                {lang === "he" ? svc.he : svc.en}
-
-              </a>
-
-              {svc.sub && svc.sub.map((sub, j) => (
-
-                <a key={j} href={sub.href} onClick={() => setMobileOpen(false)}
-
-                  style={{ display: "block", fontSize: 15, color: C.purple, textDecoration: "none",
-
-                    fontFamily: ff, padding: "7px 0",
-
-                    paddingLeft: dir === "ltr" ? 20 : 0, paddingRight: dir === "rtl" ? 20 : 0,
-
-                    borderBottom: "1px solid rgba(113,46,172,0.05)" }}>
-
-                  {lang === "he" ? sub.he : sub.en}
-
+              {svc.sub ? (
+                <button onClick={() => setLinkedinExpanded(prev => !prev)}
+                  style={{ display: "flex", width: "100%", alignItems: "center", justifyContent: "space-between",
+                    fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600,
+                    borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: ff,
+                    background: "none", border: "none", cursor: "pointer",
+                    textAlign: dir === "rtl" ? "right" as const : "left" as const }}>
+                  {lang === "he" ? svc.he : svc.en}
+                  <svg width={11} height={11} viewBox="0 0 12 12" fill="none"
+                    style={{ transition: "transform 0.25s", transform: linkedinExpanded ? "rotate(180deg)" : "none", flexShrink: 0 }}>
+                    <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              ) : (
+                <a href={svc.href} onClick={() => setMobileOpen(false)}
+                  style={{ display: "block", fontSize: 20, color: C.deepPurple, textDecoration: "none",
+                    fontFamily: ff, padding: "11px 0", fontWeight: 600,
+                    borderBottom: "1px solid rgba(113,46,172,0.08)" }}>
+                  {lang === "he" ? svc.he : svc.en}
                 </a>
+              )}
 
-              ))}
+              <AnimatePresence>
+                {svc.sub && linkedinExpanded && (
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25 }}
+                    style={{ overflow: "hidden" }}>
+                    {svc.sub.map((sub, j) => (
+                      <a key={j} href={sub.href} onClick={() => setMobileOpen(false)}
+                        style={{ display: "block", fontSize: 15, color: C.purple, textDecoration: "none",
+                          fontFamily: ff, padding: "7px 0",
+                          paddingLeft: dir === "ltr" ? 20 : 0, paddingRight: dir === "rtl" ? 20 : 0,
+                          borderBottom: "1px solid rgba(113,46,172,0.05)" }}>
+                        {lang === "he" ? sub.he : sub.en}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
             </div>
 

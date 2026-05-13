@@ -74,6 +74,7 @@ const ChevronDown = ({ open }: { open: boolean }) => (
 // Returns the URL of the equivalent page in the other language.
 // HE pages end with -he; EN pages don't.
 function getLangToggleUrl(isHE: boolean): string {
+  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/" : "https://www.octaloom.com/"
   const path = window.location.pathname
   if (isHE) {
     const enPath = path.replace(/-he$/, "") || "/"

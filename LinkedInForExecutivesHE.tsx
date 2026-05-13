@@ -271,6 +271,7 @@ button{font-family:inherit;border:none;background:none;cursor:pointer}
 }
 
 function getLangToggleUrl(isHE: boolean): string {
+  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/linkedin-for-executives" : "https://www.octaloom.com/linkedin-for-executives-he"
   const path = window.location.pathname
   if (isHE) {
     const enPath = path.replace(/-he$/, "") || "/"

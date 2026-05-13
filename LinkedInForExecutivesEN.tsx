@@ -508,6 +508,7 @@ function AnimatedNum({ value, suffix = "" }: any) {
 }
 
 function getLangToggleUrl(isHE: boolean): string {
+  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/linkedin-for-executives" : "https://www.octaloom.com/linkedin-for-executives-he"
   const path = window.location.pathname
   if (isHE) {
     const enPath = path.replace(/-he$/, "") || "/"
