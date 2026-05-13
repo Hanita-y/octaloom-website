@@ -477,7 +477,7 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
               {"מומחית לינקדאין, חובבת סוכני AI מושבעת (ויש שיגידו נופלת לכל הייפ AI) ומנהלת שיווק במיקור חוץ. בשורה התחתונה: אני מחלקת השיווק שלכם, רק בלי מחלקה."}
             </p>
             <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 18, fontFamily: FF }}>
-              {"כבר חמש שנים שאני עובדת עם מייסדים וחברות B2B שרוצים שיווק שמזיז את המחט. מה שלמדתי בדרך: למייסדים אין בעיית שיווק – יש להם בעיית נראות."}
+              {"כבר חמש שנים שאני עובדת עם מייסדים וחברות B2B שרוצים שיווק אסטרטגי שמניע לתוצאות. מה שלמדתי בדרך: למייסדים אין בעיית שיווק – יש להם בעיית נראות."}
             </p>
             <p style={{ fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 10, fontFamily: FF }}>
               {"לינקדאין הוא המקום שבו B2B קורה. לפני כל מייל או שיחה, הלקוח כבר חיפש אתכם שם."}
@@ -985,19 +985,33 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
       <Container>
         <Reveal>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+            {isMobile ? (
+              <img
+                src={HEADSHOT}
+                alt="חניתה יודובסקי"
+                loading="lazy"
+                style={{
+                  width: 88, height: 88,
+                  objectFit: "cover", objectPosition: "center 15%",
+                  display: "block", borderRadius: 12,
+                  marginBottom: 28,
+                }}
+              />
+            ) : (
             <LoopingGif
               src={GIF_HANITA}
               alt="חניתה יודובסקי"
               style={{
-                width: isMobile ? 88 : 110,
-                height: isMobile ? 88 : 110,
+                width: 110,
+                height: 110,
                 objectFit: "cover",
                 objectPosition: "center top",
                 display: "block",
                 borderRadius: 12,
-                marginBottom: isMobile ? 28 : 36,
+                marginBottom: 36,
               }}
             />
+            )}
             <h2 style={{
               fontFamily: FF, fontWeight: 700,
               fontSize: isMobile ? "clamp(32px,8vw,44px)" : "clamp(40px,4.5vw,60px)",

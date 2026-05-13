@@ -33563,7 +33563,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             transition: { duration: dur, delay: 0.48, ease: ease2 },
             children: [
               /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { fontSize: isMobile ? 16 : 18, lineHeight: 1.8, color: C.deepPurple, marginBottom: 18, fontFamily: FF }, children: "\u05DE\u05D5\u05DE\u05D7\u05D9\u05EA \u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF, \u05D7\u05D5\u05D1\u05D1\u05EA \u05E1\u05D5\u05DB\u05E0\u05D9 AI \u05DE\u05D5\u05E9\u05D1\u05E2\u05EA (\u05D5\u05D9\u05E9 \u05E9\u05D9\u05D2\u05D9\u05D3\u05D5 \u05E0\u05D5\u05E4\u05DC\u05EA \u05DC\u05DB\u05DC \u05D4\u05D9\u05D9\u05E4 AI) \u05D5\u05DE\u05E0\u05D4\u05DC\u05EA \u05E9\u05D9\u05D5\u05D5\u05E7 \u05D1\u05DE\u05D9\u05E7\u05D5\u05E8 \u05D7\u05D5\u05E5. \u05D1\u05E9\u05D5\u05E8\u05D4 \u05D4\u05EA\u05D7\u05EA\u05D5\u05E0\u05D4: \u05D0\u05E0\u05D9 \u05DE\u05D7\u05DC\u05E7\u05EA \u05D4\u05E9\u05D9\u05D5\u05D5\u05E7 \u05E9\u05DC\u05DB\u05DD, \u05E8\u05E7 \u05D1\u05DC\u05D9 \u05DE\u05D7\u05DC\u05E7\u05D4." }),
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 18, fontFamily: FF }, children: "\u05DB\u05D1\u05E8 \u05D7\u05DE\u05E9 \u05E9\u05E0\u05D9\u05DD \u05E9\u05D0\u05E0\u05D9 \u05E2\u05D5\u05D1\u05D3\u05EA \u05E2\u05DD \u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D5\u05D7\u05D1\u05E8\u05D5\u05EA B2B \u05E9\u05E8\u05D5\u05E6\u05D9\u05DD \u05E9\u05D9\u05D5\u05D5\u05E7 \u05E9\u05DE\u05D6\u05D9\u05D6 \u05D0\u05EA \u05D4\u05DE\u05D7\u05D8. \u05DE\u05D4 \u05E9\u05DC\u05DE\u05D3\u05EA\u05D9 \u05D1\u05D3\u05E8\u05DA: \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D0\u05D9\u05DF \u05D1\u05E2\u05D9\u05D9\u05EA \u05E9\u05D9\u05D5\u05D5\u05E7 \u2013 \u05D9\u05E9 \u05DC\u05D4\u05DD \u05D1\u05E2\u05D9\u05D9\u05EA \u05E0\u05E8\u05D0\u05D5\u05EA." }),
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 18, fontFamily: FF }, children: "\u05DB\u05D1\u05E8 \u05D7\u05DE\u05E9 \u05E9\u05E0\u05D9\u05DD \u05E9\u05D0\u05E0\u05D9 \u05E2\u05D5\u05D1\u05D3\u05EA \u05E2\u05DD \u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D5\u05D7\u05D1\u05E8\u05D5\u05EA B2B \u05E9\u05E8\u05D5\u05E6\u05D9\u05DD \u05E9\u05D9\u05D5\u05D5\u05E7 \u05D0\u05E1\u05D8\u05E8\u05D8\u05D2\u05D9 \u05E9\u05DE\u05E0\u05D9\u05E2 \u05DC\u05EA\u05D5\u05E6\u05D0\u05D5\u05EA. \u05DE\u05D4 \u05E9\u05DC\u05DE\u05D3\u05EA\u05D9 \u05D1\u05D3\u05E8\u05DA: \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D0\u05D9\u05DF \u05D1\u05E2\u05D9\u05D9\u05EA \u05E9\u05D9\u05D5\u05D5\u05E7 \u2013 \u05D9\u05E9 \u05DC\u05D4\u05DD \u05D1\u05E2\u05D9\u05D9\u05EA \u05E0\u05E8\u05D0\u05D5\u05EA." }),
               /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 10, fontFamily: FF }, children: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05D4\u05D5\u05D0 \u05D4\u05DE\u05E7\u05D5\u05DD \u05E9\u05D1\u05D5 B2B \u05E7\u05D5\u05E8\u05D4. \u05DC\u05E4\u05E0\u05D9 \u05DB\u05DC \u05DE\u05D9\u05D9\u05DC \u05D0\u05D5 \u05E9\u05D9\u05D7\u05D4, \u05D4\u05DC\u05E7\u05D5\u05D7 \u05DB\u05D1\u05E8 \u05D7\u05D9\u05E4\u05E9 \u05D0\u05EA\u05DB\u05DD \u05E9\u05DD." }),
               /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: C.textDim, marginBottom: 18, fontFamily: FF }, children: "\u05D4\u05D1\u05E2\u05D9\u05D4 \u05D4\u05D9\u05D0 \u05E9\u05E8\u05D5\u05D1 \u05D4\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05E4\u05E9\u05D5\u05D8 \u05DC\u05D0 \u05E0\u05D5\u05DB\u05D7\u05D9\u05DD \u05D1\u05D6\u05D9\u05E8\u05D4." }),
               /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { fontSize: isMobile ? 16 : 18, lineHeight: 1.6, color: C.deepPurple, fontWeight: 700, marginBottom: 36, fontFamily: FF }, children: "\u05D0\u05EA \u05D6\u05D4 \u05D0\u05E0\u05D9 \u05DE\u05EA\u05E7\u05E0\u05EA." })
@@ -34014,19 +34014,35 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   }
   function CTASection({ isMobile }) {
     return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("section", { style: { background: C.cream, padding: isMobile ? "80px 0" : "120px 0" }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Container, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Reveal, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+      isMobile ? /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        "img",
+        {
+          src: HEADSHOT,
+          alt: "\u05D7\u05E0\u05D9\u05EA\u05D4 \u05D9\u05D5\u05D3\u05D5\u05D1\u05E1\u05E7\u05D9",
+          loading: "lazy",
+          style: {
+            width: 88,
+            height: 88,
+            objectFit: "cover",
+            objectPosition: "center 15%",
+            display: "block",
+            borderRadius: 12,
+            marginBottom: 28
+          }
+        }
+      ) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
         LoopingGif,
         {
           src: GIF_HANITA,
           alt: "\u05D7\u05E0\u05D9\u05EA\u05D4 \u05D9\u05D5\u05D3\u05D5\u05D1\u05E1\u05E7\u05D9",
           style: {
-            width: isMobile ? 88 : 110,
-            height: isMobile ? 88 : 110,
+            width: 110,
+            height: 110,
             objectFit: "cover",
             objectPosition: "center top",
             display: "block",
             borderRadius: 12,
-            marginBottom: isMobile ? 28 : 36
+            marginBottom: 36
           }
         }
       ),
@@ -34105,7 +34121,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     ];
     const legalLinks = [
       { label: "\u05E4\u05E8\u05D8\u05D9\u05D5\u05EA", href: "https://www.octaloom.com/privacy-policy-he" },
-      { label: "\u05EA\u05E0\u05D0\u05D9\u05DD", href: "https://www.octaloom.com/terms-he" },
+      { label: "\u05EA\u05E0\u05D0\u05D9\u05DD", href: "https://www.octaloom.com/terms-of-service-he" },
       { label: "\u05E0\u05D2\u05D9\u05E9\u05D5\u05EA", href: "https://www.octaloom.com/accessibility-he" }
     ];
     const socialIcons = [
