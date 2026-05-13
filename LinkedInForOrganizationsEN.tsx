@@ -822,7 +822,7 @@ function OrgAbout() {
           <Reveal className="rv--right">
             <div className="about__photo">
               <img
-                src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/hanita.png"
+                src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/HAN.png"
                 alt="Hanita"
                 className="about__photo-img"
                 onError={(e: any) => { e.target.style.display = "none" }}
