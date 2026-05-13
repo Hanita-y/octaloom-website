@@ -1,45 +1,16 @@
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
-  var __defProps = Object.defineProperties;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-  var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
   var __getOwnPropNames = Object.getOwnPropertyNames;
-  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __propIsEnum = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues = (a, b) => {
-    for (var prop in b || (b = {}))
-      if (__hasOwnProp.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    if (__getOwnPropSymbols)
-      for (var prop of __getOwnPropSymbols(b)) {
-        if (__propIsEnum.call(b, prop))
-          __defNormalProp(a, prop, b[prop]);
-      }
-    return a;
-  };
-  var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
   var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
     get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
   }) : x)(function(x) {
     if (typeof require !== "undefined") return require.apply(this, arguments);
     throw Error('Dynamic require of "' + x + '" is not supported');
   });
-  var __objRest = (source, exclude) => {
-    var target = {};
-    for (var prop in source)
-      if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
-        target[prop] = source[prop];
-    if (source != null && __getOwnPropSymbols)
-      for (var prop of __getOwnPropSymbols(source)) {
-        if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
-          target[prop] = source[prop];
-      }
-    return target;
-  };
   var __commonJS = (cb, mod) => function __require2() {
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
@@ -24998,7 +24969,10 @@
   // node_modules/framer-motion/dist/es/motion/features/load-features.mjs
   function loadFeatures(features) {
     for (const key in features) {
-      featureDefinitions[key] = __spreadValues(__spreadValues({}, featureDefinitions[key]), features[key]);
+      featureDefinitions[key] = {
+        ...featureDefinitions[key],
+        ...features[key]
+      };
     }
   }
 
@@ -25316,9 +25290,11 @@
     preloadedFeatures && loadFeatures(preloadedFeatures);
     function MotionComponent(props, externalRef) {
       let MeasureLayout2;
-      const configAndProps = __spreadProps(__spreadValues(__spreadValues({}, (0, import_react17.useContext)(MotionConfigContext)), props), {
+      const configAndProps = {
+        ...(0, import_react17.useContext)(MotionConfigContext),
+        ...props,
         layoutId: useLayoutId(props)
-      });
+      };
       const { isStatic } = configAndProps;
       const context = useCreateMotionContext(props);
       const visualState = useVisualState(props, isStatic);
@@ -25328,7 +25304,7 @@
         MeasureLayout2 = layoutProjection.MeasureLayout;
         context.visualElement = useVisualElement(Component3, visualState, configAndProps, createVisualElement, layoutProjection.ProjectionNode);
       }
-      return (0, import_jsx_runtime4.jsxs)(MotionContext.Provider, { value: context, children: [MeasureLayout2 && context.visualElement ? (0, import_jsx_runtime4.jsx)(MeasureLayout2, __spreadValues({ visualElement: context.visualElement }, configAndProps)) : null, useRender(Component3, props, useMotionRef(visualState, context.visualElement, externalRef), visualState, isStatic, context.visualElement)] });
+      return (0, import_jsx_runtime4.jsxs)(MotionContext.Provider, { value: context, children: [MeasureLayout2 && context.visualElement ? (0, import_jsx_runtime4.jsx)(MeasureLayout2, { visualElement: context.visualElement, ...configAndProps }) : null, useRender(Component3, props, useMotionRef(visualState, context.visualElement, externalRef), visualState, isStatic, context.visualElement)] });
     }
     MotionComponent.displayName = `motion.${typeof Component3 === "string" ? Component3 : `create(${(_b = (_a = Component3.displayName) !== null && _a !== void 0 ? _a : Component3.name) !== null && _b !== void 0 ? _b : ""})`}`;
     const ForwardRefMotionComponent = (0, import_react17.forwardRef)(MotionComponent);
@@ -25350,7 +25326,7 @@
     const { drag: drag2, layout: layout2 } = featureDefinitions;
     if (!drag2 && !layout2)
       return {};
-    const combined = __spreadValues(__spreadValues({}, drag2), layout2);
+    const combined = { ...drag2, ...layout2 };
     return {
       MeasureLayout: (drag2 === null || drag2 === void 0 ? void 0 : drag2.isEnabled(props)) || (layout2 === null || layout2 === void 0 ? void 0 : layout2.isEnabled(props)) ? combined.MeasureLayout : void 0,
       ProjectionNode: combined.ProjectionNode
@@ -25469,7 +25445,7 @@
       renderState: createRenderState()
     };
     if (onUpdate) {
-      state.onMount = (instance) => onUpdate(__spreadValues({ props, current: instance }, state));
+      state.onMount = (instance) => onUpdate({ props, current: instance, ...state });
       state.onUpdate = (visualElement) => onUpdate(visualElement);
     }
     return state;
@@ -25503,7 +25479,7 @@
       for (let i = 0; i < list.length; i++) {
         const resolved = resolveVariantFromProps(props, list[i]);
         if (resolved) {
-          const _a = resolved, { transitionEnd, transition } = _a, target = __objRest(_a, ["transitionEnd", "transition"]);
+          const { transitionEnd, transition, ...target } = resolved;
           for (const key in target) {
             let valueTarget = target[key];
             if (Array.isArray(valueTarget)) {
@@ -25577,12 +25553,14 @@
     parse: parseFloat,
     transform: (v) => v
   };
-  var alpha = __spreadProps(__spreadValues({}, number), {
+  var alpha = {
+    ...number,
     transform: (v) => clamp(0, 1, v)
-  });
-  var scale = __spreadProps(__spreadValues({}, number), {
+  };
+  var scale = {
+    ...number,
     default: 1
-  });
+  };
 
   // node_modules/framer-motion/dist/es/value/types/numbers/units.mjs
   var createUnitType = (unit) => ({
@@ -25595,10 +25573,11 @@
   var px = /* @__PURE__ */ createUnitType("px");
   var vh = /* @__PURE__ */ createUnitType("vh");
   var vw = /* @__PURE__ */ createUnitType("vw");
-  var progressPercentage = __spreadProps(__spreadValues({}, percent), {
+  var progressPercentage = {
+    ...percent,
     parse: (v) => percent.parse(v) / 100,
     transform: (v) => percent.transform(v * 100)
-  });
+  };
 
   // node_modules/framer-motion/dist/es/render/dom/value-types/number-browser.mjs
   var browserNumberValueTypes = {
@@ -25668,19 +25647,22 @@
   };
 
   // node_modules/framer-motion/dist/es/render/dom/value-types/type-int.mjs
-  var int = __spreadProps(__spreadValues({}, number), {
+  var int = {
+    ...number,
     transform: Math.round
-  });
+  };
 
   // node_modules/framer-motion/dist/es/render/dom/value-types/number.mjs
-  var numberValueTypes = __spreadProps(__spreadValues(__spreadValues({}, browserNumberValueTypes), transformValueTypes), {
+  var numberValueTypes = {
+    ...browserNumberValueTypes,
+    ...transformValueTypes,
     zIndex: int,
     size: px,
     // SVG
     fillOpacity: alpha,
     strokeOpacity: alpha,
     numOctaves: int
-  });
+  };
 
   // node_modules/framer-motion/dist/es/render/html/utils/build-transform.mjs
   var translateAlias = {
@@ -25790,26 +25772,18 @@
   }
 
   // node_modules/framer-motion/dist/es/render/svg/utils/build-attrs.mjs
-  function buildSVGAttrs(state, _a, isSVGTag2, transformTemplate) {
-    var _b = _a, {
-      attrX,
-      attrY,
-      attrScale,
-      originX,
-      originY,
-      pathLength,
-      pathSpacing = 1,
-      pathOffset = 0
-    } = _b, latest = __objRest(_b, [
-      "attrX",
-      "attrY",
-      "attrScale",
-      "originX",
-      "originY",
-      "pathLength",
-      "pathSpacing",
-      "pathOffset"
-    ]);
+  function buildSVGAttrs(state, {
+    attrX,
+    attrY,
+    attrScale,
+    originX,
+    originY,
+    pathLength,
+    pathSpacing = 1,
+    pathOffset = 0,
+    // This is object creation, which we try to avoid per-frame.
+    ...latest
+  }, isSVGTag2, transformTemplate) {
     buildHTMLStyles(state, latest, transformTemplate);
     if (isSVGTag2) {
       if (state.style.viewBox) {
@@ -25848,7 +25822,8 @@
   });
 
   // node_modules/framer-motion/dist/es/render/svg/utils/create-render-state.mjs
-  var createSvgRenderState = () => __spreadProps(__spreadValues({}, createHtmlRenderState()), {
+  var createSvgRenderState = () => ({
+    ...createHtmlRenderState(),
     attrs: {}
   });
 
@@ -26043,14 +26018,15 @@
     const visualProps = (0, import_react20.useMemo)(() => {
       const state = createSvgRenderState();
       buildSVGAttrs(state, visualState, isSVGTag(Component3), props.transformTemplate);
-      return __spreadProps(__spreadValues({}, state.attrs), {
-        style: __spreadValues({}, state.style)
-      });
+      return {
+        ...state.attrs,
+        style: { ...state.style }
+      };
     }, [visualState]);
     if (props.style) {
       const rawStyles = {};
       copyRawValuesOnly(rawStyles, props.style, props);
-      visualProps.style = __spreadValues(__spreadValues({}, rawStyles), visualProps.style);
+      visualProps.style = { ...rawStyles, ...visualProps.style };
     }
     return visualProps;
   }
@@ -26061,12 +26037,13 @@
       const useVisualProps = isSVGComponent(Component3) ? useSVGProps : useHTMLProps;
       const visualProps = useVisualProps(props, latestValues, isStatic, Component3);
       const filteredProps = filterProps(props, typeof Component3 === "string", forwardMotionProps);
-      const elementProps = Component3 !== import_react21.Fragment ? __spreadProps(__spreadValues(__spreadValues({}, filteredProps), visualProps), { ref }) : {};
+      const elementProps = Component3 !== import_react21.Fragment ? { ...filteredProps, ...visualProps, ref } : {};
       const { children } = props;
       const renderedChildren = (0, import_react21.useMemo)(() => isMotionValue(children) ? children.get() : children, [children]);
-      return (0, import_react21.createElement)(Component3, __spreadProps(__spreadValues({}, elementProps), {
+      return (0, import_react21.createElement)(Component3, {
+        ...elementProps,
         children: renderedChildren
-      }));
+      });
     };
     return useRender;
   }
@@ -26075,12 +26052,13 @@
   function createMotionComponentFactory(preloadedFeatures, createVisualElement) {
     return function createMotionComponent2(Component3, { forwardMotionProps } = { forwardMotionProps: false }) {
       const baseConfig = isSVGComponent(Component3) ? svgMotionConfig : htmlMotionConfig;
-      const config = __spreadProps(__spreadValues({}, baseConfig), {
+      const config = {
+        ...baseConfig,
         preloadedFeatures,
         useRender: createUseRender(forwardMotionProps),
         createVisualElement,
         Component: Component3
-      });
+      };
       return createRendererMotionComponent(config);
     };
   }
@@ -26317,11 +26295,11 @@
   function setupGesture(elementOrSelector, options) {
     const elements = resolveElements(elementOrSelector);
     const gestureAbortController = new AbortController();
-    const eventOptions = __spreadProps(__spreadValues({
-      passive: true
-    }, options), {
+    const eventOptions = {
+      passive: true,
+      ...options,
       signal: gestureAbortController.signal
-    });
+    };
     const cancel = () => gestureAbortController.abort();
     return [elements, eventOptions, cancel];
   }
@@ -26843,8 +26821,8 @@
   }
   function setTarget(visualElement, definition) {
     const resolved = resolveVariant(visualElement, definition);
-    let _a = resolved || {}, { transitionEnd = {}, transition = {} } = _a, target = __objRest(_a, ["transitionEnd", "transition"]);
-    target = __spreadValues(__spreadValues({}, target), transitionEnd);
+    let { transitionEnd = {}, transition = {}, ...target } = resolved || {};
+    target = { ...target, ...transitionEnd };
     for (const key in target) {
       const value = resolveFinalValueInKeyframes(target[key]);
       setMotionValue(visualElement, key, value);
@@ -26965,9 +26943,10 @@
 
   // node_modules/framer-motion/dist/es/value/types/color/rgba.mjs
   var clampRgbUnit = (v) => clamp(0, 255, v);
-  var rgbUnit = __spreadProps(__spreadValues({}, number), {
+  var rgbUnit = {
+    ...number,
     transform: (v) => Math.round(clampRgbUnit(v))
-  });
+  };
   var rgba = {
     test: /* @__PURE__ */ isColorString("rgb", "red"),
     parse: /* @__PURE__ */ splitColor("red", "green", "blue"),
@@ -27131,15 +27110,17 @@
     return name + "(" + defaultValue + unit + ")";
   }
   var functionRegex = /\b([a-z-]*)\(.*?\)/gu;
-  var filter = __spreadProps(__spreadValues({}, complex), {
+  var filter = {
+    ...complex,
     getAnimatableNone: (v) => {
       const functions = v.match(functionRegex);
       return functions ? functions.map(applyDefaultFilter).join(" ") : v;
     }
-  });
+  };
 
   // node_modules/framer-motion/dist/es/render/dom/value-types/defaults.mjs
-  var defaultValueTypes = __spreadProps(__spreadValues({}, numberValueTypes), {
+  var defaultValueTypes = {
+    ...numberValueTypes,
     // Color props
     color,
     backgroundColor: color,
@@ -27154,7 +27135,7 @@
     borderLeftColor: color,
     filter,
     WebkitFilter: filter
-  });
+  };
   var getDefaultValueType = (key) => defaultValueTypes[key];
 
   // node_modules/framer-motion/dist/es/render/dom/value-types/animatable-none.mjs
@@ -27546,19 +27527,19 @@
   // node_modules/framer-motion/dist/es/animation/animators/BaseAnimation.mjs
   var MAX_RESOLVE_DELAY = 40;
   var BaseAnimation = class {
-    constructor(_a) {
-      var _b = _a, { autoplay = true, delay: delay2 = 0, type = "keyframes", repeat = 0, repeatDelay = 0, repeatType = "loop" } = _b, options = __objRest(_b, ["autoplay", "delay", "type", "repeat", "repeatDelay", "repeatType"]);
+    constructor({ autoplay = true, delay: delay2 = 0, type = "keyframes", repeat = 0, repeatDelay = 0, repeatType = "loop", ...options }) {
       this.isStopped = false;
       this.hasAttemptedResolve = false;
       this.createdAt = time.now();
-      this.options = __spreadValues({
+      this.options = {
         autoplay,
         delay: delay2,
         type,
         repeat,
         repeatDelay,
-        repeatType
-      }, options);
+        repeatType,
+        ...options
+      };
       this.updateFinishedPromise();
     }
     /**
@@ -27609,10 +27590,11 @@
       const resolvedAnimation = this.initPlayback(keyframes2, finalKeyframe);
       if (resolvedAnimation === false)
         return;
-      this._resolved = __spreadValues({
+      this._resolved = {
         keyframes: keyframes2,
-        finalKeyframe
-      }, resolvedAnimation);
+        finalKeyframe,
+        ...resolvedAnimation
+      };
       this.onPostResolved();
     }
     onPostResolved() {
@@ -27709,7 +27691,7 @@
     if (!fromRGBA || !toRGBA) {
       return mixImmediate(from, to);
     }
-    const blended = __spreadValues({}, fromRGBA);
+    const blended = { ...fromRGBA };
     return (v) => {
       blended.red = mixLinearColor(fromRGBA.red, toRGBA.red, v);
       blended.green = mixLinearColor(fromRGBA.green, toRGBA.green, v);
@@ -27761,7 +27743,7 @@
     };
   }
   function mixObject(a, b) {
-    const output = __spreadValues(__spreadValues({}, a), b);
+    const output = { ...a, ...b };
     const blendValue = {};
     for (const key in output) {
       if (a[key] !== void 0 && b[key] !== void 0) {
@@ -27928,29 +27910,33 @@
     return keys2.some((key) => options[key] !== void 0);
   }
   function getSpringOptions(options) {
-    let springOptions = __spreadValues({
+    let springOptions = {
       velocity: springDefaults.velocity,
       stiffness: springDefaults.stiffness,
       damping: springDefaults.damping,
       mass: springDefaults.mass,
-      isResolvedFromDuration: false
-    }, options);
+      isResolvedFromDuration: false,
+      ...options
+    };
     if (!isSpringType(options, physicsKeys) && isSpringType(options, durationKeys)) {
       if (options.visualDuration) {
         const visualDuration = options.visualDuration;
         const root2 = 2 * Math.PI / (visualDuration * 1.2);
         const stiffness = root2 * root2;
         const damping = 2 * clamp(0.05, 1, 1 - (options.bounce || 0)) * Math.sqrt(stiffness);
-        springOptions = __spreadProps(__spreadValues({}, springOptions), {
+        springOptions = {
+          ...springOptions,
           mass: springDefaults.mass,
           stiffness,
           damping
-        });
+        };
       } else {
         const derived = findSpring(options);
-        springOptions = __spreadProps(__spreadValues(__spreadValues({}, springOptions), derived), {
+        springOptions = {
+          ...springOptions,
+          ...derived,
           mass: springDefaults.mass
-        });
+        };
         springOptions.isResolvedFromDuration = true;
       }
     }
@@ -27966,9 +27952,10 @@
     const origin = options.keyframes[0];
     const target = options.keyframes[options.keyframes.length - 1];
     const state = { done: false, value: origin };
-    const { stiffness, damping, mass, duration, velocity, isResolvedFromDuration } = getSpringOptions(__spreadProps(__spreadValues({}, options), {
+    const { stiffness, damping, mass, duration, velocity, isResolvedFromDuration } = getSpringOptions({
+      ...options,
       velocity: -millisecondsToSeconds(options.velocity || 0)
-    }));
+    });
     const initialVelocity = velocity || 0;
     const dampingRatio = damping / (2 * Math.sqrt(stiffness * mass));
     const initialDelta = target - origin;
@@ -28281,12 +28268,13 @@
         mapPercentToKeyframes = pipe(percentToProgress, mix(keyframes$1[0], keyframes$1[1]));
         keyframes$1 = [0, 100];
       }
-      const generator = generatorFactory(__spreadProps(__spreadValues({}, this.options), { keyframes: keyframes$1 }));
+      const generator = generatorFactory({ ...this.options, keyframes: keyframes$1 });
       if (repeatType === "mirror") {
-        mirroredGenerator = generatorFactory(__spreadProps(__spreadValues({}, this.options), {
+        mirroredGenerator = generatorFactory({
+          ...this.options,
           keyframes: [...keyframes$1].reverse(),
           velocity: -velocity
-        }));
+        });
       }
       if (generator.calculatedDuration === null) {
         generator.calculatedDuration = calcGeneratorDuration(generator);
@@ -28529,12 +28517,13 @@
     return isGenerator(options.type) || options.type === "spring" || !isWaapiSupportedEasing(options.ease);
   }
   function pregenerateKeyframes(keyframes2, options) {
-    const sampleAnimation = new MainThreadAnimation(__spreadProps(__spreadValues({}, options), {
+    const sampleAnimation = new MainThreadAnimation({
+      ...options,
       keyframes: keyframes2,
       repeat: 0,
       delay: 0,
       isGenerator: true
-    }));
+    });
     let state = { done: false, value: keyframes2[0] };
     const pregeneratedKeyframes = [];
     let t = 0;
@@ -28574,7 +28563,7 @@
         ease2 = unsupportedEasingFunctions[ease2];
       }
       if (requiresPregeneratedKeyframes(this.options)) {
-        const _a = this.options, { onComplete, onUpdate, motionValue: motionValue3, element } = _a, options = __objRest(_a, ["onComplete", "onUpdate", "motionValue", "element"]);
+        const { onComplete, onUpdate, motionValue: motionValue3, element, ...options } = this.options;
         const pregeneratedAnimation = pregenerateKeyframes(keyframes2, options);
         keyframes2 = pregeneratedAnimation.keyframes;
         if (keyframes2.length === 1) {
@@ -28585,7 +28574,7 @@
         ease2 = pregeneratedAnimation.ease;
         type = "keyframes";
       }
-      const animation = startWaapiAnimation(motionValue2.owner.current, name, keyframes2, __spreadProps(__spreadValues({}, this.options), { duration, times, ease: ease2 }));
+      const animation = startWaapiAnimation(motionValue2.owner.current, name, keyframes2, { ...this.options, duration, times, ease: ease2 });
       animation.startTime = startTime !== null && startTime !== void 0 ? startTime : this.calcStartTime();
       if (this.pendingTimeline) {
         attachTimeline(animation, this.pendingTimeline);
@@ -28707,15 +28696,16 @@
         return;
       }
       if (this.time) {
-        const _a = this.options, { motionValue: motionValue2, onUpdate, onComplete, element } = _a, options = __objRest(_a, ["motionValue", "onUpdate", "onComplete", "element"]);
-        const sampleAnimation = new MainThreadAnimation(__spreadProps(__spreadValues({}, options), {
+        const { motionValue: motionValue2, onUpdate, onComplete, element, ...options } = this.options;
+        const sampleAnimation = new MainThreadAnimation({
+          ...options,
           keyframes: keyframes2,
           duration,
           type,
           ease: ease2,
           times,
           isGenerator: true
-        }));
+        });
         const sampleTime = secondsToMilliseconds(this.time);
         motionValue2.setWithVelocity(sampleAnimation.sample(sampleTime - sampleDelta).value, sampleAnimation.sample(sampleTime).value, sampleDelta);
       }
@@ -28781,8 +28771,7 @@
   };
 
   // node_modules/framer-motion/dist/es/animation/utils/is-transition-defined.mjs
-  function isTransitionDefined(_a) {
-    var _b = _a, { when, delay: _delay, delayChildren, staggerChildren, staggerDirection, repeat, repeatType, repeatDelay, from, elapsed } = _b, transition = __objRest(_b, ["when", "delay", "delayChildren", "staggerChildren", "staggerDirection", "repeat", "repeatType", "repeatDelay", "from", "elapsed"]);
+  function isTransitionDefined({ when, delay: _delay, delayChildren, staggerChildren, staggerDirection, repeat, repeatType, repeatDelay, from, elapsed, ...transition }) {
     return !!Object.keys(transition).length;
   }
 
@@ -28792,11 +28781,11 @@
     const delay2 = valueTransition.delay || transition.delay || 0;
     let { elapsed = 0 } = transition;
     elapsed = elapsed - secondsToMilliseconds(delay2);
-    let options = __spreadProps(__spreadValues({
+    let options = {
       keyframes: Array.isArray(target) ? target : [null, target],
       ease: "easeOut",
-      velocity: value.getVelocity()
-    }, valueTransition), {
+      velocity: value.getVelocity(),
+      ...valueTransition,
       delay: -elapsed,
       onUpdate: (v) => {
         value.set(v);
@@ -28809,9 +28798,12 @@
       name,
       motionValue: value,
       element: isHandoff ? void 0 : element
-    });
+    };
     if (!isTransitionDefined(valueTransition)) {
-      options = __spreadValues(__spreadValues({}, options), getDefaultTransition(name, options));
+      options = {
+        ...options,
+        ...getDefaultTransition(name, options)
+      };
     }
     if (options.duration) {
       options.duration = secondsToMilliseconds(options.duration);
@@ -28859,7 +28851,7 @@
   }
   function animateTarget(visualElement, targetAndTransition, { delay: delay2 = 0, transitionOverride, type } = {}) {
     var _a;
-    let _a2 = targetAndTransition, { transition = visualElement.getDefaultTransition(), transitionEnd } = _a2, target = __objRest(_a2, ["transition", "transitionEnd"]);
+    let { transition = visualElement.getDefaultTransition(), transitionEnd, ...target } = targetAndTransition;
     if (transitionOverride)
       transition = transitionOverride;
     const animations2 = [];
@@ -28870,9 +28862,10 @@
       if (valueTarget === void 0 || animationTypeState && shouldBlockAnimation(animationTypeState, key)) {
         continue;
       }
-      const valueTransition = __spreadValues({
-        delay: delay2
-      }, getValueTransition(transition || {}, key));
+      const valueTransition = {
+        delay: delay2,
+        ...getValueTransition(transition || {}, key)
+      };
       let isHandoff = false;
       if (window.MotionHandoffAnimation) {
         const appearId = getOptimisedAppearId(visualElement);
@@ -28928,9 +28921,10 @@
     const generateStaggerDuration = staggerDirection === 1 ? (i = 0) => i * staggerChildren : (i = 0) => maxStaggerDuration - i * staggerChildren;
     Array.from(visualElement.variantChildren).sort(sortByTreeOrder).forEach((child, i) => {
       child.notify("AnimationStart", variant);
-      animations2.push(animateVariant(child, variant, __spreadProps(__spreadValues({}, options), {
+      animations2.push(animateVariant(child, variant, {
+        ...options,
         delay: delayChildren + generateStaggerDuration(i)
-      })).then(() => child.notify("AnimationComplete", variant)));
+      }).then(() => child.notify("AnimationComplete", variant)));
     });
     return Promise.all(animations2);
   }
@@ -28993,8 +28987,8 @@
       var _a;
       const resolved = resolveVariant(visualElement, definition, type === "exit" ? (_a = visualElement.presenceContext) === null || _a === void 0 ? void 0 : _a.custom : void 0);
       if (resolved) {
-        const _a2 = resolved, { transition, transitionEnd } = _a2, target = __objRest(_a2, ["transition", "transitionEnd"]);
-        acc = __spreadValues(__spreadValues(__spreadValues({}, acc), target), transitionEnd);
+        const { transition, transitionEnd, ...target } = resolved;
+        acc = { ...acc, ...target, ...transitionEnd };
       }
       return acc;
     };
@@ -29020,7 +29014,7 @@
         if (isInherited && isInitialRender && visualElement.manuallyAnimateOnMount) {
           isInherited = false;
         }
-        typeState.protectedKeys = __spreadValues({}, encounteredKeys);
+        typeState.protectedKeys = { ...encounteredKeys };
         if (
           // If it isn't active and hasn't *just* been set as inactive
           !typeState.isActive && activeDelta === null || // If we didn't and don't have any defined prop for this animation type
@@ -29039,7 +29033,10 @@
         if (activeDelta === false)
           resolvedValues = {};
         const { prevResolvedValues = {} } = typeState;
-        const allKeys = __spreadValues(__spreadValues({}, prevResolvedValues), resolvedValues);
+        const allKeys = {
+          ...prevResolvedValues,
+          ...resolvedValues
+        };
         const markToAnimate = (key) => {
           shouldAnimateType = true;
           if (removedKeys.has(key)) {
@@ -29077,7 +29074,7 @@
         typeState.prevProp = prop;
         typeState.prevResolvedValues = resolvedValues;
         if (typeState.isActive) {
-          encounteredKeys = __spreadValues(__spreadValues({}, encounteredKeys), resolvedValues);
+          encounteredKeys = { ...encounteredKeys, ...resolvedValues };
         }
         if (isInitialRender && visualElement.blockInitialAnimation) {
           shouldAnimateType = false;
@@ -29300,7 +29297,7 @@
           return;
         const { point: point3 } = info2;
         const { timestamp: timestamp2 } = frameData;
-        this.history.push(__spreadProps(__spreadValues({}, point3), { timestamp: timestamp2 }));
+        this.history.push({ ...point3, timestamp: timestamp2 });
         const { onStart, onMove } = this.handlers;
         if (!isPanStarted) {
           onStart && onStart(this.lastMoveEvent, info2);
@@ -29336,7 +29333,7 @@
       const initialInfo = transformPoint(info, this.transformPagePoint);
       const { point: point2 } = initialInfo;
       const { timestamp } = frameData;
-      this.history = [__spreadProps(__spreadValues({}, point2), { timestamp })];
+      this.history = [{ ...point2, timestamp }];
       const { onSessionStart } = handlers;
       onSessionStart && onSessionStart(event, getPanInfo(initialInfo, this.history));
       this.removeListeners = pipe(addPointerEvent(this.contextWindow, "pointermove", this.handlePointerMove), addPointerEvent(this.contextWindow, "pointerup", this.handlePointerUp), addPointerEvent(this.contextWindow, "pointercancel", this.handlePointerUp));
@@ -29870,15 +29867,17 @@
           transition = { min: 0, max: 0 };
         const bounceStiffness = dragElastic ? 200 : 1e6;
         const bounceDamping = dragElastic ? 40 : 1e7;
-        const inertia2 = __spreadValues(__spreadValues({
+        const inertia2 = {
           type: "inertia",
           velocity: dragMomentum ? velocity[axis] : 0,
           bounceStiffness,
           bounceDamping,
           timeConstant: 750,
           restDelta: 1,
-          restSpeed: 10
-        }, dragTransition), transition);
+          restSpeed: 10,
+          ...dragTransition,
+          ...transition
+        };
         return this.startAxisValueAnimation(axis, inertia2);
       });
       return Promise.all(momentumAnimations).then(onDragTransitionEnd);
@@ -30005,14 +30004,15 @@
     getProps() {
       const props = this.visualElement.getProps();
       const { drag: drag2 = false, dragDirectionLock = false, dragPropagation = false, dragConstraints = false, dragElastic = defaultElastic, dragMomentum = true } = props;
-      return __spreadProps(__spreadValues({}, props), {
+      return {
+        ...props,
         drag: drag2,
         dragDirectionLock,
         dragPropagation,
         dragConstraints,
         dragElastic,
         dragMomentum
-      });
+      };
     }
   };
   function shouldDrag(direction, drag2, currentDirection) {
@@ -30176,9 +30176,10 @@
         projection.addEventListener("animationComplete", () => {
           this.safeToRemove();
         });
-        projection.setOptions(__spreadProps(__spreadValues({}, projection.options), {
+        projection.setOptions({
+          ...projection.options,
           onExitComplete: () => this.safeToRemove()
-        }));
+        });
       }
       globalProjectionState.hasEverUpdated = true;
     }
@@ -30240,17 +30241,18 @@
   function MeasureLayout(props) {
     const [isPresent, safeToRemove] = usePresence();
     const layoutGroup = (0, import_react22.useContext)(LayoutGroupContext);
-    return (0, import_jsx_runtime5.jsx)(MeasureLayoutWithContext, __spreadProps(__spreadValues({}, props), { layoutGroup, switchLayoutGroup: (0, import_react22.useContext)(SwitchLayoutGroupContext), isPresent, safeToRemove }));
+    return (0, import_jsx_runtime5.jsx)(MeasureLayoutWithContext, { ...props, layoutGroup, switchLayoutGroup: (0, import_react22.useContext)(SwitchLayoutGroupContext), isPresent, safeToRemove });
   }
   var defaultScaleCorrectors = {
-    borderRadius: __spreadProps(__spreadValues({}, correctBorderRadius), {
+    borderRadius: {
+      ...correctBorderRadius,
       applyTo: [
         "borderTopLeftRadius",
         "borderTopRightRadius",
         "borderBottomLeftRadius",
         "borderBottomRightRadius"
       ]
-    }),
+    },
     borderTopLeftRadius: correctBorderRadius,
     borderTopRightRadius: correctBorderRadius,
     borderBottomLeftRadius: correctBorderRadius,
@@ -30727,10 +30729,11 @@
                 this.resumingFrom.resumingFrom = void 0;
               }
               this.setAnimationOrigin(delta, hasOnlyRelativeTargetChanged);
-              const animationOptions = __spreadProps(__spreadValues({}, getValueTransition(layoutTransition, "layout")), {
+              const animationOptions = {
+                ...getValueTransition(layoutTransition, "layout"),
                 onPlay: onLayoutAnimationStart,
                 onComplete: onLayoutAnimationComplete
-              });
+              };
               if (visualElement.shouldReduceMotion || this.options.layoutRoot) {
                 animationOptions.delay = 0;
                 animationOptions.type = false;
@@ -31019,9 +31022,11 @@
         this.isProjectionDirty = true;
       }
       setOptions(options) {
-        this.options = __spreadProps(__spreadValues(__spreadValues({}, this.options), options), {
+        this.options = {
+          ...this.options,
+          ...options,
           crossfade: options.crossfade !== void 0 ? options.crossfade : true
-        });
+        };
       }
       clearMeasurements() {
         this.scroll = void 0;
@@ -31196,7 +31201,7 @@
       setAnimationOrigin(delta, hasOnlyRelativeTargetChanged = false) {
         const snapshot = this.snapshot;
         const snapshotLatestValues = snapshot ? snapshot.latestValues : {};
-        const mixedValues = __spreadValues({}, this.latestValues);
+        const mixedValues = { ...this.latestValues };
         const targetDelta = createDelta();
         if (!this.relativeParent || !this.relativeParent.options.layoutRoot) {
           this.relativeTarget = this.relativeTargetOrigin = void 0;
@@ -31248,7 +31253,8 @@
         }
         this.pendingAnimation = frame.update(() => {
           globalProjectionState.hasAnimatedSinceResize = true;
-          this.currentAnimation = animateSingleValue(0, animationTarget, __spreadProps(__spreadValues({}, options), {
+          this.currentAnimation = animateSingleValue(0, animationTarget, {
+            ...options,
             onUpdate: (latest) => {
               this.mixTargetDelta(latest);
               options.onUpdate && options.onUpdate(latest);
@@ -31257,7 +31263,7 @@
               options.onComplete && options.onComplete();
               this.completeAnimation();
             }
-          }));
+          });
           if (this.resumingFrom) {
             this.resumingFrom.currentAnimation = this.currentAnimation;
           }
@@ -31752,8 +31758,7 @@
   var fireAllObserverCallbacks = (entries) => {
     entries.forEach(fireObserverCallback);
   };
-  function initIntersectionObserver(_a) {
-    var _b = _a, { root: root2 } = _b, options = __objRest(_b, ["root"]);
+  function initIntersectionObserver({ root: root2, ...options }) {
     const lookupRoot = root2 || document;
     if (!observers.has(lookupRoot)) {
       observers.set(lookupRoot, {});
@@ -31761,7 +31766,7 @@
     const rootObservers = observers.get(lookupRoot);
     const key = JSON.stringify(options);
     if (!rootObservers[key]) {
-      rootObservers[key] = new IntersectionObserver(fireAllObserverCallbacks, __spreadValues({ root: root2 }, options));
+      rootObservers[key] = new IntersectionObserver(fireAllObserverCallbacks, { root: root2, ...options });
     }
     return rootObservers[key];
   }
@@ -31971,8 +31976,8 @@
       const { latestValues, renderState, onUpdate } = visualState;
       this.onUpdate = onUpdate;
       this.latestValues = latestValues;
-      this.baseTarget = __spreadValues({}, latestValues);
-      this.initialValues = props.initial ? __spreadValues({}, latestValues) : {};
+      this.baseTarget = { ...latestValues };
+      this.initialValues = props.initial ? { ...latestValues } : {};
       this.renderState = renderState;
       this.parent = parent;
       this.props = props;
@@ -31987,7 +31992,7 @@
         this.variantChildren = /* @__PURE__ */ new Set();
       }
       this.manuallyAnimateOnMount = Boolean(parent && parent.current);
-      const _a = this.scrapeMotionValuesFromProps(props, {}, this), { willChange } = _a, initialMotionValues = __objRest(_a, ["willChange"]);
+      const { willChange, ...initialMotionValues } = this.scrapeMotionValuesFromProps(props, {}, this);
       for (const key in initialMotionValues) {
         const value = initialMotionValues[key];
         if (latestValues[key] !== void 0 && isMotionValue(value)) {
@@ -32376,7 +32381,12 @@
   };
 
   // node_modules/framer-motion/dist/es/render/components/motion/create.mjs
-  var createMotionComponent = /* @__PURE__ */ createMotionComponentFactory(__spreadValues(__spreadValues(__spreadValues(__spreadValues({}, animations), gestureAnimations), drag), layout), createDomVisualElement);
+  var createMotionComponent = /* @__PURE__ */ createMotionComponentFactory({
+    ...animations,
+    ...gestureAnimations,
+    ...drag,
+    ...layout
+  }, createDomVisualElement);
 
   // node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs
   var motion = /* @__PURE__ */ createDOMMotionComponentProxy(createMotionComponent);
@@ -32721,8 +32731,7 @@
   var resizeListeners = /* @__PURE__ */ new WeakMap();
   var onScrollHandlers = /* @__PURE__ */ new WeakMap();
   var getEventTarget = (element) => element === document.documentElement ? window : element;
-  function scrollInfo(onScroll, _a = {}) {
-    var _b = _a, { container = document.documentElement } = _b, options = __objRest(_b, ["container"]);
+  function scrollInfo(onScroll, { container = document.documentElement, ...options } = {}) {
     let containerHandlers = onScrollHandlers.get(container);
     if (!containerHandlers) {
       containerHandlers = /* @__PURE__ */ new Set();
@@ -32761,7 +32770,7 @@
     const listener = scrollListeners.get(container);
     frame.read(listener, false, true);
     return () => {
-      var _a2;
+      var _a;
       cancelFrame(listener);
       const currentHandlers = onScrollHandlers.get(container);
       if (!currentHandlers)
@@ -32773,7 +32782,7 @@
       scrollListeners.delete(container);
       if (scrollListener) {
         getEventTarget(container).removeEventListener("scroll", scrollListener);
-        (_a2 = resizeListeners.get(container)) === null || _a2 === void 0 ? void 0 : _a2();
+        (_a = resizeListeners.get(container)) === null || _a === void 0 ? void 0 : _a();
         window.removeEventListener("resize", scrollListener);
       }
     };
@@ -32838,9 +32847,8 @@
       }
     }
   }
-  function scroll(onScroll, _a = {}) {
-    var _b = _a, { axis = "y" } = _b, options = __objRest(_b, ["axis"]);
-    const optionsWithDefaults = __spreadValues({ axis }, options);
+  function scroll(onScroll, { axis = "y", ...options } = {}) {
+    const optionsWithDefaults = { axis, ...options };
     return typeof onScroll === "function" ? scrollFunction(onScroll, optionsWithDefaults) : scrollAnimation(onScroll, optionsWithDefaults);
   }
 
@@ -32854,8 +32862,7 @@
     scrollXProgress: motionValue(0),
     scrollYProgress: motionValue(0)
   });
-  function useScroll(_a = {}) {
-    var _b = _a, { container, target, layoutEffect = true } = _b, options = __objRest(_b, ["container", "target", "layoutEffect"]);
+  function useScroll({ container, target, layoutEffect = true, ...options } = {}) {
     const values = useConstant(createScrollMotionValues);
     const useLifecycleEffect = layoutEffect ? useIsomorphicLayoutEffect : import_react24.useEffect;
     useLifecycleEffect(() => {
@@ -32866,10 +32873,11 @@
         values.scrollXProgress.set(x.progress);
         values.scrollY.set(y.current);
         values.scrollYProgress.set(y.progress);
-      }, __spreadProps(__spreadValues({}, options), {
+      }, {
+        ...options,
         container: (container === null || container === void 0 ? void 0 : container.current) || void 0,
         target: (target === null || target === void 0 ? void 0 : target.current) || void 0
-      }));
+      });
     }, [container, target, JSON.stringify(options.offset)]);
     return values;
   }
@@ -32914,9 +32922,10 @@
     const inputRange = args[1 + argOffset];
     const outputRange = args[2 + argOffset];
     const options = args[3 + argOffset];
-    const interpolator = interpolate(inputRange, outputRange, __spreadValues({
-      mixer: getMixer2(outputRange[0])
-    }, options));
+    const interpolator = interpolate(inputRange, outputRange, {
+      mixer: getMixer2(outputRange[0]),
+      ...options
+    });
     return useImmediate ? interpolator(inputValue) : interpolator;
   }
 
@@ -33024,18 +33033,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src, alt, style }, key);
   }
   function Container({ children, style = {} }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: __spreadValues({ maxWidth: 1120, margin: "0 auto", padding: "0 clamp(20px,5vw,48px)" }, style), children });
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { maxWidth: 1120, margin: "0 auto", padding: "0 clamp(20px,5vw,48px)", ...style }, children });
   }
   function Reveal({ children, delay: delay2 = 0, style = {}, from = "bottom" }) {
     const [ref, visible] = useIntersect();
     const tr = `opacity 0.8s ${delay2}ms cubic-bezier(0.16,1,0.3,1), transform 0.8s ${delay2}ms cubic-bezier(0.16,1,0.3,1)`;
     const hidden = from === "scale" ? "scale(0.93) translateY(16px)" : from === "left" ? "translateX(-32px)" : from === "right" ? "translateX(32px)" : "translateY(36px)";
     const shown = from === "scale" ? "scale(1) translateY(0)" : "translate(0)";
-    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { ref, style: __spreadValues({
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { ref, style: {
       opacity: visible ? 1 : 0,
       transform: visible ? shown : hidden,
-      transition: tr
-    }, style), children });
+      transition: tr,
+      ...style
+    }, children });
   }
   function ScrollProgress() {
     const { scrollYProgress } = useScroll();
@@ -33198,7 +33208,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       };
     }, [menuOpen, isMobile]);
     const liSub = [
-      { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DB\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4", href: "https://www.octaloom.com/linkedin-growth-engine-he" },
+      { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-organizations-he" },
       { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D5\u05DE\u05E0\u05DB\u05F4\u05DC\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-executives-he" },
       { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05E2\u05E6\u05DE\u05D0\u05D9\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" }
     ];
@@ -33297,7 +33307,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
               initial: { opacity: 0, y: 6 },
               animate: { opacity: 1, y: 0 },
               exit: { opacity: 0, y: 6 },
-              style: __spreadProps(__spreadValues({}, dropBase), { top: "calc(100% + 10px)", right: 0 }),
+              style: { ...dropBase, top: "calc(100% + 10px)", right: 0 },
               children: [
                 /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
                   "div",
@@ -33310,12 +33320,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
                         "a",
                         {
                           href: "https://www.octaloom.com/linkedin-growth-engine-he",
-                          style: __spreadProps(__spreadValues({}, dropItem), { justifyContent: "space-between" }),
+                          style: { ...dropItem, justifyContent: "space-between" },
                           onMouseEnter: (e) => hDrop(e, true),
                           onMouseLeave: (e) => hDrop(e, false),
                           children: [
                             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("svg", { width: 11, height: 11, viewBox: "0 0 12 12", fill: "none", style: { opacity: 0.45 }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("path", { d: "M8 2l-4 4 4 4", stroke: C.deepPurple, strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round" }) }),
-                            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { children: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF" })
+                            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { children: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DB\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4" })
                           ]
                         }
                       ),
@@ -33325,7 +33335,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
                           initial: { opacity: 0, x: 6 },
                           animate: { opacity: 1, x: 0 },
                           exit: { opacity: 0 },
-                          style: __spreadProps(__spreadValues({}, dropBase), { top: 0, right: "calc(100% + 6px)" }),
+                          style: { ...dropBase, top: 0, right: "calc(100% + 6px)" },
                           children: liSub.map((s, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
                             "a",
                             {
@@ -33379,7 +33389,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           href: "https://www.octaloom.com/linkedin-growth-engine-he",
           onClick: () => setMenuOpen(false),
           style: { display: "block", fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF },
-          children: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF"
+          children: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DB\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4"
         }
       ),
       liSub.map((s, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
@@ -33699,9 +33709,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   function WhatIDoSection({ isMobile }) {
     const liClients = [
       {
-        title: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DB\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4",
+        title: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD",
         desc: "\u05D0\u05E1\u05D8\u05E8\u05D8\u05D2\u05D9\u05D4, \u05E0\u05D9\u05D4\u05D5\u05DC \u05EA\u05D5\u05DB\u05DF \u05D5\u05E0\u05D5\u05DB\u05D7\u05D5\u05EA \u05DE\u05DC\u05D0\u05D4 \u05DC\u05D3\u05E4\u05D9\u05DD \u05E2\u05E1\u05E7\u05D9\u05D9\u05DD, \u05EA\u05D5\u05DB\u05E0\u05D9\u05D5\u05EA \u05E9\u05D2\u05E8\u05D9\u05E8\u05D9 \u05DE\u05D5\u05EA\u05D2 \u05E9\u05D4\u05D5\u05E4\u05DB\u05D5\u05EA \u05D0\u05EA \u05E2\u05D5\u05D1\u05D3\u05D9 \u05D4\u05D0\u05E8\u05D2\u05D5\u05DF \u05DC\u05DE\u05DB\u05E4\u05D9\u05DC\u05D9 \u05DB\u05D7.",
-        href: "https://www.octaloom.com/linkedin-growth-engine-he"
+        href: "https://www.octaloom.com/linkedin-for-organizations-he"
       },
       {
         title: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D5\u05DE\u05E0\u05DB\u05F4\u05DC\u05D9\u05DD",
@@ -34104,7 +34114,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       e.currentTarget.style.color = enter ? C.lime : "rgba(255,255,255,0.5)";
     };
     const serviceLinks = [
-      { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DB\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4", href: "https://www.octaloom.com/linkedin-growth-engine-he" },
+      { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-organizations-he" },
       { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-executives-he" },
       { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05E2\u05E6\u05DE\u05D0\u05D9\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" }
     ];
@@ -34182,7 +34192,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           legalLinks.map((l, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", { href: l.href, style: linkStyle, onMouseEnter: (e) => hov(e, true), onMouseLeave: (e) => hov(e, false), children: l.label }, i))
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h4", { style: __spreadProps(__spreadValues({}, headStyle), { marginBottom: 16 }), children: "Social" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h4", { style: { ...headStyle, marginBottom: 16 }, children: "Social" }),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { display: "flex", gap: 12, flexWrap: "wrap" }, children: socialIcons.map((s, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
             "a",
             {
