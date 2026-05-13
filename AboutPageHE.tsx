@@ -374,7 +374,7 @@ function NavHE() {
       transition: "background 0.4s, box-shadow 0.4s",
       boxShadow: scrolled ? "0 1px 0 rgba(32,30,75,0.06)" : "none",
     }}>
-      <a href="https://www.octaloom.com/he" style={{ display: "flex", alignItems: "center" }}>
+      <a href="https://www.octaloom.com/" style={{ display: "flex", alignItems: "center" }}>
         <img src={LOGO_NAV} alt="OctaLoom" style={{ height: isMobile ? 28 : 36, width: "auto" }} />
       </a>
       {!isMobile && (
