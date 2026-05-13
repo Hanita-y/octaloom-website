@@ -413,7 +413,7 @@ const ORG: any = {
     title: { en: "Ready to Make LinkedIn Work for Your Page, Your Founders, or Your Whole Team?" },
     sub: { en: "Your company page should be building trust while your team builds pipeline. Right now, your competitors are already doing this. Let’s close the gap." },
     cta1: { en: "Book a Free Discovery Call" },
-    note: { en: "(Whether you need company page management, a workshop for your team, or a full employee advocacy program, we’ll figure out the right starting point in one conversation.)" },
+    note: { en: "" },
   },
 }
 
@@ -888,7 +888,12 @@ function OrgCTA() {
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
           </div>
-          <p className="cta__note">{t(ORG.cta.note)}</p>
+          <p className="cta__note">
+            For other LinkedIn services,{" "}
+            <a href="https://www.octaloom.com/linkedin-growth-engine" style={{ color: "var(--purple)", fontWeight: 700, textDecoration: "underline" }}>
+              click here
+            </a>
+          </p>
         </Reveal>
       </div>
     </ColorSection>
