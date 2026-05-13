@@ -20,6 +20,24 @@ const FONT = "'DM Sans', sans-serif"
 const SHADOW_LG = "0 20px 60px rgba(0,0,0,.13)"
 const SHADOW_PURPLE = "0 8px 32px rgba(113,46,172,.25)"
 
+function getLangToggleUrl(isHE: boolean): string {
+  const path = window.location.pathname
+  if (isHE) {
+    const enPath = path.replace(/-he$/, "") || "/"
+    return "https://www.octaloom.com" + enPath
+  } else {
+    if (path === "/" || path === "") return "https://www.octaloom.com/"
+    return "https://www.octaloom.com" + path.replace(/\/$/, "") + "-he"
+  }
+}
+
+const langToggleStyle: React.CSSProperties = {
+  fontSize: 12, fontWeight: 600, color: "#201e4b",
+  background: "transparent", border: "1px solid rgba(32,30,75,0.22)",
+  borderRadius: 100, padding: "5px 13px", cursor: "pointer",
+  fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", transition: "border-color 0.2s, color 0.2s", letterSpacing: "0.03em",
+}
+
 // ─── Global styles (keyframes + font, injected once) ─────────────────────────
 
 function useGlobalStyles() {
@@ -99,9 +117,9 @@ const pathsData = {
   title: "Who We Help",
   sub: "Three clear buyers. Each one lands on a different deep page — pick yours.",
   cards: [
-    { title: "Companies and Businesses", desc: "Your team is invisible on LinkedIn. Your competitors aren’t. Company page management, workshops, employee advocacy programs, and team training, built to activate both the people who work for you and the brand they represent.", tag: "Most Popular", cta: "See our organizations program", href: "/linkedin-for-organizations" },
-    { title: "B2B SaaS Founders & SMB Owners", desc: "You know LinkedIn matters. You also know you haven’t posted in months. Ongoing page management, founder thought leadership, and inbound lead generation, built around your calendar instead of the other way around.", cta: "See how we work with founders", href: "/linkedin-for-executives" },
-    { title: "Coaches, Consultants & Solopreneurs", desc: "Your profile is costing you clients. Not because you’re bad at what you do, but because your profile doesn’t signal it. Profile building, content system, and one-time setup or ongoing support, whichever you actually need.", cta: "See our solopreneur setup", href: "/linkedin-for-solopreneurs" },
+    { title: "Companies and Businesses", desc: "Your team is invisible on LinkedIn. Your competitors aren’t. Company page management, workshops, employee advocacy programs, and team training, built to activate both the people who work for you and the brand they represent.", tag: "Most Popular", cta: "See our organizations program", href: "https://www.octaloom.com/linkedin-for-organizations" },
+    { title: "B2B SaaS Founders & SMB Owners", desc: "You know LinkedIn matters. You also know you haven’t posted in months. Ongoing page management, founder thought leadership, and inbound lead generation, built around your calendar instead of the other way around.", cta: "See how we work with founders", href: "https://www.octaloom.com/linkedin-for-executives" },
+    { title: "Coaches, Consultants & Solopreneurs", desc: "Your profile is costing you clients. Not because you’re bad at what you do, but because your profile doesn’t signal it. Profile building, content system, and one-time setup or ongoing support, whichever you actually need.", cta: "See our solopreneur setup", href: "https://www.octaloom.com/linkedin-for-solopreneurs" },
   ],
 }
 
@@ -342,6 +360,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [linkedinOpen, setLinkedinOpen] = useState(false)
+  const [linkedinExpanded, setLinkedinExpanded] = useState(false)
   const w = useWindowWidth()
   const isMobile = w < 768
 
@@ -357,23 +376,24 @@ function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = (isMobile && menuOpen) ? "hidden" : ""
+    if (!menuOpen) setLinkedinExpanded(false)
     return () => { document.body.style.overflow = "" }
   }, [menuOpen, isMobile])
 
   const linkedinSub = [
-    { label: "LinkedIn for Organizations", href: "/linkedin-for-organizations" },
-    { label: "LinkedIn for Executives",    href: "/linkedin-for-executives" },
-    { label: "LinkedIn for Solopreneurs",  href: "/linkedin-for-solopreneurs" },
+    { label: "LinkedIn for Organizations", href: "https://www.octaloom.com/linkedin-for-organizations" },
+    { label: "LinkedIn for Executives",    href: "https://www.octaloom.com/linkedin-for-executives" },
+    { label: "LinkedIn for Solopreneurs",  href: "https://www.octaloom.com/linkedin-for-solopreneurs" },
   ]
   const otherServices = [
-    { label: "Fractional CMO",   href: "/fractional-cmo" },
-    { label: "AI Tools & Agents", href: "/ai-tools-agents" },
-    { label: "Workshops",         href: "/workshops" },
+    { label: "Fractional CMO",   href: "https://www.octaloom.com/fractional-cmo" },
+    { label: "AI Tools & Agents", href: "https://www.octaloom.com/ai-tools-agents" },
+    { label: "Workshops",         href: "https://www.octaloom.com/workshops" },
   ]
   const navLinks = [
-    { label: "About",   href: "/about" },
-    { label: "Blog",    href: "/blog" },
-    { label: "Contact", href: "/contact" },
+    { label: "About",   href: "https://www.octaloom.com/about" },
+    { label: "Blog",    href: "https://www.octaloom.com/blog" },
+    { label: "Contact", href: "https://www.octaloom.com/contact" },
     { label: "Goodies", href: "https://octagoodies.com" },
   ]
 
@@ -413,7 +433,7 @@ function Navbar() {
         position: "relative", zIndex: 101,
         borderBottom: isMobile && menuOpen ? "1px solid rgba(113,46,172,0.1)" : "none",
       }}>
-        <a href="/" style={{ display: "flex", alignItems: "center" }}>
+        <a href="https://www.octaloom.com/" style={{ display: "flex", alignItems: "center" }}>
           <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
             alt="OctaLoom" style={{ height: 36, width: "auto" }}
             onError={(e: any) => { e.target.style.display="none"; e.target.insertAdjacentHTML("afterend","<span style='font-weight:700;font-size:17px;color:#201e4b'>OctaLoom</span>") }}/>
@@ -436,7 +456,7 @@ function Navbar() {
                     <div style={{ position: "relative" }}
                       onMouseEnter={() => setLinkedinOpen(true)}
                       onMouseLeave={() => setLinkedinOpen(false)}>
-                      <a href="/linkedin-growth-engine" style={dropItem}
+                      <a href="https://www.octaloom.com/linkedin-growth-engine" style={dropItem}
                         onMouseEnter={(e: any) => e.currentTarget.style.background="rgba(113,46,172,0.05)"}
                         onMouseLeave={(e: any) => e.currentTarget.style.background="transparent"}>
                         <span>LinkedIn Growth Engine</span><ChevronRight/>
@@ -478,10 +498,17 @@ function Navbar() {
         )}
 
         {!isMobile && (
-          <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: PURPLE, color: "#fff", textDecoration: "none", fontFamily: FONT, border: "none", cursor: "pointer" }}>
-            Book a Call
-          </button>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <a href={getLangToggleUrl(false)} style={langToggleStyle}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "#712eac"; (e.currentTarget as HTMLAnchorElement).style.color = "#712eac" }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(32,30,75,0.22)"; (e.currentTarget as HTMLAnchorElement).style.color = "#201e4b" }}>
+              &#x05E2;&#x05D1;
+            </a>
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: PURPLE, color: "#fff", textDecoration: "none", fontFamily: FONT, border: "none", cursor: "pointer" }}>
+              Book a Call
+            </button>
+          </div>
         )}
 
         {isMobile && (
@@ -504,16 +531,27 @@ function Navbar() {
       {isMobile && menuOpen && (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "20px 32px 40px" }}>
           <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: PURPLE, margin: "0 0 4px", fontFamily: FONT }}>Services</p>
-          <a href="/linkedin-growth-engine" onClick={() => setMenuOpen(false)}
-            style={{ display: "block", fontSize: 20, color: DEEP_PURPLE, textDecoration: "none", padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FONT }}>
+          <button onClick={() => setLinkedinExpanded(prev => !prev)}
+            style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 20, color: DEEP_PURPLE, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FONT, background: "none", border: "none", cursor: "pointer", width: "100%", textAlign: "left" as const }}>
             LinkedIn Growth Engine
-          </a>
-          {linkedinSub.map((sub, i) => (
-            <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
-              style={{ display: "block", fontSize: 15, color: PURPLE, textDecoration: "none", padding: "7px 0 7px 20px", borderBottom: "1px solid rgba(113,46,172,0.05)", fontFamily: FONT }}>
-              {sub.label}
-            </a>
-          ))}
+            <svg width={11} height={11} viewBox="0 0 12 12" fill="none" style={{ transition: "transform 0.25s", transform: linkedinExpanded ? "rotate(180deg)" : "none", flexShrink: 0 }}><path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
+          <AnimatePresence>
+            {linkedinExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                style={{ overflow: "hidden" }}
+              >
+                {linkedinSub.map((sub, i) => (
+                  <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
+                    style={{ display: "block", fontSize: 15, color: PURPLE, textDecoration: "none", padding: "7px 0 7px 20px", borderBottom: "1px solid rgba(113,46,172,0.05)", fontFamily: FONT }}>
+                    {sub.label}
+                  </a>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
           {otherServices.map((svc, i) => (
             <a key={i} href={svc.href} onClick={() => setMenuOpen(false)}
               style={{ display: "block", fontSize: 20, color: DEEP_PURPLE, textDecoration: "none", padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FONT }}>
@@ -526,11 +564,15 @@ function Navbar() {
               {item.label}
             </a>
           ))}
-          <div style={{ marginTop: 14 }}>
+          <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 10 }}>
             <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
               style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: PURPLE, color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily: FONT, border: "none", cursor: "pointer", width: "100%" }}>
               Book a Free Call
             </button>
+            <a href={getLangToggleUrl(false)}
+              style={{ display: "block", textAlign: "center", padding: "11px 24px", fontSize: 13, fontWeight: 600, color: "#201e4b", borderRadius: 100, fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", border: "1px solid rgba(32,30,75,0.2)", textDecoration: "none", width: "100%", boxSizing: "border-box" as const }}>
+              &#x2190; &#x05E2;&#x05D1;&#x05E8;&#x05D9;&#x05EA;
+            </a>
           </div>
         </div>
       )}
@@ -1078,14 +1120,14 @@ function Footer() {
   const hover = (e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => { (e.currentTarget as HTMLAnchorElement).style.color = enter ? LIME : "rgba(255,255,255,0.5)" }
 
   const serviceLinks = [
-    { label: "LinkedIn for Organizations", href: "/linkedin-for-organizations" },
-    { label: "LinkedIn for Executives",    href: "/linkedin-for-executives" },
-    { label: "LinkedIn for Solopreneurs",  href: "/linkedin-for-solopreneurs" },
+    { label: "LinkedIn for Organizations", href: "https://www.octaloom.com/linkedin-for-organizations" },
+    { label: "LinkedIn for Executives",    href: "https://www.octaloom.com/linkedin-for-executives" },
+    { label: "LinkedIn for Solopreneurs",  href: "https://www.octaloom.com/linkedin-for-solopreneurs" },
   ]
   const otherLinks = [
-    { label: "Fractional CMO",    href: "/fractional-cmo" },
-    { label: "AI Tools & Agents", href: "/ai-tools-agents" },
-    { label: "Workshops",         href: "/workshops" },
+    { label: "Fractional CMO",    href: "https://www.octaloom.com/fractional-cmo" },
+    { label: "AI Tools & Agents", href: "https://www.octaloom.com/ai-tools-agents" },
+    { label: "Workshops",         href: "https://www.octaloom.com/workshops" },
   ]
   const socialIcons = [
     { href: "https://www.linkedin.com/in/hanita-yudovski/", label: "LinkedIn", svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d={LI_PATH}/></svg> },
@@ -1111,7 +1153,7 @@ function Footer() {
           {/* Pages */}
           {!isMobile && <div>
             <h4 style={headStyle}>Pages</h4>
-            {[{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Blog", href: "/blog" }, { label: "Contact", href: "/contact" }].map((p, i) => (
+            {[{ label: "Home", href: "https://www.octaloom.com/" }, { label: "About", href: "https://www.octaloom.com/about" }, { label: "Blog", href: "https://www.octaloom.com/blog" }, { label: "Contact", href: "https://www.octaloom.com/contact" }].map((p, i) => (
               <a key={i} href={p.href} style={linkStyle} onMouseEnter={e => hover(e, true)} onMouseLeave={e => hover(e, false)}>{p.label}</a>
             ))}
           </div>}
@@ -1161,7 +1203,7 @@ function Footer() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 0", borderTop: "1px solid rgba(255,255,255,0.1)", fontSize: 12, color: "rgba(255,255,255,.38)", flexWrap: "wrap", gap: 12, fontFamily: FONT }}>
           <span>© 2026 OctaLoom</span>
           <div style={{ display: "flex", gap: 18 }}>
-            {[{ label: "Privacy", href: "/privacy-policy" }, { label: "Terms", href: "/terms" }, { label: "Accessibility", href: "/accessibility" }].map((l, i) => (
+            {[{ label: "Privacy", href: "https://www.octaloom.com/privacy-policy" }, { label: "Terms", href: "https://www.octaloom.com/terms-of-service" }, { label: "Accessibility", href: "https://www.octaloom.com/accessibility" }].map((l, i) => (
               <a key={i} href={l.href} style={{ color: "rgba(255,255,255,.38)", textDecoration: "none", transition: "color 0.2s", fontFamily: FONT }}
                 onMouseEnter={(e: any) => e.currentTarget.style.color=LIME}
                 onMouseLeave={(e: any) => e.currentTarget.style.color="rgba(255,255,255,.38)"}>

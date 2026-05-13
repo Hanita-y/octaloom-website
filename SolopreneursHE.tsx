@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import * as React from "react"
+import { motion, AnimatePresence } from "framer-motion"
 const { useState, useEffect, useRef, useContext, createContext } = React
 
 function useGlobalStyles() {
@@ -49,6 +50,24 @@ const PURPLE = '#712eac';
 const FONT = "'Discovery', 'Noto Sans Hebrew', sans-serif";
 const BORDER = '#e5e7eb';
 const LI_PATH = 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z';
+
+function getLangToggleUrl(isHE: boolean): string {
+  const path = window.location.pathname
+  if (isHE) {
+    const enPath = path.replace(/-he$/, "") || "/"
+    return "https://www.octaloom.com" + enPath
+  } else {
+    if (path === "/" || path === "") return "https://www.octaloom.com/"
+    return "https://www.octaloom.com" + path.replace(/\/$/, "") + "-he"
+  }
+}
+
+const langToggleStyle: React.CSSProperties = {
+  fontSize: 12, fontWeight: 600, color: "#201e4b",
+  background: "transparent", border: "1px solid rgba(32,30,75,0.22)",
+  borderRadius: 100, padding: "5px 13px", cursor: "pointer",
+  fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", transition: "border-color 0.2s, color 0.2s", letterSpacing: "0.03em",
+}
 
 function useWindowWidth() {
   const [w, setW] = useState(typeof window !== 'undefined' ? window.innerWidth : 1440);
@@ -234,6 +253,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [linkedinOpen, setLinkedinOpen] = useState(false);
+  const [linkedinExpanded, setLinkedinExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const closeTimerRef = useRef<any>(null);
   const liCloseTimerRef = useRef<any>(null);
@@ -248,22 +268,23 @@ function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = (isMobile && menuOpen) ? 'hidden' : '';
+    if (!menuOpen) setLinkedinExpanded(false);
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen, isMobile]);
 
   const linkedinSub = [
-    { label: 'LinkedIn לארגונים', href: 'https://octaloom.com/linkedin-for-organizations' },
-    { label: 'LinkedIn למנהלים', href: 'https://octaloom.com/linkedin-for-executives' },
-    { label: 'LinkedIn לעצמאים', href: 'https://octaloom.com/linkedin-for-solopreneurs' },
+    { label: 'LinkedIn לארגונים', href: 'https://www.octaloom.com/linkedin-for-organizations-he' },
+    { label: 'LinkedIn למנהלים', href: 'https://www.octaloom.com/linkedin-for-executives-he' },
+    { label: 'LinkedIn לעצמאים', href: 'https://www.octaloom.com/linkedin-for-solopreneurs-he' },
   ];
   const otherServices = [
-    { label: 'CMO במיקור חוץ', href: 'https://octaloom.com/fractional-cmo' },
-    { label: 'כלי AI וסוכנים', href: 'https://octaloom.com/ai-tools-agents' },
-    { label: 'סדנאות', href: 'https://octaloom.com/workshops' },
+    { label: 'CMO במיקור חוץ', href: 'https://www.octaloom.com/fractional-cmo-he' },
+    { label: 'כלי AI וסוכנים', href: 'https://www.octaloom.com/ai-tools-agents-he' },
+    { label: 'סדנאות', href: 'https://www.octaloom.com/workshops-he' },
   ];
   const navLinks = [
-    { label: 'אודות', href: 'https://octaloom.com/about-he' },
-    { label: 'בלוג', href: 'https://octaloom.com/blog' },
+    { label: 'אודות', href: 'https://www.octaloom.com/about-he' },
+    { label: 'בלוג', href: 'https://www.octaloom.com/blog-he' },
     { label: 'צרו קשר', href: '#contact' },
     { label: 'Goodies', href: 'https://octagoodies.com' },
   ];
@@ -297,10 +318,10 @@ function Navbar() {
       <div style={{
         maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px,4vw,48px)',
         display: 'grid', gridTemplateColumns: 'auto 1fr auto', alignItems: 'center', gap: 16,
-        direction: dir, position: 'relative', zIndex: 101,
+        direction: isMobile ? 'ltr' : dir, position: 'relative', zIndex: 101,
         ...(isMobile && menuOpen ? { paddingTop: 14, paddingBottom: 14, borderBottom: '1px solid rgba(113,46,172,0.1)' } : {}),
       }}>
-        <a href="https://octaloom.com" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+        <a href="https://www.octaloom.com/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
             alt="OctaLoom" style={{ height: 36, width: 'auto', display: 'block' }}
             onError={(e: any) => { e.target.style.display = 'none'; }} />
@@ -328,7 +349,7 @@ function Navbar() {
                   <div style={{ position: 'relative' }}
                     onMouseEnter={() => { if (liCloseTimerRef.current) clearTimeout(liCloseTimerRef.current); setLinkedinOpen(true); }}
                     onMouseLeave={() => { liCloseTimerRef.current = setTimeout(() => setLinkedinOpen(false), 150); }}>
-                    <a href="https://octaloom.com/linkedin-growth-engine-he" style={{ ...dropItemStyle, flexDirection: 'row-reverse' }}
+                    <a href="https://www.octaloom.com/linkedin-growth-engine-he" style={{ ...dropItemStyle, flexDirection: 'row-reverse' }}
                       onMouseEnter={(e: any) => e.currentTarget.style.background = 'rgba(113,46,172,0.05)'}
                       onMouseLeave={(e: any) => e.currentTarget.style.background = 'transparent'}>
                       <span>מנוע צמיחה LinkedIn</span>
@@ -370,10 +391,17 @@ function Navbar() {
         )}
 
         {!isMobile && (
-          <button onClick={() => window.open('https://calendar.notion.so/meet/octaloom/discovery', '_blank')}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 20px', borderRadius: 100, fontSize: 13, fontWeight: 600, background: 'var(--purple)', color: '#fff', fontFamily, border: 'none', cursor: 'pointer' }}>
-            בואו נדבר
-          </button>
+          <>
+            <a href={getLangToggleUrl(true)} style={langToggleStyle}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "#712eac"; (e.currentTarget as HTMLAnchorElement).style.color = "#712eac" }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(32,30,75,0.22)"; (e.currentTarget as HTMLAnchorElement).style.color = "#201e4b" }}>
+              EN
+            </a>
+            <button onClick={() => window.open('https://calendar.notion.so/meet/octaloom/discovery', '_blank')}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 20px', borderRadius: 100, fontSize: 13, fontWeight: 600, background: 'var(--purple)', color: '#fff', fontFamily, border: 'none', cursor: 'pointer' }}>
+              בואו נדבר
+            </button>
+          </>
         )}
 
         {isMobile && (
@@ -396,16 +424,35 @@ function Navbar() {
       {isMobile && menuOpen && (
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '20px 32px 40px', gap: 0, direction: dir }}>
           <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--purple)', margin: '0 0 4px', fontFamily }}>שירותים</p>
-          <a href="https://octaloom.com/linkedin-growth-engine-he" onClick={() => setMenuOpen(false)}
-            style={{ display: 'block', fontSize: 20, color: 'var(--deep-purple)', textDecoration: 'none', padding: '11px 0', fontWeight: 600, borderBottom: '1px solid rgba(113,46,172,0.08)', fontFamily }}>
-            מנוע צמיחה LinkedIn
-          </a>
-          {linkedinSub.map((sub, i) => (
-            <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
-              style={{ display: 'block', fontSize: 15, color: 'var(--purple)', textDecoration: 'none', padding: '7px 0 7px 20px', borderBottom: '1px solid rgba(113,46,172,0.05)', fontFamily }}>
-              {sub.label}
-            </a>
-          ))}
+          <button
+            onClick={() => setLinkedinExpanded(prev => !prev)}
+            style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between',
+              fontSize: 20, color: 'var(--deep-purple)', padding: '11px 0', fontWeight: 600,
+              borderBottom: '1px solid rgba(113,46,172,0.08)', fontFamily,
+              background: 'none', border: 'none', cursor: 'pointer', textAlign: 'right' as const }}
+          >
+            {'מנוע צמיחה LinkedIn'}
+            <svg width={11} height={11} viewBox="0 0 12 12" fill="none"
+              style={{ transition: 'transform 0.25s', transform: linkedinExpanded ? 'rotate(180deg)' : 'none', flexShrink: 0 }}>
+              <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <AnimatePresence>
+            {linkedinExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                style={{ overflow: 'hidden' }}
+              >
+                {linkedinSub.map((sub, i) => (
+                  <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
+                    style={{ display: 'block', fontSize: 15, color: 'var(--purple)', textDecoration: 'none', padding: '7px 0 7px 20px', borderBottom: '1px solid rgba(113,46,172,0.05)', fontFamily }}>
+                    {sub.label}
+                  </a>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
           {otherServices.map((svc, i) => (
             <a key={i} href={svc.href} onClick={() => setMenuOpen(false)}
               style={{ display: 'block', fontSize: 20, color: 'var(--deep-purple)', textDecoration: 'none', padding: '11px 0', fontWeight: 600, borderBottom: '1px solid rgba(113,46,172,0.08)', fontFamily }}>
@@ -418,11 +465,15 @@ function Navbar() {
               {item.label}
             </a>
           ))}
-          <div style={{ marginTop: 14 }}>
+          <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
             <button onClick={() => window.open('https://calendar.notion.so/meet/octaloom/discovery', '_blank')}
               style={{ display: 'block', textAlign: 'center', padding: '14px 24px', fontSize: 15, fontWeight: 600, background: 'var(--purple)', color: '#fff', borderRadius: 100, fontFamily, border: 'none', cursor: 'pointer', width: '100%' }}>
               קביעת שיחה חינם
             </button>
+            <a href={getLangToggleUrl(true)}
+              style={{ display: 'block', textAlign: 'center', padding: '11px 24px', fontSize: 13, fontWeight: 600, color: '#201e4b', borderRadius: 100, fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", border: '1px solid rgba(32,30,75,0.2)', textDecoration: 'none', width: '100%', boxSizing: 'border-box' as const }}>
+              Switch to English →
+            </a>
           </div>
         </div>
       )}
@@ -439,20 +490,20 @@ function Footer() {
   const hover = (e, enter) => { e.currentTarget.style.color = enter ? LIME : 'rgba(255,255,255,0.5)'; };
 
   const serviceLinks = [
-    { label: 'LinkedIn לארגונים', href: '/linkedin-for-organizations-he' },
-    { label: 'LinkedIn למייסדים ומנכעִלים', href: '/linkedin-for-executives-he' },
-    { label: 'LinkedIn לעצמאים', href: '#' },
+    { label: 'LinkedIn לארגונים', href: 'https://www.octaloom.com/linkedin-for-organizations-he' },
+    { label: 'LinkedIn למייסדים ומנכעִלים', href: 'https://www.octaloom.com/linkedin-for-executives-he' },
+    { label: 'LinkedIn לעצמאים', href: 'https://www.octaloom.com/linkedin-for-solopreneurs-he' },
   ];
   const otherLinks = [
-    { label: 'CMO במיקור חוץ', href: '/fractional-cmo-he' },
-    { label: 'כלי AI וסוכנים', href: '/ai-tools-agents-he' },
-    { label: 'סדנאות', href: '/workshops-he' },
+    { label: 'CMO במיקור חוץ', href: 'https://www.octaloom.com/fractional-cmo-he' },
+    { label: 'כלי AI וסוכנים', href: 'https://www.octaloom.com/ai-tools-agents-he' },
+    { label: 'סדנאות', href: 'https://www.octaloom.com/workshops-he' },
   ];
   const pageLinks = [
-    { label: 'עמוד הבית', href: 'https://octaloom.com' },
-    { label: 'אודות', href: 'https://octaloom.com/about-he' },
-    { label: 'בלוג', href: 'https://octaloom.com/blog' },
-    { label: 'צרו קשר', href: 'https://octaloom.com/contact' },
+    { label: 'עמוד הבית', href: 'https://www.octaloom.com/' },
+    { label: 'אודות', href: 'https://www.octaloom.com/about-he' },
+    { label: 'בלוג', href: 'https://www.octaloom.com/blog-he' },
+    { label: 'צרו קשר', href: 'https://www.octaloom.com/contact-he' },
   ];
   const socialIcons = [
     { href: 'https://www.linkedin.com/in/hanita-yudovski/', label: 'LinkedIn', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d={LI_PATH}/></svg> },
@@ -521,7 +572,7 @@ function Footer() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '22px 0', borderTop: '1px solid rgba(255,255,255,0.1)', fontSize: 12, color: 'rgba(255,255,255,.38)', flexWrap: 'wrap', gap: 12, fontFamily: FONT }}>
           <span>&#169; 2026 OctaLoom</span>
           <div style={{ display: 'flex', gap: 18 }}>
-            {[{ label: 'פרטיות', href: 'https://octaloom.com/privacy-policy' }, { label: 'תנאים', href: 'https://octaloom.com/terms' }, { label: 'נגישות', href: 'https://octaloom.com/accessibility' }].map((l, i) => (
+            {[{ label: 'פרטיות', href: 'https://www.octaloom.com/privacy-policy-he' }, { label: 'תנאים', href: 'https://www.octaloom.com/terms-of-service-he' }, { label: 'נגישות', href: 'https://www.octaloom.com/accessibility-he' }].map((l, i) => (
               <a key={i} href={l.href} style={{ color: 'rgba(255,255,255,.38)', textDecoration: 'none', transition: 'color 0.2s', fontFamily: FONT }}
                 onMouseEnter={(e: any) => e.currentTarget.style.color = LIME}
                 onMouseLeave={(e: any) => e.currentTarget.style.color = 'rgba(255,255,255,.38)'}>

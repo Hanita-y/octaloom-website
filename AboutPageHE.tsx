@@ -2,7 +2,7 @@
 // @framerSupportedLayoutHeight any
 
 import * as React from "react"
-const { useState, useEffect, useRef } = React
+const { useState, useEffect, useRef, useCallback } = React
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 
 // ─── CONSTANTS ────────────────────────────────────────────────────────────────
@@ -23,6 +23,24 @@ const C = {
   white:      "#ffffff",
 }
 const FF = "'Discovery Fs', 'Aeonik', sans-serif"
+
+function getLangToggleUrl(isHE: boolean): string {
+  const path = window.location.pathname
+  if (isHE) {
+    const enPath = path.replace(/-he$/, "") || "/"
+    return "https://www.octaloom.com" + enPath
+  } else {
+    if (path === "/" || path === "") return "https://www.octaloom.com/"
+    return "https://www.octaloom.com" + path.replace(/\/$/, "") + "-he"
+  }
+}
+
+const langToggleStyle: React.CSSProperties = {
+  fontSize: 12, fontWeight: 600, color: "#201e4b",
+  background: "transparent", border: "1px solid rgba(32,30,75,0.22)",
+  borderRadius: 100, padding: "5px 13px", cursor: "pointer",
+  fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", transition: "border-color 0.2s, color 0.2s", letterSpacing: "0.03em",
+}
 
 // ─── HOOKS ────────────────────────────────────────────────────────────────────
 function useWindowSize() {
@@ -360,6 +378,12 @@ function NavHE() {
           {item.label}
         </a>
       ))}
+      <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 10 }}>
+        <a href={getLangToggleUrl(true)}
+          style={{ display: "block", textAlign: "center", padding: "11px 24px", fontSize: 13, fontWeight: 600, color: "#201e4b", borderRadius: 100, fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", border: "1px solid rgba(32,30,75,0.2)", textDecoration: "none", width: "100%", boxSizing: "border-box" as const }}>
+          Switch to English →
+        </a>
+      </div>
     </div>
   )
 
@@ -391,14 +415,20 @@ function NavHE() {
         </div>
       )}
       <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-        <a href="https://www.octaloom.com/about" style={{ fontSize: 13, fontWeight: 700, color: dim, fontFamily: "'Aeonik', sans-serif", padding: "5px 10px" }}>EN</a>
         {!isMobile && (
-          <a href={NOTION_CALENDAR} target="_blank" rel="noopener noreferrer"
-            style={{ display: "inline-flex", alignItems: "center", padding: "9px 20px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 13, fontWeight: 700, fontFamily: FF, transition: "box-shadow 0.25s, transform 0.15s" }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(113,46,172,0.35)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)" }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
-            {"בואו נדבר"}
-          </a>
+          <>
+            <a href={getLangToggleUrl(true)} style={langToggleStyle}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "#712eac"; (e.currentTarget as HTMLAnchorElement).style.color = "#712eac" }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(32,30,75,0.22)"; (e.currentTarget as HTMLAnchorElement).style.color = "#201e4b" }}>
+              EN
+            </a>
+            <a href={NOTION_CALENDAR} target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", padding: "9px 20px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 13, fontWeight: 700, fontFamily: FF, transition: "box-shadow 0.25s, transform 0.15s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(113,46,172,0.35)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)" }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
+              {"בואו נדבר"}
+            </a>
+          </>
         )}
         {isMobile && burger}
       </div>

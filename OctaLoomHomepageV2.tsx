@@ -62,6 +62,26 @@ const F = {
 
 
 
+function getLangToggleUrl(isHE: boolean): string {
+  const path = window.location.pathname
+  if (isHE) {
+    const enPath = path.replace(/-he$/, "") || "/"
+    return "https://www.octaloom.com" + enPath
+  } else {
+    if (path === "/" || path === "") return "https://www.octaloom.com/"
+    return "https://www.octaloom.com" + path.replace(/\/$/, "") + "-he"
+  }
+}
+
+const langToggleStyle: React.CSSProperties = {
+  fontSize: 12, fontWeight: 600, color: "#201e4b",
+  background: "transparent", border: "1px solid rgba(32,30,75,0.22)",
+  borderRadius: 100, padding: "5px 13px", cursor: "pointer",
+  fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", transition: "border-color 0.2s, color 0.2s", letterSpacing: "0.03em",
+}
+
+
+
 // ─── CONTEXT ─────────────────────────────────────────────────────────────────
 
 const LangCtx = createContext<{ lang: string; setLang: (l: string) => void }>({ lang: "he", setLang: () => {} })
@@ -410,15 +430,15 @@ const HP = {
 
     strips: [
 
-      { label: { en: 'LinkedIn for Organizations', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05d0\u05e8\u05d2\u05d5\u05e0\u05d9\u05dd' }, href: '/linkedin-for-organizations-he' },
+      { label: { en: 'LinkedIn for Organizations', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05d0\u05e8\u05d2\u05d5\u05e0\u05d9\u05dd' }, href: 'https://www.octaloom.com/linkedin-for-organizations-he' },
 
-      { label: { en: 'LinkedIn for Executives', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05de\u05d9\u05d9\u05e1\u05d3\u05d9\u05dd' }, href: '/linkedin-for-executives-he' },
+      { label: { en: 'LinkedIn for Executives', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05de\u05d9\u05d9\u05e1\u05d3\u05d9\u05dd' }, href: 'https://www.octaloom.com/linkedin-for-executives-he' },
 
-      { label: { en: 'LinkedIn for Solopreneurs', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05e2\u05e6\u05de\u05d0\u05d9\u05dd' }, href: '/linkedin-for-solopreneurs-he' },
+      { label: { en: 'LinkedIn for Solopreneurs', he: '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05e2\u05e6\u05de\u05d0\u05d9\u05dd' }, href: 'https://www.octaloom.com/linkedin-for-solopreneurs-he' },
 
-      { label: { en: 'Fractional CMO', he: '\u05e9\u05d9\u05d5\u05d5\u05e7 \u05d1\u05de\u05d9\u05e7\u05d5\u05e8 \u05d7\u05d5\u05e5' }, href: '/fractional-cmo-he' },
+      { label: { en: 'Fractional CMO', he: '\u05e9\u05d9\u05d5\u05d5\u05e7 \u05d1\u05de\u05d9\u05e7\u05d5\u05e8 \u05d7\u05d5\u05e5' }, href: 'https://www.octaloom.com/fractional-cmo-he' },
 
-      { label: { en: 'AI Tools & Agents', he: '\u05e1\u05d5\u05db\u05e0\u05d9 \u05d5\u05db\u05dc\u05d9 AI' }, href: '/ai-tools-agents-he' },
+      { label: { en: 'AI Tools & Agents', he: '\u05e1\u05d5\u05db\u05e0\u05d9 \u05d5\u05db\u05dc\u05d9 AI' }, href: 'https://www.octaloom.com/ai-tools-agents-he' },
 
     ],
 
@@ -801,21 +821,21 @@ const HP = {
       {
         title: { en: 'The Marketing Automation Stack You Actually Need in 2026', he: '\u05e1\u05d8\u05d0\u05e7 \u05d4\u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d4 \u05d4\u05e9\u05d9\u05d5\u05d5\u05e7\u05d9\u05ea \u05e9\u05d0\u05ea\u05dd \u05d1\u05d0\u05de\u05ea \u05e6\u05e8\u05d9\u05db\u05d9\u05dd \u05d1-2026' },
         date: 'Feb 20, 2026',
-        href: '/articles/marketing-automation-stack-2026',
+        href: 'https://www.octaloom.com/articles/marketing-automation-stack-2026',
         image: 'https://framerusercontent.com/images/bbc8plIg9FnEbLXe2bsnSB2iSCw.jpeg?width=800',
       },
 
       {
         title: { en: 'Why Most B2B Companies Waste Money on Social Media', he: '\u05dc\u05de\u05d4 \u05e8\u05d5\u05d1 \u05d7\u05d1\u05e8\u05d5\u05ea B2B \u05de\u05d1\u05d6\u05d1\u05d6\u05d5\u05ea \u05db\u05e1\u05e3 \u05e2\u05dc \u05e1\u05d5\u05e9\u05d9\u05d0\u05dc \u05de\u05d3\u05d9\u05d4' },
         date: 'Feb 20, 2026',
-        href: '/articles/b2b-social-media-waste',
+        href: 'https://www.octaloom.com/articles/b2b-social-media-waste',
         image: 'https://framerusercontent.com/images/EvckL6XIpKQUWNyl7s4MPwnzQQ.jpeg?scale-down-to=1024',
       },
 
       {
         title: { en: 'How to Turn LinkedIn Into a Real Sales Channel', he: '\u05d0\u05d9\u05da \u05dc\u05d4\u05e4\u05d5\u05da \u05d0\u05ea \u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05de\u05e0\u05d5\u05e2 \u05de\u05db\u05d9\u05e8\u05d5\u05ea \u05d0\u05de\u05d9\u05ea\u05d9' },
         date: 'Feb 20, 2026',
-        href: '/articles/linkedin-sales-channel',
+        href: 'https://www.octaloom.com/articles/linkedin-sales-channel',
         image: 'https://framerusercontent.com/images/qJXyxrZ0IeCMEfcQxk0bRd2RBwA.jpeg?scale-down-to=1024',
       },
 
@@ -923,11 +943,11 @@ function HPNav() {
 
   const linkedinSub = [
 
-    { en: "LinkedIn for Organizations",             he: "לינקדאין לארגונים",               href: "/linkedin-for-organizations" },
+    { en: "LinkedIn for Organizations",             he: "לינקדאין לארגונים",               href: lang === "he" ? "https://www.octaloom.com/linkedin-for-organizations-he" : "https://www.octaloom.com/linkedin-for-organizations" },
 
-    { en: "LinkedIn for Executives",                he: "לינקדאין למייסדים ומנכ״לים",                href: "/linkedin-for-executives" },
+    { en: "LinkedIn for Executives",                he: "לינקדאין למייסדים ומנכ״לים",                href: lang === "he" ? "https://www.octaloom.com/linkedin-for-executives-he" : "https://www.octaloom.com/linkedin-for-executives" },
 
-    { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים", href: "/linkedin-for-solopreneurs" },
+    { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים", href: lang === "he" ? "https://www.octaloom.com/linkedin-for-solopreneurs-he" : "https://www.octaloom.com/linkedin-for-solopreneurs" },
 
   ]
 
@@ -935,13 +955,13 @@ function HPNav() {
 
   const services = [
 
-    { en: "LinkedIn Growth Engine", he: "מנוע צמיחה בלינקדאין", href: lang === "he" ? "/linkedin-growth-engine-he" : "/linkedin-growth-engine", sub: linkedinSub },
+    { en: "LinkedIn Growth Engine", he: "מנוע צמיחה בלינקדאין", href: lang === "he" ? "https://www.octaloom.com/linkedin-growth-engine-he" : "https://www.octaloom.com/linkedin-growth-engine", sub: linkedinSub },
 
-    { en: "Fractional CMO",         he: "Fractional CMO",                                                                                                    href: "/fractional-cmo",          sub: null },
+    { en: "Fractional CMO",         he: "Fractional CMO",                                                                                                    href: lang === "he" ? "https://www.octaloom.com/fractional-cmo-he" : "https://www.octaloom.com/fractional-cmo",          sub: null },
 
-    { en: "AI Tools & Agents",      he: "כלי AI וסוכנים",                                                                                                href: "/ai-tools-agents",         sub: null },
+    { en: "AI Tools & Agents",      he: "כלי AI וסוכנים",                                                                                                href: lang === "he" ? "https://www.octaloom.com/ai-tools-agents-he" : "https://www.octaloom.com/ai-tools-agents",         sub: null },
 
-    { en: "Workshops",              he: "סדנאות",                                                                                                                              href: "/workshops",               sub: null },
+    { en: "Workshops",              he: "סדנאות",                                                                                                                              href: lang === "he" ? "https://www.octaloom.com/workshops-he" : "https://www.octaloom.com/workshops",               sub: null },
 
   ]
 
@@ -1013,7 +1033,7 @@ function HPNav() {
 
 
 
-        <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+        <a href="https://www.octaloom.com/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
 
           <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
 
@@ -1159,11 +1179,11 @@ function HPNav() {
 
             {([
 
-              { en: "About",   he: "עליי",      href: lang === "he" ? "/about-he" : "/about" },
+              { en: "About",   he: "עליי",      href: lang === "he" ? "https://www.octaloom.com/about-he" : "https://www.octaloom.com/about" },
 
-              { en: "Blog",    he: "בלוג",      href: "/blog" },
+              { en: "Blog",    he: "בלוג",      href: lang === "he" ? "https://www.octaloom.com/blog-he" : "https://www.octaloom.com/blog" },
 
-              { en: "Contact", he: "צור קשר",  href: lang === "he" ? "/contact-he" : "/contact" },
+              { en: "Contact", he: "צור קשר",  href: lang === "he" ? "https://www.octaloom.com/contact-he" : "https://www.octaloom.com/contact" },
 
             ] as {en:string;he:string;href:string}[]).map((item, i) => (
 
@@ -1339,11 +1359,11 @@ function HPNav() {
 
           {([
 
-            { en: "About",   he: "עליי",     href: lang === "he" ? "/about-he" : "/about" },
+            { en: "About",   he: "עליי",     href: lang === "he" ? "https://www.octaloom.com/about-he" : "https://www.octaloom.com/about" },
 
-            { en: "Blog",    he: "בלוג",     href: "/blog" },
+            { en: "Blog",    he: "בלוג",     href: lang === "he" ? "https://www.octaloom.com/blog-he" : "https://www.octaloom.com/blog" },
 
-            { en: "Contact", he: "צור קשר", href: lang === "he" ? "/contact-he" : "/contact" },
+            { en: "Contact", he: "צור קשר", href: lang === "he" ? "https://www.octaloom.com/contact-he" : "https://www.octaloom.com/contact" },
 
             { en: "Goodies", he: "Goodies",   href: "https://octagoodies.com" },
 
@@ -1391,7 +1411,7 @@ function HPNav() {
 
 
 
-          <div style={{ marginTop: 14 }}>
+          <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 10 }}>
 
             <Btn onClick={() => window.dispatchEvent(new Event("open-discovery"))} variant="purple"
 
@@ -1400,6 +1420,11 @@ function HPNav() {
               {hpT(HP.hero.cta1)}
 
             </Btn>
+
+            <a href={getLangToggleUrl(true)}
+              style={{ display: "block", textAlign: "center", padding: "11px 24px", fontSize: 13, fontWeight: 600, color: "#201e4b", borderRadius: 100, fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", border: "1px solid rgba(32,30,75,0.2)", textDecoration: "none", width: "100%", boxSizing: "border-box" as const }}>
+              Switch to English →
+            </a>
 
           </div>
 
@@ -1921,29 +1946,29 @@ function HPServices() {
 
     en: {
 
-      0: "/linkedin-for-organizations",
+      0: "https://www.octaloom.com/linkedin-for-organizations",
 
-      1: "/linkedin-for-executives",
+      1: "https://www.octaloom.com/linkedin-for-executives",
 
-      2: "/linkedin-for-solopreneurs",
+      2: "https://www.octaloom.com/linkedin-for-solopreneurs",
 
-      3: "/fractional-cmo",
+      3: "https://www.octaloom.com/fractional-cmo",
 
-      4: "/ai-tools-agents",
+      4: "https://www.octaloom.com/ai-tools-agents",
 
     },
 
     he: {
 
-      0: "/linkedin-for-organizations-he",
+      0: "https://www.octaloom.com/linkedin-for-organizations-he",
 
-      1: "/linkedin-for-executives-he",
+      1: "https://www.octaloom.com/linkedin-for-executives-he",
 
-      2: "/linkedin-for-solopreneurs-he",
+      2: "https://www.octaloom.com/linkedin-for-solopreneurs-he",
 
-      3: "/fractional-cmo-he",
+      3: "https://www.octaloom.com/fractional-cmo-he",
 
-      4: "/ai-tools-agents-he",
+      4: "https://www.octaloom.com/ai-tools-agents-he",
 
     }
 
@@ -3162,7 +3187,7 @@ function HPBlog() {
 
             <Reveal key={i} delay={i * 120} style={{ height: "100%" }}>
 
-              <a href={(post as any).href || '/blog'}
+              <a href={(post as any).href || 'https://www.octaloom.com/blog'}
                 target="_blank" rel="noopener noreferrer"
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 32px rgba(32,30,75,0.12)" }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none" }}
@@ -3210,7 +3235,7 @@ function HPBlog() {
 
           <div style={{ textAlign: "center" }}>
 
-            <Btn href="/blog" variant="ghost">{hpT(HP.blog.viewAll)}</Btn>
+            <Btn href={lang === "he" ? "https://www.octaloom.com/blog-he" : "https://www.octaloom.com/blog"} variant="ghost">{hpT(HP.blog.viewAll)}</Btn>
 
           </div>
 
@@ -3462,13 +3487,13 @@ function HPFooter() {
 
   const pages = [
 
-    { en: "Home",    he: "דף הבית",  href: "/" },
+    { en: "Home",    he: "דף הבית",  href: "https://www.octaloom.com/" },
 
-    { en: "About",   he: "עליי",      href: lang === "he" ? "/about-he" : "/about" },
+    { en: "About",   he: "עליי",      href: lang === "he" ? "https://www.octaloom.com/about-he" : "https://www.octaloom.com/about" },
 
-    { en: "Blog",    he: "בלוג",     href: "/blog" },
+    { en: "Blog",    he: "בלוג",     href: lang === "he" ? "https://www.octaloom.com/blog-he" : "https://www.octaloom.com/blog" },
 
-    { en: "Contact", he: "צור קשר", href: lang === "he" ? "/contact-he" : "/contact" },
+    { en: "Contact", he: "צור קשר", href: lang === "he" ? "https://www.octaloom.com/contact-he" : "https://www.octaloom.com/contact" },
 
   ]
 
@@ -3478,19 +3503,19 @@ function HPFooter() {
 
   const serviceLinks = [
 
-    { label: { en: "LinkedIn Growth Engine",             he: "מנוע צמיחה בלינקדאין" },          href: lang === "he" ? "/linkedin-growth-engine-he" : "/linkedin-growth-engine", indent: false },
+    { label: { en: "LinkedIn Growth Engine",             he: "מנוע צמיחה בלינקדאין" },          href: lang === "he" ? "https://www.octaloom.com/linkedin-growth-engine-he" : "https://www.octaloom.com/linkedin-growth-engine", indent: false },
 
-    { label: { en: "LinkedIn for Organizations",          he: "לינקדאין לארגונים" },              href: "/linkedin-for-organizations", indent: true  },
+    { label: { en: "LinkedIn for Organizations",          he: "לינקדאין לארגונים" },              href: lang === "he" ? "https://www.octaloom.com/linkedin-for-organizations-he" : "https://www.octaloom.com/linkedin-for-organizations", indent: true  },
 
-    { label: { en: "LinkedIn for Executives",             he: "לינקדאין למייסדים ומנכ״לים" },              href: "/linkedin-for-executives",    indent: true  },
+    { label: { en: "LinkedIn for Executives",             he: "לינקדאין למייסדים ומנכ״לים" },              href: lang === "he" ? "https://www.octaloom.com/linkedin-for-executives-he" : "https://www.octaloom.com/linkedin-for-executives",    indent: true  },
 
-    { label: { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים" }, href: "/linkedin-for-solopreneurs",  indent: true  },
+    { label: { en: "LinkedIn for Solopreneurs & Biz Owners", he: "לינקדאין לעצמאים ובעלי עסקים" }, href: lang === "he" ? "https://www.octaloom.com/linkedin-for-solopreneurs-he" : "https://www.octaloom.com/linkedin-for-solopreneurs",  indent: true  },
 
-    { label: { en: "Fractional CMO",                     he: "Fractional CMO" },                   href: "/fractional-cmo",            indent: false },
+    { label: { en: "Fractional CMO",                     he: "Fractional CMO" },                   href: lang === "he" ? "https://www.octaloom.com/fractional-cmo-he" : "https://www.octaloom.com/fractional-cmo",            indent: false },
 
-    { label: { en: "AI Tools & Agents",                  he: "כלי AI וסוכנים" },                  href: "/ai-tools-agents",           indent: false },
+    { label: { en: "AI Tools & Agents",                  he: "כלי AI וסוכנים" },                  href: lang === "he" ? "https://www.octaloom.com/ai-tools-agents-he" : "https://www.octaloom.com/ai-tools-agents",           indent: false },
 
-    { label: { en: "Workshops",                          he: "סדנאות" },                          href: "/workshops",                 indent: false },
+    { label: { en: "Workshops",                          he: "סדנאות" },                          href: lang === "he" ? "https://www.octaloom.com/workshops-he" : "https://www.octaloom.com/workshops",                 indent: false },
 
   ]
 
@@ -3624,11 +3649,11 @@ function HPFooter() {
 
             {([
 
-              { en: "LinkedIn for Organizations", he: "לינקדאין לארגונים", href: "/linkedin-for-organizations" },
+              { en: "LinkedIn for Organizations", he: "לינקדאין לארגונים", href: lang === "he" ? "https://www.octaloom.com/linkedin-for-organizations-he" : "https://www.octaloom.com/linkedin-for-organizations" },
 
-              { en: "LinkedIn for Founders",      he: "לינקדאין למייסדים ומנכ״לים", href: "/linkedin-for-executives" },
+              { en: "LinkedIn for Founders",      he: "לינקדאין למייסדים ומנכ״לים", href: lang === "he" ? "https://www.octaloom.com/linkedin-for-executives-he" : "https://www.octaloom.com/linkedin-for-executives" },
 
-              { en: "LinkedIn for Solopreneurs",  he: "לינקדאין לעצמאים", href: "/linkedin-for-solopreneurs" },
+              { en: "LinkedIn for Solopreneurs",  he: "לינקדאין לעצמאים", href: lang === "he" ? "https://www.octaloom.com/linkedin-for-solopreneurs-he" : "https://www.octaloom.com/linkedin-for-solopreneurs" },
 
             ] as {en:string;he:string;href:string}[]).map((s, i) => (
 
@@ -3646,11 +3671,11 @@ function HPFooter() {
 
             {([
 
-              { en: "Fractional CMO",    he: "Fractional CMO",                                                href: "/fractional-cmo" },
+              { en: "Fractional CMO",    he: "Fractional CMO",                                                href: lang === "he" ? "https://www.octaloom.com/fractional-cmo-he" : "https://www.octaloom.com/fractional-cmo" },
 
-              { en: "AI Tools & Agents", he: "כלי AI וסוכנים", href: "/ai-tools-agents" },
+              { en: "AI Tools & Agents", he: "כלי AI וסוכנים", href: lang === "he" ? "https://www.octaloom.com/ai-tools-agents-he" : "https://www.octaloom.com/ai-tools-agents" },
 
-              { en: "Workshops",         he: "סדנאות",         href: "/workshops" },
+              { en: "Workshops",         he: "סדנאות",         href: lang === "he" ? "https://www.octaloom.com/workshops-he" : "https://www.octaloom.com/workshops" },
 
             ] as {en:string;he:string;href:string}[]).map((s, i) => (
 
@@ -3752,11 +3777,11 @@ function HPFooter() {
 
             {[
 
-              { label: HP.footer.privacy, href: "/privacy-policy" },
+              { label: HP.footer.privacy, href: lang === "he" ? "https://www.octaloom.com/privacy-policy-he" : "https://www.octaloom.com/privacy-policy" },
 
-              { label: HP.footer.terms,   href: "/terms" },
+              { label: HP.footer.terms,   href: lang === "he" ? "https://www.octaloom.com/terms-of-service-he" : "https://www.octaloom.com/terms-of-service" },
 
-              { label: { en: "Accessibility", he: "נגישות" }, href: "/accessibility" },
+              { label: { en: "Accessibility", he: "נגישות" }, href: lang === "he" ? "https://www.octaloom.com/accessibility-he" : "https://www.octaloom.com/accessibility" },
 
             ].map((l, i) => (
 

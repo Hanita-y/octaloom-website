@@ -2,6 +2,7 @@
 // @framerSupportedLayoutHeight any
 
 import * as React from "react"
+import { motion, AnimatePresence } from "framer-motion"
 const { useState, useEffect, useRef } = React
 
 // ─── Language Lock ──────────────────────────────────────────────────────────
@@ -267,6 +268,24 @@ button{font-family:inherit;border:none;background:none;cursor:pointer}
     `
     document.head.appendChild(s)
   }, [])
+}
+
+function getLangToggleUrl(isHE: boolean): string {
+  const path = window.location.pathname
+  if (isHE) {
+    const enPath = path.replace(/-he$/, "") || "/"
+    return "https://www.octaloom.com" + enPath
+  } else {
+    if (path === "/" || path === "") return "https://www.octaloom.com/"
+    return "https://www.octaloom.com" + path.replace(/\/$/, "") + "-he"
+  }
+}
+
+const langToggleStyle: React.CSSProperties = {
+  fontSize: 12, fontWeight: 600, color: "#201e4b",
+  background: "transparent", border: "1px solid rgba(32,30,75,0.22)",
+  borderRadius: 100, padding: "5px 13px", cursor: "pointer",
+  fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", transition: "border-color 0.2s, color 0.2s", letterSpacing: "0.03em",
 }
 
 // ─── useWindowWidth hook ─────────────────────────────────────────────────────
@@ -605,6 +624,7 @@ function HPNav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [linkedinOpen, setLinkedinOpen] = useState(false)
+  const [linkedinExpanded, setLinkedinExpanded] = useState(false)
   const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" ? window.innerWidth < 768 : false)
   const closeTimerRef = useRef<any>(null)
   const liCloseTimerRef = useRef<any>(null)
@@ -619,22 +639,23 @@ function HPNav() {
 
   useEffect(() => {
     document.body.style.overflow = (isMobile && menuOpen) ? "hidden" : ""
+    if (!menuOpen) setLinkedinExpanded(false)
     return () => { document.body.style.overflow = "" }
   }, [menuOpen, isMobile])
 
   const linkedinSub = [
-    { label: "LinkedIn לארגונים", href: "/linkedin-for-organizations" },
-    { label: "LinkedIn למנהלים", href: "/linkedin-for-executives" },
-    { label: "LinkedIn לעצמאים", href: "/linkedin-for-solopreneurs" },
+    { label: "LinkedIn לארגונים", href: "https://www.octaloom.com/linkedin-for-organizations-he" },
+    { label: "LinkedIn למנהלים", href: "https://www.octaloom.com/linkedin-for-executives-he" },
+    { label: "LinkedIn לעצמאים", href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" },
   ]
   const otherServices = [
-    { label: "CMO במיקור חוץ", href: "/fractional-cmo" },
-    { label: "כלי AI וסוכנים", href: "/ai-tools-agents" },
-    { label: "סדנאות", href: "/workshops" },
+    { label: "CMO במיקור חוץ", href: "https://www.octaloom.com/fractional-cmo-he" },
+    { label: "כלי AI וסוכנים", href: "https://www.octaloom.com/ai-tools-agents-he" },
+    { label: "סדנאות", href: "https://www.octaloom.com/workshops-he" },
   ]
   const navLinks = [
-    { label: "אודות", href: "/about" },
-    { label: "בלוג", href: "/blog" },
+    { label: "אודות", href: "https://www.octaloom.com/about-he" },
+    { label: "בלוג", href: "https://www.octaloom.com/blog-he" },
     { label: "צרו קשר", href: "#contact" },
     { label: "Goodies", href: "https://octagoodies.com" },
   ]
@@ -668,10 +689,10 @@ function HPNav() {
       <div style={{
         maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)",
         display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: 16,
-        direction: dir, position: "relative", zIndex: 101,
+        direction: isMobile ? "ltr" : dir, position: "relative", zIndex: 101,
         ...(isMobile && menuOpen ? { paddingTop: 14, paddingBottom: 14, borderBottom: "1px solid rgba(113,46,172,0.1)" } : {})
       }}>
-        <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+        <a href="https://www.octaloom.com/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png"
             alt="OctaLoom" style={{ height: 36, width: "auto", display: "block" }}
             onError={(e: any) => { e.target.style.display = "none" }} />
@@ -698,7 +719,7 @@ function HPNav() {
                   <div style={{ position: "relative" }}
                     onMouseEnter={() => { if (liCloseTimerRef.current) clearTimeout(liCloseTimerRef.current); setLinkedinOpen(true) }}
                     onMouseLeave={() => { liCloseTimerRef.current = setTimeout(() => setLinkedinOpen(false), 150) }}>
-                    <a href="/linkedin-growth-engine-he" style={{ ...dropItemStyle, flexDirection: "row-reverse" }}
+                    <a href="https://www.octaloom.com/linkedin-growth-engine-he" style={{ ...dropItemStyle, flexDirection: "row-reverse" }}
                       onMouseEnter={(e: any) => e.currentTarget.style.background = "rgba(113,46,172,0.05)"}
                       onMouseLeave={(e: any) => e.currentTarget.style.background = "transparent"}>
                       <span>מנוע צמיחה LinkedIn</span>
@@ -740,10 +761,17 @@ function HPNav() {
         )}
 
         {!isMobile && (
-          <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: "var(--purple)", color: "#fff", textDecoration: "none", fontFamily, border: "none", cursor: "pointer" }}>
-            בואו נדבר
-          </button>
+          <>
+            <a href={getLangToggleUrl(true)} style={langToggleStyle}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "#712eac"; (e.currentTarget as HTMLAnchorElement).style.color = "#712eac" }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(32,30,75,0.22)"; (e.currentTarget as HTMLAnchorElement).style.color = "#201e4b" }}>
+              EN
+            </a>
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: "var(--purple)", color: "#fff", textDecoration: "none", fontFamily, border: "none", cursor: "pointer" }}>
+              בואו נדבר
+            </button>
+          </>
         )}
 
         {isMobile && (
@@ -766,16 +794,35 @@ function HPNav() {
       {isMobile && menuOpen && (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "20px 32px 40px", gap: 0, direction: dir }}>
           <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--purple)", margin: "0 0 4px", fontFamily }}>שירותים</p>
-          <a href="/linkedin-growth-engine-he" onClick={() => setMenuOpen(false)}
-            style={{ display: "block", fontSize: 20, color: "var(--deep-purple)", textDecoration: "none", padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily }}>
-            מנוע צמיחה LinkedIn
-          </a>
-          {linkedinSub.map((sub, i) => (
-            <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
-              style={{ display: "block", fontSize: 15, color: "var(--purple)", textDecoration: "none", padding: "7px 0 7px 20px", borderBottom: "1px solid rgba(113,46,172,0.05)", fontFamily }}>
-              {sub.label}
-            </a>
-          ))}
+          <button
+            onClick={() => setLinkedinExpanded(prev => !prev)}
+            style={{ display: "flex", width: "100%", alignItems: "center", justifyContent: "space-between",
+              fontSize: 20, color: "var(--deep-purple)", padding: "11px 0", fontWeight: 600,
+              borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily,
+              background: "none", border: "none", cursor: "pointer", textAlign: "right" as const }}
+          >
+            {"מנוע צמיחה LinkedIn"}
+            <svg width={11} height={11} viewBox="0 0 12 12" fill="none"
+              style={{ transition: "transform 0.25s", transform: linkedinExpanded ? "rotate(180deg)" : "none", flexShrink: 0 }}>
+              <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <AnimatePresence>
+            {linkedinExpanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                style={{ overflow: "hidden" }}
+              >
+                {linkedinSub.map((sub, i) => (
+                  <a key={i} href={sub.href} onClick={() => setMenuOpen(false)}
+                    style={{ display: "block", fontSize: 15, color: "var(--purple)", textDecoration: "none", padding: "7px 0 7px 20px", borderBottom: "1px solid rgba(113,46,172,0.05)", fontFamily }}>
+                    {sub.label}
+                  </a>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
           {otherServices.map((svc, i) => (
             <a key={i} href={svc.href} onClick={() => setMenuOpen(false)}
               style={{ display: "block", fontSize: 20, color: "var(--deep-purple)", textDecoration: "none", padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily }}>
@@ -788,11 +835,15 @@ function HPNav() {
               {item.label}
             </a>
           ))}
-          <div style={{ marginTop: 14 }}>
+          <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 10 }}>
             <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
               style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: "var(--purple)", color: "#fff", borderRadius: 100, textDecoration: "none", fontFamily, border: "none", cursor: "pointer", width: "100%" }}>
               קביעת שיחה חינם
             </button>
+            <a href={getLangToggleUrl(true)}
+              style={{ display: "block", textAlign: "center", padding: "11px 24px", fontSize: 13, fontWeight: 600, color: "#201e4b", borderRadius: 100, fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", border: "1px solid rgba(32,30,75,0.2)", textDecoration: "none", width: "100%", boxSizing: "border-box" as const }}>
+              Switch to English →
+            </a>
           </div>
         </div>
       )}
@@ -818,25 +869,25 @@ function HPFooter() {
   const hover = (e: any, enter: boolean) => { e.currentTarget.style.color = enter ? "var(--lime)" : "rgba(255,255,255,0.5)" }
 
   const serviceLinks = [
-    { label: "LinkedIn לארגונים", href: "/linkedin-for-organizations" },
-    { label: "LinkedIn למנהלים", href: "/linkedin-for-executives" },
-    { label: "LinkedIn לעצמאים", href: "/linkedin-for-solopreneurs" },
+    { label: "LinkedIn לארגונים", href: "https://www.octaloom.com/linkedin-for-organizations-he" },
+    { label: "LinkedIn למנהלים", href: "https://www.octaloom.com/linkedin-for-executives-he" },
+    { label: "LinkedIn לעצמאים", href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" },
   ]
   const otherLinks = [
-    { label: "CMO במיקור חוץ", href: "/fractional-cmo" },
-    { label: "כלי AI וסוכנים", href: "/ai-tools-agents" },
-    { label: "סדנאות", href: "/workshops" },
+    { label: "CMO במיקור חוץ", href: "https://www.octaloom.com/fractional-cmo-he" },
+    { label: "כלי AI וסוכנים", href: "https://www.octaloom.com/ai-tools-agents-he" },
+    { label: "סדנאות", href: "https://www.octaloom.com/workshops-he" },
   ]
   const pageLinks = [
-    { label: "עמוד הבית", href: "/" },
-    { label: "אודות", href: "/about" },
-    { label: "בלוג", href: "/blog" },
-    { label: "צרו קשר", href: "#contact" },
+    { label: "עמוד הבית", href: "https://www.octaloom.com/" },
+    { label: "אודות", href: "https://www.octaloom.com/about-he" },
+    { label: "בלוג", href: "https://www.octaloom.com/blog-he" },
+    { label: "צרו קשר", href: "https://www.octaloom.com/contact-he" },
   ]
   const legalLinks = [
-    { label: "פרטיות", href: "/privacy-policy" },
-    { label: "תנאים", href: "/terms" },
-    { label: "נגישות", href: "/accessibility" },
+    { label: "פרטיות", href: "https://www.octaloom.com/privacy-policy-he" },
+    { label: "תנאים", href: "https://www.octaloom.com/terms-of-service-he" },
+    { label: "נגישות", href: "https://www.octaloom.com/accessibility-he" },
   ]
   const socialIcons = [
     { href: "https://www.linkedin.com/in/hanita-yudovski/", label: "LinkedIn", svg: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d={LI_SVG} /></svg> },
