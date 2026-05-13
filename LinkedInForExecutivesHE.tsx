@@ -761,7 +761,7 @@ function HPNav() {
         )}
 
         {!isMobile && (
-          <>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <a href={getLangToggleUrl(true)} style={langToggleStyle}
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "#712eac"; (e.currentTarget as HTMLAnchorElement).style.color = "#712eac" }}
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(32,30,75,0.22)"; (e.currentTarget as HTMLAnchorElement).style.color = "#201e4b" }}>
@@ -771,7 +771,7 @@ function HPNav() {
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", borderRadius: 100, fontSize: 13, fontWeight: 600, background: "var(--purple)", color: "#fff", textDecoration: "none", fontFamily, border: "none", cursor: "pointer" }}>
               בואו נדבר
             </button>
-          </>
+          </div>
         )}
 
         {isMobile && (
@@ -1022,9 +1022,9 @@ function VerticalNav() {
   return (
     <div style={{
       position: "fixed", top: "50%", transform: "translateY(-50%)",
-      right: 16, zIndex: 90,
+      left: 16, zIndex: 90,
       display: "flex", flexDirection: "column", gap: 8,
-      alignItems: "flex-end",
+      alignItems: "flex-start",
       transition: "color 0.4s",
     }}>
       {sections.map(s => {
@@ -1034,7 +1034,7 @@ function VerticalNav() {
             onClick={(e: any) => { e.preventDefault(); document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" }) }}
             href={`#${s.id}`}
             title={s.label}
-            style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", textDecoration: "none", flexDirection: "row-reverse" }}>
+            style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", textDecoration: "none", flexDirection: "row" }}>
             <div style={{
               width: isActive ? 9 : 5, height: isActive ? 9 : 5,
               borderRadius: "50%", flexShrink: 0,
