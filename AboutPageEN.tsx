@@ -2,7 +2,7 @@
 // @framerSupportedLayoutHeight any
 
 import * as React from "react"
-const { useState, useEffect, useRef } = React
+const { useState, useEffect, useRef, useCallback } = React
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 
 // ─── CONSTANTS ────────────────────────────────────────────────────────────────
@@ -22,6 +22,8 @@ const C = {
   textDim:    "#5c5878",
   surface:    "#f5f2f0",
   white:      "#ffffff",
+  border:     "#e5e7eb",
+  muted:      "#6b7280",
 }
 const FF = "'Aeonik', sans-serif"
 
@@ -205,6 +207,7 @@ function NavEN() {
   const [menuOpen, setMenuOpen]     = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [linkedinOpen, setLinkedinOpen] = useState(false)
+  const [linkedinExpanded, setLinkedinExpanded] = useState(false)
   const w = useWindowSize()
   const isMobile = w < 768
   const dim = "rgba(32,30,75,0.55)"
@@ -217,6 +220,7 @@ function NavEN() {
 
   useEffect(() => {
     document.body.style.overflow = isMobile && menuOpen ? "hidden" : ""
+    if (!menuOpen) setLinkedinExpanded(false)
     return () => { document.body.style.overflow = "" }
   }, [menuOpen, isMobile])
 
@@ -331,16 +335,27 @@ function NavEN() {
       <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: C.purple, margin: "0 0 4px", fontFamily: FF }}>
         {"Services"}
       </p>
-      <a href="https://www.octaloom.com/linkedin-growth-engine" onClick={() => setMenuOpen(false)}
-        style={{ display: "block", fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF }}>
+      <button onClick={() => setLinkedinExpanded(prev => !prev)}
+        style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF, background: "none", border: "none", cursor: "pointer", width: "100%", textAlign: "left" as const }}>
         {"LinkedIn Growth Engine"}
-      </a>
-      {liSub.map((s, i) => (
-        <a key={i} href={s.href} onClick={() => setMenuOpen(false)}
-          style={{ display: "block", fontSize: 15, color: C.purple, padding: "7px 0 7px 20px", borderBottom: "1px solid rgba(113,46,172,0.05)", fontFamily: FF }}>
-          {s.label}
-        </a>
-      ))}
+        <svg width={11} height={11} viewBox="0 0 12 12" fill="none" style={{ transition: "transform 0.25s", transform: linkedinExpanded ? "rotate(180deg)" : "none", flexShrink: 0 }}><path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      </button>
+      <AnimatePresence>
+        {linkedinExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            style={{ overflow: "hidden" }}
+          >
+            {liSub.map((s, i) => (
+              <a key={i} href={s.href} onClick={() => setMenuOpen(false)}
+                style={{ display: "block", fontSize: 15, color: C.purple, padding: "7px 0 7px 20px", borderBottom: "1px solid rgba(113,46,172,0.05)", fontFamily: FF }}>
+                {s.label}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
       {otherSub.map((s, i) => (
         <a key={i} href={s.href} onClick={() => setMenuOpen(false)}
           style={{ display: "block", fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF }}>
@@ -389,12 +404,12 @@ function NavEN() {
       <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
         <a href="https://www.octaloom.com/about-he" style={{ fontSize: 13, fontWeight: 700, color: dim, fontFamily: FF, padding: "5px 10px" }}>&#1506;&#1489;</a>
         {!isMobile && (
-          <a href={NOTION_CALENDAR} target="_blank" rel="noopener noreferrer"
-            style={{ display: "inline-flex", alignItems: "center", padding: "9px 20px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 13, fontWeight: 700, fontFamily: FF, transition: "box-shadow 0.25s, transform 0.15s" }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(113,46,172,0.35)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)" }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
+          <button onClick={() => window.dispatchEvent(new Event("open-discovery"))}
+            style={{ display: "inline-flex", alignItems: "center", padding: "9px 20px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 13, fontWeight: 700, fontFamily: FF, border: "none", cursor: "pointer", transition: "box-shadow 0.25s, transform 0.15s" }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(113,46,172,0.35)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)" }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "none" }}>
             {"Let’s Talk"}
-          </a>
+          </button>
         )}
         {isMobile && burger}
       </div>
@@ -489,12 +504,12 @@ function HeroSection({ isMobile }: { isMobile: boolean }) {
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: dur, delay: 0.58, ease }}
             style={{ display: "flex", gap: 12, flexWrap: "wrap" as const }}>
-            <a href={NOTION_CALENDAR} target="_blank" rel="noopener noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 15, fontWeight: 700, fontFamily: FF, transition: "box-shadow 0.25s, transform 0.15s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 28px rgba(113,46,172,0.35)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)" }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
+            <button onClick={() => window.dispatchEvent(new Event("open-discovery"))}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 15, fontWeight: 700, fontFamily: FF, border: "none", cursor: "pointer", transition: "box-shadow 0.25s, transform 0.15s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 28px rgba(113,46,172,0.35)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)" }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "none" }}>
               {"Let’s Talk"}
-            </a>
+            </button>
             <a href="https://www.linkedin.com/in/hanita-yudovski/" target="_blank" rel="noopener noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 8, background: "transparent", color: C.purple, border: `1.5px solid ${C.purple}`, fontSize: 15, fontWeight: 700, fontFamily: FF, transition: "background 0.2s, color 0.2s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = C.purple; (e.currentTarget as HTMLAnchorElement).style.color = "#fff" }}
@@ -1029,7 +1044,7 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
             }}>
               {"Let’s weave something great together."}
             </p>
-            <a href={NOTION_CALENDAR} target="_blank" rel="noopener noreferrer"
+            <button onClick={() => window.dispatchEvent(new Event("open-discovery"))}
               style={{
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
                 padding: isMobile ? "14px 36px" : "18px 48px",
@@ -1037,13 +1052,13 @@ function CTASection({ isMobile }: { isMobile: boolean }) {
                 background: C.purple, color: "#fff",
                 fontSize: isMobile ? 15 : 17, fontWeight: 700, fontFamily: FF,
                 letterSpacing: "-0.01em",
+                border: "none", cursor: "pointer",
                 transition: "box-shadow 0.25s, transform 0.15s",
-                textDecoration: "none",
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 10px 40px rgba(113,46,172,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)" }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none"; (e.currentTarget as HTMLAnchorElement).style.transform = "none" }}>
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 10px 40px rgba(113,46,172,0.4)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)" }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "none" }}>
               {"Let’s Talk"}
-            </a>
+            </button>
           </div>
         </Reveal>
       </Container>
@@ -1225,6 +1240,214 @@ function SchemaAbout() {
   )
 }
 
+// ─── DISCOVERY FORM MODAL ────────────────────────────────────────────────────
+const WEB3FORMS_KEY = "abe931a2-a849-4da6-b9d6-ce7dfddc09d9"
+const DFT = {
+  he: {
+    step1Title:    "ספרו לנו קצת על עצמכם",
+    step2Title:    "מה אתם מחפשים?",
+    step3Title:    "עוד קצת",
+    name:          "שם מלא",
+    company:       "שם החברה",
+    email:         "אימייל",
+    services:      ["LinkedIn לארגונים","LinkedIn למייסדים ומנכ״לים","LinkedIn לעצמאיים","CMO במיקור חוץ","כלי AI וסוכנים","סדנאות","עוד לא בטוח/ה"],
+    timelineLabel: "מתי מחפשים להתחיל?",
+    timelines:     ["מיידי","1–3 חודשים","סתם בודק/ת"],
+    notesLabel:    "הוסיפו משהו שחשוב לנו לדעת (אפשרי)",
+    next:          "המשיכו",
+    back:          "חזרה",
+    send:          "שלחו",
+    sending:       "שולח...",
+    successTitle:  "מעולה! עכשיו שאנחנו יודעים מה אתם צריכים,",
+    bookBtn:       "קבעו שיחה עכשיו",
+    errorRequired: "נא למלא את כל השדות",
+    errorEmail:    "כתובת אימייל לא תקינה",
+    errorSend:     "שגיאה בשליחה, נסו שוב",
+    selectService: "בחרו אפשרות",
+    selectTimeline:"בחרו מתי",
+    emailSubject:  "פנייה חדשה",
+    emailFrom:     "מ",
+  },
+  en: {
+    step1Title:    "Tell us a bit about you",
+    step2Title:    "What are you looking for?",
+    step3Title:    "A bit more",
+    name:          "Full name",
+    company:       "Company name",
+    email:         "Email",
+    services:      ["LinkedIn for Organizations","LinkedIn for Founders & CEOs","LinkedIn for Freelancers","Fractional CMO","AI Tools & Agents","Workshops","Not sure yet"],
+    timelineLabel: "When are you looking to start?",
+    timelines:     ["Immediately","1–3 months","Just exploring"],
+    notesLabel:    "Anything important we should know (optional)",
+    next:          "Next",
+    back:          "Back",
+    send:          "Send",
+    sending:       "Sending…",
+    successTitle:  "Great! Now that we know what you need,",
+    bookBtn:       "Book the call now",
+    errorRequired: "Please fill in all fields",
+    errorEmail:    "Invalid email address",
+    errorSend:     "Send failed, please try again",
+    selectService: "Select an option",
+    selectTimeline:"Select timeline",
+    emailSubject:  "New inquiry",
+    emailFrom:     "from",
+  },
+}
+
+function DiscoveryFormModal() {
+  const [open, setOpen]         = useState(false)
+  const [step, setStep]         = useState(1)
+  const [dfLang, setDfLang]     = useState<"he" | "en">("en")
+  const [name, setName]         = useState("")
+  const [company, setCompany]   = useState("")
+  const [email, setEmail]       = useState("")
+  const [service, setService]   = useState("")
+  const [timeline, setTimeline] = useState("")
+  const [notes, setNotes]       = useState("")
+  const [status, setStatus]     = useState<"idle"|"loading"|"success"|"error">("idle")
+  const [errMsg, setErrMsg]     = useState("")
+
+  const detectLang = useCallback((): "he"|"en" => {
+    if (typeof window === "undefined") return "en"
+    const saved = localStorage.getItem("octaloom-lang")
+    if (saved === "en" || saved === "he") return saved
+    return document.documentElement.lang === "he" ? "he" : "en"
+  }, [])
+
+  useEffect(() => { setDfLang(detectLang()) }, [detectLang])
+  useEffect(() => {
+    const obs = new MutationObserver(() => setDfLang(detectLang()))
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] })
+    return () => obs.disconnect()
+  }, [detectLang])
+  useEffect(() => {
+    const h = () => setOpen(true)
+    window.addEventListener("open-discovery", h)
+    return () => window.removeEventListener("open-discovery", h)
+  }, [])
+
+  const close = useCallback(() => {
+    setOpen(false)
+    setTimeout(() => { setStep(1); setName(""); setCompany(""); setEmail(""); setService(""); setTimeline(""); setNotes(""); setStatus("idle"); setErrMsg("") }, 300)
+  }, [])
+
+  const t      = DFT[dfLang]
+  const isRTL  = dfLang === "he"
+  const dfFont = isRTL ? "'Discovery Fs','Aeonik',sans-serif" : "'Aeonik',sans-serif"
+  const dfErr  = "#ef4444"
+
+  const nextStep1 = () => {
+    if (!name.trim() || !company.trim() || !email.trim()) { setErrMsg(t.errorRequired); return }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErrMsg(t.errorEmail); return }
+    setErrMsg(""); setStep(2)
+  }
+  const nextStep2 = () => {
+    if (!service) { setErrMsg(t.selectService); return }
+    setErrMsg(""); setStep(3)
+  }
+  const submit = async () => {
+    if (!timeline) { setErrMsg(t.selectTimeline); return }
+    setErrMsg(""); setStatus("loading")
+    try {
+      const res  = await fetch("https://api.web3forms.com/submit", {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ access_key: WEB3FORMS_KEY, subject: `${t.emailSubject}: ${name} ${t.emailFrom} ${company}`, from_name: "OctaLoom Website", name, email, company, service, timeline, notes: notes || "—" }),
+      })
+      const data = await res.json()
+      if (data.success) setStatus("success")
+      else { setErrMsg(t.errorSend); setStatus("error") }
+    } catch { setErrMsg(t.errorSend); setStatus("error") }
+  }
+
+  const inputS: React.CSSProperties  = { width: "100%", padding: "12px 14px", borderRadius: 8, border: `1.5px solid ${C.border}`, fontSize: 15, fontFamily: dfFont, outline: "none", boxSizing: "border-box", direction: isRTL ? "rtl" : "ltr", background: C.white }
+  const labelS: React.CSSProperties  = { fontSize: 13, fontWeight: 600, color: C.deepPurple, marginBottom: 6, display: "block", fontFamily: dfFont, textAlign: isRTL ? "right" : "left" }
+  const primS: React.CSSProperties   = { flex: 2, background: C.purple, color: C.white, padding: "14px", borderRadius: 8, border: "none", fontWeight: 700, fontSize: 16, cursor: "pointer", fontFamily: dfFont }
+  const ghostS: React.CSSProperties  = { flex: 1, padding: "14px", borderRadius: 8, border: `1.5px solid ${C.border}`, background: "transparent", color: C.muted, fontWeight: 600, fontSize: 15, cursor: "pointer", fontFamily: dfFont }
+
+  return (
+    <>
+      <div style={{ width: 1, height: 1, overflow: "hidden", position: "absolute", pointerEvents: "none" }} />
+      <AnimatePresence>
+        {open && (
+          <motion.div key="df-ov" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
+            onClick={e => { if (e.target === e.currentTarget) close() }}
+            style={{ position: "fixed", inset: 0, zIndex: 9999, backgroundColor: "rgba(6,13,61,0.72)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
+            <motion.div key="df-mod" initial={{ opacity: 0, y: 32, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 16, scale: 0.97 }} transition={{ type: "spring", damping: 26, stiffness: 300 }}
+              style={{ background: C.white, borderRadius: 16, padding: "32px 28px", width: "100%", maxWidth: 480, direction: isRTL ? "rtl" : "ltr", position: "relative", maxHeight: "90vh", overflowY: "auto" }}>
+              <button onClick={close} style={{ position: "absolute", top: 14, [isRTL ? "left" : "right"]: 14, background: "none", border: "none", cursor: "pointer", fontSize: 24, color: C.muted, lineHeight: 1, padding: 4 }}>{"×"}</button>
+              {status !== "success" && (
+                <div style={{ display: "flex", gap: 6, marginBottom: 28 }}>
+                  {[1,2,3].map(s => <div key={s} style={{ height: 3, flex: 1, borderRadius: 2, background: s <= step ? C.purple : C.border, transition: "background 0.3s" }} />)}
+                </div>
+              )}
+              {status === "success" && (
+                <div style={{ textAlign: "center", padding: "24px 0" }}>
+                  <div style={{ fontSize: 52, marginBottom: 16 }}>{"🎉"}</div>
+                  <h2 style={{ fontSize: 22, fontWeight: 700, color: C.deepPurple, margin: "0 0 28px", fontFamily: dfFont }}>{t.successTitle}</h2>
+                  <a href={NOTION_CALENDAR} target="_blank" rel="noopener noreferrer"
+                    style={{ display: "inline-block", background: C.purple, color: C.white, padding: "14px 32px", borderRadius: 8, fontWeight: 700, fontSize: 16, textDecoration: "none", fontFamily: dfFont }}>{t.bookBtn}</a>
+                </div>
+              )}
+              {status !== "success" && step === 1 && (
+                <>
+                  <h2 style={{ fontSize: 20, fontWeight: 700, color: C.deepPurple, margin: "0 0 22px", fontFamily: dfFont }}>{t.step1Title}</h2>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                    <div><label style={labelS}>{t.name}</label><input value={name} onChange={e => setName(e.target.value)} style={inputS} /></div>
+                    <div><label style={labelS}>{t.company}</label><input value={company} onChange={e => setCompany(e.target.value)} style={inputS} /></div>
+                    <div><label style={labelS}>{t.email}</label><input type="email" value={email} onChange={e => setEmail(e.target.value)} style={inputS} /></div>
+                  </div>
+                  {errMsg && <p style={{ color: dfErr, fontSize: 13, margin: "12px 0 0", fontFamily: dfFont }}>{errMsg}</p>}
+                  <button onClick={nextStep1} style={{ ...primS, flex: "unset" as any, width: "100%", marginTop: 24 }}>{t.next}</button>
+                </>
+              )}
+              {status !== "success" && step === 2 && (
+                <>
+                  <h2 style={{ fontSize: 20, fontWeight: 700, color: C.deepPurple, margin: "0 0 22px", fontFamily: dfFont }}>{t.step2Title}</h2>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                    {t.services.map(s => (
+                      <button key={s} onClick={() => setService(s)} style={{ padding: "12px 16px", borderRadius: 8, textAlign: isRTL ? "right" : "left", border: `1.5px solid ${service === s ? C.purple : C.border}`, background: service === s ? "rgba(113,46,172,0.07)" : C.white, color: service === s ? C.purple : C.deepPurple, fontWeight: service === s ? 700 : 400, cursor: "pointer", fontSize: 15, fontFamily: dfFont, transition: "all 0.15s" }}>{s}</button>
+                    ))}
+                  </div>
+                  {errMsg && <p style={{ color: dfErr, fontSize: 13, margin: "12px 0 0", fontFamily: dfFont }}>{errMsg}</p>}
+                  <div style={{ display: "flex", gap: 10, marginTop: 24 }}>
+                    <button onClick={() => { setErrMsg(""); setStep(1) }} style={ghostS}>{t.back}</button>
+                    <button onClick={nextStep2} style={primS}>{t.next}</button>
+                  </div>
+                </>
+              )}
+              {status !== "success" && step === 3 && (
+                <>
+                  <h2 style={{ fontSize: 20, fontWeight: 700, color: C.deepPurple, margin: "0 0 22px", fontFamily: dfFont }}>{t.step3Title}</h2>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+                    <div>
+                      <label style={labelS}>{t.timelineLabel}</label>
+                      <div style={{ display: "flex", gap: 8 }}>
+                        {t.timelines.map(tl => (
+                          <button key={tl} onClick={() => setTimeline(tl)} style={{ flex: 1, padding: "10px 6px", borderRadius: 8, fontSize: 13, border: `1.5px solid ${timeline === tl ? C.purple : C.border}`, background: timeline === tl ? "rgba(113,46,172,0.07)" : C.white, color: timeline === tl ? C.purple : C.deepPurple, fontWeight: timeline === tl ? 700 : 400, cursor: "pointer", fontFamily: dfFont, transition: "all 0.15s" }}>{tl}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label style={labelS}>{t.notesLabel}</label>
+                      <textarea value={notes} onChange={e => setNotes(e.target.value)} rows={3} style={{ ...inputS, resize: "vertical" as const }} />
+                    </div>
+                  </div>
+                  {errMsg && <p style={{ color: dfErr, fontSize: 13, margin: "12px 0 0", fontFamily: dfFont }}>{errMsg}</p>}
+                  <div style={{ display: "flex", gap: 10, marginTop: 24 }}>
+                    <button onClick={() => { setErrMsg(""); setStep(2) }} style={ghostS}>{t.back}</button>
+                    <button onClick={submit} disabled={status === "loading"} style={{ ...primS, opacity: status === "loading" ? 0.7 : 1, cursor: status === "loading" ? "wait" : "pointer" }}>{status === "loading" ? t.sending : t.send}</button>
+                  </div>
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
+
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
 export default function AboutPageEN() {
   useGlobalStyles()
@@ -1248,6 +1471,7 @@ export default function AboutPageEN() {
         <CTASection isMobile={isMobile} />
       </main>
       <FooterEN isMobile={isMobile} />
+      <DiscoveryFormModal />
     </div>
   )
 }

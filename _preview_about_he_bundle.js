@@ -1114,7 +1114,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback4(callback, deps) {
+          function useCallback5(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
@@ -1881,7 +1881,7 @@
           exports.memo = memo2;
           exports.startTransition = startTransition;
           exports.unstable_act = act;
-          exports.useCallback = useCallback4;
+          exports.useCallback = useCallback5;
           exports.useContext = useContext10;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
@@ -32960,7 +32960,7 @@
 
   // AboutPageHE.tsx
   var import_jsx_runtime6 = __toESM(require_jsx_runtime());
-  var { useState: useState3, useEffect: useEffect7, useRef: useRef5 } = React3;
+  var { useState: useState3, useEffect: useEffect7, useRef: useRef5, useCallback: useCallback4 } = React3;
   var NOTION_CALENDAR = "https://calendar.notion.so/meet/octaloom/discovery";
   var HEADSHOT = "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/about%20me%20picture.jpeg";
   var GIF_HANITA = "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/gif%20hanita.gif";
@@ -32977,6 +32977,29 @@
     white: "#ffffff"
   };
   var FF = "'Discovery Fs', 'Aeonik', sans-serif";
+  function getLangToggleUrl(isHE) {
+    const path = window.location.pathname;
+    if (isHE) {
+      const enPath = path.replace(/-he$/, "") || "/";
+      return "https://www.octaloom.com" + enPath;
+    } else {
+      if (path === "/" || path === "") return "https://www.octaloom.com/";
+      return "https://www.octaloom.com" + path.replace(/\/$/, "") + "-he";
+    }
+  }
+  var langToggleStyle = {
+    fontSize: 12,
+    fontWeight: 600,
+    color: "#201e4b",
+    background: "transparent",
+    border: "1px solid rgba(32,30,75,0.22)",
+    borderRadius: 100,
+    padding: "5px 13px",
+    cursor: "pointer",
+    fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif",
+    transition: "border-color 0.2s, color 0.2s",
+    letterSpacing: "0.03em"
+  };
   function useWindowSize() {
     const [w, setW] = useState3(typeof window !== "undefined" ? window.innerWidth : 1200);
     useEffect7(() => {
@@ -33421,7 +33444,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           children: item.label
         },
         i
-      ))
+      )),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { marginTop: 14, display: "flex", flexDirection: "column", gap: 10 }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        "a",
+        {
+          href: getLangToggleUrl(true),
+          style: { display: "block", textAlign: "center", padding: "11px 24px", fontSize: 13, fontWeight: 600, color: "#201e4b", borderRadius: 100, fontFamily: "'Discovery Fs', 'Noto Sans Hebrew', sans-serif", border: "1px solid rgba(32,30,75,0.2)", textDecoration: "none", width: "100%", boxSizing: "border-box" },
+          children: "Switch to English \u2192"
+        }
+      ) })
     ] });
     return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("nav", { style: {
       position: "fixed",
@@ -33439,7 +33470,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       transition: "background 0.4s, box-shadow 0.4s",
       boxShadow: scrolled ? "0 1px 0 rgba(32,30,75,0.06)" : "none"
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", { href: "https://www.octaloom.com/he", style: { display: "flex", alignItems: "center" }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: LOGO_NAV, alt: "OctaLoom", style: { height: isMobile ? 28 : 36, width: "auto" } }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", { href: "https://www.octaloom.com/", style: { display: "flex", alignItems: "center" }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: LOGO_NAV, alt: "OctaLoom", style: { height: isMobile ? 28 : 36, width: "auto" } }) }),
       !isMobile && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 32, position: "relative" }, children: [
         desktopDrop,
         topLinks.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
@@ -33459,25 +33490,40 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         ))
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", gap: 8, alignItems: "center" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", { href: "https://www.octaloom.com/about", style: { fontSize: 13, fontWeight: 700, color: dim, fontFamily: "'Aeonik', sans-serif", padding: "5px 10px" }, children: "EN" }),
-        !isMobile && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-          "a",
-          {
-            href: NOTION_CALENDAR,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            style: { display: "inline-flex", alignItems: "center", padding: "9px 20px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 13, fontWeight: 700, fontFamily: FF, transition: "box-shadow 0.25s, transform 0.15s" },
-            onMouseEnter: (e) => {
-              e.currentTarget.style.boxShadow = "0 4px 20px rgba(113,46,172,0.35)";
-              e.currentTarget.style.transform = "translateY(-1px)";
-            },
-            onMouseLeave: (e) => {
-              e.currentTarget.style.boxShadow = "none";
-              e.currentTarget.style.transform = "none";
-            },
-            children: "\u05D1\u05D5\u05D0\u05D5 \u05E0\u05D3\u05D1\u05E8"
-          }
-        ),
+        !isMobile && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(import_jsx_runtime6.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+            "a",
+            {
+              href: getLangToggleUrl(true),
+              style: langToggleStyle,
+              onMouseEnter: (e) => {
+                e.currentTarget.style.borderColor = "#712eac";
+                e.currentTarget.style.color = "#712eac";
+              },
+              onMouseLeave: (e) => {
+                e.currentTarget.style.borderColor = "rgba(32,30,75,0.22)";
+                e.currentTarget.style.color = "#201e4b";
+              },
+              children: "EN"
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+            "button",
+            {
+              onClick: () => window.dispatchEvent(new Event("open-discovery")),
+              style: { display: "inline-flex", alignItems: "center", padding: "9px 20px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 13, fontWeight: 700, fontFamily: FF, border: "none", cursor: "pointer", transition: "box-shadow 0.25s, transform 0.15s" },
+              onMouseEnter: (e) => {
+                e.currentTarget.style.boxShadow = "0 4px 20px rgba(113,46,172,0.35)";
+                e.currentTarget.style.transform = "translateY(-1px)";
+              },
+              onMouseLeave: (e) => {
+                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.transform = "none";
+              },
+              children: "\u05D1\u05D5\u05D0\u05D5 \u05E0\u05D3\u05D1\u05E8"
+            }
+          )
+        ] }),
         isMobile && burger
       ] }),
       isMobile && menuOpen && mobileMenu
@@ -33589,12 +33635,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             style: { display: "flex", gap: 12, flexWrap: "wrap" },
             children: [
               /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-                "a",
+                "button",
                 {
-                  href: NOTION_CALENDAR,
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                  style: { display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 15, fontWeight: 700, fontFamily: FF, transition: "box-shadow 0.25s, transform 0.15s" },
+                  onClick: () => window.dispatchEvent(new Event("open-discovery")),
+                  style: { display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 8, background: C.purple, color: "#fff", fontSize: 15, fontWeight: 700, fontFamily: FF, border: "none", cursor: "pointer", transition: "box-shadow 0.25s, transform 0.15s" },
                   onMouseEnter: (e) => {
                     e.currentTarget.style.boxShadow = "0 6px 28px rgba(113,46,172,0.35)";
                     e.currentTarget.style.transform = "translateY(-1px)";
@@ -34074,11 +34118,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         maxWidth: 520
       }, children: "\u05D0\u05DD \u05D0\u05EA\u05DD \u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D0\u05D5 \u05D7\u05D1\u05E8\u05EA B2B \u05E9\u05E6\u05E8\u05D9\u05DB\u05D9\u05DD \u05E9\u05D9\u05D5\u05D5\u05E7 \u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05E8\u05E6\u05D9\u05E0\u05D9 \u05E2\u05DD \u05D1\u05D9\u05E6\u05D5\u05E2 \u05D0\u05DE\u05D9\u05EA\u05D9, \u05D1\u05D5\u05D0\u05D5 \u05E0\u05D3\u05D1\u05E8." }),
       /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-        "a",
+        "button",
         {
-          href: NOTION_CALENDAR,
-          target: "_blank",
-          rel: "noopener noreferrer",
+          onClick: () => window.dispatchEvent(new Event("open-discovery")),
           style: {
             display: "inline-flex",
             alignItems: "center",
@@ -34091,8 +34133,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             fontWeight: 700,
             fontFamily: FF,
             letterSpacing: "-0.01em",
-            transition: "box-shadow 0.25s, transform 0.15s",
-            textDecoration: "none"
+            border: "none",
+            cursor: "pointer",
+            transition: "box-shadow 0.25s, transform 0.15s"
           },
           onMouseEnter: (e) => {
             e.currentTarget.style.boxShadow = "0 10px 40px rgba(113,46,172,0.4)";
@@ -34294,6 +34337,255 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       }
     );
   }
+  var WEB3FORMS_KEY = "abe931a2-a849-4da6-b9d6-ce7dfddc09d9";
+  var DFT = {
+    he: {
+      step1Title: "\u05E1\u05E4\u05E8\u05D5 \u05DC\u05E0\u05D5 \u05E7\u05E6\u05EA \u05E2\u05DC \u05E2\u05E6\u05DE\u05DB\u05DD",
+      step2Title: "\u05DE\u05D4 \u05D0\u05EA\u05DD \u05DE\u05D7\u05E4\u05E9\u05D9\u05DD?",
+      step3Title: "\u05E2\u05D5\u05D3 \u05E7\u05E6\u05EA",
+      name: "\u05E9\u05DD \u05DE\u05DC\u05D0",
+      company: "\u05E9\u05DD \u05D4\u05D7\u05D1\u05E8\u05D4",
+      email: "\u05D0\u05D9\u05DE\u05D9\u05D9\u05DC",
+      services: ["LinkedIn \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD", "LinkedIn \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D5\u05DE\u05E0\u05DB\u05F4\u05DC\u05D9\u05DD", "LinkedIn \u05DC\u05E2\u05E6\u05DE\u05D0\u05D9\u05D9\u05DD", "CMO \u05D1\u05DE\u05D9\u05E7\u05D5\u05E8 \u05D7\u05D5\u05E5", "\u05DB\u05DC\u05D9 AI \u05D5\u05E1\u05D5\u05DB\u05E0\u05D9\u05DD", "\u05E1\u05D3\u05E0\u05D0\u05D5\u05EA", "\u05E2\u05D5\u05D3 \u05DC\u05D0 \u05D1\u05D8\u05D5\u05D7/\u05D4"],
+      timelineLabel: "\u05DE\u05EA\u05D9 \u05DE\u05D7\u05E4\u05E9\u05D9\u05DD \u05DC\u05D4\u05EA\u05D7\u05D9\u05DC?",
+      timelines: ["\u05DE\u05D9\u05D9\u05D3\u05D9", "1\u20133 \u05D7\u05D5\u05D3\u05E9\u05D9\u05DD", "\u05E1\u05EA\u05DD \u05D1\u05D5\u05D3\u05E7/\u05EA"],
+      notesLabel: "\u05D4\u05D5\u05E1\u05D9\u05E4\u05D5 \u05DE\u05E9\u05D4\u05D5 \u05E9\u05D7\u05E9\u05D5\u05D1 \u05DC\u05E0\u05D5 \u05DC\u05D3\u05E2\u05EA (\u05D0\u05E4\u05E9\u05E8\u05D9)",
+      next: "\u05D4\u05DE\u05E9\u05D9\u05DB\u05D5",
+      back: "\u05D7\u05D6\u05E8\u05D4",
+      send: "\u05E9\u05DC\u05D7\u05D5",
+      sending: "\u05E9\u05D5\u05DC\u05D7...",
+      successTitle: "\u05DE\u05E2\u05D5\u05DC\u05D4! \u05E2\u05DB\u05E9\u05D9\u05D5 \u05E9\u05D0\u05E0\u05D7\u05E0\u05D5 \u05D9\u05D5\u05D3\u05E2\u05D9\u05DD \u05DE\u05D4 \u05D0\u05EA\u05DD \u05E6\u05E8\u05D9\u05DB\u05D9\u05DD,",
+      bookBtn: "\u05E7\u05D1\u05E2\u05D5 \u05E9\u05D9\u05D7\u05D4 \u05E2\u05DB\u05E9\u05D9\u05D5",
+      errorRequired: "\u05E0\u05D0 \u05DC\u05DE\u05DC\u05D0 \u05D0\u05EA \u05DB\u05DC \u05D4\u05E9\u05D3\u05D5\u05EA",
+      errorEmail: "\u05DB\u05EA\u05D5\u05D1\u05EA \u05D0\u05D9\u05DE\u05D9\u05D9\u05DC \u05DC\u05D0 \u05EA\u05E7\u05D9\u05E0\u05D4",
+      errorSend: "\u05E9\u05D2\u05D9\u05D0\u05D4 \u05D1\u05E9\u05DC\u05D9\u05D7\u05D4, \u05E0\u05E1\u05D5 \u05E9\u05D5\u05D1",
+      selectService: "\u05D1\u05D7\u05E8\u05D5 \u05D0\u05E4\u05E9\u05E8\u05D5\u05EA",
+      selectTimeline: "\u05D1\u05D7\u05E8\u05D5 \u05DE\u05EA\u05D9",
+      emailSubject: "\u05E4\u05E0\u05D9\u05D9\u05D4 \u05D7\u05D3\u05E9\u05D4",
+      emailFrom: "\u05DE"
+    },
+    en: {
+      step1Title: "Tell us a bit about you",
+      step2Title: "What are you looking for?",
+      step3Title: "A bit more",
+      name: "Full name",
+      company: "Company name",
+      email: "Email",
+      services: ["LinkedIn for Organizations", "LinkedIn for Founders & CEOs", "LinkedIn for Freelancers", "Fractional CMO", "AI Tools & Agents", "Workshops", "Not sure yet"],
+      timelineLabel: "When are you looking to start?",
+      timelines: ["Immediately", "1\u20133 months", "Just exploring"],
+      notesLabel: "Anything important we should know (optional)",
+      next: "Next",
+      back: "Back",
+      send: "Send",
+      sending: "Sending\u2026",
+      successTitle: "Great! Now that we know what you need,",
+      bookBtn: "Book the call now",
+      errorRequired: "Please fill in all fields",
+      errorEmail: "Invalid email address",
+      errorSend: "Send failed, please try again",
+      selectService: "Select an option",
+      selectTimeline: "Select timeline",
+      emailSubject: "New inquiry",
+      emailFrom: "from"
+    }
+  };
+  function DiscoveryFormModal() {
+    const [open, setOpen] = useState3(false);
+    const [step, setStep] = useState3(1);
+    const [dfLang, setDfLang] = useState3("he");
+    const [name, setName] = useState3("");
+    const [company, setCompany] = useState3("");
+    const [email, setEmail] = useState3("");
+    const [service, setService] = useState3("");
+    const [timeline, setTimeline] = useState3("");
+    const [notes, setNotes] = useState3("");
+    const [status, setStatus] = useState3("idle");
+    const [errMsg, setErrMsg] = useState3("");
+    const detectLang = useCallback4(() => {
+      if (typeof window === "undefined") return "he";
+      const saved = localStorage.getItem("octaloom-lang");
+      if (saved === "en" || saved === "he") return saved;
+      return document.documentElement.lang === "en" ? "en" : "he";
+    }, []);
+    useEffect7(() => {
+      setDfLang(detectLang());
+    }, [detectLang]);
+    useEffect7(() => {
+      const obs = new MutationObserver(() => setDfLang(detectLang()));
+      obs.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+      return () => obs.disconnect();
+    }, [detectLang]);
+    useEffect7(() => {
+      const h = () => setOpen(true);
+      window.addEventListener("open-discovery", h);
+      return () => window.removeEventListener("open-discovery", h);
+    }, []);
+    const close = useCallback4(() => {
+      setOpen(false);
+      setTimeout(() => {
+        setStep(1);
+        setName("");
+        setCompany("");
+        setEmail("");
+        setService("");
+        setTimeline("");
+        setNotes("");
+        setStatus("idle");
+        setErrMsg("");
+      }, 300);
+    }, []);
+    const t = DFT[dfLang];
+    const isRTL = dfLang === "he";
+    const dfFont = isRTL ? "'Discovery Fs','Aeonik',sans-serif" : "'Aeonik',sans-serif";
+    const dfErr = "#ef4444";
+    const nextStep1 = () => {
+      if (!name.trim() || !company.trim() || !email.trim()) {
+        setErrMsg(t.errorRequired);
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setErrMsg(t.errorEmail);
+        return;
+      }
+      setErrMsg("");
+      setStep(2);
+    };
+    const nextStep2 = () => {
+      if (!service) {
+        setErrMsg(t.selectService);
+        return;
+      }
+      setErrMsg("");
+      setStep(3);
+    };
+    const submit = async () => {
+      if (!timeline) {
+        setErrMsg(t.selectTimeline);
+        return;
+      }
+      setErrMsg("");
+      setStatus("loading");
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ access_key: WEB3FORMS_KEY, subject: `${t.emailSubject}: ${name} ${t.emailFrom} ${company}`, from_name: "OctaLoom Website", name, email, company, service, timeline, notes: notes || "\u2014" })
+        });
+        const data = await res.json();
+        if (data.success) setStatus("success");
+        else {
+          setErrMsg(t.errorSend);
+          setStatus("error");
+        }
+      } catch {
+        setErrMsg(t.errorSend);
+        setStatus("error");
+      }
+    };
+    const inputS = { width: "100%", padding: "12px 14px", borderRadius: 8, border: `1.5px solid ${C.border}`, fontSize: 15, fontFamily: dfFont, outline: "none", boxSizing: "border-box", direction: isRTL ? "rtl" : "ltr", background: C.white };
+    const labelS = { fontSize: 13, fontWeight: 600, color: C.deepPurple, marginBottom: 6, display: "block", fontFamily: dfFont, textAlign: isRTL ? "right" : "left" };
+    const primS = { flex: 2, background: C.purple, color: C.white, padding: "14px", borderRadius: 8, border: "none", fontWeight: 700, fontSize: 16, cursor: "pointer", fontFamily: dfFont };
+    const ghostS = { flex: 1, padding: "14px", borderRadius: 8, border: `1.5px solid ${C.border}`, background: "transparent", color: C.muted, fontWeight: 600, fontSize: 15, cursor: "pointer", fontFamily: dfFont };
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(import_jsx_runtime6.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { width: 1, height: 1, overflow: "hidden", position: "absolute", pointerEvents: "none" } }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AnimatePresence, { children: open && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        motion.div,
+        {
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          exit: { opacity: 0 },
+          transition: { duration: 0.2 },
+          onClick: (e) => {
+            if (e.target === e.currentTarget) close();
+          },
+          style: { position: "fixed", inset: 0, zIndex: 9999, backgroundColor: "rgba(6,13,61,0.72)", display: "flex", alignItems: "center", justifyContent: "center", padding: 20 },
+          children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+            motion.div,
+            {
+              initial: { opacity: 0, y: 32, scale: 0.97 },
+              animate: { opacity: 1, y: 0, scale: 1 },
+              exit: { opacity: 0, y: 16, scale: 0.97 },
+              transition: { type: "spring", damping: 26, stiffness: 300 },
+              style: { background: C.white, borderRadius: 16, padding: "32px 28px", width: "100%", maxWidth: 480, direction: isRTL ? "rtl" : "ltr", position: "relative", maxHeight: "90vh", overflowY: "auto" },
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: close, style: { position: "absolute", top: 14, [isRTL ? "left" : "right"]: 14, background: "none", border: "none", cursor: "pointer", fontSize: 24, color: C.muted, lineHeight: 1, padding: 4 }, children: "\xD7" }),
+                status !== "success" && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { display: "flex", gap: 6, marginBottom: 28 }, children: [1, 2, 3].map((s) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { height: 3, flex: 1, borderRadius: 2, background: s <= step ? C.purple : C.border, transition: "background 0.3s" } }, s)) }),
+                status === "success" && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { textAlign: "center", padding: "24px 0" }, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { fontSize: 52, marginBottom: 16 }, children: "\u{1F389}" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", { style: { fontSize: 22, fontWeight: 700, color: C.deepPurple, margin: "0 0 28px", fontFamily: dfFont }, children: t.successTitle }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                    "a",
+                    {
+                      href: NOTION_CALENDAR,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      style: { display: "inline-block", background: C.purple, color: C.white, padding: "14px 32px", borderRadius: 8, fontWeight: 700, fontSize: 16, textDecoration: "none", fontFamily: dfFont },
+                      children: t.bookBtn
+                    }
+                  )
+                ] }),
+                status !== "success" && step === 1 && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(import_jsx_runtime6.Fragment, { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", { style: { fontSize: 20, fontWeight: 700, color: C.deepPurple, margin: "0 0 22px", fontFamily: dfFont }, children: t.step1Title }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: 16 }, children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("label", { style: labelS, children: t.name }),
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { value: name, onChange: (e) => setName(e.target.value), style: inputS })
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("label", { style: labelS, children: t.company }),
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { value: company, onChange: (e) => setCompany(e.target.value), style: inputS })
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("label", { style: labelS, children: t.email }),
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("input", { type: "email", value: email, onChange: (e) => setEmail(e.target.value), style: inputS })
+                    ] })
+                  ] }),
+                  errMsg && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { color: dfErr, fontSize: 13, margin: "12px 0 0", fontFamily: dfFont }, children: errMsg }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: nextStep1, style: { ...primS, flex: "unset", width: "100%", marginTop: 24 }, children: t.next })
+                ] }),
+                status !== "success" && step === 2 && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(import_jsx_runtime6.Fragment, { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", { style: { fontSize: 20, fontWeight: 700, color: C.deepPurple, margin: "0 0 22px", fontFamily: dfFont }, children: t.step2Title }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { display: "flex", flexDirection: "column", gap: 10 }, children: t.services.map((s) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: () => setService(s), style: { padding: "12px 16px", borderRadius: 8, textAlign: isRTL ? "right" : "left", border: `1.5px solid ${service === s ? C.purple : C.border}`, background: service === s ? "rgba(113,46,172,0.07)" : C.white, color: service === s ? C.purple : C.deepPurple, fontWeight: service === s ? 700 : 400, cursor: "pointer", fontSize: 15, fontFamily: dfFont, transition: "all 0.15s" }, children: s }, s)) }),
+                  errMsg && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { color: dfErr, fontSize: 13, margin: "12px 0 0", fontFamily: dfFont }, children: errMsg }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", gap: 10, marginTop: 24 }, children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: () => {
+                      setErrMsg("");
+                      setStep(1);
+                    }, style: ghostS, children: t.back }),
+                    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: nextStep2, style: primS, children: t.next })
+                  ] })
+                ] }),
+                status !== "success" && step === 3 && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(import_jsx_runtime6.Fragment, { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h2", { style: { fontSize: 20, fontWeight: 700, color: C.deepPurple, margin: "0 0 22px", fontFamily: dfFont }, children: t.step3Title }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: 18 }, children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("label", { style: labelS, children: t.timelineLabel }),
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: { display: "flex", gap: 8 }, children: t.timelines.map((tl) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: () => setTimeline(tl), style: { flex: 1, padding: "10px 6px", borderRadius: 8, fontSize: 13, border: `1.5px solid ${timeline === tl ? C.purple : C.border}`, background: timeline === tl ? "rgba(113,46,172,0.07)" : C.white, color: timeline === tl ? C.purple : C.deepPurple, fontWeight: timeline === tl ? 700 : 400, cursor: "pointer", fontFamily: dfFont, transition: "all 0.15s" }, children: tl }, tl)) })
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("label", { style: labelS, children: t.notesLabel }),
+                      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("textarea", { value: notes, onChange: (e) => setNotes(e.target.value), rows: 3, style: { ...inputS, resize: "vertical" } })
+                    ] })
+                  ] }),
+                  errMsg && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { color: dfErr, fontSize: 13, margin: "12px 0 0", fontFamily: dfFont }, children: errMsg }),
+                  /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", gap: 10, marginTop: 24 }, children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: () => {
+                      setErrMsg("");
+                      setStep(2);
+                    }, style: ghostS, children: t.back }),
+                    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { onClick: submit, disabled: status === "loading", style: { ...primS, opacity: status === "loading" ? 0.7 : 1, cursor: status === "loading" ? "wait" : "pointer" }, children: status === "loading" ? t.sending : t.send })
+                  ] })
+                ] })
+              ]
+            },
+            "df-mod"
+          )
+        },
+        "df-ov"
+      ) })
+    ] });
+  }
   function AboutPageHE() {
     useGlobalStyles();
     const w = useWindowSize();
@@ -34313,7 +34605,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(FAQSection, { isMobile }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CTASection, { isMobile })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(FooterHE, { isMobile })
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(FooterHE, { isMobile }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(DiscoveryFormModal, {})
     ] });
   }
 
