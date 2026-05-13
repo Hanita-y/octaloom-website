@@ -116,9 +116,11 @@ button{font-family:inherit;border:none;background:none;cursor:pointer}
 .org-workshops__sub{font-size:16px;color:var(--deep-purple);opacity:0.6;margin-bottom:36px;max-width:560px;font-style:italic}
 .org-workshops__grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .org-workshops__grid>*{display:flex}
-.org-workshop-card-wrap{height:100%;flex:1;display:flex}
-.org-workshop-card{padding:28px 24px;border-radius:14px;background:rgba(255,255,255,0.65);border:1px solid rgba(32,30,75,0.08);flex:1;display:flex;flex-direction:column;backdrop-filter:blur(4px);transition:border-color 0.3s,box-shadow 0.3s}
-.org-workshop-card:hover{border-color:rgba(113,46,172,0.2);box-shadow:0 4px 24px rgba(113,46,172,0.08)}
+.org-workshop-card-wrap{position:relative;height:100%;flex:1;display:flex;padding:2px;border-radius:16px;overflow:hidden;isolation:isolate;box-shadow:0 0 18px rgba(198,225,165,0.25),0 0 36px rgba(113,46,172,0.18),0 12px 48px rgba(32,30,75,0.12)}
+.org-workshop-card-wrap::before{content:"";position:absolute;inset:-100%;z-index:0;background:conic-gradient(rgba(198,225,165,0.85) 0%,rgba(113,46,172,0.65) 15%,rgba(236,233,231,0.4) 30%,rgba(198,225,165,0.45) 45%,rgba(113,46,172,0.85) 60%,rgba(198,225,165,0.65) 75%,rgba(113,46,172,0.45) 90%,rgba(198,225,165,0.85) 100%);animation:orgWorkshopGlow 4s linear infinite;pointer-events:none}
+.org-workshop-card{position:relative;z-index:1;padding:28px 24px;border-radius:14px;background:rgba(255,255,255,0.94);flex:1;display:flex;flex-direction:column;backdrop-filter:blur(4px);transition:transform 0.3s,box-shadow 0.3s}
+.org-workshop-card:hover{box-shadow:0 4px 24px rgba(113,46,172,0.18)}
+@keyframes orgWorkshopGlow{to{transform:rotate(360deg)}}
 .org-workshop-card__duration{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--purple);margin-bottom:10px}
 .org-workshop-card h3{font-size:18px;font-weight:700;color:var(--deep-purple);margin-bottom:10px}
 .org-workshop-card p{font-size:14px;color:var(--deep-purple);opacity:0.7;line-height:1.6;flex:1}
