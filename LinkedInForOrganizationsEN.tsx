@@ -553,7 +553,7 @@ function OrgHero() {
                   </div>
                   <div className="org-mockup__popup org-mockup__popup--3">
                     <div style={{ width: 24, height: 24, borderRadius: "50%", background: "#FFF3E0", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <span style={{ fontSize: 12 }}>\u{1F389}</span>
+                      <span style={{ fontSize: 12 }}>{"🎉"}</span>
                     </div>
                     <div style={{ fontSize: 10, fontWeight: 700, color: "#191919" }}>+350% engagement lift</div>
                   </div>
