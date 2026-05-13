@@ -228,7 +228,7 @@ function NavHE() {
   }, [menuOpen, isMobile])
 
   const liSub = [
-    { label: "לינקדאין לארגונים",      href: "https://www.octaloom.com/linkedin-for-organizations-he" },
+    { label: "לינקדאין כמנוע צמיחה",      href: "https://www.octaloom.com/linkedin-growth-engine-he" },
     { label: "לינקדאין למייסדים ומנכ״לים", href: "https://www.octaloom.com/linkedin-for-executives-he" },
     { label: "לינקדאין לעצמאיים",       href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" },
   ]
@@ -241,7 +241,7 @@ function NavHE() {
     { label: "עליי",    href: "https://www.octaloom.com/about-he",              active: true },
     { label: "בלוג",    href: "https://www.octaloom.com/blog-he" },
     { label: "צור קשר", href: "https://www.octaloom.com/contact-he" },
-    { label: "גודיז", href: "https://octagoodies.com" },
+    { label: "Goodies", href: "https://octagoodies.com" },
   ]
 
   const dropBase: React.CSSProperties = {
@@ -295,7 +295,7 @@ function NavHE() {
             <div style={{ position: "relative" }}
               onMouseEnter={() => setLinkedinOpen(true)}
               onMouseLeave={() => setLinkedinOpen(false)}>
-              <a href="https://www.octaloom.com/linkedin-for-organizations-he" style={{ ...dropItem, justifyContent: "space-between" }}
+              <a href="https://www.octaloom.com/linkedin-growth-engine-he" style={{ ...dropItem, justifyContent: "space-between" }}
                 onMouseEnter={e => hDrop(e, true)} onMouseLeave={e => hDrop(e, false)}>
                 <svg width={11} height={11} viewBox="0 0 12 12" fill="none" style={{ opacity: 0.45 }}>
                   <path d="M8 2l-4 4 4 4" stroke={C.deepPurple} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -338,7 +338,7 @@ function NavHE() {
       <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: C.purple, margin: "0 0 4px", fontFamily: FF }}>
         {"שירותים"}
       </p>
-      <a href="https://www.octaloom.com/linkedin-for-organizations-he" onClick={() => setMenuOpen(false)}
+      <a href="https://www.octaloom.com/linkedin-growth-engine-he" onClick={() => setMenuOpen(false)}
         style={{ display: "block", fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF }}>
         {"לינקדאין"}
       </a>
@@ -374,7 +374,7 @@ function NavHE() {
       transition: "background 0.4s, box-shadow 0.4s",
       boxShadow: scrolled ? "0 1px 0 rgba(32,30,75,0.06)" : "none",
     }}>
-      <a href="https://www.octaloom.com/about-he" style={{ display: "flex", alignItems: "center" }}>
+      <a href="https://www.octaloom.com/he" style={{ display: "flex", alignItems: "center" }}>
         <img src={LOGO_NAV} alt="OctaLoom" style={{ height: isMobile ? 28 : 36, width: "auto" }} />
       </a>
       {!isMobile && (
@@ -627,9 +627,9 @@ function StatsSection({ isMobile }: { isMobile: boolean }) {
 function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
   const liClients = [
     {
-      title: "לינקדאין לארגונים",
+      title: "לינקדאין כמנוע צמיחה",
       desc: "אסטרטגיה, ניהול תוכן ונוכחות מלאה לדפים עסקיים, תוכניות שגרירי מותג שהופכות את עובדי הארגון למכפילי כח.",
-      href: "https://www.octaloom.com/linkedin-for-organizations-he",
+      href: "https://www.octaloom.com/linkedin-growth-engine-he",
     },
     {
       title: "לינקדאין למייסדים ומנכ״לים",
@@ -1059,7 +1059,7 @@ function FooterHE({ isMobile }: { isMobile: boolean }) {
   const hov = (e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => { e.currentTarget.style.color = enter ? C.lime : "rgba(255,255,255,0.5)" }
 
   const serviceLinks = [
-    { label: "לינקדאין לארגונים",      href: "https://www.octaloom.com/linkedin-for-organizations-he" },
+    { label: "לינקדאין כמנוע צמיחה",      href: "https://www.octaloom.com/linkedin-growth-engine-he" },
     { label: "לינקדאין למייסדים", href: "https://www.octaloom.com/linkedin-for-executives-he" },
     { label: "לינקדאין לעצמאיים",  href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" },
   ]

@@ -33198,7 +33198,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       };
     }, [menuOpen, isMobile]);
     const liSub = [
-      { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-organizations-he" },
+      { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DB\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4", href: "https://www.octaloom.com/linkedin-growth-engine-he" },
       { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D5\u05DE\u05E0\u05DB\u05F4\u05DC\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-executives-he" },
       { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05E2\u05E6\u05DE\u05D0\u05D9\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" }
     ];
@@ -33211,7 +33211,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       { label: "\u05E2\u05DC\u05D9\u05D9", href: "https://www.octaloom.com/about-he", active: true },
       { label: "\u05D1\u05DC\u05D5\u05D2", href: "https://www.octaloom.com/blog-he" },
       { label: "\u05E6\u05D5\u05E8 \u05E7\u05E9\u05E8", href: "https://www.octaloom.com/contact-he" },
-      { label: "\u05D2\u05D5\u05D3\u05D9\u05D6", href: "https://octagoodies.com" }
+      { label: "Goodies", href: "https://octagoodies.com" }
     ];
     const dropBase = {
       position: "absolute",
@@ -33309,7 +33309,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
                       /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
                         "a",
                         {
-                          href: "https://www.octaloom.com/linkedin-for-organizations-he",
+                          href: "https://www.octaloom.com/linkedin-growth-engine-he",
                           style: __spreadProps(__spreadValues({}, dropItem), { justifyContent: "space-between" }),
                           onMouseEnter: (e) => hDrop(e, true),
                           onMouseLeave: (e) => hDrop(e, false),
@@ -33376,7 +33376,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
         "a",
         {
-          href: "https://www.octaloom.com/linkedin-for-organizations-he",
+          href: "https://www.octaloom.com/linkedin-growth-engine-he",
           onClick: () => setMenuOpen(false),
           style: { display: "block", fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF },
           children: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF"
@@ -33429,7 +33429,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       transition: "background 0.4s, box-shadow 0.4s",
       boxShadow: scrolled ? "0 1px 0 rgba(32,30,75,0.06)" : "none"
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", { href: "https://www.octaloom.com/about-he", style: { display: "flex", alignItems: "center" }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: LOGO_NAV, alt: "OctaLoom", style: { height: isMobile ? 28 : 36, width: "auto" } }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("a", { href: "https://www.octaloom.com/he", style: { display: "flex", alignItems: "center" }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("img", { src: LOGO_NAV, alt: "OctaLoom", style: { height: isMobile ? 28 : 36, width: "auto" } }) }),
       !isMobile && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 32, position: "relative" }, children: [
         desktopDrop,
         topLinks.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
@@ -33699,9 +33699,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   function WhatIDoSection({ isMobile }) {
     const liClients = [
       {
-        title: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD",
+        title: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DB\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4",
         desc: "\u05D0\u05E1\u05D8\u05E8\u05D8\u05D2\u05D9\u05D4, \u05E0\u05D9\u05D4\u05D5\u05DC \u05EA\u05D5\u05DB\u05DF \u05D5\u05E0\u05D5\u05DB\u05D7\u05D5\u05EA \u05DE\u05DC\u05D0\u05D4 \u05DC\u05D3\u05E4\u05D9\u05DD \u05E2\u05E1\u05E7\u05D9\u05D9\u05DD, \u05EA\u05D5\u05DB\u05E0\u05D9\u05D5\u05EA \u05E9\u05D2\u05E8\u05D9\u05E8\u05D9 \u05DE\u05D5\u05EA\u05D2 \u05E9\u05D4\u05D5\u05E4\u05DB\u05D5\u05EA \u05D0\u05EA \u05E2\u05D5\u05D1\u05D3\u05D9 \u05D4\u05D0\u05E8\u05D2\u05D5\u05DF \u05DC\u05DE\u05DB\u05E4\u05D9\u05DC\u05D9 \u05DB\u05D7.",
-        href: "https://www.octaloom.com/linkedin-for-organizations-he"
+        href: "https://www.octaloom.com/linkedin-growth-engine-he"
       },
       {
         title: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD \u05D5\u05DE\u05E0\u05DB\u05F4\u05DC\u05D9\u05DD",
@@ -34104,7 +34104,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       e.currentTarget.style.color = enter ? C.lime : "rgba(255,255,255,0.5)";
     };
     const serviceLinks = [
-      { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05D0\u05E8\u05D2\u05D5\u05E0\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-organizations-he" },
+      { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DB\u05DE\u05E0\u05D5\u05E2 \u05E6\u05DE\u05D9\u05D7\u05D4", href: "https://www.octaloom.com/linkedin-growth-engine-he" },
       { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05DE\u05D9\u05D9\u05E1\u05D3\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-executives-he" },
       { label: "\u05DC\u05D9\u05E0\u05E7\u05D3\u05D0\u05D9\u05DF \u05DC\u05E2\u05E6\u05DE\u05D0\u05D9\u05D9\u05DD", href: "https://www.octaloom.com/linkedin-for-solopreneurs-he" }
     ];

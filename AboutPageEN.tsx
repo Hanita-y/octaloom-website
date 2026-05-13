@@ -221,19 +221,19 @@ function NavEN() {
   }, [menuOpen, isMobile])
 
   const liSub = [
-    { label: "LinkedIn for Organizations",  href: "/linkedin-for-organizations" },
-    { label: "LinkedIn for Founders & CEOs", href: "/linkedin-for-executives" },
-    { label: "LinkedIn for Freelancers",     href: "/linkedin-for-solopreneurs" },
+    { label: "LinkedIn for Organizations",  href: "https://www.octaloom.com/linkedin-for-organizations" },
+    { label: "LinkedIn for Founders & CEOs", href: "https://www.octaloom.com/linkedin-for-executives" },
+    { label: "LinkedIn for Freelancers",     href: "https://www.octaloom.com/linkedin-for-solopreneurs" },
   ]
   const otherSub = [
-    { label: "Fractional CMO",     href: "/fractional-cmo" },
-    { label: "AI Tools & Agents",  href: "/ai-tools-agents" },
-    { label: "Workshops",          href: "#" },
+    { label: "Fractional CMO",     href: "https://www.octaloom.com/fractional-cmo" },
+    { label: "AI Tools & Agents",  href: "https://www.octaloom.com/ai-tools-agents" },
+    { label: "Workshops",          href: "https://www.octaloom.com/workshops" },
   ]
   const topLinks = [
-    { label: "About",   href: "/about",                    active: true },
-    { label: "Blog",    href: "/blog" },
-    { label: "Contact", href: "/contact" },
+    { label: "About",   href: "https://www.octaloom.com/about",    active: true },
+    { label: "Blog",    href: "https://www.octaloom.com/blog" },
+    { label: "Contact", href: "https://www.octaloom.com/contact" },
     { label: "Goodies", href: "https://octagoodies.com" },
   ]
 
@@ -288,7 +288,7 @@ function NavEN() {
             <div style={{ position: "relative" }}
               onMouseEnter={() => setLinkedinOpen(true)}
               onMouseLeave={() => setLinkedinOpen(false)}>
-              <a href="/linkedin-for-organizations" style={{ ...dropItem, justifyContent: "space-between" }}
+              <a href="https://www.octaloom.com/linkedin-growth-engine" style={{ ...dropItem, justifyContent: "space-between" }}
                 onMouseEnter={e => hDrop(e, true)} onMouseLeave={e => hDrop(e, false)}>
                 <span>{"LinkedIn Growth Engine"}</span>
                 <svg width={11} height={11} viewBox="0 0 12 12" fill="none" style={{ opacity: 0.45 }}>
@@ -331,7 +331,7 @@ function NavEN() {
       <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: C.purple, margin: "0 0 4px", fontFamily: FF }}>
         {"Services"}
       </p>
-      <a href="/linkedin-for-organizations" onClick={() => setMenuOpen(false)}
+      <a href="https://www.octaloom.com/linkedin-growth-engine" onClick={() => setMenuOpen(false)}
         style={{ display: "block", fontSize: 20, color: C.deepPurple, padding: "11px 0", fontWeight: 600, borderBottom: "1px solid rgba(113,46,172,0.08)", fontFamily: FF }}>
         {"LinkedIn Growth Engine"}
       </a>
@@ -370,7 +370,7 @@ function NavEN() {
       fontFamily: FF, transition: "background 0.3s, box-shadow 0.3s",
       boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.08)" : "none",
     }}>
-      <a href="/" style={{ display: "flex", alignItems: "center" }}>
+      <a href="https://www.octaloom.com/" style={{ display: "flex", alignItems: "center" }}>
         <img src={LOGO_NAV} alt="OctaLoom" style={{ height: 36, width: "auto", display: "block" }}/>
       </a>
       {!isMobile && (
@@ -648,29 +648,29 @@ function WhatIDoSection({ isMobile }: { isMobile: boolean }) {
     {
       title: "Organizations",
       desc: "Full LinkedIn strategy and page management, content systems, and employee advocacy programs for B2B companies that need consistent brand presence at scale.",
-      href: "/linkedin-for-organizations",
+      href: "https://www.octaloom.com/linkedin-for-organizations",
     },
     {
       title: "Founders & Executives",
       desc: "Personal brand building for founders and senior leaders who need to become the face clients recognize and trust before they ever reach out.",
-      href: "/linkedin-for-executives",
+      href: "https://www.octaloom.com/linkedin-for-executives",
     },
     {
       title: "Solopreneurs",
       desc: "LinkedIn presence for freelancers and independent consultants who need inbound leads without an ad budget.",
-      href: "/linkedin-for-solopreneurs",
+      href: "https://www.octaloom.com/linkedin-for-solopreneurs",
     },
   ]
   const beyond = [
     {
       title: "Fractional CMO",
       desc: "CMO-level strategic leadership for companies that need a real marketing brain at the table without a full-time hire.",
-      href: "/fractional-cmo",
+      href: "https://www.octaloom.com/fractional-cmo",
     },
     {
       title: "AI Tools & Agents",
       desc: "Custom AI agents and automation systems that replace manual marketing processes.",
-      href: "/ai-tools-agents",
+      href: "https://www.octaloom.com/ai-tools-agents",
     },
     {
       title: "Workshops",
@@ -1058,25 +1058,25 @@ function FooterEN({ isMobile }: { isMobile: boolean }) {
   const hov = (e: React.MouseEvent<HTMLAnchorElement>, enter: boolean) => { e.currentTarget.style.color = enter ? C.lime : "rgba(255,255,255,0.5)" }
 
   const serviceLinks = [
-    { label: "LinkedIn for Organizations",   href: "/linkedin-for-organizations" },
-    { label: "LinkedIn for Founders & CEOs", href: "/linkedin-for-executives" },
-    { label: "LinkedIn for Freelancers",      href: "/linkedin-for-solopreneurs" },
+    { label: "LinkedIn for Organizations",   href: "https://www.octaloom.com/linkedin-for-organizations" },
+    { label: "LinkedIn for Founders & CEOs", href: "https://www.octaloom.com/linkedin-for-executives" },
+    { label: "LinkedIn for Freelancers",      href: "https://www.octaloom.com/linkedin-for-solopreneurs" },
   ]
   const otherLinks = [
-    { label: "Fractional CMO",    href: "/fractional-cmo" },
-    { label: "AI Tools & Agents", href: "/ai-tools-agents" },
-    { label: "Workshops",         href: "/workshops" },
+    { label: "Fractional CMO",    href: "https://www.octaloom.com/fractional-cmo" },
+    { label: "AI Tools & Agents", href: "https://www.octaloom.com/ai-tools-agents" },
+    { label: "Workshops",         href: "https://www.octaloom.com/workshops" },
   ]
   const pageLinks = [
-    { label: "Home",    href: "/" },
-    { label: "About",   href: "/about" },
-    { label: "Blog",    href: "/blog" },
-    { label: "Contact", href: "/contact" },
+    { label: "Home",    href: "https://www.octaloom.com/" },
+    { label: "About",   href: "https://www.octaloom.com/about" },
+    { label: "Blog",    href: "https://www.octaloom.com/blog" },
+    { label: "Contact", href: "https://www.octaloom.com/contact" },
   ]
   const legalLinks = [
-    { label: "Privacy",       href: "/privacy-policy" },
-    { label: "Terms",         href: "/terms" },
-    { label: "Accessibility", href: "/accessibility" },
+    { label: "Privacy",       href: "https://www.octaloom.com/privacy-policy" },
+    { label: "Terms",         href: "https://www.octaloom.com/terms-of-service" },
+    { label: "Accessibility", href: "https://www.octaloom.com/accessibility" },
   ]
   const socialIcons = [
     { href: "https://www.linkedin.com/in/hanita-yudovski/", label: "LinkedIn",
@@ -1232,7 +1232,7 @@ export default function AboutPageEN() {
   const isMobile = w < 768
 
   return (
-    <div dir="ltr" style={{ width: "100vw", overflowX: "hidden", fontFamily: FF, background: C.cream }}>
+    <div dir="ltr" style={{ width: "100%", overflowX: "hidden", fontFamily: FF, background: C.cream }}>
       <SchemaAbout />
       <ScrollProgress />
       <CustomCursor />
