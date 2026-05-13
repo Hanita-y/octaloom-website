@@ -1394,7 +1394,7 @@ function App() {
 
   return (
     <>
-      <div style={{ fontFamily: FONT, background: CREAM, color: DEEP_PURPLE, overflowX: "hidden", lineHeight: 1.6, WebkitFontSmoothing: "antialiased", width: "100vw", position: "relative", left: "50%", transform: "translateX(-50%)" }}>
+      <div style={{ fontFamily: FONT, background: CREAM, color: DEEP_PURPLE, overflowX: "hidden", lineHeight: 1.6, WebkitFontSmoothing: "antialiased", width: "100%" }}>
         <Navbar/>
         <main>
           <HeroSection onQuiz={() => setQuizOpen(true)}/>
