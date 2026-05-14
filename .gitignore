@@ -1,3 +1,6 @@
 .env
 node_modules/
-_preview_bundle.js
+
+# Local preview build artifacts — not used in Framer
+_preview*
+bundle.js
