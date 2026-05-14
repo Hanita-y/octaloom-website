@@ -114,13 +114,21 @@ export default function DiscoveryForm() {
   const [status, setStatus]   = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errMsg, setErrMsg]   = useState("")
 
-  const detectLang = useCallback(() => {
+  const detectLang = useCallback((): "he" | "en" => {
     if (typeof window === "undefined") return "he"
+    const path = (window.location.pathname || "").toLowerCase().replace(/\/+$/, "")
+    // Hebrew standalone pages always carry a -he marker in the URL
+    // (-he slug suffix, or the /he homepage). The URL is authoritative.
+    if (path === "/he" || path.startsWith("/he/") || path.endsWith("-he")) return "he"
+    // Any other real page slug = an English standalone page. Do NOT fall back
+    // to localStorage/DOM lang here — that was the bug: a stale cross-page
+    // "he" preference (saved by the homepage toggle) overrode the real page.
+    if (path !== "") return "en"
+    // Homepage "/" only — it has an in-place toggle, so trust the live DOM lang.
+    if (document.documentElement.lang === "he") return "he"
+    if (document.documentElement.lang === "en") return "en"
     const saved = localStorage.getItem("octaloom-lang")
-    if (saved === "en" || saved === "he") return saved
-    const domLang = document.documentElement.lang ?? ""
-    if (domLang === "en") return "en"
-    return "he"
+    return saved === "he" ? "he" : "en"
   }, [])
 
   useEffect(() => {
