@@ -375,7 +375,7 @@ const HP = {
 
   marquee: {
 
-    en: ['AI Agents', 'Marketing Automation', 'B2B Marketing', 'Full Social Presence', 'Fractional CMO', 'LinkedIn Management'],
+    en: ['AI Agents', 'Marketing Automation', 'B2B Marketing', 'Fractional CMO', 'LinkedIn Management'],
 
     he: ['Fractional CMO', '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05d0\u05e8\u05d2\u05d5\u05e0\u05d9\u05dd', '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05de\u05d9\u05d9\u05e1\u05d3\u05d9\u05dd', '\u05dc\u05d9\u05e0\u05e7\u05d3\u05d0\u05d9\u05df \u05dc\u05e2\u05e6\u05de\u05d0\u05d9\u05dd', '\u05e1\u05d5\u05db\u05e0\u05d9 \u05d5\u05db\u05dc\u05d9 AI'],
 
@@ -1459,13 +1459,47 @@ function HPNav() {
 
 // ─── MARQUEE ─────────────────────────────────────────────────────────────────
 
+const MARQUEE_REPEATS = 4
+const MARQUEE_SPEED = 55 // px per second
+
 function HPMarquee() {
 
   const { lang } = useLang()
 
   const items = lang === "he" ? HP.marquee.he : HP.marquee.en
 
-  const doubled = [...items,...items,...items,...items]
+  const trackRef = useRef<HTMLDivElement>(null)
+
+  const [setWidth, setSetWidth] = useState(0)
+
+  // Measure the width of ONE set in pixels. Pixel-based animation avoids the
+  // jump that happens when % distances recalculate after async font load.
+  useEffect(() => {
+
+    const el = trackRef.current
+
+    if (!el) return
+
+    const measure = () => {
+      const w = el.scrollWidth / MARQUEE_REPEATS
+      if (w > 0) setSetWidth(w)
+    }
+
+    measure()
+
+    const ro = new ResizeObserver(measure)
+
+    ro.observe(el)
+
+    if ((document as any).fonts?.ready) {
+      ;(document as any).fonts.ready.then(measure)
+    }
+
+    return () => ro.disconnect()
+
+  }, [items])
+
+  const doubled = Array.from({ length: MARQUEE_REPEATS }).flatMap(() => items)
 
   return (
 
@@ -1473,11 +1507,17 @@ function HPMarquee() {
 
       borderBottom: "1px solid rgba(113,46,172,0.1)", padding: "14px 0", background: C.purple, marginTop: 60 }}>
 
-      <motion.div style={{ display: "flex", whiteSpace: "nowrap", willChange: "transform" }}
+      <motion.div ref={trackRef}
 
-        animate={{ x: ["0%", "-50%"] }}
+        style={{ display: "flex", whiteSpace: "nowrap", willChange: "transform", width: "max-content" }}
 
-        transition={{ duration: 25, ease: "linear", repeat: Infinity }}>
+        animate={setWidth > 0 ? { x: [0, -setWidth] } : { x: 0 }}
+
+        transition={setWidth > 0
+
+          ? { duration: setWidth / MARQUEE_SPEED, ease: "linear", repeat: Infinity, repeatType: "loop" }
+
+          : { duration: 0 }}>
 
         {doubled.map((item, i) => (
 
@@ -3945,7 +3985,7 @@ function CustomCursor() {
   const pos = useRef({ x: -100, y: -100 })
   const ringPos = useRef({ x: -100, y: -100 })
   const raf = useRef<number>()
-  const st = useRef({ hover: false, click: false })
+  const st = useRef({ hover: false, click: false, dark: false })
   const w = useWindowSize()
 
   useEffect(() => {
@@ -3958,30 +3998,58 @@ function CustomCursor() {
     const ring = ringRef.current
     if (!dot || !ring) return
 
-    const setDot = () => {
-      dot.style.width  = st.current.hover ? '5px' : '8px'
-      dot.style.height = st.current.hover ? '5px' : '8px'
-      dot.style.background = st.current.hover ? C.lime : C.purple
-    }
-    const setRing = () => {
+    // Light bg → purple cursor. Dark bg → cream cursor. Click → inverted.
+    const baseColor = () => (st.current.dark ? C.cream : C.purple)
+    const invColor  = () => (st.current.dark ? C.purple : C.cream)
+
+    const applyStyles = () => {
       const { hover, click } = st.current
-      if (click) {
-        ring.style.width = '28px'; ring.style.height = '28px'; ring.style.borderColor = C.lime
-      } else if (hover) {
-        ring.style.width = '54px'; ring.style.height = '54px'; ring.style.borderColor = C.purple
-      } else {
-        ring.style.width = '38px'; ring.style.height = '38px'; ring.style.borderColor = 'rgba(113,46,172,.45)'
+      dot.style.background = click ? invColor() : baseColor()
+      dot.style.width  = hover ? '5px' : '8px'
+      dot.style.height = hover ? '5px' : '8px'
+      const ringSize = click ? 28 : hover ? 54 : 38
+      ring.style.width = ringSize + 'px'
+      ring.style.height = ringSize + 'px'
+      ring.style.borderColor = click ? invColor() : baseColor()
+    }
+
+    // Walk up the DOM from the point under the cursor, find the first solid
+    // background colour, and decide light vs dark by luminance.
+    const isDarkAt = (x: number, y: number) => {
+      let el = document.elementFromPoint(x, y) as Element | null
+      let depth = 0
+      while (el && depth < 12) {
+        const bg = getComputedStyle(el).backgroundColor
+        const m = bg.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?\)/)
+        if (m) {
+          const r = +m[1], g = +m[2], b = +m[3]
+          const a = m[4] === undefined ? 1 : +m[4]
+          if (a > 0.5) {
+            const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+            return lum < 0.5
+          }
+        }
+        el = el.parentElement
+        depth++
       }
+      return false
     }
 
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+    let frame = 0
     const tick = () => {
-      dot.style.left = pos.current.x + 'px'
-      dot.style.top  = pos.current.y + 'px'
-      ringPos.current.x = lerp(ringPos.current.x, pos.current.x, 0.12)
-      ringPos.current.y = lerp(ringPos.current.y, pos.current.y, 0.12)
-      ring.style.left = ringPos.current.x + 'px'
-      ring.style.top  = ringPos.current.y + 'px'
+      // Dot tracks instantly via GPU-composited transform (no layout thrash).
+      dot.style.transform = `translate3d(${pos.current.x}px, ${pos.current.y}px, 0) translate(-50%, -50%)`
+      // Ring trails with a quick lerp.
+      ringPos.current.x = lerp(ringPos.current.x, pos.current.x, 0.2)
+      ringPos.current.y = lerp(ringPos.current.y, pos.current.y, 0.2)
+      ring.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0) translate(-50%, -50%)`
+      // Background theme check, throttled (~10x/sec — backgrounds change slowly).
+      if (frame % 6 === 0) {
+        const dark = isDarkAt(pos.current.x, pos.current.y)
+        if (dark !== st.current.dark) { st.current.dark = dark; applyStyles() }
+      }
+      frame++
       raf.current = requestAnimationFrame(tick)
     }
 
@@ -3989,16 +4057,17 @@ function CustomCursor() {
       t instanceof Element && !!t.closest('a,button,[role="button"],input,select,label')
 
     const onMove  = (e: MouseEvent) => { pos.current = { x: e.clientX, y: e.clientY } }
-    const onOver  = (e: MouseEvent) => { if (isBtn(e.target))  { st.current.hover = true;  setDot(); setRing() } }
-    const onOut   = (e: MouseEvent) => { if (isBtn(e.target) && !isBtn(e.relatedTarget)) { st.current.hover = false; setDot(); setRing() } }
-    const onDown  = () => { st.current.click = true;  setRing() }
-    const onUp    = () => { st.current.click = false; setRing() }
+    const onOver  = (e: MouseEvent) => { if (isBtn(e.target))  { st.current.hover = true;  applyStyles() } }
+    const onOut   = (e: MouseEvent) => { if (isBtn(e.target) && !isBtn(e.relatedTarget)) { st.current.hover = false; applyStyles() } }
+    const onDown  = () => { st.current.click = true;  applyStyles() }
+    const onUp    = () => { st.current.click = false; applyStyles() }
 
-    document.addEventListener('mousemove', onMove)
-    document.addEventListener('mouseover', onOver)
-    document.addEventListener('mouseout',  onOut)
-    document.addEventListener('mousedown', onDown)
-    document.addEventListener('mouseup',   onUp)
+    document.addEventListener('mousemove', onMove, { passive: true })
+    document.addEventListener('mouseover', onOver, { passive: true })
+    document.addEventListener('mouseout',  onOut,  { passive: true })
+    document.addEventListener('mousedown', onDown, { passive: true })
+    document.addEventListener('mouseup',   onUp,   { passive: true })
+    applyStyles()
     raf.current = requestAnimationFrame(tick)
 
     return () => {
@@ -4017,17 +4086,17 @@ function CustomCursor() {
   return (
     <>
       <div ref={dotRef} style={{
-        position: 'fixed', top: 0, left: -100, width: 8, height: 8,
+        position: 'fixed', top: 0, left: 0, width: 8, height: 8,
         borderRadius: '50%', background: C.purple,
         pointerEvents: 'none', zIndex: 9999,
-        transform: 'translate(-50%, -50%)',
+        transform: 'translate3d(-100px, -100px, 0)',
         transition: 'width .15s, height .15s, background .15s',
       }} />
       <div ref={ringRef} style={{
-        position: 'fixed', top: 0, left: -100, width: 38, height: 38,
-        borderRadius: '50%', border: '1.5px solid rgba(113,46,172,.45)',
+        position: 'fixed', top: 0, left: 0, width: 38, height: 38,
+        borderRadius: '50%', border: `1.5px solid ${C.purple}`,
         pointerEvents: 'none', zIndex: 9998,
-        transform: 'translate(-50%, -50%)',
+        transform: 'translate3d(-100px, -100px, 0)',
         transition: 'width .25s, height .25s, border-color .25s',
       }} />
     </>
