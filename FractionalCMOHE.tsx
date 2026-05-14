@@ -313,7 +313,7 @@ function CmoHero() {
             <p className="cmo-hero__sub rv" style={{ transitionDelay: ".25s" }}>ואתם כבר מבינים שזה לא עוד <span className="ltr">one-pager</span> ולוגו חדש. צריך תשתיות שיווק אמיתיות: מה המסרים שלכם? מה ה-<span className="ltr">GTM</span>? מה ה-<span className="ltr">USP</span> וה-<span className="ltr">Value Proposition</span>? איך מתרגמים את זה לעשייה? ואיך מגיעים למקבלי ההחלטות השונים, בערוצים הנכונים, בתזמון הנכון?</p>
             <p className="cmo-hero__sub rv" style={{ transitionDelay: ".3s" }}>הקמתי את <span className="ltr">OctaLoom</span> בדיוק בשביל זה. כסמנכ"לית שיווק במיקור חוץ שמאמינה בלינקדאין כמנוע צמיחה (<span className="ltr">LinkedIn-Led Fractional CMO</span>), אני מובילה את השיווק שלכם עם סיסטמים חכמים, סוכני <span className="ltr">AI</span> וכלי <span className="ltr">AI</span> שמחליפים צוותים שלמים. <strong>בת אדם אחת, בקצב של מחלקה שלמה.</strong> מה שנקרא וויב מרקטינג (<span className="ltr">Vibe Marketing</span>).</p>
             <div className="cmo-hero__cta-row rv" style={{ transitionDelay: ".4s" }}>
-              <a className="cmo-btn cmo-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery">
+              <a className="cmo-btn cmo-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" style={{ color: "var(--purple)" }}>
                 בואו נדבר
                 <span className="arrow">←</span>
               </a>
@@ -681,7 +681,10 @@ function CmoHi() {
             <p>כבר 5+ שנים אני בונה מערכות שיווק <span className="ltr">B2B</span> לחברות ישראליות. 3 השנים האחרונות עמוק בתוך מה ש-<span className="ltr">AI</span> משנה בשיווק, ובואו, זה שינה הכל. בניתי תשתיות שיווק מאפס בסטארטאפ <span className="ltr">social impact</span> ישראלי, ניהלתי 3 צוותים ו-18 אנשים, ועבדתי עם חברות <span className="ltr">B2B</span> שונות החל מ-<span className="ltr">social impact</span>, <span className="ltr">SaaS</span>, חינוך, מזון, וקריאייטיב.</p>
             <p>אני מנחה את הפודקאסט <strong>"מה הסיפור עם?"</strong> שבו אנחנו מפרקות את מה שבאמת עובד בשיווק <span className="ltr">B2B</span>.</p>
             <div className="hi__links">
-              <a href="https://www.linkedin.com/in/hanita-yudovski/">לינקדאין של חניתה ←</a>
+              <a href="https://www.linkedin.com/in/hanita-yudovski/">
+                בואו נתחבר
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
               <a href="https://whatsthestorywith.com/" target="_blank" rel="noopener noreferrer">לפודקאסט "מה הסיפור עם?" ←</a>
             </div>
           </div>
@@ -721,7 +724,7 @@ function CmoFinalCTA() {
         <h2 className="final__h rv">מוכנים להוביל את השיווק<br/>בלי לשכור מחלקה?</h2>
         <p className="final__sub rv" style={{ transitionDelay: ".1s" }}>אפשר להמשיך לחשוב על זה, ואפשר לקבוע שיחה. שיחת היכרות קצרה, בלי התחייבות. אם זה לא מתאים, אגיד לכם.</p>
         <div className="final__cta rv" style={{ transitionDelay: ".2s" }}>
-          <a className="cmo-btn cmo-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery">
+          <a className="cmo-btn cmo-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" style={{ color: "var(--purple)" }}>
             בואו נדבר
             <span className="arrow">←</span>
           </a>
