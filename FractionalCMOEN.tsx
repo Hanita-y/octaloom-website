@@ -317,7 +317,7 @@ function CmoHero() {
             </p>
             <p className="cmo-hero__fix rv" style={{ transitionDelay: ".3s" }}>There's a fourth option.</p>
             <div className="cmo-hero__cta-row rv" style={{ transitionDelay: ".4s" }}>
-              <a className="btn btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery">
+              <a className="btn btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" style={{ color: "var(--purple)" }}>
                 Book a Free Discovery Call
                 <span className="arrow">→</span>
               </a>
