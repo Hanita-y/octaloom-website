@@ -317,7 +317,7 @@ function CmoHero() {
             </p>
             <p className="cmo-hero__fix rv" style={{ transitionDelay: ".3s" }}>There's a fourth option.</p>
             <div className="cmo-hero__cta-row rv" style={{ transitionDelay: ".4s" }}>
-              <a className="btn btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" style={{ color: "var(--purple)" }}>
+              <a className="btn btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }} style={{ color: "var(--purple)" }}>
                 Book a Free Discovery Call
                 <span className="arrow">→</span>
               </a>
@@ -723,7 +723,7 @@ function CmoFinalCTA() {
         <h2 className="final__h rv">Ready for Marketing Leadership That Actually Executes?</h2>
         <p className="final__sub rv" style={{ transitionDelay: ".1s" }}>No deck. No pitch. No hourly retainer. A real conversation about whether OctaLoom can build the marketing system your company actually needs.</p>
         <div className="final__cta rv" style={{ transitionDelay: ".2s" }}>
-          <a className="btn btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" style={{ color: "var(--purple)" }}>
+          <a className="btn btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }} style={{ color: "var(--purple)" }}>
             Talk to Your Future CMO
             <span className="arrow">→</span>
           </a>

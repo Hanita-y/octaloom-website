@@ -52,15 +52,12 @@ const BORDER = '#e5e7eb';
 const LI_PATH = 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z';
 
 function getLangToggleUrl(isHE: boolean): string {
-  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/solopreneurs" : "https://www.octaloom.com/solopreneurs-he"
-  const path = window.location.pathname
-  if (isHE) {
-    const enPath = path.replace(/-he$/, "") || "/"
-    return "https://www.octaloom.com" + enPath
-  } else {
-    if (path === "/" || path === "") return "https://www.octaloom.com/"
-    return "https://www.octaloom.com" + path.replace(/\/$/, "") + "-he"
-  }
+  // isHE=true  → currently on the HE page, link to the EN page.
+  // isHE=false → currently on the EN page, link to the HE page.
+  // Slugs are hardcoded: the published HE slug isn't a clean "-he" of the EN one.
+  return isHE
+    ? "https://www.octaloom.com/linkedin-for-solopreneurs"
+    : "https://www.octaloom.com/linkedin-for-solopreneurs-he"
 }
 
 const langToggleStyle: React.CSSProperties = {
@@ -398,7 +395,7 @@ function Navbar() {
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(32,30,75,0.22)"; (e.currentTarget as HTMLAnchorElement).style.color = "#201e4b" }}>
               EN
             </a>
-            <button onClick={() => window.open('https://calendar.notion.so/meet/octaloom/discovery', '_blank')}
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 20px', borderRadius: 100, fontSize: 13, fontWeight: 600, background: 'var(--purple)', color: '#fff', fontFamily, border: 'none', cursor: 'pointer' }}>
               בואו נדבר
             </button>
@@ -467,7 +464,7 @@ function Navbar() {
             </a>
           ))}
           <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <button onClick={() => window.open('https://calendar.notion.so/meet/octaloom/discovery', '_blank')}
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
               style={{ display: 'block', textAlign: 'center', padding: '14px 24px', fontSize: 15, fontWeight: 600, background: 'var(--purple)', color: '#fff', borderRadius: 100, fontFamily, border: 'none', cursor: 'pointer', width: '100%' }}>
               קביעת שיחה חינם
             </button>
@@ -607,7 +604,7 @@ function SoloHero() {
             <Reveal delay={300}><p className="solo-hero__sub">{t(SOLO.hero.sub)}</p></Reveal>
             <Reveal delay={400}><p className="solo-hero__hook">{t(SOLO.hero.hook)}</p></Reveal>
             <Reveal delay={500}>
-              <a href="https://calendar.notion.so/meet/octaloom/discovery" className="btn btn--lime" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }} className="btn btn--lime" target="_blank" rel="noopener noreferrer">
                 {t(SOLO.hero.cta)}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </a>
@@ -955,7 +952,7 @@ function SoloCTA() {
           <h2 className="cta__title">{t(SOLO.cta.title)}</h2>
           <p className="cta__sub">{t(SOLO.cta.sub)}</p>
           <div className="cta__actions">
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" className="btn btn--purple" target="_blank" rel="noopener noreferrer">
+            <a href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }} className="btn btn--purple" target="_blank" rel="noopener noreferrer">
               {t(SOLO.cta.cta1)}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>

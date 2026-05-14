@@ -49,15 +49,12 @@ const PURPLE = '#712eac';
 const FONT = "'Aeonik', sans-serif";
 
 function getLangToggleUrl(isHE: boolean): string {
-  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/solopreneurs" : "https://www.octaloom.com/solopreneurs-he"
-  const path = window.location.pathname
-  if (isHE) {
-    const enPath = path.replace(/-he$/, "") || "/"
-    return "https://www.octaloom.com" + enPath
-  } else {
-    if (path === "/" || path === "") return "https://www.octaloom.com/"
-    return "https://www.octaloom.com" + path.replace(/\/$/, "") + "-he"
-  }
+  // isHE=true  → currently on the HE page, link to the EN page.
+  // isHE=false → currently on the EN page, link to the HE page.
+  // Slugs are hardcoded: the published HE slug isn't a clean "-he" of the EN one.
+  return isHE
+    ? "https://www.octaloom.com/linkedin-for-solopreneurs"
+    : "https://www.octaloom.com/linkedin-for-solopreneurs-he"
 }
 
 const langToggleStyle: React.CSSProperties = {
@@ -380,7 +377,7 @@ function Navbar() {
               onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(32,30,75,0.22)'; (e.currentTarget as HTMLAnchorElement).style.color = '#201e4b' }}>
               &#x05E2;&#x05D1;
             </a>
-            <button onClick={() => window.open('https://calendar.notion.so/meet/octaloom/discovery', '_blank')}
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 20px', borderRadius: 100, fontSize: 13, fontWeight: 600, background: 'var(--purple)', color: '#fff', fontFamily: FONT, border: 'none', cursor: 'pointer' }}>
               Book a Call
             </button>
@@ -441,7 +438,7 @@ function Navbar() {
             </a>
           ))}
           <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <button onClick={() => window.open('https://calendar.notion.so/meet/octaloom/discovery', '_blank')}
+            <button onClick={() => window.dispatchEvent(new CustomEvent("open-discovery"))}
               style={{ display: 'block', textAlign: 'center', padding: '14px 24px', fontSize: 15, fontWeight: 600, background: 'var(--purple)', color: '#fff', borderRadius: 100, fontFamily: FONT, border: 'none', cursor: 'pointer', width: '100%' }}>
               Book a Free Call
             </button>
@@ -576,7 +573,7 @@ function SoloHero() {
             <Reveal delay={300}><p className="solo-hero__sub">{t(SOLO.hero.sub)}</p></Reveal>
             <Reveal delay={400}><p className="solo-hero__hook" style={{whiteSpace:'pre-line'}}>{t(SOLO.hero.hook)}</p></Reveal>
             <Reveal delay={500}>
-              <a href="https://calendar.notion.so/meet/octaloom/discovery" className="btn btn--lime" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }} className="btn btn--lime" target="_blank" rel="noopener noreferrer">
                 {t(SOLO.hero.cta)}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </a>
@@ -895,7 +892,7 @@ function SoloCTA() {
           <h2 className="cta__title">{t(SOLO.cta.title)}</h2>
           <p className="cta__sub">{t(SOLO.cta.sub)}</p>
           <div className="cta__actions">
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" className="btn btn--purple" target="_blank" rel="noopener noreferrer">
+            <a href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }} className="btn btn--purple" target="_blank" rel="noopener noreferrer">
               {t(SOLO.cta.cta1)}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>

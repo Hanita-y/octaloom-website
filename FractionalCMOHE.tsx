@@ -313,7 +313,7 @@ function CmoHero() {
             <p className="cmo-hero__sub rv" style={{ transitionDelay: ".25s" }}>ואתם כבר מבינים שזה לא עוד <span className="ltr">one-pager</span> ולוגו חדש. צריך תשתיות שיווק אמיתיות: מה המסרים שלכם? מה ה-<span className="ltr">GTM</span>? מה ה-<span className="ltr">USP</span> וה-<span className="ltr">Value Proposition</span>? איך מתרגמים את זה לעשייה? ואיך מגיעים למקבלי ההחלטות השונים, בערוצים הנכונים, בתזמון הנכון?</p>
             <p className="cmo-hero__sub rv" style={{ transitionDelay: ".3s" }}>הקמתי את <span className="ltr">OctaLoom</span> בדיוק בשביל זה. כסמנכ"לית שיווק במיקור חוץ שמאמינה בלינקדאין כמנוע צמיחה (<span className="ltr">LinkedIn-Led Fractional CMO</span>), אני מובילה את השיווק שלכם עם סיסטמים חכמים, סוכני <span className="ltr">AI</span> וכלי <span className="ltr">AI</span> שמחליפים צוותים שלמים. <strong>בת אדם אחת, בקצב של מחלקה שלמה.</strong> מה שנקרא וויב מרקטינג (<span className="ltr">Vibe Marketing</span>).</p>
             <div className="cmo-hero__cta-row rv" style={{ transitionDelay: ".4s" }}>
-              <a className="cmo-btn cmo-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" style={{ color: "var(--purple)" }}>
+              <a className="cmo-btn cmo-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }} style={{ color: "var(--purple)" }}>
                 בואו נדבר
                 <span className="arrow">←</span>
               </a>
@@ -724,7 +724,7 @@ function CmoFinalCTA() {
         <h2 className="final__h rv">מוכנים להוביל את השיווק<br/>בלי לשכור מחלקה?</h2>
         <p className="final__sub rv" style={{ transitionDelay: ".1s" }}>אפשר להמשיך לחשוב על זה, ואפשר לקבוע שיחה. שיחת היכרות קצרה, בלי התחייבות. אם זה לא מתאים, אגיד לכם.</p>
         <div className="final__cta rv" style={{ transitionDelay: ".2s" }}>
-          <a className="cmo-btn cmo-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" style={{ color: "var(--purple)" }}>
+          <a className="cmo-btn cmo-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }} style={{ color: "var(--purple)" }}>
             בואו נדבר
             <span className="arrow">←</span>
           </a>
