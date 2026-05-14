@@ -24,6 +24,7 @@ function useGlobalStyles() {
 .ait-page a{color:inherit;text-decoration:none}
 .ait-page button{font-family:inherit;border:none;background:none;cursor:pointer;color:inherit}
 .ait-page img{display:block;max-width:100%}
+.ait-page p,.ait-page li,.ait-sec-lede,.ait-intro__text,.ait-appwin__tag,.ait-appwin__foot,.ait-appwin__callout,.ait-hero__sub,.ait-final__sub,.ait-final__small,.ait-footer__tag,.ait-how__card p,.ait-hi__body p,.ait-appwin__list li > div,.ait-quote__text,.ait-faq__a,.ait-built__stat p{text-wrap:pretty}
 .ait-container{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
 .ait-container--narrow{max-width:920px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
 .ait-rv{opacity:0;transform:translateY(28px);transition:opacity 0.9s cubic-bezier(.16,1,.3,1),transform 0.9s cubic-bezier(.16,1,.3,1),filter 0.9s cubic-bezier(.16,1,.3,1)}
@@ -48,13 +49,14 @@ function useGlobalStyles() {
 .ait-hero__label .ait-pulse{width:6px;height:6px;border-radius:50%;background:var(--lime);animation:aitPulse 1.4s ease infinite}
 @keyframes aitPulse{0%,100%{opacity:0.4;transform:scale(0.85)}50%{opacity:1;transform:scale(1)}}
 .ait-hero__grid{margin-top:28px;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
+.ait-hero__grid > *{min-width:0}
 .ait-hero__h1{font-size:clamp(34px,5.2vw,66px);font-weight:700;line-height:1.06;letter-spacing:-0.032em;color:var(--cream)}
 .ait-hero__h1 .ait-accent{color:var(--lime)}
 .ait-hero__sub{margin-top:24px;font-size:clamp(15px,1.4vw,17px);line-height:1.65;color:rgba(236,233,231,0.74);max-width:540px}
 .ait-hero__sub+.ait-hero__sub{margin-top:16px}
 .ait-hero__sub strong{color:var(--cream);font-weight:700}
 .ait-hero__cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-.ait-boot{position:relative;background:#0d0d24;border:1px solid rgba(197,230,162,0.2);border-radius:14px;overflow:hidden;font-family:var(--font-mono);font-size:12.5px;line-height:1.6;color:#cfd0e0;box-shadow:0 24px 70px rgba(0,0,0,0.5)}
+.ait-boot{position:relative;width:100%;max-width:100%;min-width:0;background:#0d0d24;border:1px solid rgba(197,230,162,0.2);border-radius:14px;overflow:hidden;font-family:var(--font-mono);font-size:12.5px;line-height:1.6;color:#cfd0e0;box-shadow:0 24px 70px rgba(0,0,0,0.5)}
 .ait-boot__bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.06)}
 .ait-win-dot{width:11px;height:11px;border-radius:50%}
 .ait-win-dot--r{background:#ff5f56}
@@ -77,7 +79,7 @@ function useGlobalStyles() {
 .ait-boot__node{padding:10px 11px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:7px}
 .ait-boot__node .k{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:4px}
 .ait-boot__node .v{font-size:11px;color:var(--cream)}
-@media (max-width:980px){.ait-hero__grid{grid-template-columns:1fr}}
+@media (max-width:980px){.ait-hero__grid{grid-template-columns:1fr;margin-top:22px}.ait-boot__line{white-space:normal;overflow-wrap:anywhere}.ait-boot__out{margin-left:0;display:inline}.ait-boot__body{padding:16px 16px 18px;min-height:0}.ait-boot{font-size:11.5px}.ait-boot__dash{grid-template-columns:1fr 1fr}.ait-boot__node{padding:9px 10px}}
 .ait-section{padding:clamp(80px,11vw,140px) 0;position:relative}
 .ait-section--cream{background:var(--cream)}
 .ait-section--paper{background:var(--paper)}
@@ -102,6 +104,7 @@ function useGlobalStyles() {
 .ait-intro__text strong{color:var(--purple);font-weight:700}
 .ait-apps{background:var(--ink);color:var(--cream)}
 .ait-apps__grid{margin-top:clamp(40px,5vw,60px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.6vw,28px)}
+.ait-apps__grid > *{min-width:0}
 .ait-appwin{background:#11102b;border:1px solid var(--rule);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.5s cubic-bezier(.16,1,.3,1),box-shadow 0.5s,border-color 0.4s,opacity 0.6s;opacity:0;transform:translateY(34px) scale(0.97)}
 .ait-appwin.boot-in{opacity:1;transform:translateY(0) scale(1)}
 .ait-appwin:hover{transform:translateY(-5px);box-shadow:0 26px 60px rgba(0,0,0,0.4);border-color:rgba(197,230,162,0.4)}
@@ -117,6 +120,8 @@ function useGlobalStyles() {
 .ait-appwin__list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
 .ait-appwin__list li{display:flex;gap:11px;font-size:13.5px;line-height:1.55;color:rgba(236,233,231,0.82)}
 .ait-appwin__list li::before{content:'\\25B8';flex-shrink:0;color:var(--lime);font-size:11px;margin-top:2px}
+.ait-appwin__list li > div{min-width:0;text-wrap:pretty}
+.ait-appwin__list li .lead{color:var(--lime);font-weight:700}
 .ait-appwin__foot{padding-top:16px;border-top:1px dashed rgba(197,230,162,0.2);font-size:13px;line-height:1.6;color:rgba(236,233,231,0.6)}
 .ait-appwin__callout{margin-top:14px;padding:16px 18px;background:rgba(197,230,162,0.08);border:1px solid rgba(197,230,162,0.28);border-radius:10px;font-size:13px;line-height:1.62;color:rgba(236,233,231,0.86)}
 .ait-appwin__callout strong{color:var(--lime);font-weight:700}
@@ -161,6 +166,7 @@ function useGlobalStyles() {
 @media (max-width:980px){.ait-apps__grid{grid-template-columns:1fr}}
 .ait-how{background:var(--paper)}
 .ait-how__pipe{margin-top:clamp(40px,5vw,60px);display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:stretch;position:relative}
+.ait-how__pipe > *{min-width:0}
 .ait-how__rail{position:absolute;top:38px;left:14%;right:14%;height:2px;background:var(--rule-dark)}
 .ait-how__rail::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--purple),var(--lime));transform:scaleX(0);transform-origin:left center;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
 .ait-how.in .ait-how__rail::after{transform:scaleX(1)}
@@ -175,6 +181,7 @@ function useGlobalStyles() {
 @media (max-width:880px){.ait-how__pipe{grid-template-columns:1fr;gap:20px}.ait-how__rail{display:none}.ait-how__badge{margin-bottom:16px}}
 .ait-built{background:var(--purple);color:var(--cream)}
 .ait-built__grid{margin-top:clamp(40px,5vw,60px);display:grid;grid-template-columns:0.95fr 1.05fr;gap:clamp(28px,4vw,52px);align-items:stretch}
+.ait-built__grid > *{min-width:0}
 .ait-built__stat{background:rgba(197,230,162,0.08);border:1px solid rgba(197,230,162,0.28);border-radius:16px;padding:clamp(32px,4vw,48px);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
 .ait-built__stat::after{content:'';position:absolute;width:320px;height:320px;bottom:-160px;right:-120px;background:radial-gradient(circle,rgba(197,230,162,0.22),transparent 65%);filter:blur(40px)}
 .ait-built__stat .meta{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--lime);margin-bottom:14px;display:inline-flex;align-items:center;gap:8px}
@@ -209,6 +216,7 @@ function useGlobalStyles() {
 .ait-hi .ait-sec-h{color:var(--ink)}
 .ait-hi .ait-sec-h .ait-accent{color:var(--purple)}
 .ait-hi__grid{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:0.78fr 1.22fr;gap:clamp(36px,5vw,64px);align-items:start}
+.ait-hi__grid > *{min-width:0}
 .ait-hi__portrait{position:relative}
 .ait-hi__portrait .img{width:100%;aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:linear-gradient(160deg,#2a2554,#060d3d);box-shadow:0 24px 56px rgba(28,26,60,0.22);border:1px solid rgba(28,26,60,0.12);position:relative}
 .ait-hi__portrait .img img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
@@ -236,7 +244,7 @@ function useGlobalStyles() {
 .ait-faq__a{max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(.16,1,.3,1)}
 .ait-faq__a-inner{padding:0 24px 24px 24px;font-size:15px;line-height:1.7;color:var(--text-mid)}
 .ait-faq__item.open .ait-faq__a{max-height:460px}
-.ait-endzone{position:relative}
+.ait-endzone{position:relative;overflow-x:clip}
 .ait-endzone::before{content:'';position:absolute;left:50%;bottom:0;width:min(1100px,130vw);height:760px;transform:translate(-50%,38%);background:radial-gradient(closest-side,rgba(197,230,162,0.20),rgba(197,230,162,0.07) 46%,transparent 76%);filter:blur(50px);pointer-events:none;z-index:0}
 .ait-endzone::after{content:'';position:absolute;left:18%;bottom:6%;width:520px;height:520px;transform:translate(-50%,30%);background:radial-gradient(circle,rgba(120,150,255,0.12),transparent 66%);filter:blur(60px);pointer-events:none;z-index:0}
 .ait-final{background:linear-gradient(180deg,#221f4d 0%,#15123a 52%,#211d4b 100%);color:var(--cream);text-align:center;padding:clamp(80px,14vw,160px) 0 clamp(96px,16vw,180px);position:relative}
@@ -272,11 +280,15 @@ function useGlobalStyles() {
 .ait-footer__legal a:hover{color:var(--lime)}
 @media (max-width:980px){.ait-footer__grid{grid-template-columns:1fr 1fr;gap:32px 24px}.ait-footer__brand{grid-column:1 / -1;max-width:none}}
 @media (max-width:540px){.ait-footer__grid{grid-template-columns:1fr}.ait-footer__col:not(.ait-footer__brand):not(.ait-footer__col--socials){display:none}}
-@media (max-width:1199px) and (min-width:768px){.ait-apps__grid{grid-template-columns:1fr;gap:22px}.ait-built__grid{grid-template-columns:1fr}.ait-how__pipe{grid-template-columns:1fr 1fr 1fr}.ait-flow__step{max-width:none;flex:1 1 30%}.ait-intro__text{font-size:20px}}
+@media (max-width:1199px) and (min-width:768px){.ait-apps__grid{grid-template-columns:1fr 1fr;gap:22px}.ait-built__grid{grid-template-columns:1fr}.ait-how__pipe{grid-template-columns:1fr 1fr 1fr}.ait-flow__step{max-width:none;flex:1 1 30%}.ait-intro__text{font-size:20px}.ait-hero__grid{grid-template-columns:1fr}.ait-container,.ait-container--narrow{padding:0 32px}}
+@media (max-width:980px){.ait-apps__grid{grid-template-columns:1fr;gap:22px}.ait-built__grid{grid-template-columns:1fr}}
 @media (max-width:880px){.ait-flow__pipe{flex-direction:column;align-items:stretch;gap:6px}.ait-flow__step{max-width:none}.ait-flow__conn{width:2px;height:16px;margin:2px 0 2px 14px;background:linear-gradient(180deg,rgba(197,230,162,0.2),var(--lime));transform:scaleY(0);transform-origin:top center}.ait-flow.flow-in .ait-flow__conn{transform:scaleY(1)}.ait-flow__conn::after{right:auto;left:50%;top:auto;bottom:-1px;transform:translateX(-50%);border-left:3px solid transparent;border-right:3px solid transparent;border-top:5px solid var(--lime);border-bottom:none}}
-@media (max-width:540px){.ait-btn{padding:14px 22px;font-size:13px}.ait-section{padding:72px 0}.ait-hero__cta-row .ait-btn{width:100%;justify-content:center}.ait-quote__who{flex-wrap:wrap}}
+@media (max-width:768px){.ait-container,.ait-container--narrow{padding:0 22px}.ait-hero{padding:124px 0 72px}.ait-hero__h1{font-size:clamp(30px,8.4vw,40px)}.ait-hero__sub{font-size:15px;max-width:none}.ait-hero__cta-row{gap:10px;margin-top:26px}.ait-section{padding:64px 0}.ait-intro{padding:56px 0}.ait-intro__card{padding:26px 22px}.ait-intro__text{font-size:17px}.ait-sec-h{font-size:clamp(26px,7.2vw,36px)}.ait-sec-lede{font-size:15px}.ait-appwin__body{padding:24px 22px}.ait-appwin h3{font-size:23px}.ait-built__num{font-size:clamp(72px,22vw,110px)}.ait-built__stat{padding:30px 24px}.ait-built__log{padding:24px 22px}.ait-quote__card{padding:32px 24px}.ait-quote__text{font-size:clamp(19px,5.6vw,24px)}.ait-hi__body p:first-child{font-size:clamp(19px,5vw,22px)}.ait-final__h{font-size:clamp(30px,8.4vw,44px)}.ait-final__cta .ait-btn{padding:17px 30px;font-size:15px}.ait-endzone::before{width:min(640px,150vw);height:520px}.ait-endzone::after{width:360px;height:360px}.ait-hero::after{width:360px;height:360px;top:-140px;right:-140px}.ait-built__stat::after{width:220px;height:220px;bottom:-120px;right:-90px}.ait-hi::after{width:320px;height:320px;top:-130px;left:-120px}}
+@media (max-width:767px){.ait-boot{display:none}.ait-hero{padding:130px 0 78px}.ait-hero__grid{display:block;margin-top:26px}.ait-hero__sub{max-width:560px}.ait-hero__sub+.ait-hero__sub{margin-top:14px}.ait-hero__cta-row{margin-top:30px}.ait-intro__bar{display:none}.ait-intro__card{padding:24px 20px}.ait-intro__card::before{display:none}.ait-appwin__bar{display:none}.ait-appwin{border-radius:12px}.ait-appwin__body{padding:22px 20px}.ait-appwin__no{display:none}.ait-appwin h3{font-size:21px}.ait-appwin__tag{font-size:13.5px;margin-bottom:12px}.ait-appwin__body p{font-size:13.5px;margin-bottom:12px}.ait-appwin__lead{font-size:10.5px}.ait-appwin__list li{font-size:13px}.ait-appwin__foot{font-size:12.5px;padding-top:14px}.ait-appwin__callout{padding:13px 15px;font-size:12.5px}.ait-appwin__reveal{padding:11px 14px}.ait-appwin__reveal-label{font-size:11.5px}.ait-flows-trigger{padding:12px 14px}.ait-flows-trigger__label{font-size:11.5px}.ait-how__badge{width:46px;height:46px;font-size:14px;border-radius:12px;margin-bottom:14px}.ait-how__card{padding:22px 20px;border-radius:12px}.ait-how__card h3{font-size:19px}.ait-how__card p{font-size:13.5px}.ait-built__stat{padding:26px 22px;border-radius:14px}.ait-built__num-lbl{font-size:15px}.ait-built__log{padding:22px 20px;border-radius:14px}.ait-built__log-h{display:none}.ait-built__log li{font-size:13px;padding:12px 0}.ait-quote__bar{display:none}.ait-quote__card{padding:30px 22px;border-radius:14px}.ait-hi__opcard{display:none}.ait-hi__portrait .img{box-shadow:0 14px 34px rgba(28,26,60,0.16);border-radius:14px}.ait-hi__body p{font-size:15px}.ait-faq__item{border-radius:10px}.ait-faq__q{padding:18px 20px}.ait-faq__q-text{font-size:15px}}
+@media (max-width:540px){.ait-btn{padding:14px 22px;font-size:13px}.ait-section{padding:56px 0}.ait-hero__cta-row .ait-btn{width:100%;justify-content:center}.ait-quote__who{flex-wrap:wrap}.ait-appwin__reveal{flex-wrap:wrap;gap:8px}.ait-appwin__reveal-hint{margin-left:0}.ait-flows-trigger{flex-wrap:wrap;gap:8px 10px}.ait-flows-trigger__hint{margin-left:0}.ait-hi__portrait{max-width:none}.ait-faq__q{padding:18px 18px;gap:12px}.ait-faq__q-num{margin-right:8px}.ait-faq__a-inner{padding:0 18px 20px 18px}}
+@media (max-width:360px){.ait-container,.ait-container--narrow{padding:0 16px}.ait-hero__h1{font-size:27px}.ait-boot__title{font-size:9px}.ait-appwin__bar{flex-wrap:wrap;gap:6px 8px}.ait-appwin__tier{margin-left:0}.ait-built__num{font-size:68px}}
 .ait-page :focus-visible{outline:2px solid var(--purple);outline-offset:4px;border-radius:4px}
-@media (prefers-reduced-motion:reduce){.ait-page *,.ait-page *::before,.ait-page *::after{animation:none!important;transition:none!important}.ait-rv{opacity:1!important;transform:none!important;filter:none!important}.ait-appwin{opacity:1!important;transform:none!important}.ait-flow__step{opacity:1!important;transform:none!important}.ait-flow__conn{transform:scaleX(1)!important}.ait-how__rail::after{transform:scaleX(1)!important}.ait-boot__caret{display:none!important}}
+@media (prefers-reduced-motion:reduce){.ait-page *,.ait-page *::before,.ait-page *::after{animation:none!important;transition:none!important}.ait-rv{opacity:1!important;transform:none!important;filter:none!important}.ait-appwin{opacity:1!important;transform:none!important}.ait-flow__step{opacity:1!important;transform:none!important}.ait-flow__conn{transform:scaleX(1)!important}.ait-how__rail::after{transform:scaleX(1)!important}.ait-boot__hidden{opacity:1!important}.ait-boot__dash{opacity:1!important}.ait-boot__caret{display:none!important}.ait-appwin__panel{transition:none!important}.ait-appwin__reveal-ic{transition:none!important}}
 @media (prefers-reduced-motion:reduce) and (max-width:880px){.ait-flow__conn{transform:scaleY(1)!important}}
 `
     document.head.appendChild(s)
@@ -553,8 +565,7 @@ function AIToolsHero() {
               We're in a world where building AI-powered marketing tools no longer requires a development team. The combination of vibe coding, modern AI platforms, and deep marketing understanding is enough to build agents, chatbots, landing pages, and automation workflows that actually fit the way your business works.
             </p>
             <p className="ait-hero__sub ait-rv" style={{ transitionDelay: ".32s" }}>
-              That's what OctaLoom builds. <strong>Custom AI solutions, project-based, built and handed off.</strong> The marketing brain decides what to build.<br />
-              The AI builds it.
+              That's what OctaLoom builds. <strong>Custom AI solutions, project-based, built and handed off.</strong> The marketing brain decides what to build. The AI builds it.
             </p>
             <div className="ait-hero__cta-row ait-rv" style={{ transitionDelay: ".42s" }}>
               <a className="ait-btn ait-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery">
@@ -613,7 +624,7 @@ function AIToolsIntro() {
             <span className="ait-intro__tag">readme.md</span>
           </div>
           <p className="ait-intro__text">
-            OctaLoom builds custom AI solutions for B2B companies: <strong>autonomous AI agents</strong> (also via slack/telegram &amp; Whatsapp), <strong>custom GPTs/Gems and chatbots</strong>, <strong>vibe-coded landing pages and interactive tools</strong>, and <strong>AI-powered automation workflows</strong>. Project-based, built and handed off with training
+            OctaLoom builds custom AI solutions for B2B companies: <strong>autonomous AI agents</strong> (also via slack/telegram &amp; Whatsapp), <strong>custom GPTs/Gems and chatbots</strong>, <strong>vibe-coded landing pages and interactive tools</strong>, and <strong>AI-powered automation workflows</strong>. Project-based, built and handed{" "}off{" "}with{" "}training
           </p>
         </div>
       </div>
@@ -622,6 +633,7 @@ function AIToolsIntro() {
 }
 
 // ─── App window (progressive disclosure) ──────────────────────────────────────
+type AppItem = { lead: string; rest: string }
 const AppWindow: React.FC<{
   idx: number
   name: string
@@ -632,7 +644,7 @@ const AppWindow: React.FC<{
   intro: string
   hint: string
   lead?: string
-  items: string[]
+  items: AppItem[]
   foot?: string
   callout?: React.ReactNode
   flowsTrigger?: React.ReactNode
@@ -685,7 +697,9 @@ const AppWindow: React.FC<{
             <div className="ait-appwin__panel-inner">
               {lead && <div className="ait-appwin__lead">{lead}</div>}
               <ul className="ait-appwin__list">
-                {items.map((it, i) => <li key={i}>{it}</li>)}
+                {items.map((it, i) => (
+                  <li key={i}><div><b className="lead">{it.lead}</b> {it.rest}</div></li>
+                ))}
               </ul>
               {foot && <div className="ait-appwin__foot">{foot}</div>}
               {callout && <div className="ait-appwin__callout">{callout}</div>}
@@ -822,11 +836,11 @@ function AIToolsApps() {
             hint="5 examples"
             lead="Examples of what I build"
             items={[
-              "Marketing automation agents that run campaigns, adjust targeting, and report results",
-              "Content research agents that scan your industry and surface opportunities you'd otherwise miss",
-              "Lead qualification agents that score and route inbound leads before your sales team even sees them",
-              "Internal workflow agents that handle repetitive operational tasks so your team focuses on what matters",
-              "Messaging-integrated agents built to live where your team already works: Slack, WhatsApp, Telegram. These agents operate inside your communication channels, responding, initiating tasks, and delivering outputs without anyone needing to open another tool",
+              { lead: "Marketing automation agents", rest: "that run campaigns, adjust targeting, and report results" },
+              { lead: "Content research agents", rest: "that scan your industry and surface opportunities you'd otherwise miss" },
+              { lead: "Lead qualification agents", rest: "that score and route inbound leads before your sales team even sees them" },
+              { lead: "Internal workflow agents", rest: "that handle repetitive operational tasks so your team focuses on what matters" },
+              { lead: "Messaging-integrated agents", rest: "built to live where your team already works: Slack, WhatsApp, Telegram. These agents operate inside your communication channels, responding, initiating tasks, and delivering outputs without anyone needing to open another tool" },
             ]}
             foot="Built with Claude Code and open-source tools. Integrated with whatever your team already uses."
             flowsTrigger={
@@ -848,10 +862,10 @@ function AIToolsApps() {
             intro="These are AI-powered tools that respond to input. They don't think autonomously or take action on their own. They're excellent for specific, predictable use cases:"
             hint="4 examples"
             items={[
-              "Customer-facing chatbots trained on your brand voice and product knowledge",
-              "Custom GPTs for internal teams (content generation, proposal writing, FAQ handling, onboarding support)",
-              "Google Gems configured for specific business functions",
-              "Lead capture bots on your website that qualify visitors and route them to the right person",
+              { lead: "Customer-facing chatbots", rest: "trained on your brand voice and product knowledge" },
+              { lead: "Custom GPTs for internal teams", rest: "(content generation, proposal writing, FAQ handling, onboarding support)" },
+              { lead: "Google Gems", rest: "configured for specific business functions" },
+              { lead: "Lead capture bots", rest: "on your website that qualify visitors and route them to the right person" },
             ]}
             callout={
               <>
@@ -870,12 +884,12 @@ function AIToolsApps() {
             intro="Vibe coding, the concept Andrej Karpathy introduced for software development, applied to marketing deliverables. Built using tools like Lovable, Claude Design, and custom development:"
             hint="6 examples"
             items={[
-              "Landing pages that convert (campaign-specific, product launches, event pages)",
-              "Interactive lead magnets that feel like software, not PDFs (ROI calculators, diagnostic quizzes, assessment tools, self-service pricing estimators)",
-              "Internal content hubs for organizations. Example: for employee advocacy programs, I build internal content hubs where team members find ready-to-use post templates, topic banks, and brand guidelines in one interactive place",
-              "Chatbots for organizational toolkits. Example: for LinkedIn ambassador programs, I build chatbots that help employees generate on-brand posts quickly without needing anyone to hold their hand",
-              "Toolkits and resource centers built as micro-sites (an actual interactive experience, not a Google Drive folder)",
-              "Customer onboarding experiences that guide new clients through your process step by step",
+              { lead: "Landing pages that convert", rest: "(campaign-specific, product launches, event pages)" },
+              { lead: "Interactive lead magnets", rest: "that feel like software, not PDFs (ROI calculators, diagnostic quizzes, assessment tools, self-service pricing estimators)" },
+              { lead: "Internal content hubs for organizations.", rest: "Example: for employee advocacy programs, I build internal content hubs where team members find ready-to-use post templates, topic banks, and brand guidelines in one interactive place" },
+              { lead: "Chatbots for organizational toolkits.", rest: "Example: for LinkedIn ambassador programs, I build chatbots that help employees generate on-brand posts quickly without needing anyone to hold their hand" },
+              { lead: "Toolkits and resource centers", rest: "built as micro-sites (an actual interactive experience, not a Google Drive folder)" },
+              { lead: "Customer onboarding experiences", rest: "that guide new clients through your process step by step" },
             ]}
             foot={"These are real examples from real client work. When I run an employee advocacy program, the toolkit isn't a PDF deck. It's a vibe-coded content hub with a chatbot that helps employees create content on-brand. That's what \"built at AI speed\" actually means."}
           />
@@ -891,10 +905,10 @@ function AIToolsApps() {
             hint="4 examples"
             lead="Examples"
             items={[
-              "Email sequence automation with AI-generated personalization (each email adapts to the recipient's context)",
-              "Content repurposing workflows (one piece of content becomes multiple formats, distributed automatically across channels)",
-              "Lead routing and scoring (AI evaluates the lead, assigns a score, and sends it to the right person)",
-              "Social scheduling with AI-optimized timing and content adaptation per platform",
+              { lead: "Email sequence automation", rest: "with AI-generated personalization (each email adapts to the recipient's context)" },
+              { lead: "Content repurposing workflows", rest: "(one piece of content becomes multiple formats, distributed automatically across channels)" },
+              { lead: "Lead routing and scoring", rest: "(AI evaluates the lead, assigns a score, and sends it to the right person)" },
+              { lead: "Social scheduling", rest: "with AI-optimized timing and content adaptation per platform" },
             ]}
             callout="Automation handles rule-based workflows (if this, then that). An AI agent handles open-ended, conversational interactions: answering questions, filtering leads, guiding users through processes. Both are useful. They're often more powerful together."
           />
@@ -999,9 +1013,9 @@ function AIToolsBuilt() {
             <div className="ait-built__log-h">$ build-log --recent</div>
             <ul>
               <li>Internal content hubs for employee advocacy programs</li>
-              <li>Custom chatbots for LinkedIn ambassador toolkits</li>
-              <li>AI-powered lead magnets and interactive assessment tools</li>
-              <li>Automated workflow systems replacing manual marketing operations</li>
+              <li>Custom chatbots for LinkedIn ambassador{" "}toolkits</li>
+              <li>AI-powered lead magnets and interactive assessment{" "}tools</li>
+              <li>Automated workflow systems replacing manual marketing{" "}operations</li>
             </ul>
           </div>
         </div>
@@ -1126,7 +1140,7 @@ function AIToolsFinal() {
           <span className="ait-final__prompt">$ ./book-discovery-call --free</span>
         </div>
         <h2 className="ait-final__h ait-rv" style={{ transitionDelay: ".1s" }}>Ready to Build Something <br /><span className="ait-accent">That Actually Works?</span></h2>
-        <p className="ait-final__sub ait-rv" style={{ transitionDelay: ".2s" }}>No demos. No proof-of-concept theater. Real AI solutions, built for your business, handed off with training.</p>
+        <p className="ait-final__sub ait-rv" style={{ transitionDelay: ".2s" }}>No demos. No proof-of-concept theater. Real AI solutions, built for your business, handed off with training.</p>
         <div className="ait-final__cta ait-rv" style={{ transitionDelay: ".3s" }}>
           <a className="ait-btn ait-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery">
             Book a Free Discovery Call
@@ -1182,7 +1196,7 @@ function SiteFooter() {
         <div className="ait-footer__grid">
           <div className="ait-footer__brand ait-footer__col">
             <img className="ait-footer__logo" src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Logo%20footer.png" alt="OctaLoom" onError={(e: any) => { e.target.style.display = "none" }} />
-            <div className="ait-footer__tag">Your marketing department, just without the department.</div>
+            <div className="ait-footer__tag">Your marketing department,<br />minus the department</div>
           </div>
 
           {!isMobile && (
