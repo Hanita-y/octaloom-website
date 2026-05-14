@@ -398,7 +398,7 @@ function CmoWhatDo() {
   return (
     <section className="cmo-section" id="what" style={{ background: "#ece9e8" }}>
       <div className="cmo-container">
-        <h2 className="sec-title rv">What a Fractional CMO Actually Does<span className="sec-title__sub">Here, Specifically.</span></h2>
+        <h2 className="sec-title rv">What a Fractional CMO Actually Does?<span className="sec-title__sub">Here, Specifically.</span></h2>
         <p className="what__intro rv">
           <em>"Strategic marketing leadership"</em> is what every fractional CMO website says. Here's what it actually looks like when you work with OctaLoom:
         </p>
@@ -453,7 +453,7 @@ function CmoDifferent() {
   return (
     <section className="cmo-section diff" style={{ background: "#ece9e8" }}>
       <div className="cmo-container">
-        <h2 className="sec-title rv">How This Engagement Is Different</h2>
+        <h2 className="sec-title rv">How This Engagement Is Different?</h2>
         <div className="diff__grid">
           <div className="diff__card rv">
             <div className="ico">①</div>
@@ -493,7 +493,7 @@ function CmoTime() {
   return (
     <section className="cmo-section cmo-section--who">
       <div className="cmo-container">
-        <h2 className="sec-title rv">Who Hires a Fractional CMO (And When Is the Right Time)</h2>
+        <h2 className="sec-title rv">Who Hires a Fractional CMO?<span className="sec-title__sub">And When Is the Right Time</span></h2>
         <div className="time__grid">
           <div className="time__col time__col--yes rv">
             <h3><span className="glyph">✓</span>Right time</h3>
@@ -582,7 +582,7 @@ function CmoHow() {
   return (
     <section className="cmo-section how">
       <div className="cmo-container">
-        <h2 className="sec-title rv">How It Works</h2>
+        <h2 className="sec-title rv">How It Works?</h2>
         <div className="how__grid">
           <div className="how__step rv">
             <div className="n">Step 1</div>
@@ -723,7 +723,7 @@ function CmoFinalCTA() {
         <h2 className="final__h rv">Ready for Marketing Leadership That Actually Executes?</h2>
         <p className="final__sub rv" style={{ transitionDelay: ".1s" }}>No deck. No pitch. No hourly retainer. A real conversation about whether OctaLoom can build the marketing system your company actually needs.</p>
         <div className="final__cta rv" style={{ transitionDelay: ".2s" }}>
-          <a className="btn btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery">
+          <a className="btn btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" style={{ color: "var(--purple)" }}>
             Talk to Your Future CMO
             <span className="arrow">→</span>
           </a>
