@@ -588,7 +588,7 @@ function AIToolsHero() {
               {"\u05d0\u05d6 \u05d0\u05e0\u05d9 \u05d1\u05d5\u05e0\u05d4 \u05dc\u05db\u05dd "}<strong>{"\u05e6\u05d5\u05d5\u05ea \u05e9\u05d9\u05d5\u05d5\u05e7 AI \u05e9\u05de\u05ea\u05d0\u05d9\u05dd \u05d1\u05d3\u05d9\u05d5\u05e7 \u05dc\u05e2\u05e1\u05e7 \u05e9\u05dc\u05db\u05dd."}</strong>{" \u05e1\u05d5\u05db\u05e0\u05d9\u05dd, \u05e6'\u05d0\u05d8\u05d1\u05d5\u05d8\u05d9\u05dd, \u05d3\u05e4\u05d9 \u05e0\u05d7\u05d9\u05ea\u05d4, \u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d5\u05ea, \u05de\u05d4\u00a0\u05e9\u05e6\u05e8\u05d9\u05da,\u00a0\u05d0\u05e0\u05d9\u00a0\u05d1\u05d5\u05e0\u05d4."}
             </p>
             <div className="aith-hero__cta-row aith-rv" style={{ transitionDelay: ".42s" }}>
-              <a className="aith-btn aith-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }}>
+              <a className="aith-btn aith-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }} style={{ color: "var(--purple)" }}>
                 {"\u05dc\u05e9\u05d9\u05d7\u05ea \u05d4\u05d9\u05db\u05e8\u05d5\u05ea"}
                 <span className="aith-arrow">{"←"}</span>
               </a>
@@ -1138,7 +1138,7 @@ function AIToolsFinal() {
         </p>
         <div className="aith-final__cta aith-rv" style={{ transitionDelay: ".28s" }}>
           {/* URL pending: "free tool" link points to # placeholder until the free tool URL is confirmed */}
-          <a className="aith-btn aith-btn--lime" href="#">
+          <a className="aith-btn aith-btn--lime" href="#" style={{ color: "var(--purple)" }}>
             {"\u05dc\u05db\u05dc\u05d9 \u05d4\u05d7\u05d9\u05e0\u05de\u05d9"}
             <span className="aith-arrow">{"←"}</span>
           </a>
