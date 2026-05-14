@@ -463,6 +463,7 @@ function SiteNavbar() {
               EN
             </a>
             <a href="https://calendar.notion.so/meet/octaloom/discovery"
+              onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }}
               style={{ background: _P, color: _C, padding: "10px 20px", borderRadius: 100, fontSize: 13, fontWeight: 700, fontFamily: _F, textDecoration: "none", transition: "transform 0.2s, box-shadow 0.2s" }}
               onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(113,46,172,0.3)" }}
               onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none" }}>
@@ -500,7 +501,7 @@ function SiteNavbar() {
           <a href="https://www.octaloom.com/ai-tools-agents" onClick={() => setMenuOpen(false)} style={{ display: "block", padding: "12px 4px", fontSize: 15, color: _D, textAlign: "right", textDecoration: "none", borderBottom: "1px solid rgba(28,26,60,0.06)", fontFamily: _F }}>
             {"English "}<span className="aith-arrow">{"←"}</span>
           </a>
-          <a href="https://calendar.notion.so/meet/octaloom/discovery" onClick={() => setMenuOpen(false)}
+          <a href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.dispatchEvent(new CustomEvent("open-discovery")) }}
             style={{ display: "block", marginTop: 14, background: _P, color: _C, padding: 14, borderRadius: 100, fontSize: 14, fontWeight: 700, textAlign: "center", textDecoration: "none", fontFamily: _F }}>
             {"\u05d1\u05d5\u05d0\u05d5 \u05e0\u05d3\u05d1\u05e8, \u05d7\u05d9\u05e0\u05dd"}
           </a>
@@ -588,7 +589,7 @@ function AIToolsHero() {
               {"\u05d0\u05d6 \u05d0\u05e0\u05d9 \u05d1\u05d5\u05e0\u05d4 \u05dc\u05db\u05dd "}<strong>{"\u05e6\u05d5\u05d5\u05ea \u05e9\u05d9\u05d5\u05d5\u05e7 AI \u05e9\u05de\u05ea\u05d0\u05d9\u05dd \u05d1\u05d3\u05d9\u05d5\u05e7 \u05dc\u05e2\u05e1\u05e7 \u05e9\u05dc\u05db\u05dd."}</strong>{" \u05e1\u05d5\u05db\u05e0\u05d9\u05dd, \u05e6'\u05d0\u05d8\u05d1\u05d5\u05d8\u05d9\u05dd, \u05d3\u05e4\u05d9 \u05e0\u05d7\u05d9\u05ea\u05d4, \u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d5\u05ea, \u05de\u05d4\u00a0\u05e9\u05e6\u05e8\u05d9\u05da,\u00a0\u05d0\u05e0\u05d9\u00a0\u05d1\u05d5\u05e0\u05d4."}
             </p>
             <div className="aith-hero__cta-row aith-rv" style={{ transitionDelay: ".42s" }}>
-              <a className="aith-btn aith-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery">
+              <a className="aith-btn aith-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }}>
                 {"\u05dc\u05e9\u05d9\u05d7\u05ea \u05d4\u05d9\u05db\u05e8\u05d5\u05ea"}
                 <span className="aith-arrow">{"←"}</span>
               </a>
@@ -1146,7 +1147,7 @@ function AIToolsFinal() {
         <div className="aith-final__divider aith-rv" style={{ transitionDelay: ".34s" }}>
           <p className="aith-final__split">{"\u05dc\u05d0 \u05de\u05e1\u05d5\u05d2\u05dc\u05d9\u05dd \u05dc\u05d1\u05d3, \u05d0\u05d5 \u05e9\u05d0\u05ea\u05dd \u05e4\u05e9\u05d5\u05d8 \u05e8\u05d5\u05e6\u05d9\u05dd \u05e9\u05de\u05d9\u05e9\u05d4\u05d5 \u05d9\u05e2\u05e9\u05d4 \u05d0\u05ea \u05d6\u05d4 \u05e0\u05db\u05d5\u05df \u05de\u05d4\u05e4\u05e2\u05dd \u05d4\u05e8\u05d0\u05e9\u05d5\u05e0\u05d4?"}</p>
           <div className="aith-final__cta" style={{ marginTop: 0 }}>
-            <a className="aith-btn aith-btn--ghost-light" href="https://calendar.notion.so/meet/octaloom/discovery">
+            <a className="aith-btn aith-btn--ghost-light" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }}>
               {"\u05dc\u05e9\u05d9\u05d7\u05ea \u05d4\u05d9\u05db\u05e8\u05d5\u05ea"}
               <span className="aith-arrow">{"←"}</span>
             </a>

@@ -450,6 +450,7 @@ function SiteNavbar() {
               {"\u05e2\u05d1"}
             </a>
             <a href="https://calendar.notion.so/meet/octaloom/discovery"
+              onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }}
               style={{ padding: "8px 20px", borderRadius: 100, background: _P, color: "#ece9e7", fontSize: 13, fontWeight: 600, fontFamily: _F, textDecoration: "none" }}>
               Let's Talk
             </a>
@@ -487,7 +488,7 @@ function SiteNavbar() {
             <a key={i} href={item.href} onClick={() => setMenuOpen(false)} style={{ display: "block", fontSize: 20, color: _D, textDecoration: "none", padding: "11px 0", fontWeight: 500, borderBottom: i < navLinks.length - 1 ? "1px solid rgba(113,46,172,0.08)" : "none", fontFamily: _F }}>{item.label}</a>
           ))}
           <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 10 }}>
-            <a href="https://calendar.notion.so/meet/octaloom/discovery" onClick={() => setMenuOpen(false)}
+            <a href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.dispatchEvent(new CustomEvent("open-discovery")) }}
               style={{ display: "block", textAlign: "center", padding: "14px 24px", fontSize: 15, fontWeight: 600, background: _P, color: "#ece9e7", borderRadius: 100, fontFamily: _F, textDecoration: "none", width: "100%", boxSizing: "border-box" }}>
               Let's Talk · Free
             </a>
@@ -569,7 +570,7 @@ function AIToolsHero() {
               That's what OctaLoom builds. <strong>Custom AI solutions, project-based, built and handed off.</strong> The marketing brain decides what to build. The AI builds it.
             </p>
             <div className="ait-hero__cta-row ait-rv" style={{ transitionDelay: ".42s" }}>
-              <a className="ait-btn ait-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery">
+              <a className="ait-btn ait-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }}>
                 Book a Free Discovery Call
                 <span className="ait-arrow">{"→"}</span>
               </a>
@@ -1143,7 +1144,7 @@ function AIToolsFinal() {
         <h2 className="ait-final__h ait-rv" style={{ transitionDelay: ".1s" }}>Ready to Build Something <br /><span className="ait-accent">That Actually Works?</span></h2>
         <p className="ait-final__sub ait-rv" style={{ transitionDelay: ".2s" }}>No demos. No proof-of-concept theater. Real AI solutions, built for your business, handed off with training.</p>
         <div className="ait-final__cta ait-rv" style={{ transitionDelay: ".3s" }}>
-          <a className="ait-btn ait-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery">
+          <a className="ait-btn ait-btn--lime" href="https://calendar.notion.so/meet/octaloom/discovery" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("open-discovery")) }}>
             Book a Free Discovery Call
             <span className="ait-arrow">{"→"}</span>
           </a>
