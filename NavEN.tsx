@@ -25,7 +25,7 @@ const LIME = "#c6e1a5"
 const PURPLE = "#712eac"
 const DEEP_PURPLE = "#201e4b"
 const BORDER = "#e5e7eb"
-const FONT = "'Discovery Fs', 'Noto Sans Hebrew', sans-serif"
+const FONT = "'Aeonik', 'Noto Sans Hebrew', sans-serif"
 
 function useWindowWidth() {
   const [w, setW] = useState(() => typeof window !== "undefined" ? window.innerWidth : 1440)
@@ -43,8 +43,8 @@ function useGlobalStyles() {
     const s = document.createElement("style")
     s.id = "octaloom-shared-styles"
     s.textContent = `
-      @font-face{font-family:'Discovery Fs';src:url('https://raw.githubusercontent.com/Hanita-y/octaloom-fonts/main/DiscoveryFs-Light.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
-      @font-face{font-family:'Discovery Fs';src:url('https://raw.githubusercontent.com/Hanita-y/octaloom-fonts/main/DiscoveryFs-Medium.ttf') format('truetype');font-weight:500 600 700;font-style:normal;font-display:swap}
+      @font-face{font-family:'Aeonik';src:url('https://raw.githubusercontent.com/Hanita-y/octaloom-fonts/main/Aeonik-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+      @font-face{font-family:'Aeonik';src:url('https://raw.githubusercontent.com/Hanita-y/octaloom-fonts/main/Aeonik-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;500;600;700&display=swap');
       *,*::before,*::after{box-sizing:border-box}
       html{scroll-behavior:smooth}
