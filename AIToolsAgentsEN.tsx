@@ -36,6 +36,7 @@ function useGlobalStyles() {
 .ait-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:100px;font-size:14px;font-weight:700;letter-spacing:0.01em;transition:transform 0.2s,box-shadow 0.2s,background 0.2s,color 0.2s;cursor:pointer;border:1px solid transparent}
 .ait-btn--lime{background:var(--lime);color:var(--ink)}
 .ait-btn--lime:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(197,230,162,0.5)}
+.ait-hero .ait-btn--lime{color:var(--purple)}
 .ait-btn--ghost-light{background:transparent;color:var(--cream);border-color:rgba(255,255,255,0.2)}
 .ait-btn--ghost-light:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.4)}
 .ait-btn .ait-arrow{transition:transform 0.25s}
