@@ -817,7 +817,6 @@ function TestimonialsSection() {
   const isMobile = w < 768
   const isTablet = w >= 768 && w < 1024
   const cols = isMobile ? "1fr" : isTablet ? "1fr 1fr" : "repeat(3,1fr)"
-  const reactionEmoji: Record<string, string> = { like: "\u{1F44D}", celebrate: "\u{1F389}", support: "\u{1F932}", love: "❤️", insightful: "\u{1F4A1}", funny: "\u{1F604}" }
 
   return (
     <section id="testimonials" style={{ background: PURPLE, padding: isMobile ? "40px 18px" : "80px 32px", fontFamily: FONT }}>
@@ -842,9 +841,9 @@ function TestimonialsSection() {
                       {picker[i] && (
                         <motion.div initial={{ opacity: 0, scale: 0.8, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: 8 }}
                           style={{ position: "absolute", bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)", background: "#fff", borderRadius: 100, padding: "7px 12px", display: "flex", gap: 2, boxShadow: "0 8px 32px rgba(0,0,0,.15)", border: `1px solid ${BORDER}`, zIndex: 20, whiteSpace: "nowrap" }}>
-                          {Object.entries(reactionEmoji).map(([type, emoji]) => (
-                            <button key={type} style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 5px", borderRadius: "50%", fontSize: 26, lineHeight: 1 }}
-                              onClick={() => { setReactions(p => ({ ...p, [i]: type })); setPicker(p => ({ ...p, [i]: false })) }}>{emoji}</button>
+                          {Object.entries(REACTION_IMG).map(([type, src]) => (
+                            <button key={type} style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 5px", borderRadius: "50%", lineHeight: 1 }}
+                              onClick={() => { setReactions(p => ({ ...p, [i]: type })); setPicker(p => ({ ...p, [i]: false })) }}><img src={src} alt={type} width={32} height={32} style={{ display: "block" }}/></button>
                           ))}
                         </motion.div>
                       )}
@@ -853,7 +852,7 @@ function TestimonialsSection() {
                       onClick={() => setPicker(p => ({ ...p, [i]: !p[i] }))}
                       onMouseEnter={() => setPicker(p => ({ ...p, [i]: true }))}
                       onMouseLeave={() => setTimeout(() => setPicker(p => ({ ...p, [i]: false })), 700)}>
-                      {reactions[i] ? <span style={{ fontSize: 18, lineHeight: 1 }}>{reactionEmoji[reactions[i]]}</span> : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>}
+                      {reactions[i] ? <img src={REACTION_IMG[reactions[i]]} alt={reactions[i]} width={18} height={18} style={{ display: "block" }}/> : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>}
                       {!isMobile && <span style={{ fontSize: 12 }}>{reactions[i] ? "אהבתי" : "לייק"}</span>}
                     </button>
                   </div>
@@ -1195,14 +1194,24 @@ function PageNav() {
   )
 }
 
-// ─── Click Reactions (emoji particles on click) ───────────────────────────────
+// ─── Click Reactions (LinkedIn reaction icons on click) ──────────────────────
+const REACTION_IMG: Record<string, string> = {
+  like: "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Linkedin-Like-Icon-Thumbup500.png",
+  celebrate: "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Linkedin-Celebrate-Icon-ClappingHands500.png",
+  support: "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Linkedin-Support-Icon-HeartinHand500.png",
+  love: "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Linkedin-Love-Icon-Heart500.png",
+  insightful: "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Linkedin-Insightful-Icon-Lamp500.png",
+  funny: "https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/linkedin-funny-emoticon-500.png",
+}
+
 function ClickReactions() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particles = useRef<any[]>([])
   const raf = useRef<number>(0)
-  const emojis = ["👍", "🎉", "❤️", "💡", "🤲", "😄", "🚀", "⭐"]
+  const imgs = useRef<HTMLImageElement[]>([])
 
   useEffect(() => {
+    Object.values(REACTION_IMG).forEach(src => { const im = new Image(); im.src = src; imgs.current.push(im) })
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext("2d")!
@@ -1215,7 +1224,7 @@ function ClickReactions() {
       for (let i = 0; i < 6 + Math.floor(Math.random() * 4); i++) {
         const angle = Math.random() * Math.PI * 0.8 + Math.PI * 0.1
         const spd = 2 + Math.random() * 4
-        particles.current.push({ x: e.clientX, y: e.clientY, vx: Math.cos(angle) * spd * (Math.random() > 0.5 ? 1 : -1), vy: -Math.sin(angle) * spd - 1, sz: 18 + Math.random() * 12, op: 1, rot: Math.random() * 360, rotSpd: (Math.random() - 0.5) * 9, emoji: emojis[Math.floor(Math.random() * emojis.length)], life: 0, maxLife: 42 + Math.random() * 28 })
+        particles.current.push({ x: e.clientX, y: e.clientY, vx: Math.cos(angle) * spd * (Math.random() > 0.5 ? 1 : -1), vy: -Math.sin(angle) * spd - 1, sz: 18 + Math.random() * 12, op: 1, rot: Math.random() * 360, rotSpd: (Math.random() - 0.5) * 9, img: imgs.current[Math.floor(Math.random() * imgs.current.length)], life: 0, maxLife: 42 + Math.random() * 28 })
       }
     }
     const animate = () => {
@@ -1224,7 +1233,7 @@ function ClickReactions() {
         p.life++; p.x += p.vx; p.y += p.vy; p.vy += 0.09; p.rot += p.rotSpd; p.op = Math.max(0, 1 - p.life / p.maxLife)
         if (p.op <= 0) return false
         ctx.save(); ctx.globalAlpha = p.op; ctx.translate(p.x, p.y); ctx.rotate(p.rot * Math.PI / 180)
-        ctx.font = `${p.sz}px serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(p.emoji, 0, 0); ctx.restore()
+        try { ctx.drawImage(p.img, -p.sz / 2, -p.sz / 2, p.sz, p.sz) } catch (e) {} ctx.restore()
         return true
       })
       raf.current = requestAnimationFrame(animate)
