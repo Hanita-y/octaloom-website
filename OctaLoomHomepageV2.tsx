@@ -3892,8 +3892,6 @@ function HPFooter() {
 // ─── CUSTOM CURSOR ───────────────────────────────────────────────────────────
 
 function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null)
-  const ringRef = useRef<HTMLDivElement>(null)
   const pos = useRef({ x: -100, y: -100 })
   const ringPos = useRef({ x: -100, y: -100 })
   const raf = useRef<number>()
@@ -3906,9 +3904,26 @@ function CustomCursor() {
     style.textContent = '@media (pointer: fine) { * { cursor: none !important; } }'
     document.head.appendChild(style)
 
-    const dot = dotRef.current
-    const ring = ringRef.current
-    if (!dot || !ring) return
+    // Render cursor elements directly to document.body — bypasses Framer's
+    // per-component stacking context so cursor floats over modals/extensions.
+    const dot = document.createElement('div')
+    Object.assign(dot.style, {
+      position: 'fixed', top: '0', left: '0', width: '8px', height: '8px',
+      borderRadius: '50%', background: C.purple,
+      pointerEvents: 'none', zIndex: '2147483647',
+      transform: 'translate3d(-100px, -100px, 0)',
+      transition: 'width .15s, height .15s, background .15s',
+    })
+    const ring = document.createElement('div')
+    Object.assign(ring.style, {
+      position: 'fixed', top: '0', left: '0', width: '38px', height: '38px',
+      borderRadius: '50%', border: `1.5px solid ${C.purple}`,
+      pointerEvents: 'none', zIndex: '2147483646',
+      transform: 'translate3d(-100px, -100px, 0)',
+      transition: 'width .25s, height .25s, border-color .25s',
+    })
+    document.body.appendChild(dot)
+    document.body.appendChild(ring)
 
     // Light bg → purple cursor. Dark bg → cream cursor. Click → inverted.
     const baseColor = () => (st.current.dark ? C.cream : C.purple)
@@ -3984,6 +3999,8 @@ function CustomCursor() {
 
     return () => {
       style.remove()
+      dot.remove()
+      ring.remove()
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseover', onOver)
       document.removeEventListener('mouseout',  onOut)
@@ -3993,26 +4010,7 @@ function CustomCursor() {
     }
   }, [w])
 
-  if (w < 768) return null
-
-  return (
-    <>
-      <div ref={dotRef} style={{
-        position: 'fixed', top: 0, left: 0, width: 8, height: 8,
-        borderRadius: '50%', background: C.purple,
-        pointerEvents: 'none', zIndex: 9999,
-        transform: 'translate3d(-100px, -100px, 0)',
-        transition: 'width .15s, height .15s, background .15s',
-      }} />
-      <div ref={ringRef} style={{
-        position: 'fixed', top: 0, left: 0, width: 38, height: 38,
-        borderRadius: '50%', border: `1.5px solid ${C.purple}`,
-        pointerEvents: 'none', zIndex: 9998,
-        transform: 'translate3d(-100px, -100px, 0)',
-        transition: 'width .25s, height .25s, border-color .25s',
-      }} />
-    </>
-  )
+  return null
 }
 
 
