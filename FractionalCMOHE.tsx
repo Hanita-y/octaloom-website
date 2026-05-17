@@ -282,8 +282,28 @@ const Counter: React.FC<{ target: number }> = ({ target }) => {
 // ─── FAQ item ─────────────────────────────────────────────────────────────────
 const FAQItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
   const [open, setOpen] = useState(false)
+  const [revealed, setRevealed] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { setRevealed(true); io.disconnect() }
+        })
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    )
+    io.observe(el)
+    const tm = setTimeout(() => {
+      const r = el.getBoundingClientRect()
+      if (r.top < window.innerHeight) setRevealed(true)
+    }, 200)
+    return () => { io.disconnect(); clearTimeout(tm) }
+  }, [])
   return (
-    <div className={"faq__item rv" + (open ? " open" : "")}>
+    <div ref={ref} className={"faq__item rv" + (revealed ? " in" : "") + (open ? " open" : "")}>
       <button className="faq__q" onClick={() => setOpen((p) => !p)}>
         <span className="faq__q-text">{q}</span>
         <span className="faq__toggle">{open ? "×" : "+"}</span>
