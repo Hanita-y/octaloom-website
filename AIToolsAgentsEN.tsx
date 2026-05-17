@@ -244,7 +244,7 @@ function useGlobalStyles() {
 .ait-faq__a{max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(.16,1,.3,1)}
 .ait-faq__a-inner{padding:0 24px 24px 24px;font-size:15px;line-height:1.7;color:var(--text-mid)}
 .ait-faq__item.open .ait-faq__a{max-height:460px}
-.ait-endzone{position:relative;overflow-x:clip}
+.ait-endzone{position:relative;overflow:hidden}
 .ait-endzone::before{content:'';position:absolute;left:50%;bottom:0;width:min(1100px,130vw);height:760px;transform:translate(-50%,38%);background:radial-gradient(closest-side,rgba(197,230,162,0.20),rgba(197,230,162,0.07) 46%,transparent 76%);filter:blur(50px);pointer-events:none;z-index:0}
 .ait-endzone::after{content:'';position:absolute;left:18%;bottom:6%;width:520px;height:520px;transform:translate(-50%,30%);background:radial-gradient(circle,rgba(120,150,255,0.12),transparent 66%);filter:blur(60px);pointer-events:none;z-index:0}
 .ait-final{background:linear-gradient(180deg,#221f4d 0%,#15123a 52%,#211d4b 100%);color:var(--cream);text-align:center;padding:clamp(80px,14vw,160px) 0 clamp(96px,16vw,180px);position:relative}
