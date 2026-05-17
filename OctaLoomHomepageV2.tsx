@@ -2967,17 +2967,13 @@ function HPFAQ() {
 
         </Reveal>
 
-        <div style={{ maxWidth: 720, display: "flex", flexDirection: "column", gap: 2 }}
-
-          itemScope itemType="https://schema.org/FAQPage">
+        <div style={{ maxWidth: 720, display: "flex", flexDirection: "column", gap: 2 }}>
 
           {HP.faq.items.map((item: any, i: number) => (
 
             <Reveal key={i} delay={i * 80}>
 
-              <div itemScope itemProp="mainEntity" itemType="https://schema.org/Question"
-
-                style={{ borderBottom: "1px solid rgba(255,255,255,0.1)", cursor: "pointer",
+              <div style={{ borderBottom: "1px solid rgba(255,255,255,0.1)", cursor: "pointer",
 
                   overflow: "hidden" }}
 
@@ -2987,7 +2983,7 @@ function HPFAQ() {
 
                   alignItems: "center", padding: "20px 0", gap: 16 }}>
 
-                  <h3 itemProp="name" style={{ fontSize: 17, fontWeight: 700, color: C.cream,
+                  <h3 style={{ fontSize: 17, fontWeight: 700, color: C.cream,
 
                     margin: 0, fontFamily: ff }}>{hpT(item.q)}</h3>
 
@@ -3005,15 +3001,14 @@ function HPFAQ() {
 
                 </div>
 
-                <motion.div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer"
-
+                <motion.div
                   animate={{ height: openIdx === i ? "auto" : 0, opacity: openIdx === i ? 1 : 0 }}
 
                   transition={{ duration: 0.4 }}
 
                   style={{ overflow: "hidden" }}>
 
-                  <p itemProp="text" style={{ fontSize: 15, color: "rgba(255,255,255,0.7)",
+                  <p style={{ fontSize: 15, color: "rgba(255,255,255,0.7)",
 
                     lineHeight: 1.7, paddingBottom: 20, margin: 0, fontFamily: ff }}>
 
@@ -3874,109 +3869,6 @@ function HPFooter() {
 
 
 
-// ─── SCHEMA INJECTION ─────────────────────────────────────────────────────────
-
-function HomepageSchema() {
-
-  useEffect(() => {
-    const inject = (id: string, data: object) => {
-      document.getElementById(id)?.remove()
-      const s = document.createElement("script")
-      s.id = id; s.type = "application/ld+json"; s.text = JSON.stringify(data)
-      document.head.appendChild(s)
-    }
-
-    // FAQ schema
-    inject("hp-faq-schema", {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": HP.faq.items.map((item: any) => ({
-        "@type": "Question",
-        "name": item.q.he,
-        "acceptedAnswer": { "@type": "Answer", "text": item.a.he }
-      }))
-    })
-
-    // Organization schema
-    inject("hp-org-schema", {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "OctaLoom",
-      "url": "https://www.octaloom.com",
-      "logo": "https://www.octaloom.com/favicon.ico",
-      "description": "שירותי שיווק B2B מבוססי LinkedIn לחברות טכנולוגיה וסטרטאפים",
-      "sameAs": [
-        "https://www.linkedin.com/in/hanita-yudovski/",
-        "https://www.instagram.com/hanita_Y",
-        "https://www.youtube.com/@Hanita_Octaloom",
-        "https://open.spotify.com/show/4XmsthqR7gnj4nf2gL0T7j"
-      ],
-      "contactPoint": { "@type": "ContactPoint", "email": "octaloom@gmail.com", "contactType": "customer service" }
-    })
-
-    // Person schema — Hanita
-    inject("hp-person-schema", {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Hanita Yudovski",
-      "alternateName": "חניתה יודובסקי",
-      "jobTitle": "Fractional CMO & LinkedIn Marketing Strategist",
-      "url": "https://www.octaloom.com",
-      "sameAs": [
-        "https://www.linkedin.com/in/hanita-yudovski/",
-        "https://www.instagram.com/hanita_Y"
-      ],
-      "worksFor": { "@type": "Organization", "name": "OctaLoom" }
-    })
-
-    // WebSite schema with SearchAction
-    inject("hp-website-schema", {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "OctaLoom",
-      "url": "https://www.octaloom.com",
-      "inLanguage": ["he", "en"],
-      "publisher": { "@type": "Organization", "name": "OctaLoom" }
-    })
-
-    // Open Graph + Twitter Card via meta tags
-    const ogTags: Record<string, string> = {
-      "og:type":        "website",
-      "og:url":         "https://www.octaloom.com",
-      "og:site_name":   "OctaLoom",
-      "og:title":       "OctaLoom | מחלקת השיווק שלך, רק בלי המחלקה",
-      "og:description": "שירותי LinkedIn, שיווק B2B ו-Fractional CMO לחברות טכנולוגיה וסטרטאפים בישראל",
-      "og:image":       "https://www.octaloom.com/og-image.jpg",
-      "og:locale":      "he_IL",
-      "og:locale:alternate": "en_US",
-      "twitter:card":   "summary_large_image",
-      "twitter:title":  "OctaLoom | מחלקת השיווק שלך",
-      "twitter:description": "שירותי LinkedIn ושיווק B2B מבוססי AI לחברות ישראליות",
-      "twitter:image":  "https://www.octaloom.com/og-image.jpg",
-    }
-    Object.entries(ogTags).forEach(([prop, content]) => {
-      const existing = document.querySelector(`meta[property="${prop}"], meta[name="${prop}"]`)
-      if (existing) return
-      const meta = document.createElement("meta")
-      if (prop.startsWith("twitter:")) meta.setAttribute("name", prop)
-      else meta.setAttribute("property", prop)
-      meta.setAttribute("content", content)
-      meta.setAttribute("data-octa", "1")
-      document.head.appendChild(meta)
-    })
-
-    return () => {
-      ["hp-faq-schema","hp-org-schema","hp-person-schema","hp-website-schema"].forEach(id => document.getElementById(id)?.remove())
-      document.querySelectorAll("meta[data-octa='1']").forEach(m => m.remove())
-    }
-  }, [])
-
-  return null
-
-}
-
-
-
 // ─── CUSTOM CURSOR ───────────────────────────────────────────────────────────
 
 function CustomCursor() {
@@ -4124,8 +4016,6 @@ export default function OctaLoomHomepageV2() {
         direction: lang === "he" ? "rtl" : "ltr", width: "100vw", overflowX: "hidden" }}>
 
         <CustomCursor />
-
-        <HomepageSchema />
 
         <HPNav />
 
