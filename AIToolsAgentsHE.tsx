@@ -413,7 +413,7 @@ function SiteNavbar() {
 
   return (
     <nav style={{ position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", zIndex: 1000, width: "calc(100% - 48px)", maxWidth: 1152, borderRadius: 100, background: scrolled ? "rgba(236,233,231,0.92)" : "rgba(236,233,231,0.65)", backdropFilter: "blur(50px)", WebkitBackdropFilter: "blur(50px)", border: "1px solid rgba(255,255,255,0.5)", padding: "10px 22px 10px 16px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, fontFamily: _F, transition: "background 0.3s, box-shadow 0.3s", boxShadow: scrolled ? "0 8px 28px rgba(32,30,75,0.1)" : "none" }}>
-      <a href="https://www.octaloom.com/he" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+      <a href="https://www.octaloom.com/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
         <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png" alt="OctaLoom" style={{ height: 30, width: "auto", display: "block" }} onError={(e: any) => { e.target.style.display = "none" }} />
       </a>
 
@@ -1167,7 +1167,7 @@ function AIToolsFinal() {
 function SiteFooter() {
   const w = useWindowWidth(), isMobile = w < 540
   const pageLinks = [
-    { label: "\u05d3\u05e3 \u05d4\u05d1\u05d9\u05ea", href: "https://www.octaloom.com/he" },
+    { label: "\u05d3\u05e3 \u05d4\u05d1\u05d9\u05ea", href: "https://www.octaloom.com/" },
     { label: "\u05d0\u05d5\u05d3\u05d5\u05ea", href: "https://www.octaloom.com/about-he" },
     { label: "\u05d1\u05dc\u05d5\u05d2", href: "https://www.octaloom.com/blog" },
     { label: "\u05e6\u05e8\u05d5 \u05e7\u05e9\u05e8", href: "#contact" },
