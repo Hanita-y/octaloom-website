@@ -1100,7 +1100,7 @@ function FooterHE({ isMobile }: { isMobile: boolean }) {
     { label: "סדנאות",                             href: "#" },
   ]
   const pageLinks = [
-    { label: "בית",        href: "https://www.octaloom.com/he" },
+    { label: "בית",        href: "https://www.octaloom.com/" },
     { label: "עליי",  href: "https://www.octaloom.com/about-he" },
     { label: "בלוג",  href: "https://www.octaloom.com/blog-he" },
     { label: "צור קשר", href: "https://www.octaloom.com/contact-he" },

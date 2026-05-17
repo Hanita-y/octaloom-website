@@ -959,7 +959,7 @@ function SiteNavbarHe() {
   ]
   const navLinks = [
     { label: "אודות",   href: "https://www.octaloom.com/about-he" },
-    { label: "בלוג",    href: "https://www.octaloom.com/blog" },
+    { label: "בלוג",    href: "https://www.octaloom.com/blog-he" },
     { label: "צור קשר", href: "#contact" },
     { label: "Goodies", href: "https://octagoodies.com" },
   ]
@@ -971,7 +971,7 @@ function SiteNavbarHe() {
   return (
     <nav dir="rtl" style={{ position: "fixed", top: 16, left: "50%", transform: "translateX(-50%)", zIndex: 1000, width: "calc(100% - 48px)", maxWidth: 1152, borderRadius: 100, background: scrolled ? "rgba(236,233,231,0.92)" : "rgba(236,233,231,0.65)", backdropFilter: "blur(50px)", WebkitBackdropFilter: "blur(50px)", border: "1px solid rgba(32,30,75,0.08)", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: _F, transition: "background 0.3s, box-shadow 0.3s", boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.08)" : "none" }}>
 
-      <a href="https://www.octaloom.com/he" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+      <a href="https://www.octaloom.com/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
         <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/logo%20nav%20bar.png" alt="OctaLoom" style={{ height: 36, width: "auto", display: "block" }} onError={(e: any) => { e.target.style.display = "none" }} />
       </a>
 
@@ -1095,9 +1095,9 @@ function SiteFooterHe() {
     { label: "סדנאות",                  href: "#workshops" },
   ]
   const pageLinks = [
-    { label: "בית",     href: "https://www.octaloom.com/he" },
+    { label: "בית",     href: "https://www.octaloom.com/" },
     { label: "אודות",   href: "https://www.octaloom.com/about-he" },
-    { label: "בלוג",    href: "https://www.octaloom.com/blog" },
+    { label: "בלוג",    href: "https://www.octaloom.com/blog-he" },
     { label: "צור קשר", href: "#contact" },
   ]
   const legalLinks = [
