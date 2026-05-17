@@ -604,12 +604,21 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 18, flexDirection: "row" }}>
                 <div style={{ display: "flex", alignItems: "center", flexDirection: "row-reverse" }}>
-                  {trustFiles.map((f, i) => (
-                    <img key={i} src={`https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/${f}`}
-                      alt="" loading="lazy" width={34} height={34}
-                      style={{ width: 34, height: 34, borderRadius: "50%", border: `2.5px solid ${CREAM}`, marginLeft: i === 0 ? 0 : -10, objectFit: "cover" }}
-                      onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = FALLBACK_SVG }}/>
-                  ))}
+                  {trustFiles.map((f, i) => {
+                    const alts = [
+                      "תמונת לקוח של OctaLoom — מייסד B2B",
+                      "תמונת לקוח של OctaLoom — מנכ״ל סטארטאפ",
+                      "תמונת לקוחה של OctaLoom — סמנכ״לית שיווק",
+                      "תמונת לקוח של OctaLoom — יזם בלינקדאין",
+                      "תמונת לקוחה של OctaLoom — מובילת B2B SaaS",
+                    ]
+                    return (
+                      <img key={i} src={`https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/${f}`}
+                        alt={alts[i]} loading="lazy" width={34} height={34}
+                        style={{ width: 34, height: 34, borderRadius: "50%", border: `2.5px solid ${CREAM}`, marginLeft: i === 0 ? 0 : -10, objectFit: "cover" }}
+                        onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = FALLBACK_SVG }}/>
+                    )
+                  })}
                 </div>
                 <span style={{ fontSize: 13, color: MUTED, maxWidth: 190, lineHeight: 1.4, textAlign: "left" }}>{hero.trusted}</span>
               </div>

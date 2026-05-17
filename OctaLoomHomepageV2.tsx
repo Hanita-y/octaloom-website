@@ -1725,17 +1725,35 @@ function HPHero() {
 
                 <div style={{ display: "flex" }}>
 
-                  {avatarUrls.map((src, i) => (
+                  {avatarUrls.map((src, i) => {
 
-                    <img key={i} src={src} alt=""
+                    const avatarAltsHe = [
+                      "תמונת לקוח של OctaLoom — מייסד B2B",
+                      "תמונת לקוח של OctaLoom — מנכ״ל סטארטאפ",
+                      "תמונת לקוחה של OctaLoom — סמנכ״לית שיווק",
+                      "תמונת לקוח של OctaLoom — יזם בלינקדאין",
+                      "תמונת לקוחה של OctaLoom — מובילת B2B SaaS",
+                    ]
 
-                      style={{ width: 34, height: 34, borderRadius: "50%",
+                    const avatarAltsEn = [
+                      "OctaLoom client photo — B2B founder",
+                      "OctaLoom client photo — startup CEO",
+                      "OctaLoom client photo — VP Marketing",
+                      "OctaLoom client photo — LinkedIn-active entrepreneur",
+                      "OctaLoom client photo — B2B SaaS leader",
+                    ]
 
-                        border: `2px solid ${C.cream}`, marginInlineStart: i === 0 ? 0 : -8,
+                    return (
+                      <img key={i} src={src} alt={lang === "he" ? avatarAltsHe[i] : avatarAltsEn[i]}
 
-                        objectFit: "cover", display: "block" }} />
+                        style={{ width: 34, height: 34, borderRadius: "50%",
 
-                  ))}
+                          border: `2px solid ${C.cream}`, marginInlineStart: i === 0 ? 0 : -8,
+
+                          objectFit: "cover", display: "block" }} />
+                    )
+
+                  })}
 
                 </div>
 
@@ -2415,7 +2433,9 @@ function HPProcess() {
 
                   src={`https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/${i + 1}.svg`}
 
-                  alt="" aria-hidden="true"
+                  alt={lang === "he"
+                    ? ["אייקון שלב 1 — הגדרת בעיית השיווק", "אייקון שלב 2 — בניית תוכנית עבודה עם סוכני AI", "אייקון שלב 3 — יישום בפועל ומדידת תוצאות"][i]
+                    : ["Step 1 icon — define the marketing problem", "Step 2 icon — build a working plan with AI agents", "Step 3 icon — implementation and results tracking"][i]}
 
                   style={{ width: 56, height: 56, marginBottom: 20, objectFit: "contain" }}
 

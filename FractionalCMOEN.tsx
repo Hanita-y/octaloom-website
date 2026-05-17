@@ -368,7 +368,7 @@ function CmoHero() {
               </div>
               <div className="orgchart__node">
                 <div className="orgchart__avatar">
-                  <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Headshot-1.png" alt="" onError={(e: any) => { e.target.style.display = "none"; e.target.parentNode.textContent = "HY" }} />
+                  <img src="https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/Headshot-1.png" alt="Hanita Yudovski, Fractional CMO and founder of OctaLoom" onError={(e: any) => { e.target.style.display = "none"; e.target.parentNode.textContent = "HY" }} />
                 </div>
                 <div className="orgchart__node-info">
                   <div className="n">OctaLoom · Hanita Yudovski</div>

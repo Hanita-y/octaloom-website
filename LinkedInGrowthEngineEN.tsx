@@ -631,12 +631,21 @@ function HeroSection({ onQuiz }: { onQuiz: () => void }) {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 18 }}>
               <div style={{ display: "flex", alignItems: "center" }}>
-                {trustFiles.map((f, i) => (
-                  <img key={i} src={`https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/${f}`}
-                    alt="" loading="lazy" width={34} height={34}
-                    style={{ width: 34, height: 34, borderRadius: "50%", border: `2.5px solid ${CREAM}`, marginLeft: i===0 ? 0 : -10, objectFit: "cover" }}
-                    onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='17' fill='%23712eac'/%3E%3C/svg%3E" }}/>
-                ))}
+                {trustFiles.map((f, i) => {
+                  const alts = [
+                    "OctaLoom client photo — B2B founder",
+                    "OctaLoom client photo — startup CEO",
+                    "OctaLoom client photo — VP Marketing",
+                    "OctaLoom client photo — LinkedIn-active entrepreneur",
+                    "OctaLoom client photo — B2B SaaS leader",
+                  ]
+                  return (
+                    <img key={i} src={`https://raw.githubusercontent.com/Hanita-y/Octaloom-images-and-videos/main/${f}`}
+                      alt={alts[i]} loading="lazy" width={34} height={34}
+                      style={{ width: 34, height: 34, borderRadius: "50%", border: `2.5px solid ${CREAM}`, marginLeft: i===0 ? 0 : -10, objectFit: "cover" }}
+                      onError={(e) => { (e.target as HTMLImageElement).onerror = null; (e.target as HTMLImageElement).src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Ccircle cx='17' cy='17' r='17' fill='%23712eac'/%3E%3C/svg%3E" }}/>
+                  )
+                })}
               </div>
               <span style={{ fontSize: 13, color: MUTED, maxWidth: 190, lineHeight: 1.4, fontFamily: FONT }}>{hero.trusted}</span>
             </div>

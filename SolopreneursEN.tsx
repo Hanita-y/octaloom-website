@@ -585,7 +585,7 @@ function SoloHero() {
                 <div className={`hero-ba__card hero-ba__card--before ${phase >= 1 ? 'hero-ba__card--dim' : ''}`}>
                   <div className="hero-ba__tag">Before</div>
                   <div className="hero-ba__profile">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=72&h=72&fit=crop&crop=face" className="hero-ba__avatar--gray-img" alt="" />
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=72&h=72&fit=crop&crop=face" className="hero-ba__avatar--gray-img" alt="Before example — business consultant LinkedIn profile prior to optimization" />
                     <div>
                       <div style={{fontSize:13,fontWeight:700,color:'#555'}}>Business Consultant</div>
                       <div style={{fontSize:10,color:'#999'}}>Tel Aviv, Israel</div>
@@ -604,7 +604,7 @@ function SoloHero() {
                 <div className={`hero-ba__card hero-ba__card--after ${phase >= 1 ? 'hero-ba__card--glow' : ''}`}>
                   <div className="hero-ba__tag hero-ba__tag--after">After</div>
                   <div className="hero-ba__profile">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=72&h=72&fit=crop&crop=face" className="hero-ba__avatar--color-img" alt="" />
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=72&h=72&fit=crop&crop=face" className="hero-ba__avatar--color-img" alt="After example — same LinkedIn profile after OctaLoom optimization" />
                     <div>
                       <div style={{fontSize:12,fontWeight:700,color:'#191919',lineHeight:1.3}}>Helped 50+ B2B companies double their pipeline</div>
                       <div style={{fontSize:10,color:'#666'}}>Business Strategy Consultant</div>
