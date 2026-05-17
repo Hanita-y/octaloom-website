@@ -399,7 +399,7 @@ function SiteNavbar() {
   ]
   const navLinks = [
     { label: "\u05d0\u05d5\u05d3\u05d5\u05ea", href: "https://www.octaloom.com/about-he" },
-    { label: "\u05d1\u05dc\u05d5\u05d2", href: "https://www.octaloom.com/blog" },
+    { label: "\u05d1\u05dc\u05d5\u05d2", href: "https://www.octaloom.com/blog-he" },
     { label: "\u05e6\u05e8\u05d5 \u05e7\u05e9\u05e8", href: "#contact" },
     { label: "Goodies", href: "https://octagoodies.com" },
   ]
@@ -1169,7 +1169,7 @@ function SiteFooter() {
   const pageLinks = [
     { label: "\u05d3\u05e3 \u05d4\u05d1\u05d9\u05ea", href: "https://www.octaloom.com/" },
     { label: "\u05d0\u05d5\u05d3\u05d5\u05ea", href: "https://www.octaloom.com/about-he" },
-    { label: "\u05d1\u05dc\u05d5\u05d2", href: "https://www.octaloom.com/blog" },
+    { label: "\u05d1\u05dc\u05d5\u05d2", href: "https://www.octaloom.com/blog-he" },
     { label: "\u05e6\u05e8\u05d5 \u05e7\u05e9\u05e8", href: "#contact" },
   ]
   const svcLinks = [
