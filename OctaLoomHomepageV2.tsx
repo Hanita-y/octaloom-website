@@ -3259,7 +3259,7 @@ function HPBlog() {
 
             <Reveal key={i} delay={i * 120} style={{ height: "100%" }}>
 
-              <a href={(post as any).href || 'https://www.octaloom.com/blog'}
+              <a href={(post as any).href ? ((post as any).href + (lang === "he" ? "/he" : "")) : (lang === "he" ? "https://www.octaloom.com/blog-he" : "https://www.octaloom.com/blog")}
                 target="_blank" rel="noopener noreferrer"
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 32px rgba(32,30,75,0.12)" }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "none" }}

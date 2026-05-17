@@ -74,14 +74,19 @@ const ChevronDown = ({ open }: { open: boolean }) => (
 // Returns the URL of the equivalent page in the other language.
 // HE pages end with -he; EN pages don't.
 function getLangToggleUrl(isHE: boolean): string {
-  if (typeof window === "undefined") return isHE ? "https://www.octaloom.com/" : "https://www.octaloom.com/"
+  if (typeof window === "undefined") return "https://www.octaloom.com/"
   const path = window.location.pathname
+  // Articles use /<slug>/he convention; every other page uses -he suffix.
+  const isArticle = path.startsWith("/articles/")
   if (isHE) {
-    const enPath = path.replace(/-he$/, "") || "/"
+    const enPath = isArticle
+      ? (path.replace(/\/he\/?$/, "") || "/")
+      : (path.replace(/-he\/?$/, "") || "/")
     return "https://www.octaloom.com" + enPath
   } else {
     if (path === "/" || path === "") return "https://www.octaloom.com/"
-    return "https://www.octaloom.com" + path.replace(/\/$/, "") + "-he"
+    const cleanPath = path.replace(/\/$/, "")
+    return "https://www.octaloom.com" + cleanPath + (isArticle ? "/he" : "-he")
   }
 }
 
